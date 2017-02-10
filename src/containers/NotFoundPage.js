@@ -30,8 +30,8 @@ class Index extends Component {
     render() {
         const { dispatch, user } = this.props;
         return (
-            <div className="index-container">
-                hello world
+            <div className="NotFoundPage-container">
+                您找的网页走丢了
             </div>
         )
     }

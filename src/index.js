@@ -4,10 +4,11 @@ import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
-import { Router, Route, hashHistory, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, Redirect, hashHistory, browserHistory } from 'react-router'
 
 import reducer from './reducers'
 import Index from './containers/Index'
+import NotFoundPage from './containers/NotFoundPage'
 
 const loggerMiddleware = createLogger();
 let store = createStore(
@@ -38,9 +39,14 @@ const loginOk = (nextState, replace) => {
 render (
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/" component={Index}></Route>
+            <Route path="/cms_font">
+                <IndexRoute component={Index} />
+            </Route>
             
+            <Route path='/404' component={NotFoundPage} />
+            <Redirect from='*' to='/404' />
         </Router>
+
     </Provider>,
     dom2
 );
