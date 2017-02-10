@@ -8732,7 +8732,7 @@ var Index = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'NotFoundPage-container' },
-                '\u60A8\u627E\u7684\u7F51\u9875\u8D70\u4E22\u4E86'
+                '\u60A8\u627E\u7684\u7F51\u9875\u8D70\u4E22\u4E863'
             );
         }
     }]);

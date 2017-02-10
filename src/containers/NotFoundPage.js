@@ -31,7 +31,7 @@ class Index extends Component {
         const { dispatch, user } = this.props;
         return (
             <div className="NotFoundPage-container">
-                您找的网页走丢了
+                您找的网页走丢了3
             </div>
         )
     }
