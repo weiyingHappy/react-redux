@@ -32,8 +32,6 @@ render (
             <Route path="/" component={Index}>
             </Route>
 
-            <Route path='/404' component={NotFoundPage} />
-            <Redirect from='*' to='/404' />
         </Router>
 
     </Provider>,
