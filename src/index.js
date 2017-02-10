@@ -9,6 +9,7 @@ import { Router, Route, IndexRoute, Redirect, hashHistory, browserHistory } from
 import reducer from './reducers'
 import Index from './containers/Index'
 import NotFoundPage from './containers/NotFoundPage'
+import Rooms from './containers/Rooms'
 
 const loggerMiddleware = createLogger();
 
@@ -29,8 +30,8 @@ let dom2 = document.getElementById('main-container');
 render (
     <Provider store={store}>
         <Router history={hashHistory}>
-            <Route path="/" component={Index}>
-            </Route>
+            <Route path="/index/:token" component={Index}></Route>
+            <Route path="/rooms/:token" component={Rooms}></Route>
 
             <Route path='/404' component={NotFoundPage} />
             <Redirect from='*' to='/404' />
