@@ -8644,7 +8644,7 @@ var dom2 = document.getElementById('main-container');
     _react2.default.createElement(
         _reactRouter.Router,
         { history: _reactRouter.browserHistory },
-        _react2.default.createElement(_reactRouter.Route, { path: '/cms_font', component: _Index2.default }),
+        _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Index2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/404', component: _NotFoundPage2.default }),
         _react2.default.createElement(_reactRouter.Redirect, { from: '*', to: '/404' })
     )
