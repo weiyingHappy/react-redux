@@ -30,11 +30,11 @@ let dom2 = document.getElementById('main-container');
 render (
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/cms_font/index/:token" component={Index}></Route>
-            <Route path="/cms_font/rooms/:token" component={Rooms}></Route>
+            <Route path="/cmsfont/index/:token" component={Index}></Route>
+            <Route path="/cmsfont/rooms/:token" component={Rooms}></Route>
 
-            <Route path='/cms_font/404' component={NotFoundPage} />
-            <Redirect from='*' to='/cms_font/404' />
+            <Route path='/cmsfont/404' component={NotFoundPage} />
+            <Redirect from='*' to='/cmsfont/404' />
         </Router>
 
     </Provider>,
