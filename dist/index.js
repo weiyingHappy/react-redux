@@ -8633,33 +8633,18 @@ var _NotFoundPage2 = _interopRequireDefault(_NotFoundPage);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var loggerMiddleware = (0, _reduxLogger2.default)();
-var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default, loggerMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+
+var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default, loggerMiddleware)));
+
 var dom2 = document.getElementById('main-container');
 
-var requireAuth = function requireAuth(nextState, replace) {
-    var is_login = store.getState().login.is_login;
-    if (!is_login) {
-        replace({ pathname: '/login' });
-        // browserHistory.push('/login');
-    }
-};
-var loginOk = function loginOk(nextState, replace) {
-    var is_login = store.getState().login.is_login;
-    if (is_login) {
-        replace({ pathname: '/' });
-    }
-};
 (0, _reactDom.render)(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
     _react2.default.createElement(
         _reactRouter.Router,
         { history: _reactRouter.browserHistory },
-        _react2.default.createElement(
-            _reactRouter.Route,
-            { path: '/cms_font' },
-            _react2.default.createElement(_reactRouter.IndexRoute, { component: _Index2.default })
-        ),
+        _react2.default.createElement(_reactRouter.Route, { path: '/cms_font', component: _Index2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/404', component: _NotFoundPage2.default }),
         _react2.default.createElement(_reactRouter.Redirect, { from: '*', to: '/404' })
     )

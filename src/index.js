@@ -11,6 +11,7 @@ import Index from './containers/Index'
 import NotFoundPage from './containers/NotFoundPage'
 
 const loggerMiddleware = createLogger();
+
 let store = createStore(
     reducer,
     compose(
@@ -18,31 +19,17 @@ let store = createStore(
             thunkMiddleware,
             loggerMiddleware
         ),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
+
 let dom2 = document.getElementById('main-container');
 
-const requireAuth = (nextState, replace) => {
-    let is_login = store.getState().login.is_login;
-    if (!is_login) {
-        replace({ pathname: '/login' });
-        // browserHistory.push('/login');
-    }
-};
-const loginOk = (nextState, replace) => {
-    let is_login = store.getState().login.is_login;
-    if (is_login) {
-        replace({ pathname: '/' });
-    }
-};
+
 render (
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/cms_font">
-                <IndexRoute component={Index} />
-            </Route>
-            
+            <Route path="/cms_font" component={Index} />
             <Route path='/404' component={NotFoundPage} />
             <Redirect from='*' to='/404' />
         </Router>
