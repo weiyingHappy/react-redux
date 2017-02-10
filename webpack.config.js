@@ -11,9 +11,9 @@ module.exports =
         ]
     },
     output: {
-        path : __dirname + '/public/dist',
+        path : __dirname + '/dist',
         filename: '[name].js',
-        publicPath: '/public/dist'
+        publicPath: '/dist'
     },
     module: {
         loaders: [{

@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "debug": "webpack-dev-server --inline --hot --port 8080 --history-api-fallback",
-    "start": "nohup nodemon app.js >/dev/null 2>&1 &"
+    "debug": "webpack-dev-server --inline --hot --port 8080"
   },
   "author": "",
   "license": "ISC",
@@ -30,9 +29,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "bell-on-bundler-error-plugin": "^1.0.8",
     "css-loader": "^0.26.1",
-    "express": "^4.14.1",
     "node-sass": "^4.5.0",
-    "path": "^0.12.7",
     "redux-logger": "^2.8.1",
     "sass-loader": "^5.0.0",
     "style-loader": "^0.13.1",

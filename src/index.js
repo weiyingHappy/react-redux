@@ -28,10 +28,12 @@ let dom2 = document.getElementById('main-container');
 
 render (
     <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={hashHistory}>
             <Route path="/" component={Index}>
             </Route>
 
+            <Route path='/404' component={NotFoundPage} />
+            <Redirect from='*' to='/404' />
         </Router>
 
     </Provider>,
