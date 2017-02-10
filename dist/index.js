@@ -8730,8 +8730,8 @@ var dom2 = document.getElementById('main-container');
     { store: store },
     _react2.default.createElement(
         _reactRouter.Router,
-        { history: _reactRouter.hashHistory },
-        _react2.default.createElement(_reactRouter.Route, { path: '/index/:token', component: _Index2.default }),
+        { history: _reactRouter.browserHistory },
+        _react2.default.createElement(_reactRouter.Route, { path: '/index/in', component: _Index2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/rooms/:token', component: _Rooms2.default }),
         _react2.default.createElement(_reactRouter.Route, { path: '/404', component: _NotFoundPage2.default }),
         _react2.default.createElement(_reactRouter.Redirect, { from: '*', to: '/404' })

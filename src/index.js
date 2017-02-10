@@ -29,8 +29,8 @@ let dom2 = document.getElementById('main-container');
 
 render (
     <Provider store={store}>
-        <Router history={hashHistory}>
-            <Route path="/index/:token" component={Index}></Route>
+        <Router history={browserHistory}>
+            <Route path="/index/in" component={Index}></Route>
             <Route path="/rooms/:token" component={Rooms}></Route>
 
             <Route path='/404' component={NotFoundPage} />
