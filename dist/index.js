@@ -12182,7 +12182,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var production = 'production';
 var development = 'development';
 
-var mid = development;
+var mid = production;
 
 var now = mid == development ? _config4.default : _config2.default;
 
