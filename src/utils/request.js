@@ -16,7 +16,6 @@ export default function request(url, options) {
     // console.log('options: ', options);
 
 
-    console.log('url: ', url);
     return fetch(url, options)
         .then(response => response.json())
         .then(json =>{

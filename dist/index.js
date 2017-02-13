@@ -12202,7 +12202,7 @@ module.exports = config;
 
 
 module.exports = {
-    api_host: 'www.lianwuyun.cn/cms',
+    api_host: 'http://www.lianwuyun.cn/cms',
     remote_host: 'http://www.lianwuyun.cn/api/api'
 };
 
@@ -12312,7 +12312,6 @@ function request(url, options) {
     // console.log('options: ', options);
 
 
-    console.log('url: ', url);
     return (0, _isomorphicFetch2.default)(url, options).then(function (response) {
         return response.json();
     }).then(function (json) {
