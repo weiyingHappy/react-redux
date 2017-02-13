@@ -10,6 +10,7 @@ import reducer from './reducers'
 import Index from './containers/Index'
 import NotFoundPage from './containers/NotFoundPage'
 import Rooms from './containers/Rooms'
+import Register from './containers/Register'
 
 const loggerMiddleware = createLogger();
 
@@ -17,10 +18,10 @@ let store = createStore(
     reducer,
     compose(
         applyMiddleware(
-            thunkMiddleware,
-            loggerMiddleware
+            thunkMiddleware
+            // loggerMiddleware
         ),
-        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
 );
 
@@ -32,6 +33,7 @@ render (
         <Router history={browserHistory}>
             <Route path="/cmsfont/index/:token" component={Index}></Route>
             <Route path="/cmsfont/rooms/:token" component={Rooms}></Route>
+            <Route path="/cmsfont/register" component={Register}></Route>
 
             <Route path='/cmsfont/404' component={NotFoundPage} />
             <Redirect from='*' to='/cmsfont/404' />

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
+import {fetchLogin} from '../actions/user'
 
 
 class Index extends Component {
@@ -9,29 +10,27 @@ class Index extends Component {
     constructor (props) {
         super(props);
 
-        this.handleClick = this.handleClick.bind(this);
-
-        this.state = {
-            current: '1'
-        }
     }
 
     componentWillMount() {
-
+        let token = this.props.params.token;
+        let code = this.props.location.query.code;
+        this.props.dispatch(fetchLogin({token: token, code: code}));
+        console.log(token);
     }
 
-    handleClick(e) {
-        console.log('click ', e);
-        this.setState({
-            current: e.key
-        });
-    }
 
     render() {
         const { dispatch, user } = this.props;
         return (
             <div className="index-container">
-                hello world
+                <div id="loadingToast" style={{display: (user.isFetching?'block':'none')}}>
+                    <div className="weui-mask_transparent"></div>
+                    <div className="weui-toast">
+                        <i className="weui-loading weui-icon_toast"></i>
+                        <p className="weui-toast__content">logging in...</p>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -40,7 +39,7 @@ class Index extends Component {
 
 function select(state) {
     return {
-        user: state.login
+        user: state.user
     }
 }
 
