@@ -4,6 +4,8 @@ module.exports = {
     },
     remote_path: {
         isMember: '/CMS/CmsBasic/isMember',
-        register: '/CMS/CmsBasic/register'
+        register: '/CMS/CmsBasic/register',
+        sendSMS: '/SMS/sendSMS',
+        checkSMS: '/SMS/checkSMS'
     }
 };
