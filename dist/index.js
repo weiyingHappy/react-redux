@@ -7290,8 +7290,6 @@ var Register = function (_Component) {
                 code: code
             };
 
-            alert("测试alert---" + self.getCookie('openid', this.props.teamId));
-
             this.props.dispatch((0, _register.fetchCheckCode)(info)).then(function (res_a) {
                 console.log('check over', res_a);
 
@@ -7302,7 +7300,6 @@ var Register = function (_Component) {
                         team_id: self.props.teamId,
                         wxid: self.getCookie('openid', self.props.teamId)
                     };
-                    alert("phone:" + info_b.phone + "-----" + "wxid: " + info_b.wxid);
 
                     self.props.dispatch((0, _register.fetchRegister)(info_b)).then(function (res_b) {
                         console.log('submit over', res_b);

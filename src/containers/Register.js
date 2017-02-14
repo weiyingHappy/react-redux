@@ -72,8 +72,6 @@ class Register extends Component {
             code: code
         };
 
-        alert("测试alert---"+self.getCookie('openid', this.props.teamId));
-
         this.props.dispatch(fetchCheckCode(info)).then((res_a) => {
             console.log('check over', res_a);
 
@@ -84,7 +82,6 @@ class Register extends Component {
                     team_id: self.props.teamId,
                     wxid: self.getCookie('openid', self.props.teamId)
                 };
-                alert("phone:"+info_b.phone+"-----"+"wxid: "+info_b.wxid);
 
                 self.props.dispatch(fetchRegister(info_b)).then((res_b)=>{
                     console.log('submit over', res_b);
