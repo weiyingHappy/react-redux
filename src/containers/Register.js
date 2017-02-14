@@ -84,7 +84,6 @@ class Register extends Component {
                     team_id: self.props.teamId,
                     wxid: self.getCookie('openid', self.props.teamId)
                 };
-
                 alert("phone:"+info_b.phone+"-----"+"wxid: "+info_b.wxid);
 
                 self.props.dispatch(fetchRegister(info_b)).then((res_b)=>{
@@ -211,7 +210,7 @@ class Register extends Component {
                     <div className="register-dialog">
                         <img src={img_dialog} className="tanchu-img"/>
                         <div>
-                            {this.state.sb_msg}
+                            {this.state.sb_code+'------'+this.state.sb_msg}
                         </div>
                     </div>
                 </Dialog>
