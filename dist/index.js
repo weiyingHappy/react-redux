@@ -7292,6 +7292,8 @@ var Register = function (_Component) {
                 code: code
             };
 
+            alert("测试alert");
+
             this.props.dispatch((0, _register.fetchCheckCode)(info)).then(function (res_a) {
                 console.log('check over', res_a);
 

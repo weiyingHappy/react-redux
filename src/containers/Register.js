@@ -72,6 +72,8 @@ class Register extends Component {
             code: code
         };
 
+        alert("测试alert");
+
         this.props.dispatch(fetchCheckCode(info)).then((res_a) => {
             console.log('check over', res_a);
 
