@@ -7066,11 +7066,10 @@ var Index = function (_Component) {
                 dispatch = _props.dispatch,
                 user = _props.user;
 
-            return _react2.default.createElement(
+            return user.isFetching ? _react2.default.createElement(_loading2.default, { text: 'logging in...', isFetching: user.isFetching }) : _react2.default.createElement(
                 'div',
                 { className: 'index-container' },
-                '\u767B\u5F55\u6210\u529F',
-                _react2.default.createElement(_loading2.default, { text: 'logging in...', isFetching: user.isFetching })
+                '\u767B\u5F55\u6210\u529F'
             );
         }
     }]);
