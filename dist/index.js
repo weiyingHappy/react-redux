@@ -7302,6 +7302,9 @@ var Register = function (_Component) {
                         team_id: self.props.teamId,
                         wxid: self.getCookie('openid', _this2.props.teamId)
                     };
+
+                    alert("phone:" + info_b.phone + "-----" + "wxid: " + info_b.wxid);
+
                     self.props.dispatch((0, _register.fetchRegister)(info_b)).then(function (res_b) {
                         console.log('submit over', res_b);
                         if (res_b.code == 200) {
@@ -7313,7 +7316,7 @@ var Register = function (_Component) {
                         } else {
                             self.setState({
                                 sb_code: res_b.code,
-                                sb_msg: res_b.sb_msg,
+                                sb_msg: res_b.sb_msg + '-submit failed',
                                 isDisplayDialog: true
                             });
                         }
@@ -7321,7 +7324,7 @@ var Register = function (_Component) {
                 } else {
                     self.setState({
                         sb_code: res_a.code,
-                        sb_msg: res_a.msg,
+                        sb_msg: res_a.msg + '-checkcode failed',
                         isDisplayDialog: true
                     });
                 }

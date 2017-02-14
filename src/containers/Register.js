@@ -82,6 +82,9 @@ class Register extends Component {
                     team_id: self.props.teamId,
                     wxid: self.getCookie('openid', this.props.teamId)
                 };
+
+                alert("phone:"+info_b.phone+"-----"+"wxid: "+info_b.wxid);
+
                 self.props.dispatch(fetchRegister(info_b)).then((res_b)=>{
                     console.log('submit over', res_b);
                     if (res_b.code == 200) {
@@ -94,7 +97,7 @@ class Register extends Component {
                     else {
                         self.setState({
                             sb_code: res_b.code,
-                            sb_msg: res_b.sb_msg,
+                            sb_msg: res_b.sb_msg+'-submit failed',
                             isDisplayDialog: true
                         })
                     }
@@ -103,7 +106,7 @@ class Register extends Component {
             else {
                 self.setState({
                     sb_code: res_a.code,
-                    sb_msg: res_a.msg,
+                    sb_msg: res_a.msg+'-checkcode failed',
                     isDisplayDialog: true
                 })
             }
