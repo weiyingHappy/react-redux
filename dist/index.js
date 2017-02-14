@@ -7281,8 +7281,6 @@ var Register = function (_Component) {
     }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
-            var _this2 = this;
-
             e.preventDefault();
             var self = this;
             var phone = this.state.phone;
@@ -7292,7 +7290,7 @@ var Register = function (_Component) {
                 code: code
             };
 
-            alert("测试alert");
+            alert("测试alert---" + self.getCookie('openid', this.props.teamId));
 
             this.props.dispatch((0, _register.fetchCheckCode)(info)).then(function (res_a) {
                 console.log('check over', res_a);
@@ -7300,9 +7298,9 @@ var Register = function (_Component) {
                 if (res_a.code == 200) {
                     var info_b = {
                         phone: phone,
-                        nickname: self.getCookie('nickname', _this2.props.teamId),
+                        nickname: self.getCookie('nickname', self.props.teamId),
                         team_id: self.props.teamId,
-                        wxid: self.getCookie('openid', _this2.props.teamId)
+                        wxid: self.getCookie('openid', self.props.teamId)
                     };
 
                     alert("phone:" + info_b.phone + "-----" + "wxid: " + info_b.wxid);

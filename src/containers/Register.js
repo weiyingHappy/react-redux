@@ -72,7 +72,7 @@ class Register extends Component {
             code: code
         };
 
-        alert("测试alert");
+        alert("测试alert---"+self.getCookie('openid', this.props.teamId));
 
         this.props.dispatch(fetchCheckCode(info)).then((res_a) => {
             console.log('check over', res_a);
@@ -80,9 +80,9 @@ class Register extends Component {
             if (res_a.code == 200) {
                 let info_b = {
                     phone: phone,
-                    nickname: self.getCookie('nickname', this.props.teamId),
+                    nickname: self.getCookie('nickname', self.props.teamId),
                     team_id: self.props.teamId,
-                    wxid: self.getCookie('openid', this.props.teamId)
+                    wxid: self.getCookie('openid', self.props.teamId)
                 };
 
                 alert("phone:"+info_b.phone+"-----"+"wxid: "+info_b.wxid);
