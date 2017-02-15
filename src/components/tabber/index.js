@@ -28,19 +28,19 @@ class Tabber extends React.Component {
                     <div className="weui-tabbar" style={{backgroundColor:'#fff'}}>
                         <Link to="/cmsfont/intro" className="weui-tabbar__item weui-bar__item_on">
                             <img src={img_index} alt="" className="weui-tabbar__icon" />
-                            <p className="weui-tabbar__label" style={{color: brr[0]}}>首页</p>
+                            <p className="weui-tabbar__label" style={{color: brr[0]}}>酒店介绍</p>
                         </Link>
                         <Link to={"/cmsfont/rooms/"+this.props.token+"?code="+this.props.code}className="weui-tabbar__item">
                             <img src={img_order} alt="" className="weui-tabbar__icon" />
-                            <p className="weui-tabbar__label" style={{color: brr[1]}}>订房</p>
+                            <p className="weui-tabbar__label" style={{color: brr[1]}}>客房预订</p>
                         </Link>
                         <Link to="/cmsfont/snap" className="weui-tabbar__item">
                             <img src={img_snap} alt="" className="weui-tabbar__icon" />
-                            <p className="weui-tabbar__label" style={{color: brr[2]}}>抢房</p>
+                            <p className="weui-tabbar__label" style={{color: brr[2]}}>最新活动</p>
                         </Link>
                         <Link to="/cmsfont/my" className="weui-tabbar__item">
                             <img src={img_my} alt="" className="weui-tabbar__icon" />
-                            <p className="weui-tabbar__label" style={{color: brr[3]}}>我的</p>
+                            <p className="weui-tabbar__label" style={{color: brr[3]}}>账户中心</p>
                         </Link>
                     </div>
                 </div>

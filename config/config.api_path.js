@@ -7,6 +7,7 @@ module.exports = {
         register: '/CMS/CmsBasic/register',
         sendSMS: '/SMS/sendSMS',
         checkSMS: '/SMS/checkSMS',
-        wechatInfo: '/CMS/CmsBasic/wechatInfo'
+        wechatInfo: '/CMS/CmsBasic/wechatInfo',
+        hotelInfo: '/FE/Room/rooms'
     }
 };

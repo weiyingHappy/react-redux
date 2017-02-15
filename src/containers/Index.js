@@ -47,7 +47,7 @@ class Index extends Component {
         ):(
             <div className="index-container">
                 <Loading text="加载数据中..." isFetching={user.isLoading} />
-                <Scroll img_lists = {user.indexImgs}/>
+                <Scroll img_lists = {user.indexImgs} height="100%"/>
                 <Tabber highlight={4} />
             </div>
         )

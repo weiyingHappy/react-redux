@@ -5,7 +5,7 @@ let user_state = {
     isFetching: false,
     isLoading: false,
 
-    teamId: 0,
+    teamId: 1,
     receivedAt: '',
     isLogin: false,
     wechatToken: '', // 为酒店生成的token

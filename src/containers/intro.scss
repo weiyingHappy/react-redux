@@ -1,0 +1,89 @@
+@import "../static/scss/common";
+
+.intro-container {
+  @extend .container-common;
+  background-color: #E5E5E5;
+
+  .hotel-intro {
+    box-sizing: border-box;
+    background-color: #fff;
+    margin-top: 10px;
+  }
+  .hotel-intro-title {
+    font-size: 18px;
+    color: #4F4F4F;
+    height: 49px;
+    border-bottom: 1px solid #d2d2d2;
+    padding: 0 11px;
+    line-height: 49px;
+  }
+  .hotel-intro-body {
+    padding: 10px 11px;
+    font-size: 15px;
+    color: #666;
+  }
+
+  .hotel-info {
+    height: 66px;
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  .hotel-info-a {
+  }
+  .hotel-star-icon {
+    margin-right: 3px;
+    width: 14px;
+    height: 13px;
+  }
+  .hotel-star-score {
+    color: #FF5000;
+    margin-left: 10px;
+    font-size: 15px;
+  }
+  .hotel-name {
+    font-size: 18px;
+    width: 90%;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+
+  .addr-phone {
+    @include flex(row, nowrap, space-between, center);
+
+    box-sizing: border-box;
+    min-height: 54px;
+    background-color: #fff;
+    border-top: 1px solid #DCDCDC;
+  }
+  .hotel-addr {
+    width: 83%;
+    box-sizing: border-box;
+    @include flex(row, nowrap, start, center);
+
+    padding: 0 11px;
+
+    color: #B3B3B3;
+    font-size: 13px;
+  }
+  .hotel-phone {
+    height: 54px;
+    width: 17%;
+    border-left: 1px solid #DCDCDC;
+    box-sizing: border-box;
+
+    @include flex(row, nowrap, center, center);
+  }
+  .ha-img {
+    margin-right: 3px;
+    height: 17px;
+    width: 13px;
+  }
+  .hp-img {
+    height: 23px;
+    width: 21px;
+  }
+}
+
