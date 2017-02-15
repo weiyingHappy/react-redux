@@ -7717,9 +7717,9 @@ var Index = function (_Component) {
             var self = this;
             this.props.dispatch((0, _user.fetchLogin)({ token: token, code: code })).then(function (res) {
                 console.log('dispatch res: ', res);
-                if ((res.code != 200 || res.code != 406) && _config2.default.mid == _config2.default.production) {
-                    _reactRouter.browserHistory.push('/cmsfont/error');
-                }
+                // if ((res.code != 200 || res.code!=406) && config.mid==config.production) {
+                //     browserHistory.push('/cmsfont/error');
+                // }
                 if (res.code != 200) {
                     return;
                 }

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/vendor.bundle.js" afterPath="$PROJECT_DIR$/dist/vendor.bundle.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Index.js" afterPath="$PROJECT_DIR$/src/containers/Index.js" />
     </list>
     <ignored path="youzhu_business_h5.iws" />
@@ -114,8 +112,8 @@
       <file leaf-file-name="Index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/Index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+            <state relative-caret-position="307">
+              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="25" selection-end-column="16" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -556,12 +554,12 @@
       <workItem from="1486691062700" duration="22904000" />
       <workItem from="1486950068596" duration="24642000" />
       <workItem from="1487036352703" duration="26197000" />
-      <workItem from="1487122689360" duration="24389000" />
+      <workItem from="1487122689360" duration="24476000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129101000" />
+    <option name="totallyTimeSpent" value="129188000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -973,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/containers/Index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="27" column="24" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="24" />
+        <state relative-caret-position="307">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="25" selection-end-column="16" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
