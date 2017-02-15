@@ -1,0 +1,11 @@
+@import '../../static/scss/common';
+
+.notfound-container {
+  @extend .container-common;
+}
+.tabber {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
+}

@@ -1,0 +1,8 @@
+@import '../../static/scss/common';
+
+.notfound-container {
+  @extend .container-common;
+  @include flex(row, nowrap, center, center);
+  font-size: 28px;
+  padding-top: 200px;
+}

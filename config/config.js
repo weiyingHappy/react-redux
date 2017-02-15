@@ -12,7 +12,11 @@ let now = (mid == development?dev_conf:pro_conf);
 
 let config = {
     api_host: now.api_host,
-    remote_host: now.remote_host
+    remote_host: now.remote_host,
+
+    mid: mid,
+    production: production,
+    development: development
 };
 config = Object.assign({}, config, api_path);
 

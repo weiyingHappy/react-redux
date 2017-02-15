@@ -6,6 +6,7 @@ module.exports = {
         isMember: '/CMS/CmsBasic/isMember',
         register: '/CMS/CmsBasic/register',
         sendSMS: '/SMS/sendSMS',
-        checkSMS: '/SMS/checkSMS'
+        checkSMS: '/SMS/checkSMS',
+        wechatInfo: '/CMS/CmsBasic/wechatInfo'
     }
 };

@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
-
 import Tabber from '../components/tabber'
 
-class Rooms extends Component {
+
+class Intro extends Component {
 
     constructor (props) {
         super(props);
@@ -32,7 +32,8 @@ class Rooms extends Component {
         const { dispatch, user } = this.props;
         return (
             <div className="index-container">
-                欢迎来到房间列表
+                欢迎来到酒店介绍
+
                 <Tabber highlight={4} />
             </div>
         )
@@ -47,4 +48,4 @@ function select(state) {
 }
 
 // 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；
-export default connect(select)(Rooms)
+export default connect(select)(Intro)

@@ -2,9 +2,10 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
+import Tabber from '../components/tabber'
 
 
-class Index extends Component {
+class Snap extends Component {
 
     constructor (props) {
         super(props);
@@ -30,8 +31,9 @@ class Index extends Component {
     render() {
         const { dispatch, user } = this.props;
         return (
-            <div className="NotFoundPage-container">
-                您找的网页走丢了3
+            <div className="index-container">
+                欢迎来到抢房
+                <Tabber highlight={4} />
             </div>
         )
     }
@@ -40,9 +42,9 @@ class Index extends Component {
 
 function select(state) {
     return {
-        user: state.login
+        user: state.user
     }
 }
 
 // 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；
-export default connect(select)(Index)
+export default connect(select)(Snap)

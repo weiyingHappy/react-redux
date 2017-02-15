@@ -8,7 +8,7 @@
   font-family: FZLTXHK,Helvetica,Tahoma,Arial,STXihei,"华文细黑","Microsoft YaHei","微软雅黑",sans-serif;
 }
 
-#main-container, html {
+#main-container, html , body{
   @extend .container-common;
 }
 

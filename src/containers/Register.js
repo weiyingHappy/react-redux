@@ -207,7 +207,7 @@ class Register extends Component {
                     <div className="register-dialog">
                         <img src={img_dialog} className="tanchu-img"/>
                         <div>
-                            {this.state.sb_code+'------'+this.state.sb_msg}
+                            {this.state.sb_msg}
                         </div>
                     </div>
                 </Dialog>

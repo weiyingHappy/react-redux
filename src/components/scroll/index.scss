@@ -1,0 +1,14 @@
+@import '../../static/scss/common';
+@import "../../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+
+.notfound-container {
+  @include flex(row, nowrap, center, center);
+  font-size: 28px;
+  padding-top: 200px;
+}
+.scroll-container {
+  height: 100%;
+}
+.image-gallery, .image-gallery-content, .image-gallery-slide-wrapper, .image-gallery-swipe, .image-gallery-slides, .image-gallery-slide, .image-gallery-image, .image-gallery-image img {
+  height: 100%;
+}
