@@ -21,8 +21,11 @@ class Index extends Component {
         let self = this;
         this.props.dispatch(fetchLogin({token: token, code: code})).then((res)=>{
             console.log('dispatch res: ', res);
-            if (res.code != 200 && config.mid==config.production) {
+            if ((res.code != 200 || res.code!=406) && config.mid==config.production) {
                 browserHistory.push('/cmsfont/error');
+            }
+            if (res.code!=200) {
+                return ;
             }
             self.props.dispatch(fetchIndexImg({token: token})).then((res_b)=>{
                 console.log('receive img: ',res_b);
