@@ -19,20 +19,28 @@ class Index extends Component {
         let token = this.props.params.token;
         let code = this.props.location.query.code;
         let self = this;
-        this.props.dispatch(fetchLogin({token: token, code: code})).then((res)=>{
-            console.log('dispatch res: ', res);
-            // if ((res.code != 200 || res.code!=406) && config.mid==config.production) {
-            //     browserHistory.push('/cmsfont/error');
-            // }
-            if (res.code!=200) {
-                return ;
-            }
+        if (this.props.user.isLogin) {
             self.props.dispatch(fetchIndexImg({token: token})).then((res_b)=>{
                 console.log('receive img: ',res_b);
-            })
+            });
+            return ;
+        }
+        this.props.dispatch(fetchLogin({token: token, code: code})).then((res)=>{
+            console.log('dispatch res: ', res);
+
+            if (res.code == 406) {
+                browserHistory.push('/cmsfont/register');
+            }
+            else if (res.code!=200 && config.mid==config.production) {
+                browserHistory.push('/cmsfont/error');
+            }
+            else {
+                self.props.dispatch(fetchIndexImg({token: token})).then((res_b)=>{
+                    console.log('receive img: ',res_b);
+                })
+            }
         });
     }
-
 
 
 
@@ -45,13 +53,13 @@ class Index extends Component {
         ) : user.isLoading?(
             <div className="index-container">
                 <Loading text="加载数据中..." isFetching={user.isLoading} />
-                <Tabber highlight={4} />
+                <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         ):(
             <div className="index-container">
                 <Loading text="加载数据中..." isFetching={user.isLoading} />
                 <Scroll img_lists = {user.indexImgs} height="100%"/>
-                <Tabber highlight={4} />
+                <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         )
     }

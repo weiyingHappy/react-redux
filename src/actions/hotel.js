@@ -2,8 +2,10 @@ import request from '../utils/request'
 import config from '../../config/config'
 import { browserHistory } from 'react-router'
 
-export const REQUEST_HOTEL_LISTS= 'REQUEST_HOST';
-export const RECEIVE_HOTEL_LISTS = 'RECEIVE_HOST';
+export const REQUEST_HOTEL_LISTS= 'REQUEST_HOTEL_LISTS';
+export const RECEIVE_HOTEL_LISTS = 'RECEIVE_HOTEL_LISTS';
+
+export const CHANGE_ROOM = 'CHANGE_ROOM';
 
 
 export function requestHotelLists(info) {
@@ -33,5 +35,13 @@ export function fetchHotelLists(info) {
         });
 
         return dt;
+    }
+}
+
+
+export function changeRoom(id) {
+    return {
+        type: CHANGE_ROOM,
+        id
     }
 }

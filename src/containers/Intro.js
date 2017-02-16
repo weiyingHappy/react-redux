@@ -38,7 +38,7 @@ class Intro extends Component {
             <div className="intro-container">
                 <Loading text="加载中..." isFetching={hotel.isFetching} />
 
-                <Tabber highlight={4} />
+                <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         ):(
             <div className="intro-container">
@@ -72,7 +72,7 @@ class Intro extends Component {
                     </div>
                 </div>
 
-                <Tabber highlight={4} />
+                <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         )
     }

@@ -1,0 +1,100 @@
+@import "../static/scss/common";
+
+.roomInfo-container {
+  @extend .container-common;
+  height: auto!important;
+  min-height: 100%;
+  background-color: #F2F2F2;
+
+  .top-a-img {
+    height: 200px;
+    width: 100%;
+  }
+  .top-a-des {
+
+    @include flex(row, nowrap, space-between, inherit);
+    background-color: #fff;
+    height: 55px;
+    box-sizing: border-box;
+    padding: 0 11px;
+    line-height: 55px;
+  }
+  .top-a-left {
+    font-size: 1.7rem;
+  }
+  .top-a-right {
+
+    @include flex(row, nowrap, felx-start, inherit)
+  }
+  .top-a-right-a {
+    text-decoration: line-through;
+    font-size: 1.7rem;
+    color: #999;
+    margin-right: 3px;
+  }
+  .top-a-right-b {
+    font-size: 2.5rem;
+    color: #FF4E00;
+  }
+  .no-room-text {
+    font-size: 1.7rem;
+  }
+
+
+
+  .date-container {
+    @include flex(row, nowrap, space-between, center);
+
+    box-sizing: border-box;
+    padding: 0 15px 0 10px;
+    background-color: #fff;
+    margin-top: 10px;
+    height: 50px;
+  }
+  .start-date, .end-date, .num-date {
+    @include flex(row, nowrap, flex-start, inherit);
+  }
+  .explain-text {
+    font-size: 13px;
+    color: #B2B2B2;
+  }
+  .date-ins {
+    margin: 0 3px;
+    font-size: 18px;
+    color: #4969F1;
+  }
+  .sign {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-width: 2px 2px 0 0;
+    border-color: #B2B2B2;
+    border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  }
+
+  .middle-a {
+    padding: 10px;
+
+    @include flex(column, nowrap, space-around, inherit);
+    background-color: #fff;
+    margin-top: 20px;
+  }
+  .middle-a > div {
+
+    @include flex(row, nowrap, flex-start, inherit);
+    line-height: 25px;
+  }
+  .item-label {
+    font-size: 14px;
+    color: #ABABAB;
+  }
+  .item-value {
+    color: #666666;
+    font-size: 14px;
+    margin-left: 22px;
+  }
+
+}
+

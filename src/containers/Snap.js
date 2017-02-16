@@ -33,7 +33,7 @@ class Snap extends Component {
         return (
             <div className="index-container">
                 欢迎来到抢房
-                <Tabber highlight={4} />
+                <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         )
     }

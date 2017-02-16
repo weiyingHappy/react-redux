@@ -1,5 +1,6 @@
 import { REQUEST_LOGIN, RECEIVE_LOGIN, REQUEST_INDEX_IMG, RECEIVE_INDEX_IMG } from '../actions/user'
 import defaultImgs from '../static/images/two/icon-5.png'
+import config from '../../config/config'
 
 let user_state = {
     isFetching: false,
@@ -19,7 +20,7 @@ export default function user(state=user_state, action) {
         case REQUEST_LOGIN:
             return Object.assign({}, state, {isFetching: true, wechatToken: action.user.token, wechatCode: action.user.code});
         case RECEIVE_LOGIN:
-            return Object.assign({}, state, {isFetching: false, teamId: action.data.results.teamid, isLogin: (action.data.code==200)});
+            return Object.assign({}, state, {isFetching: false, teamId: action.data.results.teamid, isLogin: (action.data.code==200||config.mid==config.development)});
         case REQUEST_INDEX_IMG:
             return Object.assign({}, state, {isLoading: true});
         case RECEIVE_INDEX_IMG:

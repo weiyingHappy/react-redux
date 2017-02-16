@@ -3,5 +3,8 @@
 .index-container {
   @extend .container-common;
 
+  .image-gallery-bullets {
+    bottom: 80px!important;
+  }
 }
 
