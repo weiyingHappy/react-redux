@@ -8,6 +8,8 @@ module.exports = {
         sendSMS: '/SMS/sendSMS',
         checkSMS: '/SMS/checkSMS',
         wechatInfo: '/CMS/CmsBasic/wechatInfo',
-        hotelInfo: '/FE/Room/rooms'
+        hotelInfo: '/FE/Room/rooms',
+        inventory: '/FE/Order/inventory',
+        getComments: '/FE/Evaluation/evaluations'
     }
 };

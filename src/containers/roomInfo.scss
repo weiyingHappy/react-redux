@@ -12,7 +12,7 @@
   }
   .top-a-des {
 
-    @include flex(row, nowrap, space-between, inherit);
+    @include flex(row, nowrap, space-between, center);
     background-color: #fff;
     height: 55px;
     box-sizing: border-box;
@@ -94,6 +94,69 @@
     color: #666666;
     font-size: 14px;
     margin-left: 22px;
+  }
+
+  .middle-b , .middle-c{
+    @include flex(row, nowrap, flex-start, center);
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 10px 0 10px 10px;
+  }
+  .middle-c {
+    padding-right: 10px!important;
+  }
+  .item-label2 {
+    font-size: 14px;
+    color: #ABABAB;
+    margin-right: 20px;
+    white-space: nowrap;
+    //margin-top: 10px;
+  }
+  .room-intro {
+    font-size: 14px;
+  }
+
+  .middle-d {
+    margin-top: 10px;
+    background-color: #fff;
+  }
+  .md-a {
+    padding: 19px 19px 17px 10px;
+    font-size: 14px;
+    color: #4F4F4F;
+    @include flex(row, nowrap, space-between, inherit);
+  }
+  .mda-b {
+    color: #4969F1;
+  }
+  .mda-b-n {
+    color: #666666;
+  }
+  .no-comments {
+    border-top: 1px solid #DCDCDC;
+    font-size: 15px;
+    padding: 10px;
+  }
+  .m-bottom {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    z-index: 100;
+
+
+    .order-button {
+      height: 100%;
+      width: 100%;
+      border: none;
+      background-color: #FF5000;
+      color: #fff;
+      font-size: 18px;
+    }
+    .order-button-disabled {
+      background-color: #B2B2B2!important;
+      text-decoration: line-through;
+    }
   }
 
 }

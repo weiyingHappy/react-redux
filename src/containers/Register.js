@@ -10,6 +10,7 @@ import './register.scss'
 import Loading from '../components/loading'
 import Dialog from '../components/dialog'
 import {fetchCode, fetchCheckCode, fetchRegister} from '../actions/register'
+import {getCookie} from '../components/Common'
 
 class Register extends Component {
 
@@ -37,31 +38,7 @@ class Register extends Component {
 
     }
 
-
-
-    getCookie(c_name, pre = '')
-    {
-        c_name = pre+c_name;
-        if (document.cookie.length>0)
-        {
-            try {
-                var reg = new RegExp("(^|\\s)" + c_name + "=([^;]*)(;|$)");
-                let res = document.cookie.match(reg);
-                if (res) {
-                    let ret = decodeURIComponent(res[2]);
-                    return ret;
-                }
-                else {
-                    return null;
-                }
-            }
-            catch(e) {
-                console.log(e);
-            }
-        }
-        return null;
-    }
-
+    
     handleSubmit(e) {
         e.preventDefault();
         let self = this;
@@ -78,9 +55,9 @@ class Register extends Component {
             if (res_a.code == 200) {
                 let info_b = {
                     phone: phone,
-                    nickname: self.getCookie('nickname', self.props.teamId),
+                    nickname: getCookie('nickname', self.props.teamId),
                     team_id: self.props.teamId,
-                    wxid: self.getCookie('openid', self.props.teamId)
+                    wxid: getCookie('openid', self.props.teamId)
                 };
 
                 self.props.dispatch(fetchRegister(info_b)).then((res_b)=>{
