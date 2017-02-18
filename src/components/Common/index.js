@@ -4,7 +4,7 @@
 export function getCookie(c_name, pre = '')
 {
     c_name = pre+c_name;
-    alert("现在取: "+cname);
+    alert("现在取: "+c_name);
     if (document.cookie.length>0)
     {
         try {
