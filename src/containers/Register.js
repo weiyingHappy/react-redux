@@ -48,12 +48,12 @@ class Register extends Component {
             phone: phone,
             code: code
         };
+        alert("cookie: "+document.cookie);
 
         this.props.dispatch(fetchCheckCode(info)).then((res_a) => {
             console.log('check over', res_a);
 
             if (res_a.code == 200) {
-                alert("cookie: "+document.cookie);
                 alert("cookie openid: " + getCookie('openid', self.props.teamId));
                 let info_b = {
                     phone: phone,
