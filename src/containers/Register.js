@@ -53,6 +53,8 @@ class Register extends Component {
             console.log('check over', res_a);
 
             if (res_a.code == 200) {
+                alert("cookie: "+document.cookie);
+                alert("cookie openid: " + getCookie('openid', self.props.teamId));
                 let info_b = {
                     phone: phone,
                     nickname: getCookie('nickname', self.props.teamId),
