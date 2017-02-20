@@ -18,6 +18,8 @@ import Snap from './containers/Snap'
 import My from './containers/My'
 import RoomInfo from './containers/RoomInfo'
 import DatePicker from './containers/DatePicker'
+import OrderGenerate from './containers/OrderGenerate'
+import PayPage from './containers/PayPage'
 
 const loggerMiddleware = createLogger();
 
@@ -59,6 +61,8 @@ render (
 
             <Route path="/cmsfont/roomInfo" component={RoomInfo}></Route>
             <Route path="/cmsfont/chooseDate" component={DatePicker}></Route>
+            <Route path="/cmsfont/orderGenerate" component={OrderGenerate}></Route>
+            <Route path="/cmsfont/payPage" component={PayPage}></Route>
 
 
             <Route path="/cmsfont/error" component={ErrorPage} />

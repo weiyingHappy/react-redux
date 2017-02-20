@@ -7,6 +7,8 @@ let user_state = {
     isLoading: false,
 
     teamId: 1,
+    nickname: '',
+    phone: '',
     receivedAt: '',
     isLogin: false,
     wechatToken: '', // 为酒店生成的token
@@ -20,7 +22,8 @@ export default function user(state=user_state, action) {
         case REQUEST_LOGIN:
             return Object.assign({}, state, {isFetching: true, wechatToken: action.user.token, wechatCode: action.user.code});
         case RECEIVE_LOGIN:
-            return Object.assign({}, state, {isFetching: false, teamId: action.data.results.teamid, isLogin: (action.data.code==200||config.mid==config.development)});
+            return Object.assign({}, state, {isFetching: false, teamId: action.data.results.teamid, isLogin: (action.data.code==200||config.mid==config.development),
+                                            nickname: action.data.results.nickname||'', phone: action.data.results.phone||''});
         case REQUEST_INDEX_IMG:
             return Object.assign({}, state, {isLoading: true});
         case RECEIVE_INDEX_IMG:

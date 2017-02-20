@@ -1,7 +1,7 @@
 import { REQUEST_HOTEL_LISTS, RECEIVE_HOTEL_LISTS, CHANGE_ROOM } from '../actions/hotel'
 
 let hotel_state = {
-    isFetching: false,
+    isFetching: true,
     intro: {},
     lists: [],
     nowPage: 0,

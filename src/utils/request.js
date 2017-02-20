@@ -8,7 +8,11 @@ export default function request(url, options, needToken=false) {
         options = {method: 'GET'};
     }
     options.mode = 'cors';
-    options.credentials = 'include';
+
+    let reg = new RegExp("^"+config.api_host);
+    if (reg.test(url)) {
+        options.credentials = 'include';
+    }
     let sessionToken = (config.mid==config.development?config.admin_token:getCookie('Session-Token'));
 
     var myHeaders = new Headers({

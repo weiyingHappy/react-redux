@@ -8,6 +8,9 @@ export const RECEIVE_INVENTORY = 'RECEIVE_INVENTORY';
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 
+export const REQUEST_ORDER_CHANGE = 'REQUEST_ORDER_CHANGE';
+export const RECEIVE_ORDER_CHANGE = 'RECEIVE_ORDER_CHANGE';
+
 export const SET_DATE = 'SET_DATE';
 export const SET_DATE_PICKER = 'SET_DATE_PICKER';
 
@@ -54,6 +57,63 @@ export function fetchInventory(info) {
             console.log(json);
         });
 
+        return dt;
+    }
+}
+
+export function requestOrderNum(order_num) {
+    return {
+        type: REQUEST_ORDER_CHANGE,
+        order: {loading: true, num: order_num}
+    }
+}
+export function receiveOrderNum(order_price) {
+    return {
+        type: RECEIVE_ORDER_CHANGE,
+        order: {loading: false, price: order_price}
+    }
+}
+export function setOrderChange(order) {
+    return {
+        type: RECEIVE_ORDER_CHANGE,
+        order
+    }
+}
+
+export function fetchOrderSubmit(order) {
+    return (dispatch) => {
+        dispatch(setOrderChange({submitting: true}));
+        let options = {
+            method: 'POST',
+            body: {
+                room_id: order.room_id,
+                num: order.num,
+                user_name: order.user_name,
+                phone: order.phone,
+                start: order.start,
+                end: order.end
+            }
+        };
+        let dt = request(config.remote_host+config.remote_path.orderAdd, options, true);
+
+        dt.then((json)=>{
+            dispatch(setOrderChange({submitting: false}));
+        });
+
+        return dt;
+    }
+}
+export function fetchOrderNum(info) {
+    return (dispatch) => {
+        dispatch(requestOrderNum(info.num));
+        
+        let dt = request(config.remote_host+config.remote_path.orderPrice+'/'+info.roomId+'/'+info.start+'/'+info.days+'/'+info.num, null, true);
+
+        dt.then((json)=>{
+            if (json.code == 200) {
+                dispatch(receiveOrderNum(json.results));
+            }
+        });
         return dt;
     }
 }

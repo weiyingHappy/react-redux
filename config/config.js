@@ -14,7 +14,7 @@ let config = {
     api_host: now.api_host,
     remote_host: now.remote_host,
 
-    admin_token: '6063c29b11eceae172e2bde991d0c10a',
+    admin_token: '4fca64aa38995dcc64ce2ca99bbf4f2c',
 
     mid: mid,
     production: production,

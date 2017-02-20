@@ -92,7 +92,7 @@ class RoomInfo extends Component {
     }
 
     handleOrder() {
-        
+        browserHistory.push('/cmsfont/orderGenerate')
     }
 
 

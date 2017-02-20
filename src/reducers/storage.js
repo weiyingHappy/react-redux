@@ -1,4 +1,5 @@
-import { REQUEST_INVENTORY, RECEIVE_INVENTORY, REQUEST_COMMENTS, RECEIVE_COMMENTS, SET_DATE, SET_DATE_PICKER } from '../actions/storage'
+import { REQUEST_INVENTORY, RECEIVE_INVENTORY, REQUEST_COMMENTS, RECEIVE_COMMENTS, SET_DATE, SET_DATE_PICKER,
+    REQUEST_ORDER_CHANGE, RECEIVE_ORDER_CHANGE} from '../actions/storage'
 import config from '../../config/config'
 import moment from 'moment'
 
@@ -9,6 +10,13 @@ let storage_state = {
 
     inventory: 0,
     inventory_loading: false,
+
+    order: {
+        loading: false,
+        price: 0,
+        num: 1,
+        submitting: false
+    },
 
     comments: {
         nowPage: 0,
@@ -32,6 +40,13 @@ export default function user(state=storage_state, action) {
         case RECEIVE_COMMENTS:
             return Object.assign({}, state, {comments: setComments(state.comments, {loading: false,
                                     lists:action.comments.lists, nowPage: action.comments.nowPage, totalPage: action.comments.totalPage})});
+        case REQUEST_ORDER_CHANGE:
+            // return Object.assign({}, state, {order_loading: true, order_num: action.order_num});
+            return Object.assign({}, state, {order: Object.assign(state.order,action.order)});
+        case RECEIVE_ORDER_CHANGE:
+            // return Object.assign({}, state, {order_loading: false, order_price: action.order_price});
+            return Object.assign({}, state, {order: Object.assign(state.order,action.order)});
+
         case SET_DATE:
             return Object.assign({}, state, {from: action.data.from, to: action.data.to});
         case SET_DATE_PICKER:

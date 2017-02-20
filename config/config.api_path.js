@@ -10,6 +10,9 @@ module.exports = {
         wechatInfo: '/CMS/CmsBasic/wechatInfo',
         hotelInfo: '/FE/Room/rooms',
         inventory: '/FE/Order/inventory',
-        getComments: '/FE/Evaluation/evaluations'
+        getComments: '/FE/Evaluation/evaluations',
+        orderPrice: '/FE/Order/calcuPrice',
+        orderAdd: '/FE/Order/add',
+        orderInfo: '/FE/Order/orderInfo'
     }
 };
