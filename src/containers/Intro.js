@@ -45,23 +45,11 @@ class Intro extends Component {
         console.log("000000000");
         if (storage.js_sdk.hasData) {
             jsSdkInit(storage.js_sdk, user.appid, config.my_host+'/intro');
-            wx.ready(function(){
-                alert("wx config 成功");
-            });
-            wx.error(function(res){
-                alert("wx config 失败", JSON.stringify(self.state.err_msg));
-            });
         }
         else {
             dispatch(fetchJsSdk(info)).then((res)=>{
                 console.log('jssdk res: ', res);
                 jsSdkInit(res.results, user.appid, config.my_host+'/intro');
-                wx.ready(function(){
-                    alert("wx config 成功");
-                });
-                wx.error(function(res){
-                    alert("wx config 失败", JSON.stringify(self.state.err_msg));
-                });
             });
         }
     }
