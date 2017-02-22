@@ -23,7 +23,7 @@ class Scroll extends Component {
                     autoPlay={false}
                     showNav={false}
                     showBullets={true}
-                    showIndex={true}/>
+                    showIndex={false}/>
             </div>
         )
     }

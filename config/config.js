@@ -13,8 +13,9 @@ let now = (mid == development?dev_conf:pro_conf);
 let config = {
     api_host: now.api_host,
     remote_host: now.remote_host,
+    my_host: now.my_host,
 
-    admin_token: '4fca64aa38995dcc64ce2ca99bbf4f2c',
+    admin_token: 'a6649ca4b6c6c003e4aad15ec20a5187',
 
     mid: mid,
     production: production,

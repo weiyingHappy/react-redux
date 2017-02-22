@@ -14,6 +14,9 @@ export const RECEIVE_ORDER_CHANGE = 'RECEIVE_ORDER_CHANGE';
 export const SET_DATE = 'SET_DATE';
 export const SET_DATE_PICKER = 'SET_DATE_PICKER';
 
+export const SET_JS_SDK = 'SET_JS_SDK';
+
+
 
 export function setDate(info) {
     return {
@@ -57,6 +60,32 @@ export function fetchInventory(info) {
             console.log(json);
         });
 
+        return dt;
+    }
+}
+
+export function setJsSdk(js_sdk) {
+    return {
+        type: SET_JS_SDK,
+        js_sdk
+    }
+}
+
+export function fetchJsSdk(info) {
+    return (dispatch) => {
+        let options = {
+            method: 'POST',
+            body: info
+        };
+
+        let dt = request(config.api_host+config.api_path.getJsSdk, options, false);
+
+        dt.then((json)=> {
+            console.log("fetch js sdk: ", json);
+            if (json.code == 200) {
+                dispatch(setJsSdk(json.results));
+            }
+        });
         return dt;
     }
 }

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+import config from '../../config/config'
 
 import './intro.scss'
 import Tabber from '../components/tabber'
@@ -11,29 +12,85 @@ import star_blank from '../static/images/three/icon-2.png'
 import img_addr from '../static/images/three/icon-3.png'
 import img_phone from '../static/images/three/icon-4.png'
 
+import {getCookie, jsSdkInit} from '../components/Common'
 import {fetchHotelLists} from '../actions/hotel'
+import {fetchJsSdk} from '../actions/storage'
 
 
 class Intro extends Component {
 
     constructor (props) {
         super(props);
-
-
+        this.handleShowMap = this.handleShowMap.bind(this);
+        this.state = {
+            map_loading: false
+        }
     }
+
 
     componentWillMount() {
         let self = this;
-        const {user, hotel, dispatch} = this.props;
+        const {user, hotel, storage, dispatch} = this.props;
 
-        if (hotel.hasData) {
-            return ;
+        if (!hotel.hasData) {
+            dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
         }
-        dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
+
+        let info = {
+            teamId: user.teamId,
+            appid: user.appid,
+            appsecret: user.appsecret
+        };
+        console.log("000000000");
+        if (storage.js_sdk.hasData) {
+            jsSdkInit(storage.js_sdk, user.appid, config.my_host+'/intro');
+        }
+        else {
+            dispatch(fetchJsSdk(info)).then((res)=>{
+                console.log('jssdk res: ', res);
+                jsSdkInit(res.results, user.appid, config.my_host+'/intro');
+            });
+        }
     }
 
+    handleShowMap() {
+        let {hotel} = this.props, self = this;
+        self.setState({
+            map_loading: true
+        });
+        wx.openLocation({
+            latitude: parseFloat(hotel.intro.latitude), // 纬度，浮点数，范围为90 ~ -90
+            longitude: parseFloat(hotel.intro.longitude), // 经度，浮点数，范围为180 ~ -180。
+            name: hotel.intro.name, // 位置名
+            address: hotel.intro.address, // 地址详情说明
+            scale: 25, // 地图缩放级别,整形值,范围从1~28。默认为最大
+            infoUrl: '', // 在查看位置界面底部显示的超链接,可点击跳转
+            success: function(res) {
+                alert("打开成功");
+                self.setState({
+                    map_loading: false
+                });
+            },
+            fail: (err) => {
+                alert(JSON.stringify(err));
+                self.setState({
+                    map_loading: false
+                });
+            }
+        });
+        setTimeout(()=>{
+            if (self.state.map_loading != 'none') {
+                alert('获取地图失败');
+                self.setState({
+                    map_loading: false
+                })
+            }
+        },5000)
+    }
+
+
     render() {
-        const {hotel, user } = this.props;
+        const {hotel, user,storage } = this.props;
         return hotel.isFetching?(
             <div className="intro-container">
                 <Loading text="加载中..." isFetching={hotel.isFetching} />
@@ -59,7 +116,18 @@ class Intro extends Component {
                     </div>
 
                     <div className="addr-phone">
-                        <div className="hotel-addr"><img src={img_addr} className="ha-img"/> <div> {hotel.intro.address}</div></div>
+                        {storage.js_sdk.hasData?(
+                            <div className="hotel-addr" onClick={this.handleShowMap}>
+                                <img src={img_addr} className="ha-img"/>
+                                <div>
+                                    {hotel.intro.address}
+                                </div>
+                            </div>
+                        ):(
+                            <div className="hotel-addr">
+                                <div className="weui-loading"></div>
+                            </div>
+                        )}
                         <a className="hotel-phone" href={"tel:"+hotel.intro.telphone}>
                             <img src={img_phone} className="hp-img"/>
                         </a>
@@ -71,6 +139,7 @@ class Intro extends Component {
                         {hotel.intro.intro}
                     </div>
                 </div>
+                <Loading text="获取位置中" isFetching={this.state.map_loading} />
 
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
@@ -82,7 +151,8 @@ class Intro extends Component {
 function select(state) {
     return {
         user: state.user,
-        hotel: state.hotel
+        hotel: state.hotel,
+        storage: state.storage
     }
 }
 

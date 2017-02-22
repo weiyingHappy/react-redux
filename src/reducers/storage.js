@@ -1,5 +1,5 @@
 import { REQUEST_INVENTORY, RECEIVE_INVENTORY, REQUEST_COMMENTS, RECEIVE_COMMENTS, SET_DATE, SET_DATE_PICKER,
-    REQUEST_ORDER_CHANGE, RECEIVE_ORDER_CHANGE} from '../actions/storage'
+    REQUEST_ORDER_CHANGE, RECEIVE_ORDER_CHANGE, SET_JS_SDK} from '../actions/storage'
 import config from '../../config/config'
 import moment from 'moment'
 
@@ -23,6 +23,14 @@ let storage_state = {
         totalPage: 0,
         lists: [],
         loading: false
+    },
+
+    js_sdk: {
+        hasData: false,
+        appId: '',
+        timestamp: '',
+        nonceStr: '',
+        jsapi_ticket: ''
     }
 };
 
@@ -51,6 +59,9 @@ export default function user(state=storage_state, action) {
             return Object.assign({}, state, {from: action.data.from, to: action.data.to});
         case SET_DATE_PICKER:
             return Object.assign({}, state, {datePicker: action.data});
+
+        case SET_JS_SDK:
+            return Object.assign({}, state, {js_sdk: Object.assign({},action.js_sdk,{hasData:true})});
         default:
             return state;
     }
