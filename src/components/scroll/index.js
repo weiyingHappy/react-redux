@@ -13,7 +13,7 @@ class Scroll extends Component {
         });
 
         return (
-            <div className="scroll-container" style={{height: this.props.height}}>
+            <div className="scroll-container" style={{height: this.props.height}} onClick={this.props.handleClick}>
                 <ImageGallery
                     items={img_lists}
                     slideInterval={2000}

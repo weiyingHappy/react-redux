@@ -42,7 +42,8 @@ class Index extends Component {
         });
     }
 
-
+    showImg() {
+    }
 
     render() {
         const { dispatch, user } = this.props;
@@ -58,7 +59,7 @@ class Index extends Component {
         ):(
             <div className="index-container">
                 <Loading text="加载数据中..." isFetching={user.isLoading} />
-                <Scroll img_lists = {user.indexImgs} height="100%"/>
+                <Scroll img_lists = {user.indexImgs} height="100%" handleClick={this.showImg}/>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         )

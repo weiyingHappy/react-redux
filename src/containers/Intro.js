@@ -22,6 +22,7 @@ class Intro extends Component {
     constructor (props) {
         super(props);
         this.handleShowMap = this.handleShowMap.bind(this);
+        this.showImg = this.showImg.bind(this);
         this.state = {
             map_loading: false,
             err_msg: ''
@@ -52,6 +53,14 @@ class Intro extends Component {
                 jsSdkInit(res.results, user.appid, config.my_host+'/intro');
             });
         }
+    }
+
+    showImg() {
+        let {hotel} = this.props;
+        wx.previewImage({
+            current: hotel.intro.imgs?(hotel.intro.imgs[0]||''):'', // 当前显示图片的http链接
+            urls: hotel.intro.imgs // 需要预览的图片http链接列表
+        });
     }
 
     handleShowMap() {
@@ -100,7 +109,7 @@ class Intro extends Component {
         ):(
             <div className="intro-container">
                 <div className="top">
-                    <Scroll img_lists={hotel.intro.imgs||[]} height="200px" />
+                    <Scroll img_lists={hotel.intro.imgs||[]} height="200px" handleClick={this.showImg}/>
                     <div className="hotel-info">
                         <div className="hotel-info-a">
                             <div className="hotel-name">{hotel.intro.name}</div>
