@@ -148,7 +148,7 @@ class OrderGenerate extends Component {
                     <div className="mbc-container">
                         <div className="mbc-left">
                             <div className="middle-b">
-                                <div className="input-head">入住人</div>
+                                <div className="input-head">入住人 &nbsp;</div>
                                 <input type="text" value={this.state.name} placeholder="姓名" className="input-body"
                                 onChange={(e)=>{this.setState({name:e.target.value})}}/>
                             </div>
