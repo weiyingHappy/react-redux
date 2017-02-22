@@ -153,7 +153,7 @@ class OrderGenerate extends Component {
                                 onChange={(e)=>{this.setState({name:e.target.value})}}/>
                             </div>
                             <div className="middle-c">
-                                <div className="input-head">联系手机</div>
+                                <div className="input-head">手机号</div>
                                 <input type="tel" value={this.state.phone} placeholder="用于接收确认短信" className="input-body"
                                 onChange={(e)=>{this.setState({phone:e.target.value})}}/>
                             </div>
