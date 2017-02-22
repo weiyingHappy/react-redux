@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.api_path.js" afterPath="$PROJECT_DIR$/config/config.api_path.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.development.js" afterPath="$PROJECT_DIR$/config/config.development.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.js" afterPath="$PROJECT_DIR$/config/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.production.js" afterPath="$PROJECT_DIR$/config/config.production.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/vendor.bundle.js" afterPath="$PROJECT_DIR$/dist/vendor.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/storage.js" afterPath="$PROJECT_DIR$/src/actions/storage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Common/index.js" afterPath="$PROJECT_DIR$/src/components/Common/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/scroll/index.js" afterPath="$PROJECT_DIR$/src/components/scroll/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Intro.js" afterPath="$PROJECT_DIR$/src/containers/Intro.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/storage.js" afterPath="$PROJECT_DIR$/src/reducers/storage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/user.js" afterPath="$PROJECT_DIR$/src/reducers/user.js" />
     </list>
     <ignored path="youzhu_business_h5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,7 +25,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="config.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/config.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="209">
@@ -48,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Intro.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Intro.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/Intro.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
+            <state relative-caret-position="437">
+              <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -211,8 +200,8 @@
         <option value="$PROJECT_DIR$/config/config.development.js" />
         <option value="$PROJECT_DIR$/config/config.production.js" />
         <option value="$PROJECT_DIR$/src/components/Common/index.js" />
-        <option value="$PROJECT_DIR$/src/containers/Intro.js" />
         <option value="$PROJECT_DIR$/config/config.js" />
+        <option value="$PROJECT_DIR$/src/containers/Intro.js" />
       </list>
     </option>
   </component>
@@ -540,12 +529,12 @@
       <workItem from="1487555209748" duration="20853000" />
       <workItem from="1487642167711" duration="12760000" />
       <workItem from="1487727824443" duration="86000" />
-      <workItem from="1487728766195" duration="4309000" />
+      <workItem from="1487728766195" duration="4823000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227108000" />
+    <option name="totallyTimeSpent" value="227622000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -866,7 +855,7 @@
         <state relative-caret-position="380">
           <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
           <folding>
-            <element signature="e#0#195#0" expanded="true" />
+            <element signature="e#0#195#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -960,22 +949,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/Intro.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="68" column="30" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding>
             <element signature="e#1#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/Intro.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -23,7 +23,8 @@ class Intro extends Component {
         super(props);
         this.handleShowMap = this.handleShowMap.bind(this);
         this.state = {
-            map_loading: false
+            map_loading: false,
+            err_msg: ''
         }
     }
 
@@ -51,6 +52,12 @@ class Intro extends Component {
                 jsSdkInit(res.results, user.appid, config.my_host+'/intro');
             });
         }
+        wx.ready(function(){
+            alert("wx config 成功");
+        });
+        wx.error(function(res){
+            alert("wx config 失败", JSON.stringify(self.state.err_msg));
+        });
     }
 
     handleShowMap() {
@@ -79,7 +86,7 @@ class Intro extends Component {
             }
         });
         setTimeout(()=>{
-            if (self.state.map_loading != 'none') {
+            if (self.state.map_loading) {
                 alert('获取地图失败');
                 self.setState({
                     map_loading: false
