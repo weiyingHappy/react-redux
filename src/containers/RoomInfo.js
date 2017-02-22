@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import moment from 'moment'
 
-import {fetchInventory, fetchComments, setDatePicker} from '../actions/storage'
+import {fetchInventory, fetchComments, setDatePicker, fetchJsSdk} from '../actions/storage'
 import config from '../../config/config.js'
 import Loading from '../components/loading'
 import Scroll from '../components/scroll'
 import './roomInfo.scss'
 
+import {getCookie, jsSdkInit} from '../components/Common'
 import EquArea from '../components/equ-area'
 import CommentItem from '../components/comment-item'
 
@@ -19,6 +20,7 @@ class RoomInfo extends Component {
         this.getCommentsArea = this.getCommentsArea.bind(this);
         this.chooseStart = this.chooseStart.bind(this);
         this.chooseEnd = this.chooseEnd.bind(this);
+        this.showImg = this.showImg.bind(this);
     }
 
     componentWillMount() {
@@ -37,6 +39,22 @@ class RoomInfo extends Component {
             page: 1
         };
         dispatch(fetchComments(info2));
+
+        let info3 = {
+            teamId: user.teamId,
+            appid: user.appid,
+            appsecret: user.appsecret
+        };
+        console.log("000000000");
+        if (storage.js_sdk.hasData) {
+            jsSdkInit(storage.js_sdk, user.appid, config.my_host+'/roomInfo');
+        }
+        else {
+            dispatch(fetchJsSdk(info3)).then((res)=>{
+                console.log('jssdk res: ', res);
+                jsSdkInit(res.results, user.appid, config.my_host+'/roomInfo');
+            });
+        }
     }
 
     chooseStart() {
@@ -95,6 +113,14 @@ class RoomInfo extends Component {
         browserHistory.push('/cmsfont/orderGenerate')
     }
 
+    showImg() {
+        let {hotel} = this.props;
+        const room = hotel.lists[hotel.room_id];
+        wx.previewImage({
+            current: room.imgs?(room.imgs[0]||''):'', // 当前显示图片的http链接
+            urls: room.imgs // 需要预览的图片http链接列表
+        });
+    }
 
     render() {
         const {hotel, user, storage } = this.props;
@@ -106,7 +132,7 @@ class RoomInfo extends Component {
             <div className="roomInfo-container">
 
                 <div className="top-a">
-                    <Scroll img_lists={room.imgs||[]} height="180px" />
+                    <Scroll img_lists={room.imgs||[]} height="180px" handleClick={this.showImg} />
 
                     <div className="top-a-des">
                         <div className="top-a-left">
