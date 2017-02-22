@@ -26,9 +26,6 @@ export function getCookie(c_name, pre = '')
 }
 
 export function jsSdkInit(data, appid, url) {
-    alert("js conf: "+ "appid: "+appid+"---jsapi_ticket: "+data.jsapi_ticket+
-            '---noncestr: '+data.nonceStr+'--timestamp: '+data.timestamp+'---url: '+ url);
-    alert(location.href.split('#')[0]);
     wx.config({
         debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: appid,
