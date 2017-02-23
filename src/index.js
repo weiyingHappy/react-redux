@@ -20,7 +20,8 @@ import RoomInfo from './containers/RoomInfo'
 import DatePicker from './containers/DatePicker'
 import OrderGenerate from './containers/OrderGenerate'
 import PayPage from './containers/PayPage'
-import Iframe from './containers/Iframe'
+import Setting from './containers/Setting'
+import MyOrder from './containers/MyOrder'
 
 const loggerMiddleware = createLogger();
 
@@ -65,7 +66,8 @@ render (
             <Route path="/cmsfont/orderGenerate" component={OrderGenerate}></Route>
             <Route path="/cmsfont/payPage" component={PayPage}></Route>
 
-            <Route path="/cmsfont/iframe" component={Iframe}></Route>
+            <Route path="/cmsfont/setting" component={Setting}></Route>
+            <Route path="/cmsfont/MyOrder" component={MyOrder}></Route>
 
 
             <Route path="/cmsfont/error" component={ErrorPage} />

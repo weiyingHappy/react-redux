@@ -15,7 +15,7 @@ let config = {
     remote_host: now.remote_host,
     my_host: now.my_host,
 
-    admin_token: 'f07d07ac5276ce7aff542a029315fe11',
+    admin_token: '7b823be5bbedfd3aea774f30c992c7d7',
 
     mid: mid,
     production: production,

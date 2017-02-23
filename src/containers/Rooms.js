@@ -25,6 +25,8 @@ class Rooms extends Component {
         let self = this;
         const {user, hotel, dispatch} = this.props;
 
+        document.cookie = 'wechatToken='+token;
+        document.cookie = 'wechatCode='+code;
 
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));

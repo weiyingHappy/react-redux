@@ -8,6 +8,40 @@ export const RECEIVE_LOGIN = 'RECEIVE_LOGIN';
 export const REQUEST_INDEX_IMG = 'REQUEST_INDEX_IMG';
 export const RECEIVE_INDEX_IMG = 'RECEIVE_INDEX_IMG';
 
+export const REQUEST_CHANGE_NICKNAME = 'REQUEST_CHANGE_NICKNAME';
+export const RECEIVE_CHANGE_NICKNAME = 'RECEIVE_CHANGE_NICKNAME';
+
+
+export function requestChangeNickname(nickname) {
+    return {
+        type: REQUEST_CHANGE_NICKNAME,
+        nickname
+    }
+}
+export function receiveChangeNickname(json) {
+    return {
+        type: RECEIVE_CHANGE_NICKNAME,
+        json
+    }
+}
+export function fetchChangeNickname(nickname) {
+    return (dispatch) => {
+        dispatch(requestChangeNickname(nickname));
+        let options = {
+            method: 'POST',
+            body: {
+                nickname: nickname
+            }
+        };
+        let dt = request(config.remote_host+config.remote_path.changeNickname, options, true);
+        dt.then((json)=>{
+            dispatch(receiveChangeNickname({code: json.code, nickname: nickname}));
+            console.log(json);
+        });
+        return dt;
+    }
+}
+
 export function requestLogin(user) {
     return {
         type: REQUEST_LOGIN,

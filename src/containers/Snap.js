@@ -29,8 +29,9 @@ class Snap extends Component {
     handleSnapClick(src) {
         let self = this;
         return () => {
-            self.props.dispatch(setSrc(src));
-            browserHistory.push('/cmsfont/iframe');
+            // self.props.dispatch(setSrc(src));
+            // browserHistory.push('/cmsfont/iframe');
+            window.location.href = src;
         }
     }
 

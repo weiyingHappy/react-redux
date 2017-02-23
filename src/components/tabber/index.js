@@ -2,6 +2,7 @@ import React from 'react'
 import './index.scss'
 import {Link} from 'react-router'
 
+import {getCookie} from '../../components/Common'
 import img_index from '../../static/images/two/icon-1.png'
 import img_order from '../../static/images/two/icon-2.png'
 import img_snap from '../../static/images/two/icon-3.png'
@@ -30,7 +31,7 @@ class Tabber extends React.Component {
                             <img src={img_index} alt="" className="weui-tabbar__icon" />
                             <p className="weui-tabbar__label" style={{color: brr[0]}}>酒店介绍</p>
                         </Link>
-                        <Link to={"/cmsfont/rooms/"+this.props.token+"?code="+this.props.code}className="weui-tabbar__item">
+                        <Link to={"/cmsfont/rooms/"+(this.props.token||getCookie('wechatToken', ''))+"?code="+(this.props.code||getCookie('wechatCode',''))}className="weui-tabbar__item">
                             <img src={img_order} alt="" className="weui-tabbar__icon" />
                             <p className="weui-tabbar__label" style={{color: brr[1]}}>客房预订</p>
                         </Link>

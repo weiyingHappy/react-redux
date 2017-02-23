@@ -1,4 +1,4 @@
-import { REQUEST_LOGIN, RECEIVE_LOGIN, REQUEST_INDEX_IMG, RECEIVE_INDEX_IMG } from '../actions/user'
+import { REQUEST_LOGIN, RECEIVE_LOGIN, REQUEST_INDEX_IMG, RECEIVE_INDEX_IMG, REQUEST_CHANGE_NICKNAME, RECEIVE_CHANGE_NICKNAME } from '../actions/user'
 import defaultImgs from '../static/images/two/icon-5.png'
 import config from '../../config/config'
 
@@ -15,6 +15,7 @@ let user_state = {
     isLogin: false,
     wechatToken: '', // 为酒店生成的token
     wechatCode: '', // 第一次进入带过来的code
+    avatar: '',
 
     indexImgs: []
 };
@@ -26,11 +27,16 @@ export default function user(state=user_state, action) {
         case RECEIVE_LOGIN:
             return Object.assign({}, state, {isFetching: false, teamId: action.data.results.teamid, isLogin: (action.data.code==200||config.mid==config.development),
                                             nickname: action.data.results.nickname||'', phone: action.data.results.phone||'', appid:action.data.results.appid,
-                                            appsecret: action.data.results.appsecret});
+                                            appsecret: action.data.results.appsecret, avatar: action.data.results.avatar});
         case REQUEST_INDEX_IMG:
             return Object.assign({}, state, {isLoading: true});
         case RECEIVE_INDEX_IMG:
             return Object.assign({}, state, {isLoading: false, indexImgs: action.data.results.img||[defaultImgs,defaultImgs]});
+
+        case REQUEST_CHANGE_NICKNAME:
+            return Object.assign({}, state, {isLoading: true});
+        case RECEIVE_CHANGE_NICKNAME:
+            return Object.assign({}, state, {isLoading: false, nickname: (action.json.code==200?action.json.nickname:state.nickname)});
         default:
             return state;
     }
