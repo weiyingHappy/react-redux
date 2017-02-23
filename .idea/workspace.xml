@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/item-cell/index.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/containers/Iframe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/containers/iframe.scss" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.api_path.js" afterPath="$PROJECT_DIR$/config/config.api_path.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.js" afterPath="$PROJECT_DIR$/config/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/vendor.bundle.js" afterPath="$PROJECT_DIR$/dist/vendor.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/user.js" afterPath="$PROJECT_DIR$/src/actions/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/tabber/index.js" afterPath="$PROJECT_DIR$/src/components/tabber/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/My.js" afterPath="$PROJECT_DIR$/src/containers/My.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Rooms.js" afterPath="$PROJECT_DIR$/src/containers/Rooms.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Snap.js" afterPath="$PROJECT_DIR$/src/containers/Snap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/user.js" afterPath="$PROJECT_DIR$/src/reducers/user.js" />
-    </list>
+    <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="" />
     <ignored path="youzhu_business_h5.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -483,12 +467,12 @@
       <workItem from="1487727824443" duration="86000" />
       <workItem from="1487728766195" duration="4920000" />
       <workItem from="1487740292228" duration="11549000" />
-      <workItem from="1487814178218" duration="12411000" />
+      <workItem from="1487814178218" duration="12506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251679000" />
+    <option name="totallyTimeSpent" value="251774000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
@@ -863,7 +847,7 @@
         <state relative-caret-position="456">
           <caret line="24" column="43" selection-start-line="0" selection-start-column="0" selection-end-line="34" selection-end-column="26" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#25#0" expanded="false" />
             <marker date="1487832152000" expanded="true" signature="134:780" ph="{...}" />
             <marker date="1487832152000" expanded="true" signature="400:762" ph="&lt;xml/&gt;" />
           </folding>
