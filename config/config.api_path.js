@@ -16,6 +16,6 @@ module.exports = {
         orderAdd: '/FE/Order/add',
         orderInfo: '/FE/Order/orderInfo',
         getSnap: '/CMS/CmsActivity/activities',
-        changeNickname: '/FE/UserCenter/changeNickname'
+        changeNickname: '/CMS/CmsBasic/changeNickname'
     }
 };
