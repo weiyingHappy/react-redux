@@ -1,4 +1,4 @@
-import { SET_PAY } from '../actions/order'
+import { SET_PAY, STATE_ALL, STATE_ALREADY, STATE_FINISH, STATE_NO } from '../actions/order'
 import config from '../../config/config'
 import moment from 'moment'
 
@@ -8,8 +8,9 @@ let order_state = {
         loading: true,
         room: {},
         team: {}
-    }
-
+    },
+    current: STATE_ALL,
+    con: [{},{},{},{}]
 };
 
 function combineState(ori, now) {

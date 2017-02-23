@@ -4,6 +4,23 @@ import { browserHistory } from 'react-router'
 
 export const SET_PAY = 'SET_PAY';
 
+export const STATE_ALL  = '0';
+export const STATE_NO = '1';
+export const STATE_ALREADY = '2';
+export const STATE_FINISH = '3';
+
+export function fetchMyOrder(info) {
+
+    return (dispatch) => {
+        dispatch()
+    }
+
+}
+
+
+
+
+
 export function setPay(pay) {
     return {
         type: SET_PAY,
