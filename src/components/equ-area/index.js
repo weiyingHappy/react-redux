@@ -46,7 +46,9 @@ export default class OrderGenerate extends React.Component {
 
         let dis = lists.map((item)=>{
             item = this.findEqu(item);
-            return (
+            return item.name.length==0?(
+                <div></div>
+            ):(
                 <div className="equ-item" key={item.name}>
                     <img src={item.img} className="ei-img"/>
                     <div className="ei-text">{item.name}</div>

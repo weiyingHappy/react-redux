@@ -1,38 +1,61 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+import {fetchSnap, setSrc} from '../actions/snap'
 
+import Loading from '../components/loading'
 import Tabber from '../components/tabber'
+import './snap.scss'
 
 
 class Snap extends Component {
 
     constructor (props) {
         super(props);
-
-        this.handleClick = this.handleClick.bind(this);
-
+        this.handleSnapClick = this.handleSnapClick.bind(this);
         this.state = {
-            current: '1'
         }
     }
 
     componentWillMount() {
-
+        let {snap, user, dispatch} = this.props;
+        if (snap.loading) {
+            dispatch(fetchSnap(user.teamId)).then((res)=>{
+                console.log('snap res: ', res);
+            })
+        }
     }
 
-    handleClick(e) {
-        console.log('click ', e);
-        this.setState({
-            current: e.key
-        });
+    handleSnapClick(src) {
+        let self = this;
+        return () => {
+            self.props.dispatch(setSrc(src));
+            browserHistory.push('/cmsfont/iframe');
+        }
     }
 
     render() {
-        const { dispatch, user } = this.props;
-        return (
-            <div className="index-container">
-                欢迎来到抢房
+        let {snap, user} = this.props;
+
+        let id = 0;
+        let lists = snap.lists.map((item) => {
+            id+=1;
+            return (
+                <div className="activity_item" key={id} onClick={this.handleSnapClick(item.href)}>
+                    <img src={item.cover} className="ai-img"/>
+                    <p>
+                        {item.title}
+                    </p>
+                </div>
+            )
+        });
+        return snap.loading?(
+            <Loading text="加载中..." isFetching={snap.loading} />
+        ):(
+            <div className="snap-container">
+                {lists}
+
+                <div style={{height:'100px'}}></div>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         )
@@ -42,6 +65,7 @@ class Snap extends Component {
 
 function select(state) {
     return {
+        snap: state.snap,
         user: state.user
     }
 }

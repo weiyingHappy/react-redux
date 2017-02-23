@@ -14,6 +14,7 @@ module.exports = {
         getComments: '/FE/Evaluation/evaluations',
         orderPrice: '/FE/Order/calcuPrice',
         orderAdd: '/FE/Order/add',
-        orderInfo: '/FE/Order/orderInfo'
+        orderInfo: '/FE/Order/orderInfo',
+        getSnap: '/CMS/CmsActivity/activities'
     }
 };
