@@ -44,7 +44,7 @@ class PayPage extends Component {
             channel: "wx_pub",
             currency: "cny",
             app: {id: config.ping_appid},
-            extra: {open_id: 'okELCtxrJQeVySm6KTJ_5mAnbdy0'}
+            extra: {open_id: 'ojMECxAvPIQ23UNpHZo7OEWJT1xA'}
         };
 
         dispatch(fetchToPay(info)).then((charge)=>{
