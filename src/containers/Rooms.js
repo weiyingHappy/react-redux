@@ -19,14 +19,22 @@ class Rooms extends Component {
         this.handleEnterRoom = this.handleEnterRoom.bind(this);
     }
 
+    setCookie(name, value) {
+        var exp = new Date();
+        exp.setTime(exp.getTime() + 60 * 2000 * 10);//过期时间 2分钟
+        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
+    }
+
     componentWillMount() {
         let token = this.props.params.token;
         let code = this.props.location.query.code;
         let self = this;
         const {user, hotel, dispatch} = this.props;
 
-        document.cookie = 'wechatToken='+token;
-        document.cookie = 'wechatCode='+code;
+        // document.cookie = 'wechatToken='+token;
+        // document.cookie = 'wechatCode='+code;
+        this.setCookie('wechatToken', token);
+        this.setCookie('wechatCode', code);
 
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
