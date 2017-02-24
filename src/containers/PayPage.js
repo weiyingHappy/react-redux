@@ -41,10 +41,9 @@ class PayPage extends Component {
             body: order.pay.room.name,
             amount: parseInt(order.pay.price*100),
             order_no: order.pay.order_no,
-            channel: "wx_pub",
+            channel: "wx",
             currency: "cny",
-            app: {id: config.ping_appid},
-            extra: {open_id: user.openid}
+            app: {id: config.ping_appid}
         };
 
         dispatch(fetchToPay(info)).then((charge)=>{
