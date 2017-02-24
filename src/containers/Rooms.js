@@ -41,7 +41,7 @@ class Rooms extends Component {
                 browserHistory.push('/cmsfont/error');
             }
             else {
-                dispatch(fetchHotelLists({teamId: user.teamId, page: 1})).then((res_b)=>{
+                dispatch(fetchHotelLists({teamId: res.results.teamid, page: 1})).then((res_b)=>{
                     console.log('receive lists: ',hotel);
                 })
             }
