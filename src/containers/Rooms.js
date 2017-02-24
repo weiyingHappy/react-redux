@@ -19,11 +19,19 @@ class Rooms extends Component {
         this.handleEnterRoom = this.handleEnterRoom.bind(this);
     }
 
-    setCookie(name, value) {
-        var exp = new Date();
-        exp.setTime(exp.getTime() + 60 * 2000 * 10);//过期时间 2分钟
-        document.cookie = name + "=" + escape(value) + ";expires=" + exp.toGMTString();
-    }
+    // setCookie(name,value,hours,path,domain,secure){
+    //     var cdata = name + "=" + value;
+    //     if(hours){
+    //         var d = new Date();
+    //         d.setHours(d.getHours() + hours);
+    //         cdata += "; expires=" + d.toGMTString();
+    //     }
+    //     cdata +=path ? ("; path=" + path) : "" ;
+    //     cdata +=domain ? ("; domain=" + domain) : "" ;
+    //     cdata +=secure ? ("; secure=" + secure) : "" ;
+    //     document.cookie = cdata;
+    // }
+
 
     componentWillMount() {
         let token = this.props.params.token;
@@ -33,8 +41,8 @@ class Rooms extends Component {
 
         // document.cookie = 'wechatToken='+token;
         // document.cookie = 'wechatCode='+code;
-        this.setCookie('wechatToken', token);
-        this.setCookie('wechatCode', code);
+        // this.setCookie('wechatToken', token, 24 * 7);
+        // this.setCookie('wechatCode', code, 24 * 7);
 
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
