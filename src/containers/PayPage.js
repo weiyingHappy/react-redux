@@ -39,7 +39,7 @@ class PayPage extends Component {
         let info = {
             subject: order.pay.team.name,
             body: order.pay.room.name,
-            amount: order.pay.price,
+            amount: parseInt(order.pay.price*100),
             order_no: order.pay.order_no,
             channel: "wx_pub",
             currency: "cny",
