@@ -24,7 +24,7 @@ class Snap extends Component {
                 console.log('snap res: ', res);
             })
         }
-        // alert(document.cookie);
+        alert(document.cookie);
     }
 
     handleSnapClick(src) {
