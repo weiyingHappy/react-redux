@@ -34,41 +34,10 @@ class PayPage extends Component {
     }
 
     handlePay() {
-        let {dispatch, order, user} = this.props, self = this;
-
-        let info = {
-            subject: order.pay.team.name,
-            body: order.pay.room.name,
-            amount: parseInt(order.pay.price*100),
-            order_no: order.pay.order_no,
-            channel: "wx_pub",
-            currency: "cny",
-            app: {id: config.ping_appid},
-            extra: {open_id: 'ojMECxAvPIQ23UNpHZo7OEWJT1xA'}
-        };
-
-        dispatch(fetchToPay(info)).then((charge)=>{
-            console.log("fetch to pay ret: ", charge);
-
-            pingpp.createPayment(charge, function(result, err){
-                console.log(result);
-                console.log(err.msg);
-                console.log(err.extra);
-                alert('results', result);
-                alert('err: ', err.toString());
-                if (result == "success") {
-                    // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
-                    alert("支付成功");
-                } else if (result == "fail") {
-                    // charge 不正确或者微信公众账号支付失败时会在此处返回
-                } else if (result == "cancel") {
-                    // 微信公众账号支付取消支付
-                }
-            });
-        })
+        let {dispatch, order} = this.props;
+        let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe163c2e7ba565707&redirect_uri=http://www.lianwuyun.cn/cmsfont/uniPay/'+order.pay.order_no+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
+        window.location.href = url;
     }
-
-
 
     render() {
         let {order} = this.props;

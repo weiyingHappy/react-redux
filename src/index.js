@@ -22,6 +22,7 @@ import OrderGenerate from './containers/OrderGenerate'
 import PayPage from './containers/PayPage'
 import Setting from './containers/Setting'
 import MyOrder from './containers/MyOrder'
+import UniPay from './containers/UniPay'
 
 const loggerMiddleware = createLogger();
 
@@ -65,9 +66,10 @@ render (
             <Route path="/cmsfont/chooseDate" component={DatePicker}></Route>
             <Route path="/cmsfont/orderGenerate" component={OrderGenerate}></Route>
             <Route path="/cmsfont/payPage" component={PayPage}></Route>
+            <Route path="/cmsfont/uniPay" component={UniPay}></Route>
 
             <Route path="/cmsfont/setting" component={Setting}></Route>
-            <Route path="/cmsfont/MyOrder" component={MyOrder}></Route>
+            <Route path="/cmsfont/MyOrder/:order_no" component={MyOrder}></Route>
 
 
             <Route path="/cmsfont/error" component={ErrorPage} />
