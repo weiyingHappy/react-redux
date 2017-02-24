@@ -41,11 +41,9 @@ class UniPay extends Component {
                 console.log(result);
                 console.log(err.msg);
                 console.log(err.extra);
-                alert('results: '+ result);
-                alert('err: '+JSON.stringify(err));
                 if (result == "success") {
                     // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
-                    alert("支付成功");
+                    alert("支付成功-from 金刚芭比");
                 } else if (result == "fail") {
                     // charge 不正确或者微信公众账号支付失败时会在此处返回
                 } else if (result == "cancel") {
