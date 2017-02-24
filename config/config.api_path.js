@@ -1,7 +1,8 @@
 module.exports = {
     api_path: {
         login: '/post_api/login', //登录
-        getJsSdk: '/post_api/getJsSdk'
+        getJsSdk: '/post_api/getJsSdk',
+        toPay: '/post_api/toPay'
     },
     remote_path: {
         isMember: '/CMS/CmsBasic/isMember',

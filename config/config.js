@@ -6,7 +6,7 @@ import api_path from './config.api_path'
 let production = 'production';
 let development = 'development';
 
-let mid = development;
+let mid = production;
 
 let now = (mid == development?dev_conf:pro_conf);
 
@@ -15,7 +15,9 @@ let config = {
     remote_host: now.remote_host,
     my_host: now.my_host,
 
-    admin_token: 'ee52e670c631d76af289e16d7345d073',
+    admin_token: 'dd3d3991086e0a03ab95e422d0715498',
+
+    ping_appid: now.ping_appid,
 
     mid: mid,
     production: production,

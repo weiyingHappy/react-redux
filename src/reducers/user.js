@@ -27,7 +27,7 @@ export default function user(state=user_state, action) {
         case RECEIVE_LOGIN:
             return Object.assign({}, state, {isFetching: false, teamId: action.data.results.teamid, isLogin: (action.data.code==200||config.mid==config.development),
                                             nickname: action.data.results.nickname||'', phone: action.data.results.phone||'', appid:action.data.results.appid,
-                                            appsecret: action.data.results.appsecret, avatar: action.data.results.avatar});
+                                            appsecret: action.data.results.appsecret, avatar: action.data.results.avatar, openid: action.data.results.openid});
         case REQUEST_INDEX_IMG:
             return Object.assign({}, state, {isLoading: true});
         case RECEIVE_INDEX_IMG:

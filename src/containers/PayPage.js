@@ -2,12 +2,13 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import moment from 'moment'
+import pingpp from 'pingpp-js'
 
-
+import config from '../../config/config'
 import EquArea from '../components/equ-area'
 import Loading from '../components/loading'
 
-import {fetchOrderInfo} from '../actions/order'
+import {fetchOrderInfo, fetchToPay} from '../actions/order'
 
 import './payPage.scss'
 import img_top from '../static/images/three/icon-6.png'
@@ -18,6 +19,8 @@ class PayPage extends Component {
     constructor (props) {
         super(props);
 
+        this.handlePay = this.handlePay.bind(this);
+
         this.state = {
         }
     }
@@ -27,6 +30,39 @@ class PayPage extends Component {
 
         dispatch(fetchOrderInfo(order.pay.order_no)).then((res)=>{
             console.log("order info res: ", res);
+        })
+    }
+
+    handlePay() {
+        let {dispatch, order, user} = this.props, self = this;
+
+        let info = {
+            subject: order.pay.team.name,
+            body: order.pay.room.name,
+            amount: order.pay.price,
+            order_no: order.pay.order_no,
+            channel: "wx_pub",
+            currency: "cny",
+            app: {id: config.ping_appid},
+            extra: {open_id: config.openid}
+        };
+
+        dispatch(fetchToPay(info)).then((charge)=>{
+            console.log("fetch to pay ret: ", charge);
+
+            pingpp.createPayment(charge, function(result, err){
+                console.log(result);
+                console.log(err.msg);
+                console.log(err.extra);
+                if (result == "success") {
+                    // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+                    alert("支付成功");
+                } else if (result == "fail") {
+                    // charge 不正确或者微信公众账号支付失败时会在此处返回
+                } else if (result == "cancel") {
+                    // 微信公众账号支付取消支付
+                }
+            });
         })
     }
 
@@ -84,8 +120,9 @@ class PayPage extends Component {
                         </div>
                     </div>
                 </div>
+                <Loading text="加载中..." isFetching={order.pay.pay_loading} />
 
-                <div className="bottom">
+                <div className="bottom" onClick={this.handlePay}>
                     <button className="bottom-button">支付</button>
                 </div>
             </div>
@@ -96,7 +133,8 @@ class PayPage extends Component {
 
 function select(state) {
     return {
-        order: state.order
+        order: state.order,
+        user: state.user
     }
 }
 
