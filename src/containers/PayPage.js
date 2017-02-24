@@ -43,7 +43,8 @@ class PayPage extends Component {
             order_no: order.pay.order_no,
             channel: "wx",
             currency: "cny",
-            app: {id: config.ping_appid}
+            app: {id: config.ping_appid},
+            extra: {open_id: 'okELCtxrJQeVySm6KTJ_5mAnbdy0'}
         };
 
         dispatch(fetchToPay(info)).then((charge)=>{
