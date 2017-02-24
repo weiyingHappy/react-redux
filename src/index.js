@@ -66,10 +66,10 @@ render (
             <Route path="/cmsfont/chooseDate" component={DatePicker}></Route>
             <Route path="/cmsfont/orderGenerate" component={OrderGenerate}></Route>
             <Route path="/cmsfont/payPage" component={PayPage}></Route>
-            <Route path="/cmsfont/uniPay" component={UniPay}></Route>
+            <Route path="/cmsfont/uniPay/:order_no" component={UniPay}></Route>
 
             <Route path="/cmsfont/setting" component={Setting}></Route>
-            <Route path="/cmsfont/MyOrder/:order_no" component={MyOrder}></Route>
+            <Route path="/cmsfont/MyOrder" component={MyOrder}></Route>
 
 
             <Route path="/cmsfont/error" component={ErrorPage} />
