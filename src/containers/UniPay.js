@@ -66,11 +66,9 @@ class UniPay extends Component {
                 console.log(result);
                 console.log(err.msg);
                 console.log(err.extra);
-                alert('resulst: '+result);
                 if (result == "success") {
                     // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL
                     // alert。
-                    alert("begin handle order finish");
                     self.handleOrderFinish(charge.order_no, charge.id, charge.amount_settle);
                 } else if (result == "fail") {
                     // charge 不正确或者微信公众账号支付失败时会在此处返回

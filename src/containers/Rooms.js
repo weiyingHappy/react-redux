@@ -53,7 +53,7 @@ class Rooms extends Component {
             if (res.code == 406) {
                 browserHistory.push('/cmsfont/register');
             }
-            else if (res.code!=200 && config.mid==config.production) {
+            else if (res.code!=200 && !config.debug) {
                 browserHistory.push('/cmsfont/error');
             }
             else {

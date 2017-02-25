@@ -3,7 +3,8 @@ module.exports = {
         login: '/post_api/login', //登录
         getJsSdk: '/post_api/getJsSdk',
         toPay: '/post_api/toPay',
-        uniPayOpenid: '/post_api/uniPayOpenid'
+        uniPayOpenid: '/post_api/uniPayOpenid',
+        toRefund: '/post_api/toRefund'
     },
     remote_path: {
         isMember: '/CMS/CmsBasic/isMember',
@@ -19,7 +20,7 @@ module.exports = {
         orderInfo: '/FE/Order/orderInfo',
         getSnap: '/CMS/CmsActivity/activities',
         changeNickname: '/CMS/CmsBasic/changeNickname',
-        myOrder: '/FE/Order/my',
+        myOrder: '/CMS/CmsBasic/myOrders',
         finishOrder: '/FE/Order/pay'
     }
 };

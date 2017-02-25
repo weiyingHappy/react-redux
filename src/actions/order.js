@@ -3,6 +3,10 @@ import config from '../../config/config'
 import { browserHistory } from 'react-router'
 
 export const SET_PAY = 'SET_PAY';
+export const SET_STATE = 'SET_STATE';
+
+export const RECEIVE_MY_ORDER = 'RECEIVE_MY_ORDER';
+
 export const REQUEST_To_PAY = 'REQUEST_To_PAY';
 export const RECEIVE_TO_PAY = 'RECEIVE_TO_PAY';
 
@@ -15,10 +19,55 @@ export const STATE_ALREADY = '2';
 export const STATE_FINISH = '3';
 
 
+export function setState(state) {
+    return {
+        type: SET_STATE,
+        state
+    }
+}
+export function receiveMyOrder(results, cat) {
+    return {
+        type: RECEIVE_MY_ORDER,
+        results,
+        cat
+    }
+}
+export function fetchToRefund(info) {
+    return (dispatch) => {
+        dispatch(setPay({refund_loading: true}));
+
+        let options = {
+            method: 'POST',
+            body: info
+        };
+
+        let dt = request(config.api_host+config.api_path.toRefund, options, false);
+
+        dt.then((json) => {
+            dispatch(setPay({refund_loading: false}));
+        });
+        return dt;
+    }
+}
 export function fetchMyOrder(info) {
 
     return (dispatch) => {
-        // dispatch()
+        if (info.page == 1) {
+            dispatch(setState({con_loading: true}));
+        }
+        let options = {
+            method: 'POST',
+            body: info
+        };
+        let dt = request(config.remote_host+config.remote_path.myOrder, options, true);
+        dt.then((json)=>{
+            console.log(json);
+            if (json.code == 200) {
+                dispatch(setState({con_loading: false}));
+                dispatch(receiveMyOrder(json.results, info.state));
+            }
+        });
+        return dt;
     }
 
 }
@@ -37,6 +86,7 @@ export function fetchFinishOrder(info) {
         return dt;
     }
 }
+
 
 export function requestUniPayOpenid(info) {
     return {

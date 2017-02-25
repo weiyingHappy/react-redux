@@ -1,4 +1,4 @@
-import { SET_PAY, REQUEST_To_PAY, RECEIVE_TO_PAY,STATE_ALL, REQUEST_UNI_PAY_OPENID, RECEIVE_UNI_PAY_OPENID,STATE_ALREADY, STATE_FINISH, STATE_NO } from '../actions/order'
+import { SET_PAY, SET_STATE, RECEIVE_MY_ORDER, REQUEST_To_PAY, RECEIVE_TO_PAY,STATE_ALL, REQUEST_UNI_PAY_OPENID, RECEIVE_UNI_PAY_OPENID,STATE_ALREADY, STATE_FINISH, STATE_NO } from '../actions/order'
 import config from '../../config/config'
 import moment from 'moment'
 
@@ -11,19 +11,45 @@ let order_state = {
         team: {},
         pay_loading: false,
         openid_loading: false,
-        finish_loading: false
+        finish_loading: false,
+        refund_loading: false
     },
     current: STATE_ALL,
-    con: [{},{},{},{}]
+    con: [{
+        nowPage: 0,
+        totalPage: 0,
+        lists: []
+    },{
+        nowPage: 0,
+        totalPage: 0,
+        lists: []
+    },{
+        nowPage: 0,
+        totalPage: 0,
+        lists: []
+    },{
+        nowPage: 0,
+        totalPage: 0,
+        lists: []
+    }],
+    con_loading: true,
+    cat: STATE_ALL
 };
 
 function combineState(ori, now) {
     return Object.assign({}, ori, now);
 }
+function setCon(ori, now, cat) {
+    let ret = ori.slice();
+    ret[cat] = now;
+    return ret;
+}
 export default function user(state=order_state, action) {
     switch(action.type) {
         case SET_PAY:
             return combineState(state, {pay: combineState(state.pay, action.pay)});
+        case SET_STATE:
+            return combineState(state, action.state);
         case REQUEST_To_PAY:
             return combineState(state, {pay: combineState(state.pay, {pay_loading: true})});
         case RECEIVE_TO_PAY:
@@ -32,6 +58,8 @@ export default function user(state=order_state, action) {
             return combineState(state, {pay: combineState(state.pay, {openid_loading: true})});
         case RECEIVE_UNI_PAY_OPENID:
             return combineState(state, {pay: combineState(state.pay, {openid_loading: false, openid: action.info.openid})});
+        case RECEIVE_MY_ORDER:
+            return combineState(state, {con: setCon(state.con, action.results, action.cat)});
         default:
             return state;
     }
