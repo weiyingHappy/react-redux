@@ -20,6 +20,6 @@ module.exports = {
         getSnap: '/CMS/CmsActivity/activities',
         changeNickname: '/CMS/CmsBasic/changeNickname',
         myOrder: '/FE/Order/my',
-        finshOrder: '/FE/Order/pay'
+        finishOrder: '/FE/Order/pay'
     }
 };
