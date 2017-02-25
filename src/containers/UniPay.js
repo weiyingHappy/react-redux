@@ -17,6 +17,8 @@ class UniPay extends Component {
     constructor (props) {
         super(props);
 
+        this.handleOrderFinish = this.handleOrderFinish.bind(this);
+
         this.state = {
         }
     }
