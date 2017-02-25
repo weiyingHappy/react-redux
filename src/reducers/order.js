@@ -10,7 +10,8 @@ let order_state = {
         room: {},
         team: {},
         pay_loading: false,
-        openid_loading: false
+        openid_loading: false,
+        finish_loading: false
     },
     current: STATE_ALL,
     con: [{},{},{},{}]

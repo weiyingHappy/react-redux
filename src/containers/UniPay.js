@@ -7,7 +7,7 @@ import pingpp from 'pingpp-js'
 import config from '../../config/config'
 import Loading from '../components/loading'
 
-import {fetchOrderInfo, fetchToPay, fetchUniPayOpenid} from '../actions/order'
+import {fetchOrderInfo, fetchToPay, fetchUniPayOpenid, fetchFinishOrder} from '../actions/order'
 
 import './uniPay.scss'
 
@@ -21,8 +21,25 @@ class UniPay extends Component {
         }
     }
 
+    handleOrderFinish(order_no, wx_order, price) {
+        let {order, dispatch} = this.props, self = this;
+        let info = {
+            order_no: order_no,
+            wx_order: wx_order,
+            price: price
+        };
+        dispatch(fetchFinishOrder(info)).then((json)=>{
+            if (json.code == 200) {
+                alert("支付成功, 请关闭网页!");
+            }
+            else {
+                alert("支付成功, 请关闭网页!, fail!");
+            }
+        });
+    }
+
     handleToPay(openid, data) {
-        let {order, dispatch} = this.props;
+        let {order, dispatch} = this.props, self = this;
         let info = {
             subject: data.team.name,
             body: data.room.name,
@@ -43,9 +60,10 @@ class UniPay extends Component {
                 console.log(err.extra);
                 if (result == "success") {
                     // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
-                    alert("支付成功-from 金刚芭比");
+                    self.handleOrderFinish(charge.order_no, charge.id, charge.amount_settle);
                 } else if (result == "fail") {
                     // charge 不正确或者微信公众账号支付失败时会在此处返回
+                    alert("支付失败");
                 } else if (result == "cancel") {
                     // 微信公众账号支付取消支付
                 }
@@ -74,9 +92,11 @@ class UniPay extends Component {
     render() {
         let {order} = this.props;
         return order.pay.openid_loading?(
-            <Loading text="认证中..." isFetching={order.pay.pay_loading} />
+            <Loading text="认证中..." isFetching={order.pay.openid_loading} />
         ):order.pay.pay_loading?(
             <Loading text="加载中..." isFetching={order.pay.pay_loading} />
+        ):order.pay.finish_loading?(
+            <Loading text="处理订单中..." isFetching={order.pay.finish_loading} />
         ):(
             <div className="uni-pay-container">
                 
