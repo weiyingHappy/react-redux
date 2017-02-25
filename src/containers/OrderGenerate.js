@@ -17,6 +17,7 @@ class OrderGenerate extends Component {
     constructor (props) {
         super(props);
         this.handlePay = this.handlePay.bind(this);
+        this.handleChooseNum = this.handleChooseNum.bind(this);
         this.state = {
             is_choosing_num: false,
             name: '',
@@ -44,8 +45,9 @@ class OrderGenerate extends Component {
     }
 
     handleChooseNum (val) {
+        let self = this;
         return ()=>{
-            let {dispatch, hotel, user, storage} = this.props, self = this;
+            let {dispatch, hotel, user, storage} = self.props;
             const room = hotel.lists[hotel.room_id];
 
             if (storage.inventory < val) {

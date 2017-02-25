@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/vendor.bundle.js" afterPath="$PROJECT_DIR$/dist/vendor.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/equ-area/index.js" afterPath="$PROJECT_DIR$/src/components/equ-area/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/OrderGenerate.js" afterPath="$PROJECT_DIR$/src/containers/OrderGenerate.js" />
     </list>
     <ignored path="youzhu_business_h5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/equ-area/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="758">
-              <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
+            <state relative-caret-position="750">
+              <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -90,11 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrderGenerate.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OrderGenerate.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/OrderGenerate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1143">
-              <caret line="151" column="28" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
+            <state relative-caret-position="684">
+              <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -157,7 +154,6 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/src/reducers/storage.js" />
         <option value="$PROJECT_DIR$/src/actions/storage.js" />
-        <option value="$PROJECT_DIR$/src/containers/OrderGenerate.js" />
         <option value="$PROJECT_DIR$/src/containers/orderGenerate.scss" />
         <option value="$PROJECT_DIR$/src/components/Common/index.js" />
         <option value="$PROJECT_DIR$/src/components/scroll/index.js" />
@@ -202,6 +198,7 @@
         <option value="$PROJECT_DIR$/src/containers/Rooms.js" />
         <option value="$PROJECT_DIR$/config/config.js" />
         <option value="$PROJECT_DIR$/src/components/equ-area/index.js" />
+        <option value="$PROJECT_DIR$/src/containers/OrderGenerate.js" />
       </list>
     </option>
   </component>
@@ -537,12 +534,12 @@
       <workItem from="1487740292228" duration="11549000" />
       <workItem from="1487814178218" duration="19641000" />
       <workItem from="1487901616384" duration="22479000" />
-      <workItem from="1487990089166" duration="19031000" />
+      <workItem from="1487990089166" duration="19386000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="300419000" />
+    <option name="totallyTimeSpent" value="300774000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -989,21 +986,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/OrderGenerate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1143">
-          <caret line="151" column="28" selection-start-line="151" selection-start-column="28" selection-end-line="151" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/equ-area/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
-          <caret line="56" column="22" selection-start-line="56" selection-start-column="22" selection-end-line="56" selection-end-column="22" />
+        <state relative-caret-position="750">
+          <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/containers/OrderGenerate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
