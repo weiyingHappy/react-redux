@@ -29,7 +29,7 @@ class UniPay extends Component {
             let info = {
                 order_no: order_no,
                 wx_order: wx_order,
-                price: parseFload(price)/100.0
+                price: parseFloat(price)/100.0
             };
             dispatch(fetchFinishOrder(info)).then((json)=>{
                 if (json.code == 200) {
@@ -42,6 +42,7 @@ class UniPay extends Component {
         }
         catch(e) {
             alert("handle order finish fail: "+ JSON.stringify(e));
+            console.log(e);
         }
     }
 
@@ -94,6 +95,7 @@ class UniPay extends Component {
                 self.handleToPay(res.openid, res_2.results);
             })
         });
+        // self.handleOrderFinish('20170225132148799407913', '20170225132148799407913', 1);
     }
 
 
