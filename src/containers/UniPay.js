@@ -22,20 +22,25 @@ class UniPay extends Component {
     }
 
     handleOrderFinish(order_no, wx_order, price) {
-        let {order, dispatch} = this.props, self = this;
-        let info = {
-            order_no: order_no,
-            wx_order: wx_order,
-            price: price
-        };
-        dispatch(fetchFinishOrder(info)).then((json)=>{
-            if (json.code == 200) {
-                alert("支付成功, 请关闭网页!");
-            }
-            else {
-                alert("支付成功, 请关闭网页!, fail!");
-            }
-        });
+        try {
+            let {order, dispatch} = this.props, self = this;
+            let info = {
+                order_no: order_no,
+                wx_order: wx_order,
+                price: price
+            };
+            dispatch(fetchFinishOrder(info)).then((json)=>{
+                if (json.code == 200) {
+                    alert("支付成功, 请关闭网页!");
+                }
+                else {
+                    alert("支付成功, 请关闭网页!, fail!");
+                }
+            });
+        }
+        catch(e) {
+            alert("handle order finish fail: ", JSON.stringify(e));
+        }
     }
 
     handleToPay(openid, data) {
