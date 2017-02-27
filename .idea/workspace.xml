@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.api_path.js" afterPath="$PROJECT_DIR$/config/config.api_path.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.js" afterPath="$PROJECT_DIR$/config/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/vendor.bundle.js" afterPath="$PROJECT_DIR$/dist/vendor.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/order.js" afterPath="$PROJECT_DIR$/src/actions/order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/order-piece/index.js" afterPath="$PROJECT_DIR$/src/components/order-piece/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/order-piece/index.scss" afterPath="$PROJECT_DIR$/src/components/order-piece/index.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/MyOrder.js" afterPath="$PROJECT_DIR$/src/containers/MyOrder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/myOrder.scss" afterPath="$PROJECT_DIR$/src/containers/myOrder.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/roomInfo.scss" afterPath="$PROJECT_DIR$/src/containers/roomInfo.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/order.js" afterPath="$PROJECT_DIR$/src/reducers/order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/static/scss/_common.scss" afterPath="$PROJECT_DIR$/src/static/scss/_common.scss" />
     </list>
     <ignored path="youzhu_business_h5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +26,8 @@
       <file leaf-file-name="config.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+            <state relative-caret-position="323">
+              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -608,12 +596,12 @@
       <workItem from="1487814178218" duration="19641000" />
       <workItem from="1487901616384" duration="22479000" />
       <workItem from="1487990089166" duration="20159000" />
-      <workItem from="1488160463664" duration="12483000" />
+      <workItem from="1488160463664" duration="12561000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="314030000" />
+    <option name="totallyTimeSpent" value="314108000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -1050,8 +1038,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+        <state relative-caret-position="323">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
           <folding />
         </state>
       </provider>
