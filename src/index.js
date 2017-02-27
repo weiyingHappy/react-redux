@@ -27,7 +27,7 @@ import UniPay from './containers/UniPay'
 const loggerMiddleware = createLogger();
 
 
-let comp = (config.mid==config.development?(
+let comp = (config.debug?(
     compose(
         applyMiddleware(
             thunkMiddleware
