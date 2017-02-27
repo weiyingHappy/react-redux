@@ -18,28 +18,28 @@ class OrderPiece extends React.Component {
         let dis = orders.map((item) => {
             let btn = item.state==0?(
                 <div className="item-btn-group-between">
-                    <button className="item-btn-black item-btn">取消订单</button>
+                    <button className="item-btn-black item-btn" onClick={this.props.toCancel(id)}>取消订单</button>
                     <div className="item-btn-group">
-                        <button className="item-btn-blue item-btn">查看</button>
-                        <button className="item-btn-red item-btn">支付{item.type=='1'?'(5分钟内)':'(30分钟内)'}</button>
+                        <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
+                        <button className="item-btn-red item-btn" onClick={this.props.toPay(id)}>支付{item.type=='1'?'(5分钟内)':'(30分钟内)'}</button>
                     </div>
                 </div>
             ): item.state==1?(
                 <div className="item-btn-group">
                     <button className="item-btn-black item-btn" onClick={this.props.toRefund(id)}>退订房间</button>
-                    <button className="item-btn-blue item-btn">查看</button>
+                    <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
                 </div>
             ): item.state==3?(
                 <div className="item-btn-group">
-                    <button className="item-btn-blue item-btn">查看</button>
+                    <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
                 </div>
             ): item.comment==0?(
                 <div className="item-btn-group">
-                    <button className="item-btn-red item-btn">评价</button>
+                    <button className="item-btn-red item-btn" onClick={this.props.toComment(id)}>评价</button>
                 </div>
             ): (
                 <div className="item-btn-group">
-                    <button className="item-btn-blue item-btn">查看</button>
+                    <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
                 </div>
             );
             id += 1;

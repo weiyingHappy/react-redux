@@ -9,7 +9,7 @@ import Loading from '../components/loading'
 import OrderPiece from '../components/order-piece'
 import OrderNav from '../components/order-nav'
 
-import {fetchOrderInfo, fetchMyOrder, fetchToRefund, STATE_ALL, STATE_ALREADY, STATE_FINISH, STATE_NO, setState} from '../actions/order'
+import {fetchOrderInfo, fetchToCancel, fetchToUnPay, fetchMyOrder, fetchToRefund, STATE_ALL, STATE_ALREADY, STATE_FINISH, STATE_NO, setState,setPay, popOrder} from '../actions/order'
 
 import './myOrder.scss'
 
@@ -21,6 +21,8 @@ class MyOrder extends Component {
 
         this.toRefund = this.toRefund.bind(this);
         this.changeCat = this.changeCat.bind(this);
+        this.toCancel = this.toCancel.bind(this);
+        this.toPay = this.toPay.bind(this);
 
         this.state = {
         }
@@ -29,9 +31,9 @@ class MyOrder extends Component {
 
 
     componentWillMount() {
-        const {dispatch, user} = this.props;
+        const {dispatch, user, order} = this.props;
         let info = {
-            state: STATE_ALREADY,
+            state: order.cat,
             page: 1,
             team_id: user.teamId
         };
@@ -40,9 +42,18 @@ class MyOrder extends Component {
         })
     }
     changeCat(cat) {
-        let {dispatch} = this.props;
+        let {dispatch, user} = this.props;
         return () => {
             dispatch(setState({cat: cat}));
+
+            let info = {
+                state: cat,
+                page: 1,
+                team_id: user.teamId
+            };
+            dispatch(fetchMyOrder(info)).then((res)=>{
+                console.log('fetch my order: ', res);
+            })
         }
     }
 
@@ -64,9 +75,65 @@ class MyOrder extends Component {
                 console.log("fetch to pay ret: ", charge);
 
                 if (!charge.failure_msg) {
-                    alert("取消订单成功, money将于1-3个工作日内返回支付账户");
+                    let info2 = {
+                        order_no: charge.charge_order_no,
+                        wx_order: charge.charge,
+                        price: parseInt(charge.amount/100.0)
+                    };
+                    fetchToUnPay(info2).then((res)=>{
+                        if (res.code == 200) {
+                            alert("退款成功");
+                            dispatch(popOrder({
+                                cat: order.cat,
+                                id: id
+                            }));
+                        }
+                        else {
+                            alert("取消订单成功, 退款将于1-3个工作日内返回支付账户");
+                        }
+                    })
                 }
             })
+        }
+    }
+    toCancel(id) {
+        return () => {
+            let {order, dispatch} = this.props, self = this;
+            let item = order.con[order.cat].lists[id];
+            let info = {
+                order_no: item.order_no
+            };
+            dispatch(fetchToCancel(info)).then((res)=>{
+                if (res.code == 200) {
+                    alert("取消订单成功");
+
+                    dispatch(popOrder({
+                        cat: order.cat,
+                        id: id
+                    }));
+                }
+                else {
+                    alert(res.msg);
+                }
+            });
+        }
+    }
+    toShowOrder() {
+        return () => {
+
+        }
+    }
+    toComment() {
+        return () => {
+
+        }
+    }
+    toPay(id) {
+        return () => {
+            let {order, dispatch} = this.props, self = this;
+            let item = order.con[order.cat].lists[id];
+            dispatch(setPay({order_no: item.order_no}));
+            browserHistory.push('/cmsfont/payPage');
         }
     }
 
@@ -77,9 +144,11 @@ class MyOrder extends Component {
         ):(
             <div className="my-order-container">
                 <OrderNav cat={order.cat} changeCat={this.changeCat} />
-                <OrderPiece toRefund={this.toRefund} orders={order.con[order.cat].lists||[]}/>
+                <OrderPiece toRefund={this.toRefund} orders={order.con[order.cat].lists||[]}
+                        toCancel={this.toCancel} toShowOrder={this.toShowOrder} toComment={this.toComment} toPay={this.toPay}/>
 
                 <Loading text="退款中..." isFetching={order.pay.refund_loading} />
+                <Loading text="取消订单中..." isFetching={order.pay.unpay_loading} />
             </div>
         )
     }

@@ -1,4 +1,4 @@
-import { SET_PAY, SET_STATE, RECEIVE_MY_ORDER, REQUEST_To_PAY, RECEIVE_TO_PAY,STATE_ALL, REQUEST_UNI_PAY_OPENID, RECEIVE_UNI_PAY_OPENID,STATE_ALREADY, STATE_FINISH, STATE_NO } from '../actions/order'
+import { SET_PAY, SET_STATE, RECEIVE_MY_ORDER, REQUEST_To_PAY, RECEIVE_TO_PAY,STATE_ALL, REQUEST_UNI_PAY_OPENID, RECEIVE_UNI_PAY_OPENID,STATE_ALREADY, STATE_FINISH, STATE_NO, POP_ORDER } from '../actions/order'
 import config from '../../config/config'
 import moment from 'moment'
 
@@ -12,9 +12,9 @@ let order_state = {
         pay_loading: false,
         openid_loading: false,
         finish_loading: false,
-        refund_loading: false
+        refund_loading: false,
+        unpay_loading: false
     },
-    current: STATE_ALL,
     con: [{
         nowPage: 0,
         totalPage: 0,
@@ -44,6 +44,12 @@ function setCon(ori, now, cat) {
     ret[cat] = now;
     return ret;
 }
+function popOrder(con, cat, id) {
+    let ret = con.slice();
+    let lists = ret[cat].lists;
+    ret[cat].lists = [...lists.slice(0,id),...lists.slice(id+1, lists.length)];
+    return ret;
+}
 export default function user(state=order_state, action) {
     switch(action.type) {
         case SET_PAY:
@@ -60,6 +66,8 @@ export default function user(state=order_state, action) {
             return combineState(state, {pay: combineState(state.pay, {openid_loading: false, openid: action.info.openid})});
         case RECEIVE_MY_ORDER:
             return combineState(state, {con: setCon(state.con, action.results, action.cat)});
+        case POP_ORDER:
+            return combineState(state, {con: popOrder(state.con, action.cat, action.id)});
         default:
             return state;
     }

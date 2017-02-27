@@ -18,6 +18,7 @@ export const STATE_NO = '1';
 export const STATE_ALREADY = '2';
 export const STATE_FINISH = '3';
 
+export const POP_ORDER = "POP_ORDER";
 
 export function setState(state) {
     return {
@@ -30,6 +31,39 @@ export function receiveMyOrder(results, cat) {
         type: RECEIVE_MY_ORDER,
         results,
         cat
+    }
+}
+export function fetchToUnPay(info) {
+    return (dispatch) => {
+        dispatch(setPay({unpay_loading: true}));
+
+        let options = {
+            method: 'POST',
+            body: info
+        };
+        let dt = request(config.remote_host+config.remote_path.unPay, options, true);
+        dt.then((json) => {
+            dispatch(setPay({unpay_loading: false}));
+        });
+        return dt;
+    }
+}
+export function fetchToCancel(info) {
+    return (dispatch) => {
+        dispatch(setPay({unpay_loading: true}));
+
+        let dt = request(config.remote_host+config.remote_path.orderCancel+'/'+info.order_no, null, true);
+        dt.then((json) => {
+            dispatch(setPay({unpay_loading: false}));
+        });
+        return dt;
+    }
+}
+export function popOrder(info) {
+    return {
+        type: POP_ORDER,
+        cat: info.cat,
+        id: info.id
     }
 }
 export function fetchToRefund(info) {

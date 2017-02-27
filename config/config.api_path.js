@@ -21,6 +21,8 @@ module.exports = {
         getSnap: '/CMS/CmsActivity/activities',
         changeNickname: '/CMS/CmsBasic/changeNickname',
         myOrder: '/CMS/CmsBasic/myOrders',
-        finishOrder: '/FE/Order/pay'
+        finishOrder: '/FE/Order/pay',
+        unPay: '/FE/Order/unpay',
+        orderCancel: '/FE/Order/cancel'
     }
 };
