@@ -63,7 +63,7 @@ class MyOrder extends Component {
             console.log("退订: ", id);
 
             let {order, dispatch} = this.props, self = this;
-            let item = order.con[STATE_ALREADY].lists[id];
+            let item = order.con[order.cat].lists[id];
             console.log('item: ', item);
             let info = {
                 id: item.pay.wx_order,
