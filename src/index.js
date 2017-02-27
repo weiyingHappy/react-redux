@@ -27,7 +27,7 @@ import UniPay from './containers/UniPay'
 const loggerMiddleware = createLogger();
 
 
-let comp = (config.debug?(
+let comp = config.debug?(
     compose(
         applyMiddleware(
             thunkMiddleware
@@ -43,7 +43,7 @@ let comp = (config.debug?(
         ),
         // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
-));
+);
 let store = createStore(
     reducer,
     comp
