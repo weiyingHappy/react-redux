@@ -109,7 +109,6 @@ class UniPay extends Component {
             <Loading text="处理订单中..." isFetching={order.pay.finish_loading} />
         ):(
             <div className="uni-pay-container">
-                ok
             </div>
         )
     }

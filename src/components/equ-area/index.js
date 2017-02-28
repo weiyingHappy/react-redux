@@ -49,7 +49,7 @@ export default class OrderGenerate extends React.Component {
             item = this.findEqu(item);
             id += 1;
             return item.name.length==0?(
-                <div></div>
+                <div key={id}></div>
             ):(
                 <div className="equ-item" key={id}>
                     <img src={item.img} className="ei-img"/>

@@ -1,14 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
+import moment from 'moment'
 
 import {fetchHotelLists, changeRoom} from '../actions/hotel'
 import {fetchLogin} from '../actions/user'
+import {setDatePicker} from '../actions/storage'
 
 import config from '../../config/config.js'
 import Tabber from '../components/tabber'
 import Loading from '../components/loading'
 import RoomPiece from '../components/room-piece'
+import {getCookie} from '../components/Common'
 import './rooms.scss'
 
 class Rooms extends Component {
@@ -16,6 +19,8 @@ class Rooms extends Component {
     constructor (props) {
         super(props);
 
+        this.chooseStart = this.chooseStart.bind(this);
+        this.chooseEnd = this.chooseEnd.bind(this);
         this.handleEnterRoom = this.handleEnterRoom.bind(this);
     }
 
@@ -49,7 +54,7 @@ class Rooms extends Component {
             return ;
         }
         dispatch(fetchLogin({token: token, code: code})).then((res)=>{
-
+            document.title=(getCookie('wechatName','')||'住那儿旅行');
             if (res.code == 406) {
                 browserHistory.push('/cmsfont/register');
             }
@@ -65,6 +70,16 @@ class Rooms extends Component {
 
     }
 
+    chooseStart() {
+        this.props.dispatch(setDatePicker(1));
+        browserHistory.push('/cmsfont/chooseDate')
+    }
+
+    chooseEnd() {
+        this.props.dispatch(setDatePicker(2));
+        browserHistory.push('/cmsfont/chooseDate')
+    }
+
     handleEnterRoom(id) {
         let {dispatch, hotel} = this.props;
         return (e) => {
@@ -75,7 +90,9 @@ class Rooms extends Component {
     }
 
     render() {
-        const {hotel, user } = this.props;
+        const {hotel, user, storage } = this.props;
+        let from = moment(storage.from);
+        let to = moment(storage.to);
 
         let arr_id = 0;
 
@@ -111,18 +128,18 @@ class Rooms extends Component {
         ):(
             <div className="rooms-container">
 
-                <div className="date-container" onClick={this.chooseDate}>
-                    <div className="start-date">
+                <div className="date-container">
+                    <div className="start-date" onClick={this.chooseStart}>
                         <div className="explain-text">入住</div>
-                        <div className="date-ins">11月13日</div>
+                        <div className="date-ins">{from.get('month')+1}月{from.get('date')}日</div>
                     </div>
-                    <div className="end-date">
+                    <div className="end-date" onClick={this.chooseEnd}>
                         <div className="explain-text">离店</div>
-                        <div className="date-ins">11月14日</div>
+                        <div className="date-ins">{to.get('month')+1}月{to.get('date')}日</div>
                     </div>
                     <div className="num-date">
                         <div className="explain-text">共</div>
-                        <div className="date-ins">1</div>
+                        <div className="date-ins">{moment(to).diff(moment(from), 'days')}</div>
                         <div className="explain-text">晚</div>
                     </div>
                     <div className="sign">
@@ -142,7 +159,8 @@ class Rooms extends Component {
 function select(state) {
     return {
         user: state.user,
-        hotel: state.hotel
+        hotel: state.hotel,
+        storage: state.storage
     }
 }
 

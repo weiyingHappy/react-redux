@@ -27,10 +27,11 @@ class RoomInfo extends Component {
         let {user, storage, dispatch, hotel} = this.props;
         let self = this;
         console.log(hotel.lists[hotel.room_id]);
+        let from = moment(storage.from);
 
         let info = {
             roomId: hotel.lists[hotel.room_id].id,
-            start: storage.from.format('YYYY-MM-DD')
+            start: from.format('YYYY-MM-DD')
         };
         dispatch(fetchInventory(info));
 
@@ -73,7 +74,7 @@ class RoomInfo extends Component {
             cnt += 1;
             if (cnt > 3) return ;
             return (
-                <div key={item.id} style={{borderTop:'1px solid #DCDCDC'}}>
+                <div key={cnt} style={{borderTop:'1px solid #DCDCDC'}}>
                     <CommentItem info={item}/>
                 </div>
             )
@@ -125,6 +126,8 @@ class RoomInfo extends Component {
     render() {
         const {hotel, user, storage } = this.props;
         const room = hotel.lists[hotel.room_id];
+        let from = moment(storage.from);
+        let to = moment(storage.to);
 
         let comments_area = this.getCommentsArea(storage);
 
@@ -153,15 +156,15 @@ class RoomInfo extends Component {
                 <div className="date-container">
                     <div className="start-date" onClick={this.chooseStart}>
                         <div className="explain-text">入住</div>
-                        <div className="date-ins">{storage.from.get('month')+1}月{storage.from.get('date')}日</div>
+                        <div className="date-ins">{from.get('month')+1}月{from.get('date')}日</div>
                     </div>
                     <div className="end-date" onClick={this.chooseEnd}>
                         <div className="explain-text">离店</div>
-                        <div className="date-ins">{storage.to.get('month')+1}月{storage.to.get('date')}日</div>
+                        <div className="date-ins">{to.get('month')+1}月{to.get('date')}日</div>
                     </div>
                     <div className="num-date">
                         <div className="explain-text">共</div>
-                        <div className="date-ins">{storage.to.diff(storage.from, 'days')}</div>
+                        <div className="date-ins">{moment(to).diff(moment(from), 'days')}</div>
                         <div className="explain-text">晚</div>
                     </div>
                     <div className="sign">

@@ -21,6 +21,11 @@ class DatePicker extends Component {
     }
 
     handleSelect(range) {
+        if (!this.odd) {
+            return ;
+        }
+        console.log("choose.....");
+        this.odd = false;
         let {storage, dispatch} = this.props;
         if (range.startDate) {
             range.endDate = range.startDate;
@@ -41,14 +46,13 @@ class DatePicker extends Component {
                 to: range.endDate
             }));
         }
-        if (this.odd) {
-            browserHistory.goBack();
-            this.odd = false;
-        }
+        browserHistory.goBack();
     }
 
     render() {
         let {storage} = this.props;
+        let from = moment(storage.from);
+        let to = moment(storage.to);
         return (
             <div className="date-picker-container">
                 <div className="date-container-date">
@@ -58,9 +62,9 @@ class DatePicker extends Component {
                         </div>
                         <DateRange
                             onChange={this.handleSelect}
-                            startDate={storage.datePicker==1?storage.from:moment.max(moment(storage.from).add(1,'d'),storage.to)}
-                            endDate={storage.datePicker==1?storage.from:moment.max(moment(storage.from).add(1,'d'),storage.to)}
-                            minDate={storage.datePicker==1?moment():moment(storage.from).add(1,'d')}
+                            startDate={storage.datePicker==1?storage.from:moment.max(moment(from).add(1,'d'),to)}
+                            endDate={storage.datePicker==1?storage.from:moment.max(moment(from).add(1,'d'),to)}
+                            minDate={storage.datePicker==1?moment():moment(from).add(1,'d')}
                             maxDate={storage.datePicker==1?moment().add(3,'months').subtract(1,'d'):moment().add(3,'months')}
                             format="YYYY/MM/DD"
                         />

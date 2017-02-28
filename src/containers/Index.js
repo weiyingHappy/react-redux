@@ -8,6 +8,7 @@ import {fetchLogin, fetchIndexImg} from '../actions/user'
 import config from '../../config/config'
 import Tabber from '../components/tabber'
 import Scroll from '../components/scroll'
+import {getCookie} from '../components/Common'
 
 class Index extends Component {
 
@@ -27,6 +28,7 @@ class Index extends Component {
         }
         this.props.dispatch(fetchLogin({token: token, code: code})).then((res)=>{
             console.log('dispatch res: ', res);
+            document.title=(getCookie('wechatName','')||'住那儿旅行');
 
             if (res.code == 406) {
                 browserHistory.push('/cmsfont/register');
