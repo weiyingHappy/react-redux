@@ -150,6 +150,7 @@ class Intro extends Component {
                 </div>
                 <Loading text="获取位置中" isFetching={this.state.map_loading} />
 
+                <div style={{height:'100px'}}></div>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         )

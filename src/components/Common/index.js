@@ -39,3 +39,17 @@ export function jsSdkInit(data, appid, url) {
         ]
     });
 }
+
+export function changeTitle(name) {
+    var body = document.getElementsByTagName('body')[0];
+    document.title = name;
+    var iframe = document.createElement("iframe");
+    iframe.setAttribute("src", "about:blank");
+    iframe.addEventListener('load', function() {
+        setTimeout(function() {
+            iframe.removeEventListener('load');
+            document.body.removeChild(iframe);
+        }, 0);
+    });
+    document.body.appendChild(iframe);
+}

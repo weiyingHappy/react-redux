@@ -20,7 +20,7 @@ class Scroll extends Component {
                     showThumbnails={false}
                     showFullscreenButton={false}
                     showPlayButton={false}
-                    autoPlay={false}
+                    autoPlay={this.props.autoPlay}
                     showNav={false}
                     showBullets={true}
                     showIndex={false}/>

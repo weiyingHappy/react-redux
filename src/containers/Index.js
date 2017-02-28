@@ -8,7 +8,7 @@ import {fetchLogin, fetchIndexImg} from '../actions/user'
 import config from '../../config/config'
 import Tabber from '../components/tabber'
 import Scroll from '../components/scroll'
-import {getCookie} from '../components/Common'
+import {getCookie, changeTitle} from '../components/Common'
 
 class Index extends Component {
 
@@ -28,7 +28,7 @@ class Index extends Component {
         }
         this.props.dispatch(fetchLogin({token: token, code: code})).then((res)=>{
             console.log('dispatch res: ', res);
-            document.title=(getCookie('wechatName','')||'住那儿旅行');
+            changeTitle(getCookie('wechatName','')||'住那儿旅行');
 
             if (res.code == 406) {
                 browserHistory.push('/cmsfont/register');
@@ -61,7 +61,7 @@ class Index extends Component {
         ):(
             <div className="index-container">
                 <Loading text="加载数据中..." isFetching={user.isLoading} />
-                <Scroll img_lists = {user.indexImgs} height="100%" handleClick={this.showImg}/>
+                <Scroll img_lists = {user.indexImgs} height="100%" handleClick={this.showImg} autoPlay={true}/>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         )

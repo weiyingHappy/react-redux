@@ -11,7 +11,7 @@ import config from '../../config/config.js'
 import Tabber from '../components/tabber'
 import Loading from '../components/loading'
 import RoomPiece from '../components/room-piece'
-import {getCookie} from '../components/Common'
+import {getCookie, changeTitle} from '../components/Common'
 import './rooms.scss'
 
 class Rooms extends Component {
@@ -24,37 +24,19 @@ class Rooms extends Component {
         this.handleEnterRoom = this.handleEnterRoom.bind(this);
     }
 
-    // setCookie(name,value,hours,path,domain,secure){
-    //     var cdata = name + "=" + value;
-    //     if(hours){
-    //         var d = new Date();
-    //         d.setHours(d.getHours() + hours);
-    //         cdata += "; expires=" + d.toGMTString();
-    //     }
-    //     cdata +=path ? ("; path=" + path) : "" ;
-    //     cdata +=domain ? ("; domain=" + domain) : "" ;
-    //     cdata +=secure ? ("; secure=" + secure) : "" ;
-    //     document.cookie = cdata;
-    // }
-
-
     componentWillMount() {
         let token = this.props.params.token;
         let code = this.props.location.query.code;
         let self = this;
         const {user, hotel, dispatch} = this.props;
 
-        // document.cookie = 'wechatToken='+token;
-        // document.cookie = 'wechatCode='+code;
-        // this.setCookie('wechatToken', token, 24 * 7);
-        // this.setCookie('wechatCode', code, 24 * 7);
 
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
             return ;
         }
         dispatch(fetchLogin({token: token, code: code})).then((res)=>{
-            document.title=(getCookie('wechatName','')||'住那儿旅行');
+            changeTitle(getCookie('wechatName','')||'住那儿旅行');
             if (res.code == 406) {
                 browserHistory.push('/cmsfont/register');
             }
