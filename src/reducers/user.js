@@ -31,7 +31,7 @@ export default function user(state=user_state, action) {
         case REQUEST_INDEX_IMG:
             return Object.assign({}, state, {isLoading: true});
         case RECEIVE_INDEX_IMG:
-            return Object.assign({}, state, {isLoading: false, indexImgs: action.data.results.imgs||[defaultImgs,defaultImgs]});
+            return Object.assign({}, state, {isLoading: false, indexImgs: action.data.results.imgs||[defaultImgs]});
 
         case REQUEST_CHANGE_NICKNAME:
             return Object.assign({}, state, {isLoading: true});
