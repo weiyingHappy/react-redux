@@ -4,8 +4,8 @@ import config from '../../config/config'
 import moment from 'moment'
 
 let storage_state = {
-    from: moment(),
-    to: moment().add(1,'d'),
+    from: moment().format("YYYY-MM-DD"),
+    to: moment().add(1,'d').format("YYYY-MM-DD"),
     datePicker: 0,
 
     inventory: 0,

@@ -21,29 +21,26 @@ class DatePicker extends Component {
     }
 
     handleSelect(range) {
-        if (!this.odd) {
-            return ;
-        }
-        console.log("choose.....");
+        console.log("choosing....");
+        console.log(range);
+        if (!this.odd) return ;
+        this.odd = false;
+
         this.odd = false;
         let {storage, dispatch} = this.props;
-        if (range.startDate) {
-            range.endDate = range.startDate;
-        }
-        if (range.endDate) {
-            range.startDate = range.endDate;
-        }
+
+        let start = range.startDate, end = range.endDate;
 
         if (storage.datePicker == 1) {
             dispatch(setDate({
-                from: range.startDate,
-                to: moment.max(moment(range.startDate).add(1,'d'), storage.to)
+                from: moment(start).format("YYYY-MM-DD"),
+                to: moment.max(moment(start).add(1,'d'), moment(storage.to)).format("YYYY-MM-DD")
             }));
         }
         else {
             dispatch(setDate({
-                from: storage.from,
-                to: range.endDate
+                from: moment(storage.from).format("YYYY-MM-DD"),
+                to: moment(range.endDate).format("YYYY-MM-DD")
             }));
         }
         browserHistory.goBack();
