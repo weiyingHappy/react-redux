@@ -80,7 +80,7 @@ class MyOrder extends Component {
                         wx_order: charge.charge,
                         price: parseInt(charge.amount/100.0)
                     };
-                    fetchToUnPay(info2).then((res)=>{
+                    dispatch(fetchToUnPay(info2)).then((res)=>{
                         if (res.code == 200) {
                             alert("退款成功");
                             dispatch(popOrder({
