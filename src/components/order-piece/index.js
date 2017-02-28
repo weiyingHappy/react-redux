@@ -2,6 +2,8 @@ import React from 'react'
 import moment from 'moment'
 import './index.scss'
 
+import {STATE_ALL, STATE_ALREADY, STATE_FINISH, STATE_NO} from '../../actions/order'
+
 class OrderPiece extends React.Component {
     constructor (props) {
         super(props);
@@ -16,7 +18,7 @@ class OrderPiece extends React.Component {
 
         let id = 0;
         let dis = orders.map((item) => {
-            let btn = item.state==0?(
+            let btn = item.state==STATE_NO?(
                 <div className="item-btn-group-between">
                     <button className="item-btn-black item-btn" onClick={this.props.toCancel(id)}>取消订单</button>
                     <div className="item-btn-group">
@@ -24,12 +26,12 @@ class OrderPiece extends React.Component {
                         <button className="item-btn-red item-btn" onClick={this.props.toPay(id)}>支付{item.type=='1'?'(5分钟内)':'(30分钟内)'}</button>
                     </div>
                 </div>
-            ): item.state==1?(
+            ): item.state==STATE_ALREADY?(
                 <div className="item-btn-group">
                     <button className="item-btn-black item-btn" onClick={this.props.toRefund(id)}>退订房间</button>
                     <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
                 </div>
-            ): item.state==3?(
+            ): item.state>=4?(
                 <div className="item-btn-group">
                     <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
                 </div>
@@ -46,7 +48,7 @@ class OrderPiece extends React.Component {
             return (
                 <div key={item.order_no} className="order-item">
                     <div className="item-header">
-                        {item.state==0?'待支付':item.state==1?'已支付':item.state==2?'已完成':'已取消'}
+                        {item.state==STATE_NO?'待支付':item.state==STATE_ALREADY?'已支付':item.state==STATE_FINISH?'已完成':'已取消'}
                     </div>
                     <div className="item-body">
                         <div className="item-body-a">

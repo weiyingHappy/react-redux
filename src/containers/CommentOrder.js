@@ -41,12 +41,12 @@ class CommentOrder extends Component {
         let {order, dispatch} = this.props, self = this;
         let item = order.pay;
         let com = this.state.comments;
-        let info = JSON.stringify({
+        let info = {
             order_no: item.order_no,
             anonymous: (self.state.anonymous?1:0),
             star: self.state.score,
             comment: self.state.comments
-        });
+        };
         if (com == '') {
             alert("评论不能为空");
             return ;
@@ -59,7 +59,7 @@ class CommentOrder extends Component {
                 loading: false
             });
             if (json.code == 200) {
-                browserHistory.back();
+                browserHistory.goBack();
             }
             else {
                 alert(json.msg);
