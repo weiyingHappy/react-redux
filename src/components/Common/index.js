@@ -41,7 +41,7 @@ export function jsSdkInit(data, appid, url) {
 }
 
 export function changeTitle(name) {
-    document.title = 'title';
+    document.title = name;
 //解决document.title 在 ios 下不生效bug方案 ios内生效
     const mobile = navigator.userAgent.toLowerCase();
     const length = document.querySelectorAll('iframe').length;
