@@ -23,6 +23,7 @@ class MyOrder extends Component {
         this.changeCat = this.changeCat.bind(this);
         this.toCancel = this.toCancel.bind(this);
         this.toPay = this.toPay.bind(this);
+        this.toShowOrder = this.toShowOrder.bind(this);
 
         this.state = {
         }
@@ -118,9 +119,12 @@ class MyOrder extends Component {
             });
         }
     }
-    toShowOrder() {
+    toShowOrder(id) {
         return () => {
-
+            let {order, dispatch} = this.props, self = this;
+            let item = order.con[order.cat].lists[id];
+            dispatch(setPay({order_no: item.order_no}));
+            browserHistory.push('/cmsfont/showOrder')
         }
     }
     toComment() {

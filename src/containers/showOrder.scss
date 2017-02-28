@@ -1,0 +1,99 @@
+@import "../static/scss/common";
+
+.show-order-container {
+  @extend .container-common;
+  background-color: #F2F2F2;
+  height: auto!important;
+  min-height: 100%;
+
+  .so-top {
+    background-color: #fff;
+  }
+  .sot-a {
+    padding: 13px 10px 11px 10px;
+    font-size: 16px;
+    color: #666666;
+    line-height: 18px;
+    border-bottom: 1px solid #DCDCDC;
+  }
+  .sot-b {
+    border-bottom: 1px solid #DCDCDC;
+  }
+  .sot-b > div {
+    font-size: 14px;
+    color: #666666;
+    margin: 10px;
+  }
+  .sot-c {
+    padding: 13px 10px 13px 11px;
+    font-size: 14px;
+    color: #666666;
+    border-bottom: 1px solid #DCDCDC;
+  }
+  .sot-d {
+    @include flex(row, nowrap, space-between, center);
+    padding: 0;
+    height: 60px;
+  }
+  .sotd-a {
+    border-right: 1px solid #DCDCDC;
+  }
+  .sotd-a, .sotd-b {
+    width: 50%;
+    box-sizing: border-box;
+    height: 100%;
+    @include flex(row, nowrap, center, center);
+  }
+  .sotd-img {
+    margin-right: 8px;
+    height: 23px;
+    width: 21px;
+  }
+
+  .so-middle {
+    background-color: #fff;
+    margin-top: 10px;
+    padding: 17px 10px 16px 10px;
+  }
+  .so-middle>div {
+    font-size: 14px;
+    color: #666666;
+    line-height: 25px;
+    @include flex(row, nowrap, space-between, inherit);
+  }
+
+  .som-red {
+    color: #FF5000;
+  }
+  .so-bottom {
+    padding: 19px 10px;
+    background-color: #fff;
+    margin-top: 10px;
+  }
+  .so-bottom>div {
+    font-size: 14px;
+    line-height: 25px;
+    color: #666666;
+    @include flex(row, nowrap, space-between, inherit);
+  }
+
+
+  .so-tail {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+  }
+  .sol-btn {
+    height: 100%;
+    background-color: #FF5000;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    width: 100%;
+  }
+
+
+  a,a:hover{ text-decoration:none; color:#666}
+}
+

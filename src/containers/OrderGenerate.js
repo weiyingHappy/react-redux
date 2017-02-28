@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import { browserHistory } from 'react-router'
 
 
@@ -28,6 +29,8 @@ class OrderGenerate extends Component {
     componentWillMount() {
         let {dispatch, hotel, user, storage} = this.props, self = this;
         const room = hotel.lists[hotel.room_id];
+        let from = moment(storage.from);
+        let to = moment(storage.to);
 
         self.setState({
             name: user.nickname,
@@ -36,8 +39,8 @@ class OrderGenerate extends Component {
 
         let info = {
             roomId: room.id,
-            start: storage.from.format('YYYY-MM-DD'),
-            days: storage.to.diff(storage.from, 'days'),
+            start: moment(from).format('YYYY-MM-DD'),
+            days: moment(to).diff(from, 'days'),
             num: 1
         };
 
@@ -49,6 +52,8 @@ class OrderGenerate extends Component {
         return ()=>{
             let {dispatch, hotel, user, storage} = self.props;
             const room = hotel.lists[hotel.room_id];
+            let from = moment(storage.from);
+            let to = moment(storage.to);
 
             if (storage.inventory < val) {
                 return ;
@@ -60,8 +65,8 @@ class OrderGenerate extends Component {
 
             let info = {
                 roomId: room.id,
-                start: storage.from.format('YYYY-MM-DD'),
-                days: storage.to.diff(storage.from, 'days'),
+                start: moment(from).format('YYYY-MM-DD'),
+                days: moment(to).diff(from, 'days'),
                 num: val
             };
             dispatch(fetchOrderNum(info));
@@ -107,6 +112,8 @@ class OrderGenerate extends Component {
     render() {
         let {storage, hotel, user} = this.props;
         const room = hotel.lists[hotel.room_id];
+        let from = moment(storage.from);
+        let to = moment(storage.to);
         return (
             <div className="order-generate-container">
                 <div className="top">
@@ -117,16 +124,16 @@ class OrderGenerate extends Component {
                         <div className="top-a-date">
                             <div className="top-a-date-a">
                                 <span className="date-delight">入住: </span>
-                                <span className="date-highlight">{storage.from.get('month')+1}月{storage.from.get('date')}日</span>
+                                <span className="date-highlight">{from.get('month')+1}月{from.get('date')}日</span>
                             </div>
                             <div className="top-a-date-b">
                                 <span className="date-delight">共</span>
-                                <span className="date-highlight">{storage.to.diff(storage.from, 'days')}</span>
+                                <span className="date-highlight">{moment(to).diff(from, 'days')}</span>
                                 <span className="date-delight">晚</span>
                             </div>
                             <div className="top-a-date-c">
                                 <span className="date-delight">离店: </span>
-                                <span className="date-highlight">{storage.to.get('month')+1}月{storage.to.get('date')}日</span>
+                                <span className="date-highlight">{to.get('month')+1}月{to.get('date')}日</span>
                             </div>
                         </div>
                     </div>
