@@ -45,7 +45,8 @@ export function changeTitle(name) {
     document.title = name;
     var iframe = document.createElement("iframe");
     iframe.setAttribute("src", "about:blank");
-    iframe.style.display = 'none';
+    iframe.setAttribute("height", "0");
+    iframe.setAttribute("width", "0");
     iframe.addEventListener('load', function() {
         setTimeout(function() {
             iframe.removeEventListener('load');
