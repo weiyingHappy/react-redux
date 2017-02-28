@@ -24,6 +24,7 @@ import Setting from './containers/Setting'
 import MyOrder from './containers/MyOrder'
 import UniPay from './containers/UniPay'
 import ShowOrder from './containers/ShowOrder'
+import CommentOrder from './containers/CommentOrder'
 
 const loggerMiddleware = createLogger();
 
@@ -72,6 +73,7 @@ render (
             <Route path="/cmsfont/setting" component={Setting}></Route>
             <Route path="/cmsfont/MyOrder" component={MyOrder}></Route>
             <Route path="/cmsfont/ShowOrder" component={ShowOrder}></Route>
+            <Route path="/cmsfont/CommentOrder" component={CommentOrder}></Route>
 
 
             <Route path="/cmsfont/error" component={ErrorPage} />

@@ -5,6 +5,8 @@ import moment from 'moment'
 
 import config from '../../config/config'
 import Loading from '../components/loading'
+import {getCookie, jsSdkInit} from '../components/Common'
+import {fetchJsSdk} from '../actions/storage'
 
 import {fetchOrderInfo} from '../actions/order'
 
@@ -17,19 +19,71 @@ class ShowOrder extends Component {
 
     constructor (props) {
         super(props);
+        this.handleShowMap = this.handleShowMap.bind(this);
 
         this.state = {
+            map_loading: false
         }
     }
 
-
+    handleShowMap() {
+        let {order} = this.props, self = this;
+        let item = order.pay;
+        self.setState({
+            map_loading: true
+        });
+        wx.openLocation({
+            latitude: parseFloat(item.team.latitude), // 纬度，浮点数，范围为90 ~ -90
+            longitude: parseFloat(item.team.longitude), // 经度，浮点数，范围为180 ~ -180。
+            name: item.team.name, // 位置名
+            address: item.team.address, // 地址详情说明
+            scale: 25, // 地图缩放级别,整形值,范围从1~28。默认为最大
+            infoUrl: '', // 在查看位置界面底部显示的超链接,可点击跳转
+            success: function(res) {
+                self.setState({
+                    map_loading: false
+                });
+            },
+            fail: (err) => {
+                alert(JSON.stringify(err));
+                self.setState({
+                    map_loading: false
+                });
+            }
+        });
+        setTimeout(()=>{
+            if (self.state.map_loading) {
+                alert('获取地图失败');
+                self.setState({
+                    map_loading: false
+                })
+            }
+        },5000)
+    }
 
     componentWillMount() {
-        let {dispatch, order} = this.props;
+        let {dispatch, order, user, storage} = this.props;
 
         dispatch(fetchOrderInfo(order.pay.order_no)).then((res)=>{
             console.log("order info res: ", res);
-        })
+        });
+
+
+        let info = {
+            teamId: user.teamId,
+            appid: user.appid,
+            appsecret: user.appsecret
+        };
+        console.log("000000000");
+        if (storage.js_sdk.hasData) {
+            jsSdkInit(storage.js_sdk, user.appid, config.my_host+'/showOrder');
+        }
+        else {
+            dispatch(fetchJsSdk(info)).then((res)=>{
+                console.log('jssdk res: ', res);
+                jsSdkInit(res.results, user.appid, config.my_host+'/showOrder');
+            });
+        }
     }
 
 
@@ -62,7 +116,7 @@ class ShowOrder extends Component {
                             酒店地址: {item.team.address}
                         </div>
                         <div className="sot-d">
-                            <a className="sotd-a">
+                            <a className="sotd-a" onClick={this.handleShowMap}>
                                 <img src={img_addr} className="sotd-img"/>
                                 酒店地图
                             </a>
@@ -103,10 +157,9 @@ class ShowOrder extends Component {
                         </div>
                     </div>
 
-                    <div className="so-tail">
-                        <button className="sol-btn">返回</button>
-                    </div>
                 </div>
+
+                <Loading text="获取位置中" isFetching={this.state.map_loading} />
             </div>
         )
     }
@@ -116,7 +169,8 @@ class ShowOrder extends Component {
 function select(state) {
     return {
         order: state.order,
-        user: state.user
+        user: state.user,
+        storage: state.storage
     }
 }
 // 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；

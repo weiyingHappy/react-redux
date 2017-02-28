@@ -41,6 +41,9 @@ function combineState(ori, now) {
 }
 function setCon(ori, now, cat) {
     let ret = ori.slice();
+    now.lists.map((item)=>{
+       item.state = (parseInt(item.state)+1).toString();
+    });
     ret[cat] = now;
     return ret;
 }

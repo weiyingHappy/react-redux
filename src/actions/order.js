@@ -189,6 +189,19 @@ export function setPay(pay) {
     };
 }
 
+export function fetchOrderComment(info) {
+    return (dispatch) => {
+        let options = {
+            method: 'POST',
+            body: info
+        };
+        let dt = request(config.remote_host+config.remote_path.addComment, options, true);
+        dt.then((json)=>{
+
+        });
+        return dt;
+    }
+}
 
 export function fetchOrderInfo(orderNo) {
     return (dispatch) => {

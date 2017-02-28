@@ -34,6 +34,7 @@
     @include flex(row, nowrap, space-between, center);
     padding: 0;
     height: 60px;
+    font-size: 1.0rem;
   }
   .sotd-a {
     border-right: 1px solid #DCDCDC;
@@ -46,8 +47,8 @@
   }
   .sotd-img {
     margin-right: 8px;
-    height: 23px;
-    width: 21px;
+    height: 22px;
+    width: 22px;
   }
 
   .so-middle {
