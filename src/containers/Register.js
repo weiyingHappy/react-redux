@@ -156,24 +156,20 @@ class Register extends Component {
         const { dispatch, register } = this.props;
         return (
             <div className="register-container">
-                <div className="top">
-                    <img src={img_logo} className="logo-img"/>
-                </div>
-
                 <form className="signForm" onSubmit={this.handleSubmit}>
                     <div className="phone-container">
                         <div className="icon-container">
-                            <img src={img_phone} className="phone-image"/>
+                            手机号:
                         </div>
                         <input type="tel" placeholder="请输入手机号码" value={this.state.phone} className="input-phone" onChange={this.phoneChange}/>
                     </div>
                     <div className="code-container">
                         <div className="icon-container">
-                            <img src={img_code} className="code-image" />
+                            验证码:
                         </div>
                         <input type="tel" placeholder="输入短信接收到验证码" value={this.state.code} className="input-code" onChange={this.codeChange}/>
                         <button className="get-code" onClick={this.handleGetCode} disabled={(this.state.btn_txt=='获取验证码'?false:true)}
-                             style={{color:this.state.btn_txt=='获取验证码'?'#ff5000':'#aaa'}}>{this.state.btn_txt}</button>
+                             style={{color:this.state.btn_txt=='获取验证码'?'#fff':'#fff'}}>{this.state.btn_txt}</button>
                     </div>
                     <button type="submit" className="submitButton">立即验证</button>
                 </form>
