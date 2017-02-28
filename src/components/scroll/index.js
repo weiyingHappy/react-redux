@@ -8,7 +8,7 @@ class Scroll extends Component {
     render() {
         let img_lists = this.props.img_lists.map((item)=>{
             return {
-                original: item
+                original: item+'?imageslim'
             }
         });
 
