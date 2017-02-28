@@ -8,7 +8,7 @@ let production = 'production';
 let development = 'development';
 let test = 'test';
 
-let mid = production;
+let mid = development;
 
 let now = (mid == development?dev_conf:(mid==test?test_conf:pro_conf));
 
@@ -21,7 +21,7 @@ let config = {
 
     ping_appid: now.ping_appid,
 
-    debug: false,
+    debug: true,
 
     mid: mid,
     production: production,

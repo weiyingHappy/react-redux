@@ -41,17 +41,20 @@ export function jsSdkInit(data, appid, url) {
 }
 
 export function changeTitle(name) {
-    var body = document.getElementsByTagName('body')[0];
-    document.title = name;
-    var iframe = document.createElement("iframe");
-    iframe.setAttribute("src", "about:blank");
-    iframe.setAttribute("height", "0");
-    iframe.setAttribute("width", "0");
-    iframe.addEventListener('load', function() {
-        setTimeout(function() {
-            iframe.removeEventListener('load');
-            document.body.removeChild(iframe);
-        }, 0);
-    });
-    document.body.appendChild(iframe);
+    document.title = 'title';
+//解决document.title 在 ios 下不生效bug方案 ios内生效
+    const mobile = navigator.userAgent.toLowerCase();
+    const length = document.querySelectorAll('iframe').length;
+    if (/iphone|ipad|ipod/.test(mobile) && !length) {
+        const iframe = document.createElement('iframe');
+        iframe.style.cssText = 'display: none; width: 0; height: 0;';
+        iframe.setAttribute('src', 'about:blank');
+        iframe.addEventListener('load', () => {
+            setTimeout(() => {
+                iframe.removeEventListener('load', false);
+                document.body.removeChild(iframe);
+            }, 0);
+        });
+        document.body.appendChild(iframe);
+    }
 }
