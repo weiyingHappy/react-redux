@@ -1,5 +1,5 @@
 import { REQUEST_LOGIN, RECEIVE_LOGIN, REQUEST_INDEX_IMG, RECEIVE_INDEX_IMG, REQUEST_CHANGE_NICKNAME, RECEIVE_CHANGE_NICKNAME } from '../actions/user'
-let defaultImgs = 'http://7xo285.com1.z0.glb.clouddn.com/FsOLVePvIHQpkXwLcKQ7vvZqerLa'
+import defaultImgs from '../static/images/two/icon-5.png'
 import config from '../../config/config'
 
 let user_state = {
