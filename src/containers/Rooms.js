@@ -99,7 +99,7 @@ class Rooms extends Component {
 
         return user.isFetching?(
             <div className="index-container">
-                <Loading text="验证中..." isFetching={user.isFetching} />
+                <Loading text="验证中...." isFetching={user.isFetching} />
             </div>
         ) : hotel.isFetching?(
             <div className="rooms-container">
