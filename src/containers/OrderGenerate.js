@@ -33,7 +33,6 @@ class OrderGenerate extends Component {
         let to = moment(storage.to);
 
         self.setState({
-            name: user.nickname,
             phone: user.phone
         });
 

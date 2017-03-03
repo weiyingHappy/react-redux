@@ -177,8 +177,12 @@ class MyOrder extends Component {
     }
 
     render() {
-        let {order} = this.props;
-        return order.con_loading?(
+        let {order, user} = this.props;
+        return user.isFetching?(
+            <div className="index-container">
+                <Loading text="验证中..." isFetching={user.isFetching} />
+            </div>
+        ) : order.con_loading?(
             <Loading text="加载中..." isFetching={order.con_loading} />
         ):(
             <div className="my-order-container">

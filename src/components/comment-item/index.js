@@ -22,7 +22,7 @@ export default class CommentItem extends React.Component {
                         <img src={(parseInt(info.star)>=3?star_fill:star_blank)} className="comment-star-icon" />
                         <img src={(parseInt(info.star)>=4?star_fill:star_blank)} className="comment-star-icon" />
                         <img src={(parseInt(info.star)>=5?star_fill:star_blank)} className="comment-star-icon" />
-                        <span className="comment-star-score">{hotel.intro.star}</span>
+                        <span className="comment-star-score">{info.star}</span>
                     </div>
                 </div>
                 <div className="ci-b">
