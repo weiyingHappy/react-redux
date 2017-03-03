@@ -8,7 +8,7 @@ let production = 'production';
 let development = 'development';
 let test = 'test';
 
-let mid = development;
+let mid = test;
 
 let now = (mid == development?dev_conf:(mid==test?test_conf:pro_conf));
 
