@@ -70,7 +70,7 @@ render (
             <Route path="/cmsfont/uniPay/:order_no" component={UniPay}></Route>
 
             <Route path="/cmsfont/setting" component={Setting}></Route>
-            <Route path="/cmsfont/MyOrder" component={MyOrder}></Route>
+            <Route path="/cmsfont/MyOrder/:token" component={MyOrder}></Route>
             <Route path="/cmsfont/ShowOrder" component={ShowOrder}></Route>
             <Route path="/cmsfont/CommentOrder" component={CommentOrder}></Route>
 

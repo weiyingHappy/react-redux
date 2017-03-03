@@ -8,7 +8,9 @@ import config from '../../config/config'
 import Loading from '../components/loading'
 import OrderPiece from '../components/order-piece'
 import OrderNav from '../components/order-nav'
+import {getCookie, changeTitle} from '../components/Common'
 
+import {fetchLogin} from '../actions/user'
 import {fetchOrderInfo, fetchToCancel, fetchToUnPay, fetchMyOrder, fetchToRefund, STATE_ALL, STATE_ALREADY, STATE_FINISH, STATE_NO, setState,setPay, popOrder} from '../actions/order'
 
 import './myOrder.scss'
@@ -25,6 +27,7 @@ class MyOrder extends Component {
         this.toPay = this.toPay.bind(this);
         this.toShowOrder = this.toShowOrder.bind(this);
         this.toComment = this.toComment.bind(this);
+        this.getInfo = this.getInfo.bind(this);
 
         this.state = {
         }
@@ -32,7 +35,7 @@ class MyOrder extends Component {
 
 
 
-    componentWillMount() {
+    getInfo() {
         const {dispatch, user, order} = this.props;
         let info = {
             state: order.cat,
@@ -42,6 +45,34 @@ class MyOrder extends Component {
         dispatch(fetchMyOrder(info)).then((res)=>{
             console.log('fetch my order: ', res);
         })
+    }
+
+    componentWillMount() {
+        const {dispatch, user, order} = this.props;
+
+        let token = this.props.params.token;
+        let code = this.props.location.query.code;
+        let self = this;
+        if (!this.props.user.isLogin) {
+            this.props.dispatch(fetchLogin({token: token, code: code})).then((res)=>{
+                console.log('dispatch res: ', res);
+                changeTitle(getCookie('wechatName','')||'住那儿旅行');
+
+                if (res.code == 406) {
+                    browserHistory.push('/cmsfont/register');
+                }
+                else if (res.code!=200 && config.mid==config.production) {
+                    browserHistory.push('/cmsfont/error');
+                }
+                else {
+                    self.getInfo();
+                }
+            });
+        }
+        else {
+            self.getInfo();
+        }
+
     }
     changeCat(cat) {
         let {dispatch, user} = this.props;

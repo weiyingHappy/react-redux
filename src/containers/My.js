@@ -8,6 +8,7 @@ import ItemCell from '../components/item-cell'
 
 import img_order from '../static/images/three/icon-7.png'
 import img_setting from '../static/images/three/icon-8.png'
+import {getCookie, changeTitle} from '../components/Common'
 
 class My extends Component {
 
@@ -38,7 +39,7 @@ class My extends Component {
         let item_data = [{
             icon: img_order,
             title: '我的订单',
-            url: '/cmsfont/myOrder'
+            url: "/cmsfont/myOrder/"+(getCookie('wechatToken', ''))+"?code="+(getCookie('wechatCode',''))
         }, {
             icon: img_setting,
             title: '个人设置',
