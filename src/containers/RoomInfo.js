@@ -90,7 +90,7 @@ class RoomInfo extends Component {
                     <div className="weui-loading"></div>
                 </div>
             </div>
-        ):(!comments_display||true)?(
+        ):(!comments_display)?(
             <div className="middle-d">
                 <div className="md-a">
                     <div className="mda-a">评价</div>
