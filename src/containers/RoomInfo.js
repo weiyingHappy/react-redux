@@ -103,7 +103,7 @@ class RoomInfo extends Component {
             <div className="middle-d">
                 <div className="md-a">
                     <div className="mda-a">评价</div>
-                    <div className="mda-b">更多...</div>
+                    <div className="mda-b" onClick={()=>{browserHistory.push('/cmsfont/showComment')}}>更多...</div>
                 </div>
                 {this.getCommentsLists(storage)}
             </div>

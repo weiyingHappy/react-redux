@@ -25,6 +25,7 @@ import MyOrder from './containers/MyOrder'
 import UniPay from './containers/UniPay'
 import ShowOrder from './containers/ShowOrder'
 import CommentOrder from './containers/CommentOrder'
+import ShowComment from './components/show-comment'
 
 const loggerMiddleware = createLogger();
 
@@ -73,6 +74,7 @@ render (
             <Route path="/cmsfont/MyOrder/:token" component={MyOrder}></Route>
             <Route path="/cmsfont/ShowOrder" component={ShowOrder}></Route>
             <Route path="/cmsfont/CommentOrder" component={CommentOrder}></Route>
+            <Route path="/cmsfont/ShowComment" component={ShowComment}></Route>
 
 
             <Route path="/cmsfont/error" component={ErrorPage} />
