@@ -5,6 +5,7 @@ import { browserHistory } from 'react-router'
 
 
 import EquArea from '../components/equ-area'
+import Loading from '../components/loading'
 
 import {fetchOrderNum, fetchOrderSubmit} from '../actions/storage'
 import {setPay} from '../actions/order'
@@ -195,6 +196,8 @@ class OrderGenerate extends Component {
                         <button className="tail-b" onClick={this.handlePay}>提交订单</button>
                     </div>
                 )}
+
+                <Loading text="提交订单中..." isFetching={storage.order.submitting} />
 
                 <div style={{display: this.state.is_choosing_num?'block':'none'}}>
                     <div className="weui-mask" style={{opacity: "1"}}></div>
