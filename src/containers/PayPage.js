@@ -35,7 +35,7 @@ class PayPage extends Component {
 
     handlePay() {
         let {dispatch, order} = this.props;
-        let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe163c2e7ba565707&redirect_uri='+config.my_host+'/uniPay/'+order.pay.order_no+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
+        let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa23dba92f8ff815f&redirect_uri='+config.my_host+'/uniPay/'+order.pay.order_no+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
         window.location.href = url;
     }
 
