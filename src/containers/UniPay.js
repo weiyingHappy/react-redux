@@ -52,7 +52,7 @@ class UniPay extends Component {
             subject: data.team.name,
             body: data.room.name,
             amount: parseInt(order.pay.price*100),
-            order_no: '201612152551148179244019',//data.order_no,
+            order_no: data.order_no,
             channel: "wx_pub",
             currency: "cny",
             app: {id: config.ping_appid},
