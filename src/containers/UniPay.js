@@ -32,7 +32,7 @@ class UniPay extends Component {
                 price: parseFloat(price)/100.0
             };
             dispatch(fetchFinishOrder(info)).then((json)=>{
-                if (json.code == 200) {
+                if (json.code == 200 || json.code == 407) {
                     alert("支付成功, 请关闭网页!");
                 }
                 else {
