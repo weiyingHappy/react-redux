@@ -20,6 +20,7 @@ let config = {
     admin_token: '8e284c4b68c463056480a164fd8768cc',
 
     ping_appid: now.ping_appid,
+    pay_appid: now.pay_appid,
 
     debug: false,
 
