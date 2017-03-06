@@ -25,7 +25,9 @@ export function receiveHotelLists(json) {
 
 export function fetchHotelLists(info) {
     return (dispatch) => {
-        dispatch(requestHotelLists(info));
+        if (info.page == 1) {
+            dispatch(requestHotelLists(info));
+        }
 
         let dt = request(config.remote_host+config.remote_path.hotelInfo+'/'+info.teamId+'/'+info.page);
 

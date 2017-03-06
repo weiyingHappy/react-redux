@@ -12,6 +12,7 @@ import Tabber from '../components/tabber'
 import Loading from '../components/loading'
 import RoomPiece from '../components/room-piece'
 import {getCookie, changeTitle} from '../components/Common'
+import LoaderMore from '../components/load-more'
 import './rooms.scss'
 
 class Rooms extends Component {
@@ -22,6 +23,7 @@ class Rooms extends Component {
         this.chooseStart = this.chooseStart.bind(this);
         this.chooseEnd = this.chooseEnd.bind(this);
         this.handleEnterRoom = this.handleEnterRoom.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentWillMount() {
@@ -30,26 +32,44 @@ class Rooms extends Component {
         let self = this;
         const {user, hotel, dispatch} = this.props;
 
-
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
-            return ;
         }
-        dispatch(fetchLogin({token: token, code: code})).then((res)=>{
-            changeTitle(getCookie('wechatName','')||'住那儿旅行');
-            if (res.code == 406) {
-                browserHistory.push('/cmsfont/register');
-            }
-            else if (res.code!=200 && !config.debug) {
-                browserHistory.push('/cmsfont/error');
-            }
-            else {
-                dispatch(fetchHotelLists({teamId: res.results.teamid, page: 1})).then((res_b)=>{
-                    console.log('receive lists: ',hotel);
-                })
-            }
-        });
+        else {
+            dispatch(fetchLogin({token: token, code: code})).then((res)=>{
+                changeTitle(getCookie('wechatName','')||'住那儿旅行');
+                if (res.code == 406) {
+                    browserHistory.push('/cmsfont/register');
+                }
+                else if (res.code!=200 && !config.debug) {
+                    browserHistory.push('/cmsfont/error');
+                }
+                else {
+                    dispatch(fetchHotelLists({teamId: res.results.teamid, page: 1})).then((res_b)=>{
+                        console.log('receive lists: ',hotel);
+                    })
+                }
+            });
+        }
+        window.addEventListener('scroll',self.handleScroll,false);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('scroll',this.handleScroll, false);
+    }
 
+    handleScroll() {
+        let h1 = document.body.scrollHeight;
+        let h2 = window.innerHeight;
+        let h3 = document.body.scrollTop;
+        const {user, hotel, dispatch} = this.props;
+        let self = this;
+
+        console.log("document: "+h1+"; window: "+h2+" scroll:"+h3+" h2+h3:"+(h2+h3));
+
+        if (h1 <= h2 + h3 && hotel.nowPage < hotel.totalPage) {
+            console.log("加载下一页");
+            dispatch(fetchHotelLists({teamId: user.teamId, page: hotel.nowPage+1}));
+        }
     }
 
     chooseStart() {
@@ -82,7 +102,7 @@ class Rooms extends Component {
             arr_id += 1;
             return (
                 <div className="room-piece-container" key={item.id} onClick={this.handleEnterRoom(arr_id-1)}>
-                    <RoomPiece img_src={item.imgs?item.imgs[0]:''} name={item.name} info={(item.bed_num=='1'?'单床 ':'双床 ')+item.bed.toString() }/>
+                    <RoomPiece img_src={item.imgs?item.imgs[0]:''} name={item.name}  score={item.score} info={(item.bed_num=='1'?'单床 ':'双床 ')+item.bed.toString()}/>
                     <div className="price-container">
                         <div className="pc-top">
                             <span className="price-sign>">￥</span>
@@ -129,8 +149,9 @@ class Rooms extends Component {
                 </div>
 
                 {lists}
+                <LoaderMore nowPage={hotel.nowPage} totalPage={hotel.totalPage} />
 
-                <div style={{height:'100px'}}></div>
+                <div style={{height:'80px'}}></div>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
         )

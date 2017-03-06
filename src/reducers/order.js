@@ -40,11 +40,18 @@ function combineState(ori, now) {
     return Object.assign({}, ori, now);
 }
 function setCon(ori, now, cat) {
+    if (now.nowPage!=1 && ori[cat].nowPage+1 != now.nowPage) {
+        return ori;
+    }
+
     let ret = ori.slice();
     now.lists.map((item)=>{
        item.state = (parseInt(item.state)+1).toString();
     });
-    ret[cat] = now;
+    ret[cat].nowPage = now.nowPage;
+    ret[cat].totalPage = now.totalPage;
+    ret[cat].lists = (now.nowPage==1?now.lists:[...ret[cat].lists,...now.lists]);
+    console.log("reducer ret: ", ret);
     return ret;
 }
 function popOrder(con, cat, id) {

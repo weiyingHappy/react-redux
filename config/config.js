@@ -8,7 +8,7 @@ let production = 'production';
 let development = 'development';
 let test = 'test';
 
-let mid = production;
+let mid = test;
 
 let now = (mid == development?dev_conf:(mid==test?test_conf:pro_conf));
 
@@ -17,7 +17,7 @@ let config = {
     remote_host: now.remote_host,
     my_host: now.my_host,
 
-    admin_token: '8e284c4b68c463056480a164fd8768cc',
+    admin_token: '206b34d34006f22ee5e054d08351d4cd',
 
     ping_appid: now.ping_appid,
     pay_appid: now.pay_appid,

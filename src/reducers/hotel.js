@@ -11,9 +11,12 @@ let hotel_state = {
 };
 
 function receive_lists(state, data) {
+    if (data.nowPage!=1 && state.nowPage+1 != data.nowPage) {
+        return state;
+    }
     let new_state = Object.assign({}, state, {isFetching: false, intro: data.other,
                     nowPage: data.nowPage, totalPage: data.totalPage, hasData: true});
-    new_state.lists = (data.nowPage==1?data.lists:[...state.lists, data.lists]);
+    new_state.lists = (data.nowPage==1?data.lists:[...state.lists, ...data.lists]);
 
     return new_state;
 }

@@ -36,7 +36,7 @@ class UniPay extends Component {
                     alert("支付成功, 请关闭网页!");
                 }
                 else {
-                    alert("支付成功, 请关闭网页!, fail!");
+                    alert("支付成功--请关闭网页!");
                 }
             });
         }

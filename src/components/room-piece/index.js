@@ -23,7 +23,7 @@ class RoomPiece extends React.Component {
                         <div className="info-info">{this.props.info}</div>
                     </div>
                     <div className="info-score">
-                        评分: {this.props.score}
+                        评分: {this.props.score||5}
                     </div>
                 </div>
             </div>

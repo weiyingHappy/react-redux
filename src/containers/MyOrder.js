@@ -9,6 +9,7 @@ import Loading from '../components/loading'
 import OrderPiece from '../components/order-piece'
 import OrderNav from '../components/order-nav'
 import {getCookie, changeTitle} from '../components/Common'
+import LoaderMore from '../components/load-more'
 
 import {fetchLogin} from '../actions/user'
 import {fetchOrderInfo, fetchToCancel, fetchToUnPay, fetchMyOrder, fetchToRefund, STATE_ALL, STATE_ALREADY, STATE_FINISH, STATE_NO, setState,setPay, popOrder} from '../actions/order'
@@ -28,6 +29,7 @@ class MyOrder extends Component {
         this.toShowOrder = this.toShowOrder.bind(this);
         this.toComment = this.toComment.bind(this);
         this.getInfo = this.getInfo.bind(this);
+        this.handleScroll = this.handleScroll.bind(this);
 
         this.state = {
         }
@@ -72,7 +74,33 @@ class MyOrder extends Component {
         else {
             self.getInfo();
         }
+        window.addEventListener('scroll',self.handleScroll,false);
 
+    }
+    componentWillUnmount() {
+        window.removeEventListener('scroll',this.handleScroll, false);
+    }
+    handleScroll() {
+        let h1 = document.body.scrollHeight;
+        let h2 = window.innerHeight;
+        let h3 = document.body.scrollTop;
+        const {user, order, dispatch} = this.props;
+        let nowOrder = order.con[order.cat];
+        let self = this;
+
+        console.log("document: "+h1+"; window: "+h2+" scroll:"+h3+" h2+h3:"+(h2+h3));
+
+        if (h1 <= h2 + h3 && nowOrder.nowPage < nowOrder.totalPage) {
+            console.log("加载下一页");
+            let info = {
+                state: order.cat,
+                page: nowOrder.nowPage+1,
+                team_id: user.teamId
+            };
+            dispatch(fetchMyOrder(info)).then((res)=>{
+                console.log('fetch my order: ', res);
+            })
+        }
     }
     changeCat(cat) {
         let {dispatch, user} = this.props;
@@ -178,6 +206,7 @@ class MyOrder extends Component {
 
     render() {
         let {order, user} = this.props;
+        let nowOrder = order.con[order.cat];
         return user.isFetching?(
             <div className="index-container">
                 <Loading text="验证中..." isFetching={user.isFetching} />
@@ -187,11 +216,13 @@ class MyOrder extends Component {
         ):(
             <div className="my-order-container">
                 <OrderNav cat={order.cat} changeCat={this.changeCat} />
-                <OrderPiece toRefund={this.toRefund} orders={order.con[order.cat].lists||[]}
+                <OrderPiece toRefund={this.toRefund} orders={nowOrder.lists||[]}
                         toCancel={this.toCancel} toShowOrder={this.toShowOrder} toComment={this.toComment} toPay={this.toPay}/>
 
                 <Loading text="退款中..." isFetching={order.pay.refund_loading} />
                 <Loading text="取消订单中..." isFetching={order.pay.unpay_loading} />
+
+                <LoaderMore nowPage={nowOrder.nowPage} totalPage={nowOrder.totalPage} />
             </div>
         )
     }
