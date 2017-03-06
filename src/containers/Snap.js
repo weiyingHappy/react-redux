@@ -22,7 +22,7 @@ class Snap extends Component {
     componentWillMount() {
         let {snap, user, dispatch} = this.props;
         if (snap.loading) {
-            dispatch(fetchSnap(user.teamId||cookie.load('uteamid'))).then((res)=>{
+            dispatch(fetchSnap(user.teamId||cookie.load('team_id'))).then((res)=>{
                 console.log('snap res: ', res);
             })
         }
