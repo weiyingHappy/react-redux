@@ -6,7 +6,7 @@ let user_state = {
     isFetching: false,
     isLoading: false,
 
-    teamId: 1,
+    teamId: null,
     appid: '',
     appsecret: '',
     nickname: '',

@@ -5,6 +5,8 @@ import {fetchSnap, setSrc} from '../actions/snap'
 
 import Loading from '../components/loading'
 import Tabber from '../components/tabber'
+import {getCookie} from '../components/Common'
+import cookie from 'react-cookie';
 import './snap.scss'
 
 
@@ -20,7 +22,7 @@ class Snap extends Component {
     componentWillMount() {
         let {snap, user, dispatch} = this.props;
         if (snap.loading) {
-            dispatch(fetchSnap(user.teamId)).then((res)=>{
+            dispatch(fetchSnap(user.teamId||cookie.load('uteamid'))).then((res)=>{
                 console.log('snap res: ', res);
             })
         }
