@@ -1,5 +1,5 @@
-import { REQUEST_LOGIN, RECEIVE_LOGIN, REQUEST_INDEX_IMG, RECEIVE_INDEX_IMG, REQUEST_CHANGE_NICKNAME, RECEIVE_CHANGE_NICKNAME } from '../actions/user'
-let defaultImgs = 'http://7xo285.com1.z0.glb.clouddn.com/FnN1Op_4yKDlY00C1pl_FjFIwnkx'
+import { REQUEST_LOGIN, RECEIVE_LOGIN, REQUEST_INDEX_IMG, RECEIVE_INDEX_IMG, REQUEST_CHANGE_NICKNAME, RECEIVE_CHANGE_NICKNAME, SET_USER, RECEIVE_ACCUMULATE_MY } from '../actions/user'
+let defaultImgs = 'http://7xo285.com1.z0.glb.clouddn.com/FnN1Op_4yKDlY00C1pl_FjFIwnkx';
 import config from '../../config/config'
 
 let user_state = {
@@ -17,11 +17,32 @@ let user_state = {
     wechatCode: '', // 第一次进入带过来的code
     avatar: '',
 
-    indexImgs: []
-};
+    indexImgs: [],
 
+    accumulate_loading: false,
+    accumulate_total: 0,
+    accumulate_my: {
+        lists: [],
+        nowPage: 0,
+        totalPage: 0
+    }
+
+};
+function receive_lists(state, data) {
+    if (data.nowPage!=1 && state.accumulate_my.nowPage+1 != data.nowPage) {
+        return state;
+    }
+    let ret = Object.assign({}, state, {});
+    ret.accumulate_my.nowPage = data.nowPage;
+    ret.accumulate_my.totalPage = data.totalPage;
+    ret.accumulate_my.lists = (data.nowPage==1?data.lists:[...ret.accumulate_my.lists,...data.lists]);
+
+    return ret;
+}
 export default function user(state=user_state, action) {
     switch(action.type) {
+        case SET_USER:
+            return Object.assign({}, state, action.info);
         case REQUEST_LOGIN:
             return Object.assign({}, state, {isFetching: true, wechatToken: action.user.token, wechatCode: action.user.code});
         case RECEIVE_LOGIN:
@@ -37,6 +58,9 @@ export default function user(state=user_state, action) {
             return Object.assign({}, state, {isLoading: true});
         case RECEIVE_CHANGE_NICKNAME:
             return Object.assign({}, state, {isLoading: false, nickname: (action.json.code==200?action.json.nickname:state.nickname)});
+
+        case RECEIVE_ACCUMULATE_MY:
+            return receive_lists(state, action.info);
         default:
             return state;
     }

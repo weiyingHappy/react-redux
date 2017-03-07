@@ -26,6 +26,7 @@ import UniPay from './containers/UniPay'
 import ShowOrder from './containers/ShowOrder'
 import CommentOrder from './containers/CommentOrder'
 import ShowComment from './components/show-comment'
+import Accumulate from './containers/Accumulate'
 
 const loggerMiddleware = createLogger();
 
@@ -76,6 +77,7 @@ render (
             <Route path="/cmsfont/ShowOrder" component={ShowOrder}></Route>
             <Route path="/cmsfont/CommentOrder" component={CommentOrder}></Route>
             <Route path="/cmsfont/ShowComment" component={ShowComment}></Route>
+            <Route path="/cmsfont/accumulate" component={Accumulate}></Route>
 
 
             <Route path="/cmsfont/error" component={ErrorPage} />

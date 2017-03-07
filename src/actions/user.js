@@ -11,6 +11,8 @@ export const RECEIVE_INDEX_IMG = 'RECEIVE_INDEX_IMG';
 export const REQUEST_CHANGE_NICKNAME = 'REQUEST_CHANGE_NICKNAME';
 export const RECEIVE_CHANGE_NICKNAME = 'RECEIVE_CHANGE_NICKNAME';
 
+export const SET_USER = 'SET_USER';
+export const RECEIVE_ACCUMULATE_MY = 'RECEIVE_ACCUMULATE_MY';
 
 export function requestChangeNickname(nickname) {
     return {
@@ -37,6 +39,50 @@ export function fetchChangeNickname(nickname) {
         dt.then((json)=>{
             dispatch(receiveChangeNickname({code: json.code, nickname: nickname}));
             console.log(json);
+        });
+        return dt;
+    }
+}
+export function setUser(info) {
+    return {
+        type: SET_USER,
+        info
+    }
+}
+export function fetchAccumulateTotal() {
+    return (dispatch) => {
+        dispatch(setUser({accumulate_loading: true}));
+        let dt = request(config.remote_host+config.remote_path.accumulate_total, null, true);
+        dt.then((json) => {
+            if (json.code == 200) {
+                dispatch(setUser({
+                    accumulate_loading: false,
+                    accumulate_total: json.results.point
+                }))
+            }
+        });
+        return dt;
+    }
+}
+export function receiveAccumulateMy(info) {
+    return {
+        type: RECEIVE_ACCUMULATE_MY,
+        info
+    }
+}
+export function fetchAccumulateMy(info) {
+    return (dispatch) => {
+        dispatch(setUser({accumulate_loading: true}));
+        let options = {
+            method: 'POST',
+            body: info
+        };
+        let dt = request(config.remote_host+config.remote_path.accumulate_my, options, true);
+        dt.then((json) => {
+            if (json.code == 200) {
+                dispatch(setUser({accumulate_loading: false}));
+                dispatch(receiveAccumulateMy(json.results));
+            }
         });
         return dt;
     }

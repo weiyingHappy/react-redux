@@ -24,6 +24,8 @@ module.exports = {
         finishOrder: '/FE/Order/pay',
         unPay: '/FE/Order/unpay',
         orderCancel: '/FE/Order/cancel',
-        addComment: '/FE/Evaluation/add'
+        addComment: '/FE/Evaluation/add',
+        accumulate_total: '/FE/UserCenter/getMyPoint',
+        accumulate_my: '/FE/UserCenter/getPointLogs'
     }
 };

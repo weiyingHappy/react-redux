@@ -2,12 +2,15 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
+import {fetchAccumulateTotal} from '../actions/user'
+
 import Tabber from '../components/tabber'
 import './my.scss'
 import ItemCell from '../components/item-cell'
 
 import img_order from '../static/images/three/icon-7.png'
 import img_setting from '../static/images/three/icon-8.png'
+import img_accumulate from '../static/images/three/icon-11.png'
 import {getCookie, changeTitle} from '../components/Common'
 
 class My extends Component {
@@ -15,23 +18,16 @@ class My extends Component {
     constructor (props) {
         super(props);
 
-        this.handleClick = this.handleClick.bind(this);
-
-        this.state = {
-            current: '1'
-        }
     }
 
     componentWillMount() {
+        let {dispatch, user} = this.props;
 
+        dispatch(fetchAccumulateTotal()).then((json)=>{
+            console.log(json);
+        })
     }
 
-    handleClick(e) {
-        console.log('click ', e);
-        this.setState({
-            current: e.key
-        });
-    }
 
     render() {
         const { dispatch, user } = this.props;
@@ -44,6 +40,12 @@ class My extends Component {
             icon: img_setting,
             title: '个人设置',
             url: '/cmsfont/setting'
+        }, {
+            icon: img_accumulate,
+            title: (<div>我的积分: &nbsp;&nbsp;<span style={{color: '#FF0000'}}>{user.accumulate_loading?(
+                <div className="weui-loading"></div>
+            ):user.accumulate_total}</span></div>),
+            url: '/cmsfont/accumulate'
         }];
 
         return (
@@ -64,9 +66,14 @@ class My extends Component {
                         <ItemCell {...item_data[0]}/>
                     </div>
 
+                    <div className="middle-c">
+                        <ItemCell {...item_data[2]} />
+                    </div>
+
                     <div className="middle-b">
                         <ItemCell {...item_data[1]} />
                     </div>
+
                 </div>
 
 

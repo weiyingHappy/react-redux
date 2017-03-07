@@ -27,4 +27,7 @@
     height: 21px;
     margin-right: 10px;
   }
+  .ica-b {
+    @include flex(row, nowrap, flex-start, center);
+  }
 }
