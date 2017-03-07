@@ -42,7 +42,7 @@ class My extends Component {
             url: '/cmsfont/setting'
         }, {
             icon: img_accumulate,
-            title: (<div>我的积分: &nbsp;&nbsp;<span style={{color: '#FF0000'}}>{user.accumulate_loading?(
+            title: (<div>住那儿旅行积分: &nbsp;&nbsp;<span style={{color: '#FF0000'}}>{user.accumulate_loading?(
                 <div className="weui-loading"></div>
             ):user.accumulate_total}</span></div>),
             url: '/cmsfont/accumulate'
