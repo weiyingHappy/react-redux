@@ -16,6 +16,7 @@ let user_state = {
     wechatToken: '', // 为酒店生成的token
     wechatCode: '', // 第一次进入带过来的code
     avatar: '',
+    openid: '',
 
     indexImgs: [],
 
@@ -25,8 +26,9 @@ let user_state = {
         lists: [],
         nowPage: 0,
         totalPage: 0
-    }
-
+    },
+    isUliveMember: true,
+    qr_ticket: ''
 };
 function receive_lists(state, data) {
     if (data.nowPage!=1 && state.accumulate_my.nowPage+1 != data.nowPage) {

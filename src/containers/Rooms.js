@@ -64,7 +64,7 @@ class Rooms extends Component {
         const {user, hotel, dispatch} = this.props;
         let self = this;
 
-        console.log("document: "+h1+"; window: "+h2+" scroll:"+h3+" h2+h3:"+(h2+h3));
+        // console.log("document: "+h1+"; window: "+h2+" scroll:"+h3+" h2+h3:"+(h2+h3));
 
         if (h1 <= h2 + h3 && hotel.nowPage < hotel.totalPage) {
             console.log("加载下一页");

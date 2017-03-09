@@ -4,7 +4,8 @@ module.exports = {
         getJsSdk: '/post_api/getJsSdk',
         toPay: '/post_api/toPay',
         uniPayOpenid: '/post_api/uniPayOpenid',
-        toRefund: '/post_api/toRefund'
+        toRefund: '/post_api/toRefund',
+        getQrCode: '/post_api/getQrCode'
     },
     remote_path: {
         isMember: '/CMS/CmsBasic/isMember',
@@ -26,6 +27,7 @@ module.exports = {
         orderCancel: '/FE/Order/cancel',
         addComment: '/FE/Evaluation/add',
         accumulate_total: '/FE/UserCenter/getMyPoint',
-        accumulate_my: '/FE/UserCenter/getPointLogs'
+        accumulate_my: '/FE/UserCenter/getPointLogs',
+        isUliveMember: '/CMS/CmsBasic/isUliveMember'
     }
 };

@@ -14,6 +14,47 @@ export const RECEIVE_CHANGE_NICKNAME = 'RECEIVE_CHANGE_NICKNAME';
 export const SET_USER = 'SET_USER';
 export const RECEIVE_ACCUMULATE_MY = 'RECEIVE_ACCUMULATE_MY';
 
+export function fetchQrCode(info) {
+    return (dispatch) => {
+        let options = {
+            method: 'POST',
+            body: info
+        };
+        let dt = request(config.api_host+config.api_path.getQrCode, options, false);
+        dt.then((json) => {
+            dispatch(setUser({qr_ticket: json.ticket}));
+        });
+        return dt;
+    }
+}
+export function fetchIsUliveMember(info) {
+    return (dispatch) => {
+        dispatch(setUser({isLoading: true}));
+        let options = {
+            method: 'POST',
+            body: {
+                phone: info.phone
+            }
+        };
+        let dt = request(config.remote_host+config.remote_path.isUliveMember, options, true);
+        dt.then((json) => {
+            if (json.code==200) {
+                dispatch(setUser({isUliveMember: true}));
+                dispatch(setUser({isLoading: false}));
+                return json;
+            }
+            else {
+                dispatch(setUser({isUliveMember: false}));
+                return dispatch(fetchQrCode(info)).then((json_b) => {
+                    console.log(json_b);
+                    dispatch(setUser({isLoading: false}));
+                })
+            }
+        });
+        return dt;
+    }
+}
+
 export function requestChangeNickname(nickname) {
     return {
         type: REQUEST_CHANGE_NICKNAME,
