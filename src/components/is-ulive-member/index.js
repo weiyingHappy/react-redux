@@ -10,6 +10,7 @@ export default class IsUliveMember extends React.Component {
 
 
     render () {
+        let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe163c2e7ba565707&redirect_uri=http://www.hotelets.com/weixin/scan_in?snap_id='+this.props.teamId+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
         return (
             <div className="is-ulive-member">
                 <div className="top">
@@ -19,7 +20,7 @@ export default class IsUliveMember extends React.Component {
                 </div>
 
                 <div className="middle" >
-                    <button className="m-btn" onClick={()=>{window.location.href='http://www.hotelets.com/weixin/scan_in?snap_id='+this.props.teamId}}>立即抢房</button>
+                    <button className="m-btn" onClick={()=>{window.location.href=url}}>立即抢房</button>
                 </div>
 
                 <div className="bottom">
