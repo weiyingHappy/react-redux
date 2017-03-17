@@ -139,7 +139,7 @@ class MyOrder extends Component {
                     let info2 = {
                         order_no: charge.charge_order_no,
                         wx_order: charge.charge,
-                        price: parseInt(charge.amount/100.0)
+                        price: parseFloat(charge.amount/100.0)
                     };
                     dispatch(fetchToUnPay(info2)).then((res)=>{
                         if (res.code == 200) {

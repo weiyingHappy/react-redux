@@ -6,6 +6,7 @@ import pingpp from 'pingpp-js'
 
 import config from '../../config/config'
 import Loading from '../components/loading'
+import {getCookie, changeTitle} from '../components/Common'
 
 import {fetchOrderInfo, fetchToPay, fetchUniPayOpenid, fetchFinishOrder} from '../actions/order'
 
@@ -91,6 +92,7 @@ class UniPay extends Component {
         dispatch(fetchUniPayOpenid(info_uni)).then((res)=>{
             dispatch(fetchOrderInfo(order_no)).then((res_2)=>{
                 self.handleToPay(res.openid, res_2.results);
+                changeTitle(res_2.results.team_name);
             })
         });
         // self.handleOrderFinish('20170225132148799407913', '20170225132148799407913', 1);
