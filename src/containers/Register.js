@@ -10,6 +10,7 @@ import './register.scss'
 import Loading from '../components/loading'
 import Dialog from '../components/dialog'
 import {fetchCode, fetchCheckCode, fetchRegister} from '../actions/register'
+import {setUser} from '../actions/user'
 import {getCookie} from '../components/Common'
 
 class Register extends Component {
@@ -144,11 +145,20 @@ class Register extends Component {
     }
 
     handleDialogClick() {
+        let {user, dispatch} = this.props;
         this.setState({
             isDisplayDialog: false
         });
         if (this.state.sb_code == 200) {
-            browserHistory.push('/cmsfont/index/'+this.props.user.wechatToken+'?code='+this.props.user.wechatCode);
+            if (user.register_back_url.length != 0) {
+                dispatch(setUser({register_back_url: ''}));
+                dispatch(fetchLogin({token: user.wechatToken, code: user.wechatCode})).then((res)=>{
+                    browserHistory.push(this.props.user.register_back_url);
+                });
+            }
+            else {
+                browserHistory.push('/cmsfont/index/'+this.props.user.wechatToken+'?code='+this.props.user.wechatCode);
+            }
         }
     }
 

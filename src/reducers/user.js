@@ -28,7 +28,9 @@ let user_state = {
         totalPage: 0
     },
     isUliveMember: true,
-    qr_ticket: ''
+    qr_ticket: '',
+
+    register_back_url: ''
 };
 function receive_lists(state, data) {
     if (data.nowPage!=1 && state.accumulate_my.nowPage+1 != data.nowPage) {

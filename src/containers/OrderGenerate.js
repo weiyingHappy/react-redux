@@ -9,6 +9,7 @@ import Loading from '../components/loading'
 
 import {fetchOrderNum, fetchOrderSubmit} from '../actions/storage'
 import {setPay} from '../actions/order'
+import {setUser} from '../actions/user'
 
 import img_user from '../static/images/three/icon-5.png'
 import './orderGenerate.scss'
@@ -33,18 +34,26 @@ class OrderGenerate extends Component {
         let from = moment(storage.from);
         let to = moment(storage.to);
 
-        self.setState({
-            phone: user.phone
-        });
+        if (!user.isLogin) {
+            dispatch(setUser({register_back_url: '/cmsfont/orderGenerate'}));
+            browserHistory.push('/cmsfont/register');
+            return ;
+        }
+        else {
+            self.setState({
+                phone: user.phone
+            });
 
-        let info = {
-            roomId: room.id,
-            start: moment(from).format('YYYY-MM-DD'),
-            days: moment(to).diff(from, 'days'),
-            num: 1
-        };
+            let info = {
+                roomId: room.id,
+                start: moment(from).format('YYYY-MM-DD'),
+                days: moment(to).diff(from, 'days'),
+                num: 1
+            };
 
-        dispatch(fetchOrderNum(info));
+            dispatch(fetchOrderNum(info));
+        }
+
     }
 
     handleChooseNum (val) {

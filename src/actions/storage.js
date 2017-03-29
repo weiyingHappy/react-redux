@@ -19,7 +19,6 @@ export const SET_JS_SDK = 'SET_JS_SDK';
 
 
 export function setDate(info) {
-    console.log("set date: '")
     return {
         type: SET_DATE,
         data: info

@@ -39,7 +39,10 @@ class Rooms extends Component {
             dispatch(fetchLogin({token: token, code: code})).then((res)=>{
                 changeTitle(getCookie('wechatName','')||'住那儿旅行');
                 if (res.code == 406) {
-                    browserHistory.push('/cmsfont/register');
+                    // browserHistory.push('/cmsfont/register');
+                    dispatch(fetchHotelLists({teamId: res.results.teamid, page: 1})).then((res_b)=>{
+                        console.log('receive lists: ',hotel);
+                    })
                 }
                 else if (res.code!=200 && !config.debug) {
                     browserHistory.push('/cmsfont/error');
@@ -102,7 +105,8 @@ class Rooms extends Component {
             arr_id += 1;
             return (
                 <div className="room-piece-container" key={item.id} onClick={this.handleEnterRoom(arr_id-1)}>
-                    <RoomPiece img_src={item.imgs?item.imgs[0]:''} name={item.name}  score={item.score} info={(item.bed_num=='1'?'单床 ':'双床 ')+item.bed.toString()}/>
+                    <RoomPiece img_src={item.imgs?item.imgs[0]:''} name={item.name}  score={item.score} info={(item.bed_num=='1'?'单床 ':'双床 ')+item.bed.toString()}
+                    tag={item.tags}/>
                     <div className="price-container">
                         <div className="pc-top">
                             <span className="price-sign>">￥</span>

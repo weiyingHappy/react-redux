@@ -17,6 +17,7 @@ class RoomPiece extends React.Component {
                 <div className="img-area">
                     <img src={this.props.img_src+'?imageView2/0/w/200'} className="img-area-ins" />
                 </div>
+                {(this.props.tag && this.props.tag.length > 0) ? (<img src={this.props.tag} className="img-type" />) :''}
                 <div className="info-area">
                     <div className="info-name-info">
                         <div className="info-name">{this.props.name}</div>
