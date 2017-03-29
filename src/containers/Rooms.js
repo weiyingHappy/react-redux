@@ -32,8 +32,6 @@ class Rooms extends Component {
         let self = this;
         const {user, hotel, dispatch} = this.props;
 
-        alert("进入rooms");
-
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
         }
@@ -41,7 +39,6 @@ class Rooms extends Component {
             dispatch(fetchLogin({token: token, code: code})).then((res)=>{
                 changeTitle(getCookie('wechatName','')||'住那儿旅行');
 
-                alert("fetch login ret: ", JSON.stringify(res));
                 if (res.code == 406) {
                     // browserHistory.push('/cmsfont/register');
                     dispatch(fetchHotelLists({teamId: res.results.teamid, page: 1})).then((res_b)=>{

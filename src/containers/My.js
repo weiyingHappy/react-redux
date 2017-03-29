@@ -17,15 +17,22 @@ class My extends Component {
 
     constructor (props) {
         super(props);
-
     }
 
     componentWillMount() {
         let {dispatch, user} = this.props;
 
-        dispatch(fetchAccumulateTotal()).then((json)=>{
-            console.log(json);
-        })
+        if (!user.isLogin) {
+            dispatch(setUser({register_back_url: '/cmsfont/my'}));
+            browserHistory.push('/cmsfont/register');
+            return ;
+        }
+        else {
+            dispatch(fetchAccumulateTotal()).then((json)=>{
+                console.log(json);
+            })
+        }
+
     }
 
 
