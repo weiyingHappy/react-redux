@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
 import {fetchAccumulateTotal} from '../actions/user'
+import {setUser} from '../actions/user'
 
 import Tabber from '../components/tabber'
 import './my.scss'
