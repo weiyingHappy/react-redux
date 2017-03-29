@@ -32,6 +32,8 @@ class Rooms extends Component {
         let self = this;
         const {user, hotel, dispatch} = this.props;
 
+        alert("进入rooms");
+
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
         }
