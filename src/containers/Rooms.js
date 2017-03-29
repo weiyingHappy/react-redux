@@ -38,6 +38,8 @@ class Rooms extends Component {
         else {
             dispatch(fetchLogin({token: token, code: code})).then((res)=>{
                 changeTitle(getCookie('wechatName','')||'住那儿旅行');
+
+                alert("fetch login ret: ", JSON.stringify(res));
                 if (res.code == 406) {
                     // browserHistory.push('/cmsfont/register');
                     dispatch(fetchHotelLists({teamId: res.results.teamid, page: 1})).then((res_b)=>{
