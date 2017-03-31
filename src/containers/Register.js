@@ -146,6 +146,7 @@ class Register extends Component {
 
     handleDialogClick() {
         let {user, dispatch} = this.props;
+        let self = this;
         this.setState({
             isDisplayDialog: false
         });
@@ -153,7 +154,7 @@ class Register extends Component {
             if (user.register_back_url.length != 0) {
                 dispatch(setUser({register_back_url: ''}));
                 dispatch(fetchLogin({token: user.wechatToken, code: user.wechatCode})).then((res)=>{
-                    browserHistory.push(this.props.user.register_back_url);
+                    browserHistory.push(self.props.user.register_back_url);
                 });
             }
             else {
