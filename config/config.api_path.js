@@ -14,7 +14,7 @@ module.exports = {
         checkSMS: '/SMS/checkSMS',
         wechatInfo: '/CMS/CmsBasic/wechatInfo',
         hotelInfo: '/FE/Room/rooms',
-        inventory: '/FE/Order/inventory',
+        inventory: '/FE/Room/inventory',
         getComments: '/FE/Evaluation/evaluations',
         orderPrice: '/FE/Order/calcuPrice',
         orderAdd: '/FE/Order/add',

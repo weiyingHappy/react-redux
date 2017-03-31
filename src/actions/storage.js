@@ -51,7 +51,7 @@ export function fetchInventory(info) {
     return (dispatch) => {
         dispatch(requestInventory(info));
 
-        let dt = request(config.remote_host+config.remote_path.inventory+'/'+info.roomId+'/'+info.start, null, true);
+        let dt = request(config.remote_host+config.remote_path.inventory+'/'+info.roomId+'/'+info.start, null, false);
 
         dt.then((json) => {
             if (json.code == 200) {
