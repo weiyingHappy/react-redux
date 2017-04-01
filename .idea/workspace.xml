@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.api_path.js" afterPath="$PROJECT_DIR$/config/config.api_path.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.js" afterPath="$PROJECT_DIR$/config/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/vendor.bundle.js" afterPath="$PROJECT_DIR$/dist/vendor.bundle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/actions/storage.js" afterPath="$PROJECT_DIR$/src/actions/storage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/RoomInfo.js" afterPath="$PROJECT_DIR$/src/containers/RoomInfo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/storage.js" afterPath="$PROJECT_DIR$/src/reducers/storage.js" />
     </list>
     <ignored path="youzhu_business_h5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -521,12 +514,12 @@
       <workItem from="1490751803472" duration="10425000" />
       <workItem from="1490839458065" duration="4535000" />
       <workItem from="1490935760392" duration="11433000" />
-      <workItem from="1491018501935" duration="938000" />
+      <workItem from="1491018501935" duration="1266000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="472862000" />
+    <option name="totallyTimeSpent" value="473190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
