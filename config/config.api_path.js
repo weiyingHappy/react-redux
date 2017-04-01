@@ -28,6 +28,7 @@ module.exports = {
         addComment: '/FE/Evaluation/add',
         accumulate_total: '/FE/UserCenter/getMyPoint',
         accumulate_my: '/FE/UserCenter/getPointLogs',
-        isUliveMember: '/CMS/CmsBasic/isUliveMember'
+        isUliveMember: '/CMS/CmsBasic/isUliveMember',
+        roomPrice: '/FE/Room/roomPrice'
     }
 };

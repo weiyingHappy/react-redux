@@ -15,6 +15,7 @@ export const SET_DATE = 'SET_DATE';
 export const SET_DATE_PICKER = 'SET_DATE_PICKER';
 
 export const SET_JS_SDK = 'SET_JS_SDK';
+export const SET_STORAGE = 'SET_STORAGE';
 
 
 
@@ -47,6 +48,13 @@ export function receiveInventory(json) {
     }
 }
 
+export function setStorage(info) {
+    return {
+        type: SET_STORAGE,
+        info
+    }
+}
+
 export function fetchInventory(info) {
     return (dispatch) => {
         dispatch(requestInventory(info));
@@ -55,7 +63,22 @@ export function fetchInventory(info) {
 
         dt.then((json) => {
             if (json.code == 200) {
-                dispatch(receiveInventory(json));
+                let options = {
+                    method: 'POST',
+                    body: {
+                        id: info.roomId,
+                        time: info.start
+                    }
+                };
+                let dt2 = request(config.remote_host+config.remote_path.roomPrice, options, false);
+
+                dt2.then((j2)=>{
+                    dispatch(setStorage({
+                        c_price: j2.results.nowPrice.sprice
+                    }));
+                    dispatch(receiveInventory(json));
+                });
+
             }
             console.log(json);
         });

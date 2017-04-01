@@ -147,7 +147,7 @@ class RoomInfo extends Component {
                             <div className="top-a-right">
                                 <div className="top-a-right-a">￥{room.nowPrice.oprice}</div>
                                 <div className={"top-a-right-b "+(room.inventory==0?"no-room-price":"")}>
-                                    ￥{room.nowPrice.sprice}</div>
+                                    ￥{storage.c_price}</div>
                             </div>
                         )}
                     </div>
