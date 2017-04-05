@@ -10,6 +10,7 @@ let test = 'test';
 
 let mid = test;
 
+
 let now = (mid == development?dev_conf:(mid==test?test_conf:pro_conf));
 
 let config = {
