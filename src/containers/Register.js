@@ -10,7 +10,7 @@ import './register.scss'
 import Loading from '../components/loading'
 import Dialog from '../components/dialog'
 import {fetchCode, fetchCheckCode, fetchRegister} from '../actions/register'
-import {setUser} from '../actions/user'
+import {setUser, fetchLogin} from '../actions/user'
 import {getCookie} from '../components/Common'
 
 class Register extends Component {
