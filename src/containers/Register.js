@@ -152,9 +152,9 @@ class Register extends Component {
         });
         if (this.state.sb_code == 200) {
             if (user.register_back_url.length != 0) {
-                dispatch(setUser({register_back_url: ''}));
                 dispatch(fetchLogin({token: user.wechatToken, code: user.wechatCode})).then((res)=>{
                     browserHistory.push(self.props.user.register_back_url);
+                    dispatch(setUser({register_back_url: ''}));
                 });
             }
             else {
