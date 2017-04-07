@@ -8,8 +8,14 @@ let production = 'production';
 let development = 'development';
 let test = 'test';
 
-let mid = production;
-
+let mid;
+if (window.location.hostname == 'www.lianwuyun.cn') {
+    mid = test;
+} else if (window.location.hostname == 'localhost') {
+    mid = development;
+} else {
+    mid = production;
+}
 
 let now = (mid == development?dev_conf:(mid==test?test_conf:pro_conf));
 
@@ -23,7 +29,7 @@ let config = {
     ping_appid: now.ping_appid,
     pay_appid: now.pay_appid,
 
-    debug: false,
+    debug: (mid == development?true:false),
 
     mid: mid,
     production: production,
