@@ -17,6 +17,7 @@ export const STATE_ALL  = '0';
 export const STATE_NO = '1';
 export const STATE_ALREADY = '2';
 export const STATE_FINISH = '3';
+export const STATE_REFUND = '4';
 
 export const POP_ORDER = "POP_ORDER";
 
@@ -89,9 +90,14 @@ export function fetchMyOrder(info) {
         if (info.page == 1) {
             dispatch(setState({con_loading: true}));
         }
+        let body = {
+            state: info.state-1,
+            page: info.page,
+            team_id: info.team_id
+        };
         let options = {
             method: 'POST',
-            body: info
+            body: body
         };
         let dt = request(config.remote_host+config.remote_path.myOrder, options, true);
         dt.then((json)=>{

@@ -31,6 +31,10 @@ let order_state = {
         nowPage: 0,
         totalPage: 0,
         lists: []
+    },{
+        nowPage: 0,
+        totalPage: 0,
+        lists: []
     }],
     con_loading: true,
     cat: STATE_ALL
@@ -45,9 +49,6 @@ function setCon(ori, now, cat) {
     }
 
     let ret = ori.slice();
-    now.lists.map((item)=>{
-       item.state = (parseInt(item.state)+1).toString();
-    });
     ret[cat].nowPage = now.nowPage;
     ret[cat].totalPage = now.totalPage;
     ret[cat].lists = (now.nowPage==1?now.lists:[...ret[cat].lists,...now.lists]);

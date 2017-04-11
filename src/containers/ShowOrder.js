@@ -9,6 +9,7 @@ import {getCookie, jsSdkInit} from '../components/Common'
 import {fetchJsSdk} from '../actions/storage'
 
 import {fetchOrderInfo} from '../actions/order'
+import * as helper from '../components/Common'
 
 import './showOrder.scss'
 import img_addr from '../static/images/three/icon-3.png'
@@ -20,6 +21,7 @@ class ShowOrder extends Component {
     constructor (props) {
         super(props);
         this.handleShowMap = this.handleShowMap.bind(this);
+        this.showRefundProgress = this.showRefundProgress.bind(this);
 
         this.state = {
             map_loading: false
@@ -85,6 +87,9 @@ class ShowOrder extends Component {
             });
         }
     }
+    showRefundProgress() {
+        browserHistory.push('/cmsfont/refundProgress');
+    }
 
 
     render() {
@@ -128,9 +133,14 @@ class ShowOrder extends Component {
                     </div>
 
                     <div className="so-middle">
-                        <div className="som-a">
+                        <div className="som-a som-dis">
                             <div>订单状态:</div>
-                            <div className="som-red">{item.state=='0'?'待支付':item.state=='1'?'已支付':item.state=='2'?'已完成':'已取消'}</div>
+                            <div className="som-red">{helper.readyPay(item.state)?'待支付':helper.hasPay(item.state)?
+                                '已支付':helper.isFinish(item.state)?'已完成':helper.needRefund(item.state)?'申请退款':'已取消'}</div>
+                        </div>
+                        <div className="som-progress som-dis" onClick={this.showRefundProgress} style={{display: (parseInt(item.apply_refund)>0?'flex':'none')}}>
+                            <div>取消/退款进度</div>
+                            <div className="arrow-right"></div>
                         </div>
                         <div className="som-b">
                             <div>订单编号:</div>
@@ -143,6 +153,9 @@ class ShowOrder extends Component {
                         <div className="som-d">
                             <div>订单金额:</div>
                             <div className="som-red">￥{item.price}</div>
+                        </div>
+                        <div className="som-e">
+                            {item.state>2?'*退款到账需3个工作日':''}
                         </div>
                     </div>
 

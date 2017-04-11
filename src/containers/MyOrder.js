@@ -126,35 +126,23 @@ class MyOrder extends Component {
             let {order, dispatch} = this.props, self = this;
             let item = order.con[order.cat].lists[id];
             console.log('item: ', item);
+
             let info = {
-                id: item.pay.wx_order,
-                amount: parseInt(item.price*100),
-                description: "-退款-"
+                order_no: item.order_no
             };
+            dispatch(fetchToCancel(info)).then((res)=>{
+                if (res.code == 200) {
+                    alert("取消订单成功");
 
-            dispatch(fetchToRefund(info)).then((charge)=>{
-                console.log("fetch to pay ret: ", charge);
-
-                if (!charge.failure_msg) {
-                    let info2 = {
-                        order_no: charge.charge_order_no,
-                        wx_order: charge.charge,
-                        price: parseFloat(charge.amount/100.0)
-                    };
-                    dispatch(fetchToUnPay(info2)).then((res)=>{
-                        if (res.code == 200) {
-                            alert("退款成功");
-                            dispatch(popOrder({
-                                cat: order.cat,
-                                id: id
-                            }));
-                        }
-                        else {
-                            alert("取消订单成功, 退款将于1-3个工作日内返回支付账户");
-                        }
-                    })
+                    dispatch(popOrder({
+                        cat: order.cat,
+                        id: id
+                    }));
                 }
-            })
+                else {
+                    alert(res.msg);
+                }
+            });
         }
     }
     toCancel(id) {
@@ -166,7 +154,7 @@ class MyOrder extends Component {
             };
             dispatch(fetchToCancel(info)).then((res)=>{
                 if (res.code == 200) {
-                    alert("取消订单成功");
+                    alert("已申请退款");
 
                     dispatch(popOrder({
                         cat: order.cat,

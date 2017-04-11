@@ -58,3 +58,33 @@ export function changeTitle(name) {
         document.body.appendChild(iframe);
     }
 }
+
+
+
+
+export function isCancel(state) {
+    return state == 11 || state == 12 || state == 13;
+}
+export function isFinish(state) {
+    return state == 10;
+}
+export function readyPay(state) {
+    return state == 0;
+}
+export function hasPay(state) {
+    return state == 1 || state == 2;
+}
+export function needRefund(state) {
+    return state == 5;
+}
+
+
+export function refundApply(apply_refund) {
+    return apply_refund == 1 || apply_refund == 2;
+}
+export function refundOk(apply_refund) {
+    return apply_refund == 5;
+}
+export function refundFail(apply_refund) {
+    return apply_refund == 6;
+}

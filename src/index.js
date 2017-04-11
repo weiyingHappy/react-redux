@@ -28,6 +28,7 @@ import CommentOrder from './containers/CommentOrder'
 import ShowComment from './components/show-comment'
 import Accumulate from './containers/Accumulate'
 import ToYouZhu from './containers/ToYouZhu'
+import RefundProgress from './containers/RefundProgress'
 
 const loggerMiddleware = createLogger();
 
@@ -80,6 +81,7 @@ render (
             <Route path="/cmsfont/ShowComment" component={ShowComment}></Route>
             <Route path="/cmsfont/accumulate" component={Accumulate}></Route>
             <Route path="/cmsfont/toYouZhu/:token" component={ToYouZhu}></Route>
+            <Route path="/cmsfont/refundProgress" component={RefundProgress}></Route>
 
 
             <Route path="/cmsfont/error" component={ErrorPage} />

@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import './index.scss'
 
-import {STATE_ALL, STATE_ALREADY, STATE_FINISH, STATE_NO} from '../../actions/order'
+import * as helper from '../Common'
 
 class OrderPiece extends React.Component {
     constructor (props) {
@@ -18,7 +18,7 @@ class OrderPiece extends React.Component {
 
         let id = 0;
         let dis = orders.map((item) => {
-            let btn = item.state==STATE_NO?(
+            let btn = helper.readyPay(item.state)?(
                 <div className="item-btn-group-between">
                     <button className="item-btn-black item-btn" onClick={this.props.toCancel(id)}>取消订单</button>
                     <div className="item-btn-group">
@@ -26,16 +26,16 @@ class OrderPiece extends React.Component {
                         <button className="item-btn-red item-btn" onClick={this.props.toPay(id)}>支付{item.type=='1'?'(5分钟内)':'(30分钟内)'}</button>
                     </div>
                 </div>
-            ): item.state==STATE_ALREADY?(
+            ): helper.hasPay(item.state)?(
                 <div className="item-btn-group">
                     <button className="item-btn-black item-btn" onClick={this.props.toRefund(id)}>退订房间</button>
                     <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
                 </div>
-            ): item.state>=4?(
+            ): helper.isCancel(item.state)?(
                 <div className="item-btn-group">
                     <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
                 </div>
-            ): item.comment==0?(
+            ): (item.comment==0&&helper.isFinish(item.state))?(
                 <div className="item-btn-group">
                     <button className="item-btn-red item-btn" onClick={this.props.toComment(id)}>评价</button>
                 </div>
@@ -48,7 +48,8 @@ class OrderPiece extends React.Component {
             return (
                 <div key={item.order_no} className="order-item">
                     <div className="item-header">
-                        {item.state==STATE_NO?'待支付':item.state==STATE_ALREADY?'已支付':item.state==STATE_FINISH?'已完成':'已取消'}
+                        {helper.readyPay(item.state)?'待支付':helper.hasPay(item.state)?
+                            '已支付':helper.isFinish(item.state)?'已完成':helper.needRefund(item.state)?'申请退款':'已取消'}
                     </div>
                     <div className="item-body">
                         <div className="item-body-a">
