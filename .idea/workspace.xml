@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.js" afterPath="$PROJECT_DIR$/config/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/order-nav/index.js" afterPath="$PROJECT_DIR$/src/components/order-nav/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/order-nav/index.scss" afterPath="$PROJECT_DIR$/src/components/order-nav/index.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/DatePicker.js" afterPath="$PROJECT_DIR$/src/containers/DatePicker.js" />
-    </list>
+    <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="" />
     <ignored path="youzhu_business_h5.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -646,12 +641,12 @@
       <workItem from="1491355810825" duration="4034000" />
       <workItem from="1491532238199" duration="1734000" />
       <workItem from="1491882377898" duration="9568000" />
-      <workItem from="1492137898588" duration="7659000" />
+      <workItem from="1492137898588" duration="7715000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="496876000" />
+    <option name="totallyTimeSpent" value="496932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
