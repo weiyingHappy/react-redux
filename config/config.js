@@ -28,6 +28,7 @@ let config = {
 
     ping_appid: now.ping_appid,
     pay_appid: now.pay_appid,
+    ru: now.ru,
 
     debug: (mid == development?true:false),
 
