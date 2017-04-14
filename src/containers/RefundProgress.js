@@ -22,8 +22,6 @@ class RefundProgress extends Component {
 
     }
 
-
-
     render() {
         let {order} = this.props;
         let item = order.pay;

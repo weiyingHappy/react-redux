@@ -6,7 +6,7 @@ import moment from 'moment'
 
 import './datePicker.scss'
 
-import {setDate} from '../actions/storage'
+import {setDate, getTime} from '../actions/storage'
 
 class DatePicker extends Component {
 
@@ -14,10 +14,32 @@ class DatePicker extends Component {
         super(props);
         this.handleSelect = this.handleSelect.bind(this);
         this.odd = true;
+        this.state = {
+            yd: false
+        }
     }
 
     componentWillMount() {
+        let {dispatch} = this.props, self = this;
 
+        dispatch(getTime()).then((res) => {
+            let {st, h, m} = res;
+            let end = moment().hour(parseInt(h)).minutes(parseInt(m)).seconds(0);
+            let server_time = moment(st*1000);
+            console.log("server_time: ", server_time);
+            console.log("end: ", end);
+
+            if (server_time.isBefore(end)) {
+                self.setState({
+                    yd: true
+                })
+            }
+            else {
+                self.setState({
+                    yd: false
+                })
+            }
+        })
     }
 
     handleSelect(range) {
@@ -61,7 +83,7 @@ class DatePicker extends Component {
                             onChange={this.handleSelect}
                             startDate={storage.datePicker==1?storage.from:moment.max(moment(from).add(1,'d'),to)}
                             endDate={storage.datePicker==1?storage.from:moment.max(moment(from).add(1,'d'),to)}
-                            minDate={storage.datePicker==1?moment():moment(from).add(1,'d')}
+                            minDate={storage.datePicker==1?(this.state.yd?moment().subtract(1,'d'):moment()):moment(from).add(1,'d')}
                             maxDate={storage.datePicker==1?moment().add(3,'months').subtract(1,'d'):moment().add(3,'months')}
                             format="YYYY/MM/DD"
                         />

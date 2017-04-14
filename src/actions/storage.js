@@ -185,6 +185,23 @@ export function receiveComments(json) {
         receivedAt: Date.now()
     }
 }
+export function getTime() {
+    return (dispatch) => {
+        let dt = request(config.remote_host+config.remote_path.getTime);
+        return dt.then((res) => {
+            let st = res.results.server_time;
+            let dt = res.results.day_time;
+            let reg = /([0-9]*):([0-9]*)$/;
+            let rr = dt.match(reg);
+            let h = rr[1], m = rr[2];
+            return {
+                st: st,
+                h: h,
+                m: m
+            }
+        })
+    }
+}
 
 export function fetchComments(info) {
     return (dispatch) => {
