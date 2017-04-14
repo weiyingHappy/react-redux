@@ -1,11 +1,11 @@
 @import '../../static/scss/common';
 
 .order-nav {
-  @include flex(row, nowrap, space-around, inherit);
+  @include flex(row, nowrap, space-between, inherit);
   height: 50px;
   box-sizing: border-box;
   background-color: #fff;
-  padding: 0 10px;
+  padding-left: 13px;
 
   .nav-splite {
     height: 32px;
@@ -23,6 +23,13 @@
   .nav-cell-highlight {
     color: #4969F1;
     border-bottom: 3px solid #4969F1;
+  }
+  .nav-refund {
+    color: #099FDE!important;
+    border-left: 1px solid #DCDCDC;
+    text-align: center;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
 }
 

@@ -16,15 +16,15 @@ class OrderNav extends React.Component {
         let {cat, changeCat} = this.props;
         return (
             <div className="order-nav">
-                <div className={"nav-cell"+(cat==STATE_ALL?" nav-cell-highlight":"")} onClick={changeCat(STATE_ALL)}>全部</div>
+                <div className={"nav-cell nav-first"+(cat==STATE_ALL?" nav-cell-highlight":"")} onClick={changeCat(STATE_ALL)}>全部</div>
 
                 <div className={"nav-cell"+(cat==STATE_NO?" nav-cell-highlight":"")} onClick={changeCat(STATE_NO)}>待支付</div>
 
                 <div className={"nav-cell"+(cat==STATE_ALREADY?" nav-cell-highlight":"")} onClick={changeCat(STATE_ALREADY)}>已支付</div>
 
-                <div className={"nav-cell"+(cat==STATE_REFUND?" nav-cell-highlight":"")} onClick={changeCat(STATE_REFUND)}>申请退款</div>
-
                 <div className={"nav-cell"+(cat==STATE_FINISH?" nav-cell-highlight":"")} onClick={changeCat(STATE_FINISH)}>已完成</div>
+
+                <div className={"nav-cell nav-refund"+(cat==STATE_REFUND?" nav-cell-highlight":"")} onClick={changeCat(STATE_REFUND)}>申请退款</div>
             </div>
         )
     }
