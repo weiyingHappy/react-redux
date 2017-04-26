@@ -7,13 +7,15 @@ module.exports =
         'index': './src/index.js',
         vendor: [
             'react',
-            'react-dom'
+            'react-dom',
+            'react-router'
         ]
     },
     output: {
         path : __dirname + '/dist',
         filename: '[name].js',
-        publicPath: '/dist'
+        publicPath: '/dist/',
+        chunkFilename:'[name].js'
     },
     module: {
         loaders: [{
@@ -37,6 +39,10 @@ module.exports =
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "vendor.bundle.js"}),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
     ]
 };
