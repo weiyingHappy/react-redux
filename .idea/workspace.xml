@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13eb4ac6-d118-4ca3-9981-b56e3685b9c9" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/order-piece/index.js" afterPath="$PROJECT_DIR$/src/components/order-piece/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/PayPage.js" afterPath="$PROJECT_DIR$/src/containers/PayPage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
     </list>
     <ignored path="youzhu_business_h5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -582,12 +580,12 @@
       <workItem from="1492137898588" duration="7715000" />
       <workItem from="1493175266203" duration="2903000" />
       <workItem from="1493261830874" duration="2586000" />
-      <workItem from="1493278254664" duration="3182000" />
+      <workItem from="1493278254664" duration="3239000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="505603000" />
+    <option name="totallyTimeSpent" value="505660000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
