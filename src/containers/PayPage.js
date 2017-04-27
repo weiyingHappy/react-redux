@@ -60,11 +60,10 @@ class PayPage extends Component {
         };
         dispatch(fetchArrivePay(info)).then((json)=>{
             if (json.code == 200 || json.code == 407) {
-                alert("支付成功");
                 browserHistory.push('/cmsfont/MyOrder/'+getCookie('wechatToken', ''));
             }
             else {
-                alert("支付成功!");
+                alert("下单失败,请稍后再试!");
             }
         });
     }
@@ -132,6 +131,7 @@ class PayPage extends Component {
                     </div>
                 </div>
                 <Loading text="加载中..." isFetching={order.pay.pay_loading} />
+                <Loading text="提交中..." isFetching={order.pay.finish_loading} />
 
                 <div className="bottom-a">
                     <div className="ba-a">
