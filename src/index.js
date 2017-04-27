@@ -61,130 +61,33 @@ let dom2 = document.getElementById('main-container');
 render (
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/">
 
-                <Route path="cmsfont/index/:token" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/Index").default)
-                                        },"index")
-                                    }}></Route>
+                <Route path="/cmsfont/index/:token" component={Index}></Route>
 
-                <Route path="cmsfont/rooms/:token" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/Rooms").default)
-                                        },"rooms")
-                                    }}></Route>
-                <Route path="cmsfont/register" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/Register").default)
-                                        },"register")
-                                    }}></Route>
-                <Route path="cmsfont/intro" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/Intro").default)
-                                        },"intro")
-                                    }}></Route>
-                <Route path="cmsfont/snap" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/Snap").default)
-                                        },"router_one")
-                                    }}></Route>
-                <Route path="cmsfont/my" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/My").default)
-                                        },"my")
-                                    }}></Route>
+                <Route path="/cmsfont/rooms/:token" component={Rooms}></Route>
+                <Route path="/cmsfont/register" component={Register}></Route>
+                <Route path="/cmsfont/intro" component={Intro}></Route>
+                <Route path="/cmsfont/snap" component={Snap}></Route>
+                <Route path="cmsfont/my" component={My}></Route>
 
-                <Route path="cmsfont/roomInfo" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/RoomInfo").default)
-                                        },"roomInfo")
-                                    }}></Route>
-                <Route path="cmsfont/chooseDate" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/DatePicker").default)
-                                        },"datePicker")
-                                    }}></Route>
-                <Route path="cmsfont/orderGenerate" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/OrderGenerate").default)
-                                        },"orderGenerate")
-                                    }}></Route>
-                <Route path="cmsfont/payPage" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/PayPage").default)
-                                        },"payPage")
-                                    }}></Route>
-                <Route path="cmsfont/uniPay/:order_no" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/UniPay").default)
-                                        },"unipay")
-                                    }}></Route>
+                <Route path="/cmsfont/roomInfo" component={RoomInfo}></Route>
+                <Route path="/cmsfont/chooseDate" component={DatePicker}></Route>
+                <Route path="/cmsfont/orderGenerate" component={OrderGenerate}></Route>
+                <Route path="/cmsfont/payPage" component={PayPage}></Route>
+                <Route path="/cmsfont/uniPay/:order_no" component={UniPay}></Route>
 
-                <Route path="cmsfont/setting" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/Setting").default)
-                                        },"setting")
-                                    }}></Route>
-                <Route path="cmsfont/MyOrder/:token" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/MyOrder").default)
-                                        },"myOrder")
-                                    }}></Route>
-                <Route path="cmsfont/ShowOrder" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/ShowOrder").default)
-                                        },"showOrder")
-                                    }}></Route>
-                <Route path="cmsfont/CommentOrder" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/CommentOrder").default)
-                                        },"commentOrder")
-                                    }}></Route>
-                <Route path="cmsfont/ShowComment" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./components/show-comment").default)
-                                        },"showComment")
-                                    }}></Route>
-                <Route path="cmsfont/accumulate" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/Accumulate").default)
-                                        },"accumulate")
-                                    }}></Route>
-                <Route path="cmsfont/toYouZhu/:token" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/ToYouZhu").default)
-                                        },"toYouZhu")
-                                    }}></Route>
-                <Route path="cmsfont/refundProgress" getComponent={
-                                    (nextState,callback)=>{
-                                        require.ensure([],(require)=>{
-                                            callback(null,require("./containers/RefundProgress").default)
-                                        },"refundProgress")
-                                    }}></Route>
+                <Route path="/cmsfont/setting" component={Setting}></Route>
+                <Route path="/cmsfont/MyOrder/:token" component={MyOrder}></Route>
+                <Route path="/cmsfont/ShowOrder" component={ShowOrder}></Route>
+                <Route path="/cmsfont/CommentOrder" component={CommentOrder}></Route>
+                <Route path="/cmsfont/ShowComment" component={ShowComment}></Route>
+                <Route path="/cmsfont/accumulate" component={Accumulate}></Route>
+                <Route path="/cmsfont/toYouZhu/:token" component={ToYouZhu}></Route>
+                <Route path="/cmsfont/refundProgress" component={RefundProgress}></Route>
 
 
                 <Route path="/cmsfont/error" component={ErrorPage} />
                 <Route path='/cmsfont/404' component={NotFoundPage} />
-            </Route>
 
             <Redirect from='*' to='/cmsfont/404' />
         </Router>
