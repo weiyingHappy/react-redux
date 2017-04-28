@@ -116,6 +116,9 @@ class ShowOrder extends Component {
                             <div>
                                 入离时间: {item.start} 至 {item.end}
                             </div>
+                            <div>
+                                订单类型: {item.type=='1'?'抢房订单':item.type=='2'?'普通订单':'到付订单'}
+                            </div>
                         </div>
                         <div className="sot-c">
                             酒店地址: {item.team.address}

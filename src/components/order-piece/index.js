@@ -53,7 +53,7 @@ class OrderPiece extends React.Component {
                     </div>
                     <div className="item-body">
                         <div className="item-body-a">
-                            {item.room.team_name} - {item.type=='1'?'抢房订单':'普通订单'}
+                            {item.room.team_name} - {item.type=='1'?'抢房订单':item.type=='2'?'普通订单':'到付订单'}
                         </div>
                         <div className="item-body-b">
                             房型: {item.room.name}
