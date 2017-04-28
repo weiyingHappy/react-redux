@@ -223,3 +223,18 @@ export function fetchOrderInfo(orderNo) {
         return dt;
     }
 }
+
+export function fetchArrivePay(info) {
+    return (dispatch) => {
+        dispatch(setPay({finish_loading: true}));
+        let options = {
+            method: 'POST',
+            body: info
+        };
+        let dt = request(config.remote_host+config.remote_path.finishOrder, options, true);
+        dt.then((json) => {
+            dispatch(setPay({finish_loading: false}));
+        });
+        return dt;
+    }
+}

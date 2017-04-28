@@ -89,5 +89,39 @@
     width: 100%;
   }
 
+  .bottom-a {
+    margin-top: 10px;
+    padding: 0 0 0 15px;
+    box-sizing: border-box;
+    background-color: #fff;
+  }
+  .ba-a {
+    height: 50px;
+    color: #333333;
+    font-size: 16px;
+    background-color: #fff;
+    line-height: 50px;
+  }
+  .pay-item {
+    height: 50px;
+    box-sizing: border-box;
+    @include flex(row, nowrap, space-between, center);
+    font-size: 16px;
+    color: #333333;
+  }
+  .pi-left {
+    @include flex(row, nowrap, flex-start, center);
+  }
+  .pi-right {
+    height: 24px;
+    width: 24px;
+    margin-right: 20px;
+  }
+  .pay-icon {
+    height: 24px;
+    width: 27px;
+    margin-right: 13px;
+  }
+
 }
 

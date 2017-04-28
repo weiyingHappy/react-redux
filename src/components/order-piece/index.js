@@ -23,7 +23,7 @@ class OrderPiece extends React.Component {
                     <button className="item-btn-black item-btn" onClick={this.props.toCancel(id)}>取消订单</button>
                     <div className="item-btn-group">
                         <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
-                        <button className="item-btn-red item-btn" onClick={this.props.toPay(id)}>支付{item.type=='1'?'(5分钟内)':'(30分钟内)'}</button>
+                        <button className="item-btn-red item-btn" onClick={this.props.toPay(id)} style={{display:item.type==3?'none':'block'}}>支付{item.type=='1'?'(5分钟内)':'(30分钟内)'}</button>
                     </div>
                 </div>
             ): helper.hasPay(item.state)?(
@@ -53,7 +53,7 @@ class OrderPiece extends React.Component {
                     </div>
                     <div className="item-body">
                         <div className="item-body-a">
-                            {item.room.team_name} - {item.type=='1'?'抢房订单':'普通订单'}
+                            {item.room.team_name} - {item.type=='1'?'抢房订单':item.type=='2'?'普通订单':'到付订单'}
                         </div>
                         <div className="item-body-b">
                             房型: {item.room.name}

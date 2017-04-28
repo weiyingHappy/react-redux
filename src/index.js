@@ -61,31 +61,34 @@ let dom2 = document.getElementById('main-container');
 render (
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/cmsfont/index/:token" component={Index}></Route>
-            <Route path="/cmsfont/rooms/:token" component={Rooms}></Route>
-            <Route path="/cmsfont/register" component={Register}></Route>
-            <Route path="/cmsfont/intro" component={Intro}></Route>
-            <Route path="/cmsfont/snap" component={Snap}></Route>
-            <Route path="/cmsfont/my" component={My}></Route>
 
-            <Route path="/cmsfont/roomInfo" component={RoomInfo}></Route>
-            <Route path="/cmsfont/chooseDate" component={DatePicker}></Route>
-            <Route path="/cmsfont/orderGenerate" component={OrderGenerate}></Route>
-            <Route path="/cmsfont/payPage" component={PayPage}></Route>
-            <Route path="/cmsfont/uniPay/:order_no" component={UniPay}></Route>
+                <Route path="/cmsfont/index/:token" component={Index}></Route>
 
-            <Route path="/cmsfont/setting" component={Setting}></Route>
-            <Route path="/cmsfont/MyOrder/:token" component={MyOrder}></Route>
-            <Route path="/cmsfont/ShowOrder" component={ShowOrder}></Route>
-            <Route path="/cmsfont/CommentOrder" component={CommentOrder}></Route>
-            <Route path="/cmsfont/ShowComment" component={ShowComment}></Route>
-            <Route path="/cmsfont/accumulate" component={Accumulate}></Route>
-            <Route path="/cmsfont/toYouZhu/:token" component={ToYouZhu}></Route>
-            <Route path="/cmsfont/refundProgress" component={RefundProgress}></Route>
+                <Route path="/cmsfont/rooms/:token" component={Rooms}></Route>
+                <Route path="/cmsfont/register" component={Register}></Route>
+                <Route path="/cmsfont/intro" component={Intro}></Route>
+                <Route path="/cmsfont/snap" component={Snap}></Route>
+                <Route path="cmsfont/my" component={My}></Route>
+
+                <Route path="/cmsfont/roomInfo" component={RoomInfo}></Route>
+                <Route path="/cmsfont/chooseDate" component={DatePicker}></Route>
+                <Route path="/cmsfont/orderGenerate" component={OrderGenerate}></Route>
+                <Route path="/cmsfont/payPage" component={PayPage}></Route>
+                <Route path="/cmsfont/uniPay/:order_no" component={UniPay}></Route>
+
+                <Route path="/cmsfont/setting" component={Setting}></Route>
+                <Route path="/cmsfont/MyOrder/:token" component={MyOrder}></Route>
+                <Route path="/cmsfont/ShowOrder" component={ShowOrder}></Route>
+                <Route path="/cmsfont/CommentOrder" component={CommentOrder}></Route>
+                <Route path="/cmsfont/ShowComment" component={ShowComment}></Route>
+                <Route path="/cmsfont/accumulate" component={Accumulate}></Route>
+                <Route path="/cmsfont/toYouZhu/:token" component={ToYouZhu}></Route>
+                <Route path="/cmsfont/refundProgress" component={RefundProgress}></Route>
 
 
-            <Route path="/cmsfont/error" component={ErrorPage} />
-            <Route path='/cmsfont/404' component={NotFoundPage} />
+                <Route path="/cmsfont/error" component={ErrorPage} />
+                <Route path='/cmsfont/404' component={NotFoundPage} />
+
             <Redirect from='*' to='/cmsfont/404' />
         </Router>
 

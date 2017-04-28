@@ -7,11 +7,17 @@ import pingpp from 'pingpp-js'
 import config from '../../config/config'
 import EquArea from '../components/equ-area'
 import Loading from '../components/loading'
+import {getCookie} from '../components/Common'
 
-import {fetchOrderInfo, fetchToPay} from '../actions/order'
+import {fetchOrderInfo, fetchToPay, fetchArrivePay} from '../actions/order'
 
 import './payPage.scss'
 import img_top from '../static/images/three/icon-6.png'
+
+import img_a from '../static/images/four/icon-1.png'
+import img_b from '../static/images/four/icon-2.png'
+import img_c from '../static/images/four/icon-3.png'
+import img_d from '../static/images/four/icon-4.png'
 
 
 class PayPage extends Component {
@@ -20,8 +26,11 @@ class PayPage extends Component {
         super(props);
 
         this.handlePay = this.handlePay.bind(this);
+        this.handlePayClick = this.handlePayClick.bind(this);
+        this.handleArrive = this.handleArrive.bind(this);
 
         this.state = {
+            pay_type: 1
         }
     }
 
@@ -38,6 +47,35 @@ class PayPage extends Component {
 
         let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+config.pay_appid+'&redirect_uri='+config.ru+order.pay.order_no+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
         window.location.href = url;
+    }
+
+    handleArrive() {
+        let {dispatch, order} = this.props;
+        let self = this;
+
+        let info = {
+            order_no: order.pay.order_no,
+            wx_order: 'daofu',
+            price: 1
+        };
+        dispatch(fetchArrivePay(info)).then((json)=>{
+            if (json.code == 200 || json.code == 407) {
+                browserHistory.push('/cmsfont/MyOrder/'+getCookie('wechatToken', ''));
+            }
+            else {
+                alert("下单失败,请稍后再试!");
+            }
+        });
+    }
+
+    handlePayClick() {
+        console.log("click: "+this.state.pay_type);
+        if (this.state.pay_type==1) {
+            this.handlePay();
+        }
+        else {
+            this.handleArrive();
+        }
     }
 
     render() {
@@ -93,9 +131,32 @@ class PayPage extends Component {
                     </div>
                 </div>
                 <Loading text="加载中..." isFetching={order.pay.pay_loading} />
+                <Loading text="提交中..." isFetching={order.pay.finish_loading} />
 
-                <div className="bottom" onClick={this.handlePay}>
-                    <button className="bottom-button">支付</button>
+                <div className="bottom-a">
+                    <div className="ba-a">
+                        请选择支付方式
+                    </div>
+                    <div className="pay-item">
+                        <div className="pi-left">
+                            <img src={img_a} className="pay-icon"/>
+                            <div>微信支付</div>
+                        </div>
+                        <img className="pi-right" src={this.state.pay_type==1?img_c:img_d}
+                             onClick={()=>{this.setState({pay_type:1})}}/>
+                    </div>
+                    <div className="pay-item" style={{borderBottom: '1px solid #DCDCDC'}}>
+                        <div className="pi-left">
+                            <img src={img_b} className="pay-icon"/>
+                            <div>到店支付</div>
+                        </div>
+                        <img className="pi-right" src={this.state.pay_type==0?img_c:img_d}
+                             onClick={()=>{this.setState({pay_type:0})}}/>
+                    </div>
+                </div>
+                <div style={{height: '30px'}}></div>
+                <div className="bottom" onClick={this.handlePayClick}>
+                    <button className="bottom-button">立即支付</button>
                 </div>
             </div>
         )
