@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import './index.scss'
 import ImageGallery from 'react-image-gallery';
-import defaultImg from '../../static/images/two/icon-5.png'
 
 class Scroll extends Component {
 
