@@ -1,4 +1,4 @@
 node_modules/
 index.html
 dist/*.hot-update.*
-.idea/workspace.xml
+.idea/*
