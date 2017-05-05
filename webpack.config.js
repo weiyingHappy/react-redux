@@ -1,4 +1,6 @@
 var webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports =
 {
@@ -13,9 +15,9 @@ module.exports =
     },
     output: {
         path : __dirname + '/dist',
-        filename: '[name].js',
-        publicPath: '/dist/',
-        chunkFilename:'[name].js'
+        filename: '[name].[hash].js',
+        publicPath: '/',
+        chunkFilename:'[name].[hash].js'
     },
     module: {
         loaders: [{
@@ -38,15 +40,23 @@ module.exports =
         }]
     },
     plugins: [
-<<<<<<< HEAD
-        new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "vendor.bundle.js"})
-=======
-        new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "vendor.bundle.js"}),
+        new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "[name].[hash].js"}),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, './src/index.html'),
+            filename: 'index.html',
+            inject: 'body'
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false
-            }
+                'screw_ie8': true,
+                'warnings': false,
+                'unused': true,
+                'dead_code': true,
+            },
+            output: {
+                comments: false,
+            },
+            sourceMap: false,
         })
->>>>>>> dev
     ]
 };

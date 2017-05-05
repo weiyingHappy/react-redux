@@ -58,6 +58,7 @@ const test = () => {
         <div>hello</div>
     )
 };
+import {NotFoundPage} from './components/NotFoundPage'
 const Root = () => {
     return (
         <Provider store={store}>
