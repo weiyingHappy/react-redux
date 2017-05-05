@@ -1,4 +1,2 @@
 node_modules/
-index.html
-dist/*.hot-update.*
 .idea/*
