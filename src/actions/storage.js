@@ -135,16 +135,20 @@ export function setOrderChange(order) {
 export function fetchOrderSubmit(order) {
     return (dispatch) => {
         dispatch(setOrderChange({submitting: true}));
+        let info = {
+            room_id: order.room_id,
+            num: order.num,
+            user_name: order.user_name,
+            phone: order.phone,
+            start: order.start,
+            end: order.end
+        };
+        if (order.coupon_id) {
+            info['coupon_id'] = order.coupon_id
+        }
         let options = {
             method: 'POST',
-            body: {
-                room_id: order.room_id,
-                num: order.num,
-                user_name: order.user_name,
-                phone: order.phone,
-                start: order.start,
-                end: order.end
-            }
+            body: info
         };
         let dt = request(config.remote_host+config.remote_path.orderAdd, options, true);
 

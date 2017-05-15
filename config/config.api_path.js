@@ -30,6 +30,9 @@ module.exports = {
         accumulate_my: '/FE/UserCenter/getPointLogs',
         isUliveMember: '/CMS/CmsBasic/isUliveMember',
         roomPrice: '/FE/Room/roomPrice',
-        getTime: '/FE/UserBasic/getSysConfig'
+        getTime: '/FE/UserBasic/getSysConfig',
+        myCoupon: '/FE/Coupon/my',
+        usageCoupon: '/FE/Coupon/usageCoupon',
+        exchangeCoupon: '/FE/Coupon/exchange'
     }
 };

@@ -10,6 +10,7 @@ import Loading from '../components/loading'
 import {fetchOrderNum, fetchOrderSubmit} from '../actions/storage'
 import {setPay} from '../actions/order'
 import {setUser} from '../actions/user'
+import {fetchUsageCoupon,setNotChoosed} from '../actions/coupon'
 
 import img_user from '../static/images/three/icon-5.png'
 import './orderGenerate.scss'
@@ -21,6 +22,7 @@ class OrderGenerate extends Component {
         super(props);
         this.handlePay = this.handlePay.bind(this);
         this.handleChooseNum = this.handleChooseNum.bind(this);
+        this.chooseCoupon = this.chooseCoupon.bind(this);
         this.state = {
             is_choosing_num: false,
             name: '',
@@ -29,7 +31,7 @@ class OrderGenerate extends Component {
     }
 
     componentWillMount() {
-        let {dispatch, hotel, user, storage} = this.props, self = this;
+        let {dispatch, hotel, user, storage, coupon} = this.props, self = this;
         const room = hotel.lists[hotel.room_id];
         let from = moment(storage.from);
         let to = moment(storage.to);
@@ -50,10 +52,25 @@ class OrderGenerate extends Component {
                 days: moment(to).diff(from, 'days'),
                 num: 1
             };
+            dispatch(fetchOrderNum(info)).then((ee) => {
+                if (coupon.use.choosed == true) {
+                    dispatch(setNotChoosed());
+                }
+                else {
+                    let info2 = {
+                        price: storage.order.price,
+                        team_id: user.teamId
+                    };
+                    dispatch(fetchUsageCoupon(info2));
+                }
 
-            dispatch(fetchOrderNum(info));
+            });
+
         }
 
+    }
+    twoFloat(val) {
+        return parseInt(val*100)/100.0
     }
 
     handleChooseNum (val) {
@@ -78,12 +95,18 @@ class OrderGenerate extends Component {
                 days: moment(to).diff(from, 'days'),
                 num: val
             };
-            dispatch(fetchOrderNum(info));
+            dispatch(fetchOrderNum(info)).then((ee) => {
+                let info2 = {
+                    price: storage.order.price,
+                    team_id: user.teamId
+                };
+                dispatch(fetchUsageCoupon(info2));
+            });
         }
     }
 
     handlePay () {
-        let {dispatch, hotel, user, storage} = this.props, self = this;
+        let {dispatch, hotel, user, storage, coupon} = this.props, self = this;
         const room = hotel.lists[hotel.room_id];
 
         if (self.state.name=='' || self.state.phone=='') {
@@ -98,6 +121,8 @@ class OrderGenerate extends Component {
             return ;
         }
 
+        let coupon_id = (coupon.use.available.length==0?'-1':coupon.use.recommend.id);
+
         let info = {
             room_id: room.id,
             num: storage.order.num,
@@ -106,6 +131,11 @@ class OrderGenerate extends Component {
             start: storage.from,
             end: storage.to
         };
+        console.log('coupon_id: ', coupon_id);
+        if (coupon_id != -1) {
+            info["coupon_id"] = coupon_id;
+            console.log("coupon set ok, info: ", info);
+        }
 
         dispatch(fetchOrderSubmit(info)).then((res) => {
             if (res.code == 200) {
@@ -117,10 +147,15 @@ class OrderGenerate extends Component {
             }
         });
     }
+    chooseCoupon() {
+        browserHistory.push('/cmsfont/chooseCoupon');
+    }
 
     render() {
-        let {storage, hotel, user} = this.props;
+        let {storage, hotel, user, coupon} = this.props;
         const room = hotel.lists[hotel.room_id];
+        let {available,disable,recommend} = coupon.use;
+
         let from = moment(storage.from);
         let to = moment(storage.to);
         return (
@@ -181,6 +216,29 @@ class OrderGenerate extends Component {
                         </div>
                     </div>
                 </div>
+                {coupon.use.loading?(
+                    <div className="coupon">
+                        <div className="weui-loading"></div>
+                    </div>
+                ):(
+                    <div className="coupon" onClick={this.chooseCoupon}>
+                        <div className="cp-left">
+                            <div className="cpl-a">
+                                <div className="cpla-a">优惠券</div>
+                                <div className="cpla-b">{available.length}张可用</div>
+                            </div>
+                            <div className="cpl-b">
+                                {available.length==0?'暂无可用优惠券':recommend.coupon_type==0?(recommend.desc.discount+'元优惠券'):
+                                    recommend.coupon_type==1?(recommend.desc.discount+'折券'):('满'+recommend.desc.limit+'减'+recommend.desc.discount+'券')}
+                            </div>
+                        </div>
+                        <div className="cp-right">
+                            <div className="cpr-a">{(available.length==0?'':'-￥')+(recommend.coupon_type==1?this.twoFloat(((10-recommend.desc.discount)*storage.order.price/10.0)):(recommend.desc.discount))}</div>
+                            <div className="cpr-b">
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 <div className="bottom">
                     <div className="bottom-a">
@@ -201,7 +259,7 @@ class OrderGenerate extends Component {
                     </div>
                 ):(
                     <div className="tail">
-                        <div className="tail-a">订单金额:<span className="tail-highlight">￥{storage.order.price}</span></div>
+                        <div className="tail-a">订单金额:<span className="tail-highlight">￥{available.length==0?storage.order.price:(storage.order.price-(recommend.coupon_type==1?this.twoFloat((10-recommend.desc.discount)*storage.order.price/10.0):(recommend.desc.discount)))}</span></div>
                         <button className="tail-b" onClick={this.handlePay}>提交订单</button>
                     </div>
                 )}
@@ -231,7 +289,8 @@ function select(state) {
     return {
         storage: state.storage,
         hotel: state.hotel,
-        user: state.user
+        user: state.user,
+        coupon: state.coupon
     }
 }
 

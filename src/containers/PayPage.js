@@ -121,12 +121,17 @@ class PayPage extends Component {
                             <EquArea lists={pay.room.equipments||[]}/>
                         </div>
                     </div>
-                    <div className="middle-bottom">
+                </div>
+                <div className="we-pay-middle-bottom">
+                    <div className="wpmb-a">
+                        订单金额: ￥{pay.price}-{pay.price-pay.pay_price}=￥{pay.pay_price}
+                    </div>
+                    <div className="wpmb-b">
                         <div className="price-head">
-                            订单金额:
+                            支付金额:
                         </div>
                         <div className="price-body">
-                            ￥{pay.price}
+                            ￥{pay.pay_price}
                         </div>
                     </div>
                 </div>
