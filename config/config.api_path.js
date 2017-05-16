@@ -33,6 +33,7 @@ module.exports = {
         getTime: '/FE/UserBasic/getSysConfig',
         myCoupon: '/FE/Coupon/my',
         usageCoupon: '/FE/Coupon/usageCoupon',
-        exchangeCoupon: '/FE/Coupon/exchange'
+        exchangeCoupon: '/FE/Coupon/exchange',
+        daofu: '/CMS/CmsActivity/getCmsDaofuState'
     }
 };

@@ -233,7 +233,7 @@ class OrderGenerate extends Component {
                             </div>
                         </div>
                         <div className="cp-right">
-                            <div className="cpr-a">{(available.length==0?'':'-￥')+(recommend.coupon_type==1?(((10-recommend.desc.discount)*storage.order.price/10.0)).toFixed(2):(recommend.desc.discount))}</div>
+                            <div className="cpr-a">{(available.length==0?'':'-￥')+(recommend.coupon_type==1?Math.min((((10-recommend.desc.discount)*storage.order.price/10.0)).toFixed(2),recommend.desc.max_discount):(recommend.desc.discount))}</div>
                             <div className="cpr-b">
                             </div>
                         </div>
@@ -259,7 +259,7 @@ class OrderGenerate extends Component {
                     </div>
                 ):(
                     <div className="tail">
-                        <div className="tail-a">订单金额:<span className="tail-highlight">￥{available.length==0?storage.order.price:(storage.order.price-(recommend.coupon_type==1?this.twoFloat((10-recommend.desc.discount)*storage.order.price/10.0):(recommend.desc.discount)))}</span></div>
+                        <div className="tail-a">订单金额:<span className="tail-highlight">￥{available.length==0?storage.order.price:(storage.order.price-(recommend.coupon_type==1?Math.min(((10-recommend.desc.discount)*storage.order.price/10.0).toFixed(2),recommend.desc.max_discount):(recommend.desc.discount)))}</span></div>
                         <button className="tail-b" onClick={this.handlePay}>提交订单</button>
                     </div>
                 )}

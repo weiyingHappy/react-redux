@@ -47,8 +47,14 @@ export default class CouponItem extends React.Component {
                                 所有酒店通用 {item.coupon_type==1?(',最高可抵扣'+item.desc.max_discount+'元'):''}
                             </div>
                         ):(
-                            <div className="citr-b">
-                                {item.team_name}适用
+                            <div>
+                                <div className="citr-b">
+                                    {item.team_name}适用
+                                </div>
+                                {item.coupon_type == 1 ?(
+                                    <div className="citr-b">
+                                        最高可抵扣 {item.desc.max_discount + '元'}
+                                    </div>):''}
                             </div>
                         )}
                     </div>
