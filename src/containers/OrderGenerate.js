@@ -233,7 +233,7 @@ class OrderGenerate extends Component {
                             </div>
                         </div>
                         <div className="cp-right">
-                            <div className="cpr-a">{(available.length==0?'':'-￥')+(recommend.coupon_type==1?this.twoFloat(((10-recommend.desc.discount)*storage.order.price/10.0)):(recommend.desc.discount))}</div>
+                            <div className="cpr-a">{(available.length==0?'':'-￥')+(recommend.coupon_type==1?(((10-recommend.desc.discount)*storage.order.price/10.0)).toFixed(2):(recommend.desc.discount))}</div>
                             <div className="cpr-b">
                             </div>
                         </div>

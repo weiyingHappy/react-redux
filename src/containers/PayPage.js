@@ -77,6 +77,10 @@ class PayPage extends Component {
             this.handleArrive();
         }
     }
+    twoFloat(val) {
+        return parseInt(val*100)/100.0
+    }
+
 
     render() {
         let {order} = this.props;
@@ -124,7 +128,7 @@ class PayPage extends Component {
                 </div>
                 <div className="we-pay-middle-bottom">
                     <div className="wpmb-a">
-                        订单金额: ￥{pay.price}-{pay.price-pay.pay_price}=￥{pay.pay_price}
+                        订单金额: ￥{pay.price}-{(parseFloat(pay.price)-parseFloat(pay.pay_price)).toFixed(2)}=￥{pay.pay_price}
                     </div>
                     <div className="wpmb-b">
                         <div className="price-head">
