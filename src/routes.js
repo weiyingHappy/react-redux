@@ -170,6 +170,11 @@ const Root = () => {
                         .then(loadRoute(cb))
                         .catch(errorLoading)
                 }} />
+                <Route path="/cmsfont/luggageOrderInfo" getComponent = {(location, cb) => {
+                    System.import('./containers/LuggageOrderInfo')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
                 <Route path="/cmsfont/error" getComponent = {(location, cb)=>{
                         System.import('./components/ErrorPage')
                             .then(loadRoute(cb))
