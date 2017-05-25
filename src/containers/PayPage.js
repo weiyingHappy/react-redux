@@ -126,7 +126,7 @@ class PayPage extends Component {
                             订单金额:
                         </div>
                         <div className="price-body">
-                            ￥{pay.price}
+                            ￥{pay.pay_price}
                         </div>
                     </div>
                 </div>

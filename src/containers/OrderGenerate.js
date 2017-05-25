@@ -134,7 +134,6 @@ class OrderGenerate extends Component {
             end: storage.to
         };
 
-        console.log(coupon)
         if (coupon.recommend) {
             info.coupon_id = coupon.recommend.id
         }
@@ -144,6 +143,7 @@ class OrderGenerate extends Component {
         }
 
         dispatch(fetchOrderSubmit(info)).then((res) => {
+            console.log('order generate', res)
             if (res.code == 200) {
                 dispatch(setPay({order_no: res.results.order_no}));
                 browserHistory.push('/cmsfont/payPage')
