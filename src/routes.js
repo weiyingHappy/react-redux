@@ -160,6 +160,11 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
+                <Route path="/cmsfont/chooseCoupon" getComponent = {(location, cb)=>{
+                        System.import('./containers/ChooseCoupon')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
                 <Route path="/cmsfont/luggage" getComponent = {(location, cb) => {
                     System.import('./containers/Luggage')
                         .then(loadRoute(cb))

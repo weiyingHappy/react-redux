@@ -10,6 +10,7 @@ import Loading from '../components/loading'
 import {fetchOrderNum, fetchOrderSubmit} from '../actions/storage'
 import {setPay} from '../actions/order'
 import {setUser} from '../actions/user'
+import {fetchCouponLists} from '../actions/coupon'
 
 import img_user from '../static/images/three/icon-5.png'
 import './orderGenerate.scss'
@@ -50,8 +51,13 @@ class OrderGenerate extends Component {
                 days: moment(to).diff(from, 'days'),
                 num: 1
             };
-
-            dispatch(fetchOrderNum(info));
+            let fetchOrderNumReq = fetchOrderNum(info)
+            dispatch(fetchOrderNumReq).then((data) => {
+                dispatch(fetchCouponLists({
+                    price: data.results,
+                    team_id: hotel.intro.id
+                }))
+            })
         }
 
     }
@@ -78,12 +84,33 @@ class OrderGenerate extends Component {
                 days: moment(to).diff(from, 'days'),
                 num: val
             };
-            dispatch(fetchOrderNum(info));
+            dispatch(fetchOrderNum(info)).then((data) => {
+                fetchCouponLists({
+                    price: data.results,
+                    team_id: hotel.intro.id
+                })
+            })
         }
     }
 
+    handleChooseCoupon () {
+        browserHistory.push('/cmsfont/chooseCoupon')
+    }
+
+    // 获取金额
+    convertPrice () {
+        const { available, choose } = this.props.coupon
+        const { order } = this.props.storage
+
+        return available.length == 0 ?
+            order.price :
+            order.price - (choose.coupon_type == 1 ?
+                Math.min(((10-choose.desc.discount) * order.price / 10.0).toFixed(2), choose.desc.max_discount):
+                parseFloat(choose.desc.discount))
+    }
+
     handlePay () {
-        let {dispatch, hotel, user, storage} = this.props, self = this;
+        let {dispatch, hotel, user, storage, coupon} = this.props, self = this;
         const room = hotel.lists[hotel.room_id];
 
         if (self.state.name=='' || self.state.phone=='') {
@@ -107,6 +134,15 @@ class OrderGenerate extends Component {
             end: storage.to
         };
 
+        console.log(coupon)
+        if (coupon.recommend) {
+            info.coupon_id = coupon.recommend.id
+        }
+
+        if (coupon.choose) {
+            info.coupon_id = coupon.choose.id            
+        }
+
         dispatch(fetchOrderSubmit(info)).then((res) => {
             if (res.code == 200) {
                 dispatch(setPay({order_no: res.results.order_no}));
@@ -119,7 +155,15 @@ class OrderGenerate extends Component {
     }
 
     render() {
-        let {storage, hotel, user} = this.props;
+        let {storage, hotel, user, coupon} = this.props;
+        let {recommend,disable,available,choose} = coupon;
+
+        let usagecoupon = recommend
+
+        if (choose) {
+            usagecoupon = choose
+        }
+        
         const room = hotel.lists[hotel.room_id];
         let from = moment(storage.from);
         let to = moment(storage.to);
@@ -182,6 +226,32 @@ class OrderGenerate extends Component {
                     </div>
                 </div>
 
+                <div className="coupon" onClick={this.handleChooseCoupon.bind(this)}>
+                    <div className="cp-left">
+                        <div className="cpl-a">
+                            <div className="cpla-a">优惠券</div>
+                            <div className="cpla-b">{available.length}张可用</div>
+                        </div>
+                        <div className="cpl-b">
+                            {available.length==0?'暂无可用优惠券':usagecoupon.coupon_type==0?(usagecoupon.desc.discount+'元优惠券'):
+                            usagecoupon.coupon_type==1?(usagecoupon.desc.discount+'折券'):('满'+usagecoupon.desc.limit+'减'+usagecoupon.desc.discount+'券')}
+                        </div>
+                    </div>
+                    <div className="cp-right">
+                        <div className="cpr-a">
+                            {
+                                (available.length==0?'':'-￥')
+                                +
+                                (usagecoupon.coupon_type==1?
+                                    Math.min(((10-usagecoupon.desc.discount)*storage.order.price/10.0).toFixed(2),usagecoupon.desc.max_discount):
+                                    (usagecoupon.desc.discount?usagecoupon.desc.discount:''))
+                            }
+                        </div>
+                        <div className="cpr-b">
+                        </div>
+                    </div>
+                </div>
+
                 <div className="bottom">
                     <div className="bottom-a">
                         温馨提示:
@@ -201,7 +271,7 @@ class OrderGenerate extends Component {
                     </div>
                 ):(
                     <div className="tail">
-                        <div className="tail-a">订单金额:<span className="tail-highlight">￥{storage.order.price}</span></div>
+                        <div className="tail-a">订单金额:<span className="tail-highlight">￥{this.convertPrice()}</span></div>
                         <button className="tail-b" onClick={this.handlePay}>提交订单</button>
                     </div>
                 )}
@@ -231,7 +301,8 @@ function select(state) {
     return {
         storage: state.storage,
         hotel: state.hotel,
-        user: state.user
+        user: state.user,
+        coupon: state.coupon
     }
 }
 

@@ -17,6 +17,7 @@ export const SET_DATE_PICKER = 'SET_DATE_PICKER';
 export const SET_JS_SDK = 'SET_JS_SDK';
 export const SET_STORAGE = 'SET_STORAGE';
 
+export const UPDATE_ORDER_PRICE = 'UPDATE_ORDER_PRICE'
 
 
 export function setDate(info) {
@@ -137,14 +138,7 @@ export function fetchOrderSubmit(order) {
         dispatch(setOrderChange({submitting: true}));
         let options = {
             method: 'POST',
-            body: {
-                room_id: order.room_id,
-                num: order.num,
-                user_name: order.user_name,
-                phone: order.phone,
-                start: order.start,
-                end: order.end
-            }
+            body: order
         };
         let dt = request(config.remote_host+config.remote_path.orderAdd, options, true);
 
@@ -170,6 +164,12 @@ export function fetchOrderNum(info) {
     }
 }
 
+export function updateOrderPrice(payload) {
+    return {
+        type: UPDATE_ORDER_PRICE,
+        payload
+    }
+}
 
 export function requestComments(info) {
     return {

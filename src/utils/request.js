@@ -14,7 +14,7 @@ export default function request(url, options, needToken=false) {
         options.credentials = 'include';
     }
     let sessionToken = (config.mid==config.development?config.admin_token:getCookie('Session-Token'));
-
+    console.log(sessionToken)
     var myHeaders = new Headers({
         "Content-Type": "application/json"
     });
