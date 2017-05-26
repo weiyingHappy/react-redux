@@ -17,6 +17,12 @@
     @include flex(column, nowrap, space-between, center);
     color: #fff;
   }
+  .mb-sp {
+    margin-left: 11px;
+    box-sizing: border-box;
+    border: none;
+    border-top: 1px solid #DCDCDC;
+  }
   .tb-a {
     height: 85px;
     width: 85px;

@@ -1,9 +1,11 @@
 import React from 'react'
 import moment from 'moment'
+import { browserHistory } from 'react-router'
 
-import './index.css'
+import {getCookie} from '../../components/Common'
+import './index.scss'
 
-class CouponItem extends React.Component {
+export default class CouponItem extends React.Component {
     constructor (props) {
         super(props);
 
@@ -59,19 +61,9 @@ class CouponItem extends React.Component {
                 </div>
                 <div className="ci-bottom">
                     <div className="cib-a">{item.end} 前有效</div>
-                    {
-                        item.type==0?(
-                            <div className="cib-b" style={{display: ((type=='choose-a'||type=='choose-b')?'none':'block')}} onClick={()=>{window.location.href='room_finder'}}>去使用 &gt;</div>
-                        ):(
-                            <div className="cib-b" style={{display: ((type=='choose-a'||type=='choose-b')?'none':'block')}} onClick={()=>{!this.expired(item.end)?(window.location.href='hotel?id='+item.team_id):''}}>去使用 &gt;</div>
-                        )
-                    }
+                    <div className="cib-b" onClick={()=>{browserHistory.push('/cmsfont/rooms/'+(getCookie('wechatToken', ''))+"?code="+(getCookie('wechatCode','')))}}>去使用 &gt;</div>
                 </div>
             </div>
         )
     }
 }
-
-
-module.exports = CouponItem;
-

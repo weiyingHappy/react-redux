@@ -195,6 +195,21 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
+                <Route path="/cmsfont/coupon" getComponent = {(location, cb)=>{
+                        System.import('./containers/Coupon')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
+                <Route path="/cmsfont/chooseCoupon" getComponent = {(location, cb)=>{
+                        System.import('./containers/ChooseCoupon')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
+                <Route path="/cmsfont/exchangeCoupon" getComponent = {(location, cb)=>{
+                        System.import('./containers/ExchangeCoupon')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
 
 
                 <Route path="*" getComponent = {(location, cb)=>{

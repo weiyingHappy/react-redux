@@ -1,36 +1,55 @@
-import {REQUEST_COUPON_LISTS, RECEIVE_COUPON_LISTS, CHOOSE_COUPON} from '../actions/coupon'
+import {REQUEST_MY_COUPON, RECEIVE_MY_COUPON, SET_COUPON, RECEIVE_USAGE_COUPON, CHANGE_COUPON, SET_NOT_CHOOSED} from '../actions/coupon'
 
 let coupon_state = {
-    isFetch: false,
-    available: [],
-    disable: [],
-    recommend: {
-        desc: {},
-        coupon_type: 0
+    isFetching: true,
+    my: {
+        totalPage: 0,
+        nowPage: 0,
+        lists: [],
+        loading: true
     },
-    choose: undefined
-}
+    use: {
+        available: [],
+        disable: [],
+        recommend: {
+        },
+        loading: true,
+        choosed: false
+    }
+};
 
-export default function coupon(state=coupon_state, action) {
-    switch (action.type) {
-        case RECEIVE_COUPON_LISTS:
-            let {available, disable, recommend} = action.payload.data
-            if (!action.payload.data.recommend) {
-                action.payload.data.recommend = {
-                    desc: {},
-                    coupon_type: 0
-                }
-            }
-            return {
-                ...state,
-                ...action.payload.data
-            }
-        case CHOOSE_COUPON:
-            return {
-                ...state,
-                choose: action.payload
-            }
+function combineState(ori, now) {
+    return Object.assign({}, ori, now);
+}
+function setCon(ori, now) {
+    if (now.nowPage!=1 && ori.nowPage+1 != now.nowPage) {
+        return ori;
+    }
+    console.log("ori: ", ori);
+
+    let ret = Object.assign({}, ori, {});
+    ret.nowPage = now.nowPage;
+    ret.totalPage = now.totalPage;
+    ret.loading = false;
+    ret.lists = (now.nowPage==1?now.lists:[...ret.lists,...now.lists]);
+    console.log("reducer ret: ", ret);
+    return ret;
+}
+export default function user(state=coupon_state, action) {
+    switch(action.type) {
+        case REQUEST_MY_COUPON:
+            return combineState(state, {my: combineState(state.my, {loading: true})});
+        case RECEIVE_MY_COUPON:
+            return combineState(state, {my: setCon(state.my, action.data), isFetching: false});
+        case SET_COUPON:
+            return combineState(state, action.info);
+        case RECEIVE_USAGE_COUPON:
+            return combineState(state, {use: combineState(action.data,{loading:false, choosed:false}), isFetching: false});
+        case CHANGE_COUPON:
+            return combineState(state, {use: combineState(state.use, {recommend:state.use.available[action.info.id], choosed: true})});
+        case SET_NOT_CHOOSED:
+            return combineState(state, {use: combineState(state.use, {choosed:false})});
         default:
-            return state
+            return state;
     }
 }

@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import CouponItem from '../components/coupon-item'
-import './chooseCoupon.scss'
-
-import noneimg from '../static/images/five/icon-18.png'
-import chooseImg1 from '../static/images/five/icon-19.png'
-import chooseImg2 from '../static/images/five/icon-20.png'
-import { chooseCoupon } from '../actions/coupon'
-import { updateOrderPrice } from '../actions/storage'
 import { browserHistory } from 'react-router'
+import CouponItem from '../components/coupon-item'
+import Loading from '../components/loading'
+import LoadMore from '../components/load-more'
+import i16 from '../static/images/three/icon-16.png'
+import i17 from '../static/images/three/icon-17.png'
+import i18 from '../static/images/three/icon-18.png'
+
+import {changeCoupon} from '../actions/coupon'
+
+import './chooseCoupon.scss'
 
 const Zanwu = ({desc}) => {
     return (
@@ -22,19 +24,19 @@ Zanwu.propTypes = {
     desc: React.PropTypes.string.isRequired
 };
 
-class ChooseCoupon extends React.Component {
+class ChooseCoupon extends Component {
+
     constructor (props) {
         super(props);
-        this.aClick = this.aClick.bind(this);
-
+        this.changeCoupon = this.changeCoupon.bind(this);
         this.state = {
             tab: 0,
             isChoosing: 0
-        };
+        }
     }
 
     componentWillMount() {
-        let {recommend,disable,available} = this.props.coupon;
+        let {recommend,disable,available} = this.props.coupon.use;
         let id = -1, self = this;
         available.map((item) => {
             id += 1;
@@ -49,24 +51,23 @@ class ChooseCoupon extends React.Component {
     aClick(id) {
         let self = this;
         return () => {
-            console.log('click ',id);
             self.setState({
                 isChoosing: id
             })
         }
     }
-
-    handleChoose () {
-        const { dispatch } = this.props
-
-        dispatch(chooseCoupon(this.props.coupon.available[this.state.isChoosing]))
-
-        browserHistory.push('/cmsfont/orderGenerate')
+    changeCoupon() {
+        let {dispatch} = this.props, self = this;
+        dispatch(changeCoupon({
+            id: self.state.isChoosing
+        }));
+        browserHistory.push("/cmsfont/orderGenerate");
     }
 
+    render() {
+        let {coupon} = this.props;
+        let {available,disable,recommend} = coupon.use;
 
-    render () {
-        let {recommend,disable,available} = this.props.coupon;
         let {tab} = this.state;
         let a_id = -1;
         let a_lists = available.map((item) => {
@@ -74,7 +75,7 @@ class ChooseCoupon extends React.Component {
             return (
                 <div className="ci-container" key={item.id} onClick={this.aClick(a_id)}>
                     <CouponItem item={item} type="choose-a"/>
-                    <img style={{display: (a_id==this.state.isChoosing?'block':'none')}} className="ci-choosing" src={item.type==0?chooseImg1:chooseImg2}></img>
+                    <img style={{display: (a_id==this.state.isChoosing?'block':'none')}} className="ci-choosing" src={(item.type==0?i16:i17)}></img>
                 </div>
             )
         });
@@ -84,9 +85,8 @@ class ChooseCoupon extends React.Component {
             )
         });
 
-
         return (
-            <div className="choose-coupon">
+            <div className="choose-coupon-container">
                 <div className="cc-top">
                     <div className="cct-a" style={{color: (tab==0?'#FF5000':'#333333'), borderBottom: (tab==0?'2px solid #FF5000':'none')}} onClick={()=>{this.setState({tab:0})}}>
                         可用优惠券({available.length})
@@ -97,7 +97,7 @@ class ChooseCoupon extends React.Component {
                 </div>
                 <div className="cc-middle">
                     <div className="cc-b">
-                        <div className="ccb-left">
+                        <div className="ccb-left" onClick={()=>{browserHistory.push("/cmsfont/exchangeCoupon")}}>
                             去兑换 >
                         </div>
                         <div className="ccb-right">
@@ -119,16 +119,15 @@ class ChooseCoupon extends React.Component {
                     {tab==0?(
                         <div className="cc-bottom">
                             {available.length!=0?(
-                                <button className="ccb-a" onClick={this.handleChoose.bind(this)}>
+                                <button className="ccb-a" onClick={this.changeCoupon}>
                                     确定
                                 </button>):''}
                             <div className="ccb-b">
-                                {/*没有更多优惠券，参与活动<span className="ccbb-a">获得优惠券 ></span>*/}
+                                没有更多优惠券{/*，参与活动<span className="ccbb-a">获得优惠券 ></span>*/}
                             </div>
                         </div>
                     ):''}
                 </div>
-
             </div>
         )
     }
@@ -136,9 +135,9 @@ class ChooseCoupon extends React.Component {
 
 function select(state) {
     return {
-        coupon: state.coupon,
-        storage: state.storage
+        coupon: state.coupon
     }
 }
 
+// 包装 component ，注入 dispatch 和 state 到其默认的 connect(select)(App) 中；
 export default connect(select)(ChooseCoupon)

@@ -238,3 +238,14 @@ export function fetchArrivePay(info) {
         return dt;
     }
 }
+
+
+export function fetchDaoFu(info) {
+    return (dispatch) => {
+        let dt = request(config.remote_host+config.remote_path.daofu+'/'+info.teamId, null, true);
+        dt.then((json) => {
+            console.log('daofu: ',json);
+        });
+        return dt;
+    }
+}

@@ -31,7 +31,10 @@ module.exports = {
         isUliveMember: '/CMS/CmsBasic/isUliveMember',
         roomPrice: '/FE/Room/roomPrice',
         getTime: '/FE/UserBasic/getSysConfig',
+        activityInfo: '/FE/Activity/activityInfo',
+        myCoupon: '/FE/Coupon/my',
         usageCoupon: '/FE/Coupon/usageCoupon',
-        activityInfo: '/FE/Activity/activityInfo'
+        exchangeCoupon: '/FE/Coupon/exchange',
+        daofu: '/CMS/CmsActivity/getCmsDaofuState'
     }
 };
