@@ -31,6 +31,7 @@ module.exports = {
         isUliveMember: '/CMS/CmsBasic/isUliveMember',
         roomPrice: '/FE/Room/roomPrice',
         getTime: '/FE/UserBasic/getSysConfig',
-        usageCoupon: '/FE/Coupon/usageCoupon'
+        usageCoupon: '/FE/Coupon/usageCoupon',
+        activityInfo: '/FE/Activity/activityInfo'
     }
 };

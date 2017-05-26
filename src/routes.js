@@ -170,6 +170,11 @@ const Root = () => {
                         .then(loadRoute(cb))
                         .catch(errorLoading)
                 }} />
+                <Route path="/cmsfont/template/:type/:id" getComponent = {(location, cb) => {
+                    System.import('./containers/Template')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
                 <Route path="/cmsfont/luggageOrders" getComponent = {(location, cb) => {
                     System.import('./containers/LuggageOrders')
                         .then(loadRoute(cb))
