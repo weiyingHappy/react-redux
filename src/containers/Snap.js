@@ -25,12 +25,11 @@ class Snap extends Component {
     componentWillMount() {
         let {snap, user, dispatch} = this.props;
 
-        alert('123')
-
         if (user.isLogin) {
             dispatch(fetchSnap(user.teamId||cookie.load('team_id')))
         } else {
             dispatch(fetchLogin({token: user.wechatToken})).then((res)=>{
+                alert(res.code)
                 if (res.code == 406) {
                     dispatch(setUser({register_back_url: '/cmsfont/snap'}));
                     browserHistory.push('/cmsfont/register');
