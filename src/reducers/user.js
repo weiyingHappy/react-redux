@@ -6,14 +6,14 @@ let user_state = {
     isFetching: false,
     isLoading: false,
 
-    teamId: null,
+    teamId: localStorage.teamId,
     appid: '',
     appsecret: '',
     nickname: '',
     phone: '',
     receivedAt: '',
     isLogin: false,
-    wechatToken: '', // 为酒店生成的token
+    wechatToken: localStorage.token, // 为酒店生成的token
     wechatCode: '', // 第一次进入带过来的code
     avatar: '',
     openid: '',
@@ -50,6 +50,7 @@ export default function user(state=user_state, action) {
         case REQUEST_LOGIN:
             return Object.assign({}, state, {isFetching: true, wechatToken: action.user.token, wechatCode: action.user.code});
         case RECEIVE_LOGIN:
+            localStorage.teamId = action.data.results.teamid // hack
             return Object.assign({}, state, {isFetching: false, teamId: action.data.results.teamid, isLogin: (action.data.code==200||config.mid==config.development),
                                             nickname: action.data.results.nickname||'', phone: action.data.results.phone||'', appid:action.data.results.appid,
                                             appsecret: action.data.results.appsecret, avatar: action.data.results.avatar, openid: action.data.results.openid});

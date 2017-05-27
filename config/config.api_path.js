@@ -19,7 +19,7 @@ module.exports = {
         orderPrice: '/FE/Order/calcuPrice',
         orderAdd: '/FE/Order/add',
         orderInfo: '/FE/Order/orderInfo',
-        getSnap: '/CMS/CmsActivity/activities',
+        getSnap: '/FE/Activity/activities',
         changeNickname: '/CMS/CmsBasic/changeNickname',
         myOrder: '/CMS/CmsBasic/myOrders',
         finishOrder: '/FE/Order/pay',

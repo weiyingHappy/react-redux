@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import {fetchSnap, setSrc} from '../actions/snap'
+import config from '../../config/config'
 
 import Loading from '../components/loading'
 import Tabber from '../components/tabber'
@@ -16,6 +17,7 @@ class Snap extends Component {
         super(props);
         this.handleSnapClick = this.handleSnapClick.bind(this);
         this.state = {
+            sessionToken: (config.mid==config.development?config.admin_token:getCookie('Session-Token'))
         }
     }
 
@@ -26,6 +28,8 @@ class Snap extends Component {
                 console.log('snap res: ', res);
             })
         }
+
+        console.log(getCookie('Session-Token'))
     }
 
     handleSnapClick(src) {
@@ -43,14 +47,25 @@ class Snap extends Component {
         let id = 0;
         let lists = snap.lists.map((item) => {
             id+=1;
-            return (
-                <div className="activity_item" key={id} onClick={this.handleSnapClick(item.href)}>
-                    <img src={item.cover} className="ai-img"/>
-                    <p>
-                        {item.title}
-                    </p>
-                </div>
-            )
+            if (item.type == 0) {
+                return (
+                    <div className="activity_item" key={id} onClick={this.handleSnapClick(config.api_host+'/activity/'+item.id+'?token='+this.state.sessionToken)}>
+                        <img src={item.desc.cover} className="ai-img"/>
+                        <p>
+                            {item.name}
+                        </p>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="activity_item" key={id} onClick={this.handleSnapClick(item.desc.url)}>
+                        <img src={item.desc.cover} className="ai-img"/>
+                        <p>
+                            {item.name}
+                        </p>
+                    </div>
+                )
+            }
         });
         return snap.loading?(
             <Loading text="加载中..." isFetching={snap.loading} />

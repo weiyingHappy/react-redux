@@ -28,8 +28,10 @@ class Rooms extends Component {
 
     componentWillMount() {
         let token = this.props.params.token;
-        
-        localStorage.token = token // 存入本地
+
+        if (token) {
+            localStorage.token = token // 存入本地
+        }
         
         let code = this.props.location.query.code;
         let self = this;
