@@ -23,6 +23,7 @@ class Snap extends Component {
 
     componentWillMount() {
         let {snap, user, dispatch} = this.props;
+        alert('test')
         if (!user.isLogin) {
             dispatch(setUser({register_back_url: '/cmsfont/snap'}));
             browserHistory.push('/cmsfont/register');
