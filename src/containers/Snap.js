@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router'
 import {fetchSnap, setSrc} from '../actions/snap'
 import config from '../../config/config'
 import {setUser} from '../actions/user'
-
+import {fetchLogin} from '../actions/user'
 import Loading from '../components/loading'
 import Tabber from '../components/tabber'
 import {getCookie} from '../components/Common'
@@ -24,18 +24,27 @@ class Snap extends Component {
 
     componentWillMount() {
         let {snap, user, dispatch} = this.props;
-        if (!user.isLogin) {
-            dispatch(setUser({register_back_url: '/cmsfont/snap'}));
-            browserHistory.push('/cmsfont/register');
-            return ;
+
+        if (user.isLogin) {
+            dispatch(fetchSnap(user.teamId||cookie.load('team_id'))).then((res)=>{
+                console.log('snap res: ', res);
+            })
         } else {
-            if (snap.loading) {
-                dispatch(fetchSnap(user.teamId||cookie.load('team_id'))).then((res)=>{
-                    console.log('snap res: ', res);
-                })
-            }
+            dispatch(fetchLogin({token: user.wechatToken})).then((res)=>{
+                if (res.code == 406) {
+                    dispatch(setUser({register_back_url: '/cmsfont/snap'}));
+                    browserHistory.push('/cmsfont/register');
+                }
+                else if (res.code!=200 && !config.debug) {
+                    browserHistory.push('/cmsfont/error');
+                }
+                else {
+                    dispatch(fetchSnap(user.teamId||cookie.load('team_id'))).then((res)=>{
+                        console.log('snap res: ', res);
+                    })
+                }
+            });
         }
-        
 
         console.log(getCookie('Session-Token'))
     }
