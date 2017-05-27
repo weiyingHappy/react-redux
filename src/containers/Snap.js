@@ -25,6 +25,8 @@ class Snap extends Component {
     componentWillMount() {
         let {snap, user, dispatch} = this.props;
 
+        alert('123')
+
         if (user.isLogin) {
             dispatch(fetchSnap(user.teamId||cookie.load('team_id')))
         } else {
