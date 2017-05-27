@@ -26,9 +26,7 @@ class Snap extends Component {
         let {snap, user, dispatch} = this.props;
 
         if (user.isLogin) {
-            dispatch(fetchSnap(user.teamId||cookie.load('team_id'))).then((res)=>{
-                console.log('snap res: ', res);
-            })
+            dispatch(fetchSnap(user.teamId||cookie.load('team_id')))
         } else {
             dispatch(fetchLogin({token: user.wechatToken})).then((res)=>{
                 if (res.code == 406) {
