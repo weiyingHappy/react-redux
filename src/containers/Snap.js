@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import {fetchSnap, setSrc} from '../actions/snap'
 import config from '../../config/config'
+import {setUser} from '../actions/user'
 
 import Loading from '../components/loading'
 import Tabber from '../components/tabber'
