@@ -10,7 +10,7 @@ import Loading from '../components/loading'
 import {fetchOrderNum, fetchOrderSubmit} from '../actions/storage'
 import {setPay} from '../actions/order'
 import {setUser} from '../actions/user'
-import {fetchUsageCoupon,setNotChoosed} from '../actions/coupon'
+import {fetchUsageCoupon,setNotChoosed,changeCoupon} from '../actions/coupon'
 
 import img_user from '../static/images/three/icon-5.png'
 import './orderGenerate.scss'
@@ -61,7 +61,29 @@ class OrderGenerate extends Component {
                         price: storage.order.price,
                         team_id: user.teamId
                     };
-                    dispatch(fetchUsageCoupon(info2));
+
+                    dispatch(fetchUsageCoupon(info2)).then((data) => {
+                        if (localStorage.useCoupon) {
+                            const couponid = localStorage.useCoupon
+                            localStorage.removeItem('useCoupon')
+                            let coupon_index = -1
+                            data.results.available.map((x, index) => {
+                                console.log('map coupon', x.id, couponid)
+                                if (x.id == couponid) {
+                                    coupon_index = index
+                                }
+                            })
+
+                            console.log(coupon_index)
+
+                            if (coupon_index != -1) {
+                                dispatch(changeCoupon({
+                                    id: coupon_index
+                                }))
+                            }
+                        }
+                    })
+                    
                 }
 
             });

@@ -47,7 +47,10 @@ class Coupon extends Component {
         }
     }
 
-
+    handleClick = (coupon) => {
+        localStorage.useCoupon = coupon.id
+        browserHistory.push('/cmsfont/rooms/'+localStorage.token)
+    }
 
     render() {
         let {coupon} = this.props;
@@ -55,7 +58,9 @@ class Coupon extends Component {
 
         let lists = myCoupon.map((item) => {
             return (
-                <CouponItem item={item} key={item.id}/>
+                <div onClick={()=>{this.handleClick(item)}} key={item.id}>
+                    <CouponItem item={item}/>
+                </div>
             )
         });
 
