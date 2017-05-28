@@ -256,9 +256,9 @@ class OrderGenerate extends Component {
                                 onChange={(e)=>{this.setState({phone:e.target.value})}}/>
                             </div>
                         </div>
-                        <div className="mbc-right">
+                        {/*<div className="mbc-right">
                             <img className="mbcr-img" src={img_user} />
-                        </div>
+                        </div>*/}
                     </div>
                 </div>
                 {coupon.use.loading?(
