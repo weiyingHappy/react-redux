@@ -50,11 +50,15 @@ class ChooseCoupon extends Component {
 
     aClick(id) {
         let self = this;
+        let {dispatch} = this.props
         return () => {
             self.setState({
                 isChoosing: id
             })
-            self.changeCoupon()
+            dispatch(changeCoupon({
+                id: id
+            }));
+            browserHistory.push("/cmsfont/orderGenerate");
         }
     }
     changeCoupon() {
