@@ -14,6 +14,8 @@ export const RECEIVE_CHANGE_NICKNAME = 'RECEIVE_CHANGE_NICKNAME';
 export const SET_USER = 'SET_USER';
 export const RECEIVE_ACCUMULATE_MY = 'RECEIVE_ACCUMULATE_MY';
 
+export const SET_COUPON_TOTAL = 'SET_COUPON_TOTAL'
+
 export function fetchQrCode(info) {
     return (dispatch) => {
         let options = {
@@ -52,6 +54,23 @@ export function fetchIsUliveMember(info) {
             }
         });
         return dt;
+    }
+}
+
+export function getCouponTotal () {
+    return (dispatch) => {
+        let options = {
+            method: 'GET'
+        };
+        let dt = request(config.remote_host+config.remote_path.coupon_total, options, true);
+        dt.then((json) => {
+            if (json.code == 200) {
+                dispatch({
+                    type: SET_COUPON_TOTAL,
+                    payload: json.results
+                })
+            }
+        })
     }
 }
 

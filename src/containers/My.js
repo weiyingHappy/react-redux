@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
-import {fetchAccumulateTotal} from '../actions/user'
+import {fetchAccumulateTotal, getCouponTotal} from '../actions/user'
 import {setUser} from '../actions/user'
 
 import Tabber from '../components/tabber'
@@ -33,6 +33,8 @@ class My extends Component {
             dispatch(fetchAccumulateTotal()).then((json)=>{
                 console.log(json);
             })
+
+            dispatch(getCouponTotal())
         }
 
     }
@@ -58,6 +60,7 @@ class My extends Component {
         }, {
             icon: img_coupon,
             title: '我的优惠券',
+            num: user.coupon_total+'张',
             url: '/cmsfont/coupon'
         }];
 

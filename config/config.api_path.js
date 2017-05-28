@@ -27,6 +27,7 @@ module.exports = {
         orderCancel: '/FE/Order/cancel',
         addComment: '/FE/Evaluation/add',
         accumulate_total: '/FE/UserCenter/getMyPoint',
+        coupon_total: '/FE/UserCenter/myCouponCount',
         accumulate_my: '/FE/UserCenter/getPointLogs',
         isUliveMember: '/CMS/CmsBasic/isUliveMember',
         roomPrice: '/FE/Room/roomPrice',

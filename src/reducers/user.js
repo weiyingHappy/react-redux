@@ -1,4 +1,4 @@
-import { REQUEST_LOGIN, RECEIVE_LOGIN, REQUEST_INDEX_IMG, RECEIVE_INDEX_IMG, REQUEST_CHANGE_NICKNAME, RECEIVE_CHANGE_NICKNAME, SET_USER, RECEIVE_ACCUMULATE_MY } from '../actions/user'
+import { REQUEST_LOGIN, RECEIVE_LOGIN, REQUEST_INDEX_IMG, RECEIVE_INDEX_IMG, REQUEST_CHANGE_NICKNAME, RECEIVE_CHANGE_NICKNAME, SET_USER, RECEIVE_ACCUMULATE_MY, SET_COUPON_TOTAL } from '../actions/user'
 let defaultImgs = 'http://7xo285.com1.z0.glb.clouddn.com/FnN1Op_4yKDlY00C1pl_FjFIwnkx';
 import config from '../../config/config'
 
@@ -22,6 +22,7 @@ let user_state = {
 
     accumulate_loading: false,
     accumulate_total: 0,
+    coupon_total: 0,
     accumulate_my: {
         lists: [],
         nowPage: 0,
@@ -63,7 +64,11 @@ export default function user(state=user_state, action) {
             return Object.assign({}, state, {isLoading: true});
         case RECEIVE_CHANGE_NICKNAME:
             return Object.assign({}, state, {isLoading: false, nickname: (action.json.code==200?action.json.nickname:state.nickname)});
-
+        case SET_COUPON_TOTAL:
+            return {
+                ...state,
+                coupon_total: action.payload
+            }
         case RECEIVE_ACCUMULATE_MY:
             return receive_lists(state, action.info);
         default:

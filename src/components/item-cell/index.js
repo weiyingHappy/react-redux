@@ -24,6 +24,11 @@ class ItemCell extends React.Component {
                     <img className="ica-a" src={this.props.icon} />
                     <div className="ica-b">
                         {this.props.title}
+                        {
+                            this.props.num?
+                            <span style={{color: 'red'}}>({this.props.num})</span>:
+                            ''
+                        }
                     </div>
                 </div>
                 <div className="ic-b"></div>

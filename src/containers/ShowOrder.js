@@ -47,7 +47,8 @@ class ShowOrder extends Component {
                 });
             },
             fail: (err) => {
-                alert(JSON.stringify(err));
+                // alert(JSON.stringify(err));
+                alert('获取地图失败')
                 self.setState({
                     map_loading: false
                 });

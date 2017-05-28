@@ -54,6 +54,7 @@ class ChooseCoupon extends Component {
             self.setState({
                 isChoosing: id
             })
+            self.changeCoupon()
         }
     }
     changeCoupon() {
