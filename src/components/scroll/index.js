@@ -7,7 +7,7 @@ class Scroll extends Component {
     render() {
         let img_lists = this.props.img_lists.map((item)=>{
             return {
-                original: item+'?imageslim'
+                original: item+'?imageView2/5/w/375/h/200'
             }
         });
 

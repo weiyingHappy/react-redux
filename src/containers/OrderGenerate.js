@@ -273,12 +273,39 @@ class OrderGenerate extends Component {
                                 <div className="cpla-b">{available.length}张可用</div>
                             </div>
                             <div className="cpl-b">
-                                {available.length==0?'暂无可用优惠券':recommend.coupon_type==0?(recommend.desc.discount+'元优惠券'):
-                                    recommend.coupon_type==1?(recommend.desc.discount+'折券'):('满'+recommend.desc.limit+'减'+recommend.desc.discount+'券')}
+                                {
+                                    available.length==0?
+                                        '暂无可用优惠券':
+                                        recommend.coupon_type==0?
+                                            (recommend.desc.discount+'元优惠券'):
+                                            recommend.coupon_type==1?
+                                                (recommend.desc.discount+'折券'):
+                                                ('满'+recommend.desc.limit+'减'+recommend.desc.discount+'券')
+                                }
                             </div>
                         </div>
                         <div className="cp-right">
-                            <div className="cpr-a">{(available.length==0?'':'-￥')+(recommend.coupon_type==1?Math.min((((10-recommend.desc.discount)*storage.order.price/10.0)).toFixed(2),recommend.desc.max_discount):(recommend.desc.discount))}</div>
+                            <div className="cpr-a">
+                                {
+                                    (available.length==0?'':'-￥')
+                                    +
+                                    (
+                                    recommend.coupon_type?
+                                        recommend.coupon_type==1?
+                                        Math.min(
+                                            (
+                                                (
+                                                    (10-recommend.desc.discount)*storage.order.price/10.0
+                                                )
+                                            ).toFixed(2),
+                                            recommend.desc.max_discount
+                                        ):
+                                        (recommend.desc.discount)
+                                    :
+                                    ''
+                                    )
+                                }
+                            </div>
                             <div className="cpr-b">
                             </div>
                         </div>

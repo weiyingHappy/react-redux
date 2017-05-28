@@ -68,11 +68,17 @@ class OrderPiece extends React.Component {
                 </div>
             )
         });
-        return (
-            <div className="order-piece">
-                {dis}
-            </div>
-        )
+        if (dis.length>0) {
+            return (
+                <div className="order-piece">
+                    {dis}
+                </div>
+            )
+        } else {
+            return (
+                <p className="nohave">暂无订单</p>
+            )
+        }
     }
 }
 

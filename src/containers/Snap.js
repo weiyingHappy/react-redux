@@ -65,7 +65,7 @@ class Snap extends Component {
             if (item.type == 0) {
                 return (
                     <div className="activity_item" key={id} onClick={this.handleSnapClick(config.api_host+'/activity/'+item.id+'?token='+this.state.sessionToken)}>
-                        <img src={item.desc.cover} className="ai-img"/>
+                        <img src={item.desc.cover+'?imageView2/5/w/200/h/120'} className="ai-img"/>
                         <p>
                             {item.name}
                         </p>
@@ -74,7 +74,7 @@ class Snap extends Component {
             } else {
                 return (
                     <div className="activity_item" key={id} onClick={this.handleSnapClick(item.desc.url)}>
-                        <img src={item.desc.cover} className="ai-img"/>
+                        <img src={item.desc.cover+'?imageView2/5/w/200/h/120'} className="ai-img"/>
                         <p>
                             {item.name}
                         </p>
@@ -86,7 +86,11 @@ class Snap extends Component {
             <Loading text="加载中..." isFetching={snap.loading} />
         ):(
             <div className="snap-container">
-                {lists}
+                {
+                    lists.length>0?
+                        lists:
+                        <p className="nohave">没有活动</p>
+                }
 
                 <div style={{height:'100px'}}></div>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>

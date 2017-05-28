@@ -154,8 +154,6 @@ class Rooms extends Component {
                         <div className="date-ins">{moment(to).diff(moment(from), 'days')}</div>
                         <div className="explain-text">晚</div>
                     </div>
-                    <div className="sign">
-                    </div>
                 </div>
 
                 {lists}

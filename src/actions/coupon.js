@@ -76,6 +76,9 @@ export function fetchUsageCoupon(info) {
 
         dt.then((json) => {
             if (json.code == 200) {
+                if (json.results.recommend == null) {
+                    json.results.recommend = {}
+                }
                 dispatch(receiveUsageCoupon(json.results));
                 console.log(json);
             }
