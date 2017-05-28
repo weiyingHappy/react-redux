@@ -48,7 +48,7 @@ class OrderPiece extends React.Component {
             return (
                 <div key={item.order_no} className="order-item">
                     <div className="item-header">
-                        {helper.readyPay(item.state)?'待支付':helper.hasPay(item.state)?
+                        {helper.readyPay(item.state)?'未支付':helper.hasPay(item.state)?
                             '已支付':helper.isFinish(item.state)?'已完成':helper.needRefund(item.state)?'申请退款':'已取消'}
                     </div>
                     <div className="item-body">

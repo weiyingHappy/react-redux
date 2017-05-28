@@ -74,7 +74,7 @@ class LuggageOrders extends React.Component {
 
         switch (state) {
             case 0:
-                text = '待支付'
+                text = '未支付'
                 className = "red_bg"
                 break
             case 1:
