@@ -31,7 +31,7 @@ class Tabber extends React.Component {
                             <img src={img_index} alt="" className="weui-tabbar__icon" />
                             <p className="weui-tabbar__label" style={{color: brr[0]}}>酒店介绍</p>
                         </Link>
-                        <Link to={"/cmsfont/rooms/"+(getCookie('wechatToken', ''))+"?code="+(getCookie('wechatCode',''))}className="weui-tabbar__item">
+                        <Link to={"/cmsfont/rooms/"+(getCookie('wechatToken', '')==null?localStorage.token:getCookie('wechatToken', ''))+"?code="+(getCookie('wechatCode',''))}className="weui-tabbar__item">
                             <img src={img_order} alt="" className="weui-tabbar__icon" />
                             <p className="weui-tabbar__label" style={{color: brr[1]}}>客房预订</p>
                         </Link>

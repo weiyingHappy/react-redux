@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
-import {fetchAccumulateTotal} from '../actions/user'
+import {fetchAccumulateTotal, getCouponTotal} from '../actions/user'
 import {setUser} from '../actions/user'
 
 import Tabber from '../components/tabber'
@@ -12,6 +12,7 @@ import ItemCell from '../components/item-cell'
 import img_order from '../static/images/three/icon-7.png'
 import img_setting from '../static/images/three/icon-8.png'
 import img_accumulate from '../static/images/three/icon-11.png'
+import img_coupon from '../static/images/three/icon-15.png'
 import {getCookie, changeTitle} from '../components/Common'
 
 class My extends Component {
@@ -32,6 +33,8 @@ class My extends Component {
             dispatch(fetchAccumulateTotal()).then((json)=>{
                 console.log(json);
             })
+
+            dispatch(getCouponTotal())
         }
 
     }
@@ -54,6 +57,11 @@ class My extends Component {
                 <div className="weui-loading"></div>
             ):user.accumulate_total}</span></div>),
             url: '/cmsfont/accumulate'
+        }, {
+            icon: img_coupon,
+            title: '我的优惠券',
+            num: user.coupon_total+'张',
+            url: '/cmsfont/coupon'
         }];
 
         return (
@@ -72,6 +80,8 @@ class My extends Component {
                 <div className="middle">
                     <div className="middle-a">
                         <ItemCell {...item_data[0]}/>
+                        <div className="mb-sp"></div>
+                        <ItemCell {...item_data[3]} />
                     </div>
 
                     <div className="middle-c">

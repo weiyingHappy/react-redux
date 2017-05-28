@@ -76,5 +76,12 @@
   .item-btn-group {
     @include flex(row, nowrap, flex-end, inherit);
   }
+
 }
+  .nohave {
+    text-align: center;
+    color: #5d5d5d;
+    font-size: 15px;
+    padding-top: 10px;
+  }
 

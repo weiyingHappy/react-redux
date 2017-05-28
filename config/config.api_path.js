@@ -19,7 +19,7 @@ module.exports = {
         orderPrice: '/FE/Order/calcuPrice',
         orderAdd: '/FE/Order/add',
         orderInfo: '/FE/Order/orderInfo',
-        getSnap: '/CMS/CmsActivity/activities',
+        getSnap: '/FE/Activity/activities',
         changeNickname: '/CMS/CmsBasic/changeNickname',
         myOrder: '/CMS/CmsBasic/myOrders',
         finishOrder: '/FE/Order/pay',
@@ -27,9 +27,15 @@ module.exports = {
         orderCancel: '/FE/Order/cancel',
         addComment: '/FE/Evaluation/add',
         accumulate_total: '/FE/UserCenter/getMyPoint',
+        coupon_total: '/FE/UserCenter/myCouponCount',
         accumulate_my: '/FE/UserCenter/getPointLogs',
         isUliveMember: '/CMS/CmsBasic/isUliveMember',
         roomPrice: '/FE/Room/roomPrice',
-        getTime: '/FE/UserBasic/getSysConfig'
+        getTime: '/FE/UserBasic/getSysConfig',
+        activityInfo: '/FE/Activity/activityInfo',
+        myCoupon: '/FE/Coupon/my',
+        usageCoupon: '/FE/Coupon/usageCoupon',
+        exchangeCoupon: '/FE/Coupon/exchange',
+        daofu: '/CMS/CmsActivity/getCmsDaofuState'
     }
 };

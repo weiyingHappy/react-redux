@@ -1,5 +1,5 @@
 import { REQUEST_INVENTORY, RECEIVE_INVENTORY, REQUEST_COMMENTS, RECEIVE_COMMENTS, SET_DATE, SET_DATE_PICKER,
-    REQUEST_ORDER_CHANGE, RECEIVE_ORDER_CHANGE, SET_JS_SDK, SET_STORAGE} from '../actions/storage'
+    REQUEST_ORDER_CHANGE, RECEIVE_ORDER_CHANGE, SET_JS_SDK, SET_STORAGE, UPDATE_ORDER_PRICE} from '../actions/storage'
 import config from '../../config/config'
 import moment from 'moment'
 
@@ -56,6 +56,14 @@ export default function user(state=storage_state, action) {
         case RECEIVE_ORDER_CHANGE:
             // return Object.assign({}, state, {order_loading: false, order_price: action.order_price});
             return Object.assign({}, state, {order: Object.assign(state.order,action.order)});
+        case UPDATE_ORDER_PRICE:
+            return {
+                ...state,
+                order: {
+                    ...state.order,
+                    price: action.payload
+                }
+            }
         case SET_STORAGE:
             return Object.assign({}, state, action.info);
 

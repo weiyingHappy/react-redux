@@ -1,5 +1,3 @@
-
-
 import thunkMiddleware from 'redux-thunk'
 import createLogger from 'redux-logger'
 import { Provider } from 'react-redux'
@@ -160,6 +158,31 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
+                <Route path="/cmsfont/chooseCoupon" getComponent = {(location, cb)=>{
+                        System.import('./containers/ChooseCoupon')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
+                <Route path="/cmsfont/luggage" getComponent = {(location, cb) => {
+                    System.import('./containers/Luggage')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
+                <Route path="/cmsfont/template/:type/:id" getComponent = {(location, cb) => {
+                    System.import('./containers/Template')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
+                <Route path="/cmsfont/luggageOrders" getComponent = {(location, cb) => {
+                    System.import('./containers/LuggageOrders')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
+                <Route path="/cmsfont/luggageOrderInfo" getComponent = {(location, cb) => {
+                    System.import('./containers/LuggageOrderInfo')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
                 <Route path="/cmsfont/error" getComponent = {(location, cb)=>{
                         System.import('./components/ErrorPage')
                             .then(loadRoute(cb))
@@ -167,6 +190,21 @@ const Root = () => {
                     } }/>
                 <Route path="/cmsfont/404" getComponent = {(location, cb)=>{
                         System.import('./components/NotFoundPage')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
+                <Route path="/cmsfont/coupon" getComponent = {(location, cb)=>{
+                        System.import('./containers/Coupon')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
+                <Route path="/cmsfont/chooseCoupon" getComponent = {(location, cb)=>{
+                        System.import('./containers/ChooseCoupon')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
+                <Route path="/cmsfont/exchangeCoupon" getComponent = {(location, cb)=>{
+                        System.import('./containers/ExchangeCoupon')
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>

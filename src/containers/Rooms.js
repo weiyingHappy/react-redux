@@ -28,6 +28,11 @@ class Rooms extends Component {
 
     componentWillMount() {
         let token = this.props.params.token;
+
+        if (token) {
+            localStorage.token = token // 存入本地
+        }
+        
         let code = this.props.location.query.code;
         let self = this;
         const {user, hotel, dispatch} = this.props;
@@ -148,8 +153,6 @@ class Rooms extends Component {
                         <div className="explain-text">共</div>
                         <div className="date-ins">{moment(to).diff(moment(from), 'days')}</div>
                         <div className="explain-text">晚</div>
-                    </div>
-                    <div className="sign">
                     </div>
                 </div>
 

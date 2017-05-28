@@ -9,7 +9,7 @@ import EquArea from '../components/equ-area'
 import Loading from '../components/loading'
 import {getCookie} from '../components/Common'
 
-import {fetchOrderInfo, fetchToPay, fetchArrivePay} from '../actions/order'
+import {fetchOrderInfo, fetchToPay, fetchArrivePay, fetchDaoFu} from '../actions/order'
 
 import './payPage.scss'
 import img_top from '../static/images/three/icon-6.png'
@@ -30,15 +30,28 @@ class PayPage extends Component {
         this.handleArrive = this.handleArrive.bind(this);
 
         this.state = {
-            pay_type: 1
+            pay_type: 1,
+            daofu: false
         }
     }
 
     componentWillMount() {
-        let {dispatch, order} = this.props;
+        let {dispatch, order, user} = this.props;
 
         dispatch(fetchOrderInfo(order.pay.order_no)).then((res)=>{
             console.log("order info res: ", res);
+        });
+        let self = this;
+        dispatch(fetchDaoFu({teamId: user.teamId})).then((res) => {
+            if (res.results == '0') {
+                self.setState({
+                    daofu: false
+                })
+            } else {
+                self.setState({
+                    daofu: true
+                })
+            }
         })
     }
 
@@ -77,6 +90,10 @@ class PayPage extends Component {
             this.handleArrive();
         }
     }
+    twoFloat(val) {
+        return parseInt(val*100)/100.0
+    }
+
 
     render() {
         let {order} = this.props;
@@ -121,12 +138,17 @@ class PayPage extends Component {
                             <EquArea lists={pay.room.equipments||[]}/>
                         </div>
                     </div>
-                    <div className="middle-bottom">
+                </div>
+                <div className="we-pay-middle-bottom">
+                    <div className="wpmb-a">
+                        订单金额: ￥{pay.price}-{(parseFloat(pay.price)-parseFloat(pay.pay_price)).toFixed(2)}=￥{pay.pay_price}
+                    </div>
+                    <div className="wpmb-b">
                         <div className="price-head">
-                            订单金额:
+                            支付金额:
                         </div>
                         <div className="price-body">
-                            ￥{pay.price}
+                            ￥{pay.pay_price}
                         </div>
                     </div>
                 </div>
@@ -145,7 +167,7 @@ class PayPage extends Component {
                         <img className="pi-right" src={this.state.pay_type==1?img_c:img_d}
                              onClick={()=>{this.setState({pay_type:1})}}/>
                     </div>
-                    <div className="pay-item" style={{borderBottom: '1px solid #DCDCDC'}}>
+                    <div className="pay-item" style={{borderBottom: '1px solid #DCDCDC', display: (this.state.daofu?'flex':'none')}}>
                         <div className="pi-left">
                             <img src={img_b} className="pay-icon"/>
                             <div>到店支付</div>

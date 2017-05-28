@@ -123,5 +123,32 @@
     margin-right: 13px;
   }
 
+  .we-pay-middle-bottom {
+    margin-top: 10px;
+    padding: 0 10px;
+    height: 59px;
+    background-color: #fff;
+    border-top: 1px solid #DCDCDC;
+    padding-top: 10px;
+    box-sizing: border-box;
+    @include flex(column, nowrap, center, flex-start);
+  }
+  .wpmb-a {
+    font-size: 12px;
+    color: #999999;
+  }
+  .wpmb-b {
+    @include flex(row, nowrap, flex-start, center);
+  }
+  .price-head {
+    font-size: 16px;
+    color: #666666;
+  }
+  .price-body {
+    font-size: 18px;
+    color: #FF4E00;
+    margin-left: 5px;
+  }
+
 }
 

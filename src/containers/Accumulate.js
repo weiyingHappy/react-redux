@@ -46,7 +46,11 @@ class Accumulate extends Component {
                 </div>
 
                 <div className="middle">
-                    {lists}
+                    {
+                        lists.length>0?
+                            lists:
+                            <p className="nohave">暂无积分记录</p>
+                    }
                 </div>
             </div>
         )

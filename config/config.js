@@ -1,4 +1,3 @@
-
 import pro_conf from './config.production'
 import dev_conf from './config.development'
 import test_conf from './config.test'
@@ -24,7 +23,7 @@ let config = {
     remote_host: now.remote_host,
     my_host: now.my_host,
 
-    admin_token: '202e916bde179e72f5bf3dec14458339',
+    admin_token: '8dc9771e8b0b3d9a47210524b0ad920b',
 
     ping_appid: now.ping_appid,
     pay_appid: now.pay_appid,
