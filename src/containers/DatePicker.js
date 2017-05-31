@@ -86,6 +86,7 @@ class DatePicker extends Component {
                             minDate={storage.datePicker==1?(this.state.yd?moment().subtract(1,'d'):moment()):moment(from).add(1,'d')}
                             maxDate={storage.datePicker==1?moment().add(3,'months').subtract(1,'d'):moment().add(3,'months')}
                             format="YYYY/MM/DD"
+                            lang='cn'
                         />
                     </div>
                 </div>

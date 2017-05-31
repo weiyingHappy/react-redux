@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import {fetchSnap, setSrc} from '../actions/snap'
-
+import config from '../../config/config'
+import {setUser} from '../actions/user'
+import {fetchLogin} from '../actions/user'
 import Loading from '../components/loading'
 import Tabber from '../components/tabber'
 import {getCookie} from '../components/Common'
@@ -16,16 +18,33 @@ class Snap extends Component {
         super(props);
         this.handleSnapClick = this.handleSnapClick.bind(this);
         this.state = {
+            sessionToken: (config.mid==config.development?config.admin_token:getCookie('Session-Token'))
         }
     }
 
     componentWillMount() {
         let {snap, user, dispatch} = this.props;
-        if (snap.loading) {
-            dispatch(fetchSnap(user.teamId||cookie.load('team_id'))).then((res)=>{
-                console.log('snap res: ', res);
-            })
+
+        if (user.isLogin) {
+            dispatch(fetchSnap(user.teamId||cookie.load('team_id')))
+        } else {
+            dispatch(fetchLogin({token: user.wechatToken})).then((res)=>{
+                if (res.code == 406) {
+                    dispatch(setUser({register_back_url: '/cmsfont/snap'}));
+                    browserHistory.push('/cmsfont/register');
+                }
+                else if (res.code!=200 && !config.debug) {
+                    browserHistory.push('/cmsfont/error');
+                }
+                else {
+                    dispatch(fetchSnap(user.teamId||cookie.load('team_id'))).then((res)=>{
+                        console.log('snap res: ', res);
+                    })
+                }
+            });
         }
+
+        console.log(getCookie('Session-Token'))
     }
 
     handleSnapClick(src) {
@@ -43,20 +62,35 @@ class Snap extends Component {
         let id = 0;
         let lists = snap.lists.map((item) => {
             id+=1;
-            return (
-                <div className="activity_item" key={id} onClick={this.handleSnapClick(item.href)}>
-                    <img src={item.cover} className="ai-img"/>
-                    <p>
-                        {item.title}
-                    </p>
-                </div>
-            )
+            if (item.type == 0) {
+                return (
+                    <div className="activity_item" key={id} onClick={this.handleSnapClick(config.api_host+'/activity/'+item.id+'?token='+this.state.sessionToken)}>
+                        <img src={item.desc.cover+'?imageView2/5/w/200/h/120'} className="ai-img"/>
+                        <p>
+                            {item.name}
+                        </p>
+                    </div>
+                )
+            } else {
+                return (
+                    <div className="activity_item" key={id} onClick={this.handleSnapClick(item.desc.url)}>
+                        <img src={item.desc.cover+'?imageView2/5/w/200/h/120'} className="ai-img"/>
+                        <p>
+                            {item.name}
+                        </p>
+                    </div>
+                )
+            }
         });
         return snap.loading?(
             <Loading text="加载中..." isFetching={snap.loading} />
         ):(
             <div className="snap-container">
-                {lists}
+                {
+                    lists.length>0?
+                        lists:
+                        <p className="nohave">没有活动</p>
+                }
 
                 <div style={{height:'100px'}}></div>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>

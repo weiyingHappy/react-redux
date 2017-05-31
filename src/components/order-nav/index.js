@@ -18,7 +18,7 @@ class OrderNav extends React.Component {
             <div className="order-nav">
                 <div className={"nav-cell nav-first"+(cat==STATE_ALL?" nav-cell-highlight":"")} onClick={changeCat(STATE_ALL)}>全部</div>
 
-                <div className={"nav-cell"+(cat==STATE_NO?" nav-cell-highlight":"")} onClick={changeCat(STATE_NO)}>待支付</div>
+                <div className={"nav-cell"+(cat==STATE_NO?" nav-cell-highlight":"")} onClick={changeCat(STATE_NO)}>未支付</div>
 
                 <div className={"nav-cell"+(cat==STATE_ALREADY?" nav-cell-highlight":"")} onClick={changeCat(STATE_ALREADY)}>已支付</div>
 

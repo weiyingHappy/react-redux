@@ -43,7 +43,7 @@
   }
   .tanchu {
     height: 300px!important;
-    z-index: 2000;
+    z-index: 2002;
     @include flex(column, nowrap, flex-start, center);
     width: 280px;
     background: transparent!important;
@@ -52,6 +52,7 @@
     height: 166px;
     width: 280px;
     z-index: 2001;
+    margin-bottom: -40px;
   }
   .tanchu-c {
     margin-top: -70px;
@@ -161,6 +162,27 @@
   .coupon-item-grey .cir-c {
     border: 1px solid #CCCCCC!important;
     color: #CCCCCC!important;
+  }
+  .close {
+    position: absolute;
+    z-index: 2002;
+    right: 15%;
+    top: 20%;
+    width: 50px;
+    height: 50px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    &:after {
+      content: '';
+      width: 2px;
+      height: 200px;
+      position: absolute;
+      right: 25px;
+      top: 50px;
+      background-color: #fff;
+    }
   }
 }
 

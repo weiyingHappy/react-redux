@@ -67,4 +67,3 @@ export default class CouponItem extends React.Component {
         )
     }
 }
-

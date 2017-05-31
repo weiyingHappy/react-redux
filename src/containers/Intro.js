@@ -43,7 +43,6 @@ class Intro extends Component {
             appid: user.appid,
             appsecret: user.appsecret
         };
-        console.log("000000000");
         if (storage.js_sdk.hasData) {
             jsSdkInit(storage.js_sdk, user.appid, config.my_host+'/intro');
         }
@@ -81,7 +80,8 @@ class Intro extends Component {
                 });
             },
             fail: (err) => {
-                alert(JSON.stringify(err));
+                // alert(JSON.stringify(err));
+                alert('获取地图失败')
                 self.setState({
                     map_loading: false
                 });

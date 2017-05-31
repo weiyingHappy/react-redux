@@ -17,6 +17,7 @@ export const SET_DATE_PICKER = 'SET_DATE_PICKER';
 export const SET_JS_SDK = 'SET_JS_SDK';
 export const SET_STORAGE = 'SET_STORAGE';
 
+export const UPDATE_ORDER_PRICE = 'UPDATE_ORDER_PRICE'
 
 
 export function setDate(info) {
@@ -174,6 +175,12 @@ export function fetchOrderNum(info) {
     }
 }
 
+export function updateOrderPrice(payload) {
+    return {
+        type: UPDATE_ORDER_PRICE,
+        payload
+    }
+}
 
 export function requestComments(info) {
     return {

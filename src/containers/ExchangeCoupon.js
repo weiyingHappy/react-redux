@@ -5,6 +5,7 @@ import Loading from '../components/loading'
 import LoadMore from '../components/load-more'
 import i19 from '../static/images/three/icon-19.png'
 import i20 from '../static/images/three/icon-20.png'
+import close from '../static/images/three/close.png'
 import {getCookie} from '../components/Common'
 import {exchangeCoupon} from '../actions/coupon'
 
@@ -16,7 +17,7 @@ const CouponItem = ({item,type}) => {
         <div className={"coupon-item-red "}>
             <div className="ci-left">
                 <div className="cil-a">{item.coupon_type==0?('无门槛'+item.desc.discount+'元优惠券'):item.coupon_type==1?('折扣券'):('满'+item.desc.limit+'减'+item.desc.discount+'券')}</div>
-                <div className="cil-b"></div>
+                <div className="cil-b"></div> 
                 <div className="cil-c">所有酒店通用, {item.coupon_type==1?('最多抵扣 '+item.desc.max_discount+' 元'):''}</div>
             </div>
             <div className="ci-right">
@@ -96,8 +97,11 @@ class ExchangeCoupon extends Component {
                 </div>
                 <div style={{display:this.state.tanchu_display}} className="tanchu-container">
                     <div className="weui-mask"></div>
+                    <div className="close">
+                        <img src={close} alt="" onClick={()=>{this.setState({tanchu_display:'none'})}}/>
+                    </div>
                     <div className="tanchu weui-dialog">
-                        <img src={i20} className="tanchu-a" onClick={()=>{this.setState({tanchu_display:'none'})}}/>
+                        <img src={i20} className="tanchu-a" />
                         <div className="tanchu-c">
                             <CouponItem item={this.state.coupon}/>
                         </div>

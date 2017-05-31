@@ -1,6 +1,5 @@
 import request from '../utils/request'
 import config from '../../config/config'
-
 export const REQUEST_MY_COUPON= 'REQUEST_MY_COUPON';
 export const RECEIVE_MY_COUPON = 'RECEIVE_MY_COUPON';
 export const RECEIVE_USAGE_COUPON = 'RECEIVE_USAGE_COUPON';
@@ -77,6 +76,9 @@ export function fetchUsageCoupon(info) {
 
         dt.then((json) => {
             if (json.code == 200) {
+                if (json.results.recommend == null) {
+                    json.results.recommend = {}
+                }
                 dispatch(receiveUsageCoupon(json.results));
                 console.log(json);
             }
@@ -117,48 +119,3 @@ export function exchangeCoupon(info) {
         return dt;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

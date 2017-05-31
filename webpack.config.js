@@ -58,5 +58,10 @@ module.exports =
             },
             sourceMap: false,
         })
-    ]
+    ],
+    resolve: {		
+        mainFiles: ["index.web","index"],// 这里哦
+        modules: [path.resolve(__dirname, "src"), "node_modules"],
+        extensions: ['.web.tsx', '.web.ts', '.web.jsx', '.web.js', '.ts', '.tsx', '.js', '.jsx', '.json'],
+    }
 };

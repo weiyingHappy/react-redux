@@ -12,11 +12,10 @@ import {changeCoupon} from '../actions/coupon'
 
 import './chooseCoupon.scss'
 
-
 const Zanwu = ({desc}) => {
     return (
         <div className="zanwu">
-            <img src={i18} className="zanwu-a"/>
+            <img src={noneimg} className="zanwu-a"/>
             <div className="zanwu-b">{desc}</div>
         </div>
     )
@@ -51,10 +50,15 @@ class ChooseCoupon extends Component {
 
     aClick(id) {
         let self = this;
+        let {dispatch} = this.props
         return () => {
             self.setState({
                 isChoosing: id
             })
+            dispatch(changeCoupon({
+                id: id
+            }));
+            browserHistory.push("/cmsfont/orderGenerate");
         }
     }
     changeCoupon() {
@@ -133,7 +137,6 @@ class ChooseCoupon extends Component {
         )
     }
 }
-
 
 function select(state) {
     return {

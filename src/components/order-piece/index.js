@@ -48,7 +48,7 @@ class OrderPiece extends React.Component {
             return (
                 <div key={item.order_no} className="order-item">
                     <div className="item-header">
-                        {helper.readyPay(item.state)?'待支付':helper.hasPay(item.state)?
+                        {helper.readyPay(item.state)?'未支付':helper.hasPay(item.state)?
                             '已支付':helper.isFinish(item.state)?'已完成':helper.needRefund(item.state)?'申请退款':'已取消'}
                     </div>
                     <div className="item-body">
@@ -68,11 +68,17 @@ class OrderPiece extends React.Component {
                 </div>
             )
         });
-        return (
-            <div className="order-piece">
-                {dis}
-            </div>
-        )
+        if (dis.length>0) {
+            return (
+                <div className="order-piece">
+                    {dis}
+                </div>
+            )
+        } else {
+            return (
+                <p className="nohave">暂无订单</p>
+            )
+        }
     }
 }
 
