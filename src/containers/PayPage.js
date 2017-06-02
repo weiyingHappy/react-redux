@@ -31,7 +31,8 @@ class PayPage extends Component {
 
         this.state = {
             pay_type: 1,
-            daofu: false
+            daofu: false,
+            onlydaofu: false
         }
     }
 
@@ -40,6 +41,12 @@ class PayPage extends Component {
 
         dispatch(fetchOrderInfo(order.pay.order_no)).then((res)=>{
             console.log("order info res: ", res);
+            if (res.results.hosting == 1) {
+                this.setState({
+                    onlydaofu: true,
+                    pay_type: 0
+                })
+            }
         });
         let self = this;
         dispatch(fetchDaoFu({teamId: user.teamId})).then((res) => {
@@ -159,7 +166,7 @@ class PayPage extends Component {
                     <div className="ba-a">
                         请选择支付方式
                     </div>
-                    <div className="pay-item">
+                    <div className="pay-item" style={{display: this.state.onlydaofu?'none':'flex'}}>
                         <div className="pi-left">
                             <img src={img_a} className="pay-icon"/>
                             <div>微信支付</div>
