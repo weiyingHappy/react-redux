@@ -54,5 +54,14 @@
     z-index: 50;
     height: 29px;
   }
-
+  .item-luggage {
+    img {
+      width: 20px;
+      vertical-align: middle;      
+    }
+    span {
+      vertical-align: sub;
+      color: #4969F1;
+    }
+  }
 }

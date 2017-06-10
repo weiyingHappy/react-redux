@@ -1,10 +1,11 @@
 import React from 'react'
 import './index.scss'
+import icon from '../../static/images/four/icon-2.png'
 
 class RoomPiece extends React.Component {
     constructor (props) {
         super(props);
-
+        console.log(props)
         this.state = {
 
         }
@@ -21,6 +22,15 @@ class RoomPiece extends React.Component {
                 <div className="info-area">
                     <div className="info-name-info">
                         <div className="info-name">{this.props.name}</div>
+                        {
+                            this.props.daofu == 1?
+                            <div className="item-luggage">
+                                <img src={icon} alt=""/>
+                                <span>到店支付</span>
+                            </div>
+                            :
+                            ''
+                        }
                         <div className="info-info">{this.props.info}</div>
                     </div>
                     <div className="info-score">
