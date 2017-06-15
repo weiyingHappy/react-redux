@@ -16,7 +16,7 @@ module.exports =
     output: {
         path : __dirname + '/dist',
         filename: '[name].[hash].js',
-        publicPath: '/cmsfont/',
+        publicPath: '/',
         chunkFilename:'[name].[hash].js'
     },
     module: {
