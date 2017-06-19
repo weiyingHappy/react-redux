@@ -4,46 +4,43 @@ import config from '../../config/config.js'
 import './Luggage.scss'
 import { Picker } from 'antd-mobile'
 import moment from 'moment'
+import { browserHistory } from 'react-router'
+import {
+    fetchOrdersForLuggage
+} from '../actions/luggage'
 import { Link } from 'react-router'
+import request from '../utils/request'
 
 class Luggage extends Component {
 
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.chooseStart = this.chooseStart.bind(this);
         this.chooseEnd = this.chooseEnd.bind(this);
         this.handleOkWuyouOrder = this.handleOkWuyouOrder.bind(this);
-        this.chooseWuyouOrder = this.chooseWuyouOrder.bind(this);
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            chooseWuyouOrder: false,
             number: 1,
-            isChoosing: 0,
+            isChoosing: props.isChoosing,
             modal_show: 'none',
             name: '',
             checked: true,
             phone: this.getCookie('phone')||'',
             start: {
                 time: undefined,
-                address: ''
+                address: props.selectOrder?props.selectOrder.team.address:''
             },
             end: {
                 time: undefined,
                 address: ''
             },
-            wuyouOrder: [],
+            wuyouOrder: props.wuyouOrder,
             islogin: (config.debug==true?'1':this.getCookie('islogin')),
             canedit: false, // 判断编辑状态
             selectStart: undefined,
             selectEnd: undefined,
         }
-    }
-    getQueryString(name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var r = decodeURI(window.location.search).substr(1).match(reg);
-        if (r != null) return unescape(r[2]);
-        return null;
     }
 
     getCookie(c_name)
@@ -68,6 +65,17 @@ class Luggage extends Component {
     }
 
     componentWillMount() {
+        const { dispatch } = this.props
+        dispatch(fetchOrdersForLuggage(1))
+            .then(() => {
+                const { wuyouOrder, isChoosing } = this.props
+                this.setState({
+                    wuyouOrder,
+                    isChoosing
+                })
+
+                this.initDefaultTime()
+            })
     }
 
     // 初始化地址和联系人
@@ -120,22 +128,7 @@ class Luggage extends Component {
     }
 
     chooseWuyouOrder() {
-        let self = this;
-        if (this.state.wuyouOrder.length ==0) {
-            location.href = 'room_finder'
-            return ;
-        }
-        this.setState({
-            chooseWuyouOrder: true
-        });
-
-        var stateObj = { luggage: "choose_wuyou_order" };
-        history.pushState(stateObj, "page 2", "choose_wuyou_order");
-        window.onpopstate = function(event) {
-            self.setState({
-                chooseWuyouOrder: false
-            })
-        };
+        browserHistory.push('/cmsfont/choose_wuyou_order')
     }
     handlePhoneChange(e) {
         let val = e.target.value;
@@ -299,18 +292,64 @@ class Luggage extends Component {
         if (!value) return undefined
         return [value.format('YYYY-MM-DD'), value.format('HH:mm')]
     }
+    
+    /**
+     * 支付
+     */
+    handleToPay() {
+        let self = this;
+        let {name, phone, wuyouOrder, isChoosing, start, end, number} = this.state;
+        if (name=='' || phone=='') {
+            alert("姓名或手机号不能为空");
+            return ;
+        }
+        let reg = /^1[34578]\d{9}$/;
+
+        if (!reg.test(phone)) {
+            alert("手机号不合法");
+
+            return ;
+        }
+
+        request(config.remote_host+'/FE/OrderExtra/addWuyouOrder', {
+            method: 'POST',
+            body: {
+                "order_no": wuyouOrder[isChoosing].order_no,
+                "start_time": moment(start.time).format('YYYY-MM-DD HH:mm:ss'),
+                "start_address": start.address,
+                "end_time": moment(end.time).format('YYYY-MM-DD HH:mm:ss'),
+                "end_address": end.address,
+                "num": number,
+                "user_name": name,
+                "phone": phone
+            }
+        }, true).then((data) => {
+            if (data.code === 200) {
+                let {inner_order} = data.results.inner_order
+                let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+config.pay_appid+'&redirect_uri='+config.ru+inner_order+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
+                window.location.href = url;
+            }
+        })
+
+    }
+
 
     render () {
         const startArr = this.getDateArr(moment().add(2, 'hour'))
         const endArr = this.getDateArr(moment(this.state.start.time).add(4, 'hour'))
+        const {selectOrder} = this.props
 
         return (
             <div className="container">
                 <div className="panel">
                     <div className="title">请您确认行李的酒店订单</div>
                     
-                    <div className="location">
-                        <div className="text">暂无可用酒店订单，请先预定酒店</div>
+                    <div className="location" onClick={
+                        () => {
+                            this.chooseWuyouOrder();
+                        }
+                    }>
+                        <div className="text">{selectOrder ? selectOrder.team_name : '暂无可用酒店订单，请先预定酒店'}</div>
                         <div className="navicon"><i className="iconfont icon-right"></i></div>
                     </div>
                     <div className="form">
@@ -408,15 +447,66 @@ class Luggage extends Component {
                                 39元/件 <span style={{textDecoration: 'line-through'}}>69元/件</span>
                             </div>
                         </div>
-                        <button className="subbtn-b">提交</button>
+                        <button className="subbtn-b" onClick={() => {
+                            this.handleSubmit()    
+                        }}>提交</button>
                     </div>
                     <div className="toOrder">
                         <Link to={'/cmsfont/luggageOrders'}>查看无忧订单></Link>
                     </div>
                 </div>
+
+                <div className="tanchu" style={{display:this.state.modal_show}}>
+                    <div className="weui-mask"></div>
+                    <div className="tanchu-body">
+                        <div className="tb-a">
+                            <div className="tb-label">联系人 : </div>
+                            <input className="tb-input" value={this.state.name} onChange={(e)=>{this.setState({name:e.target.value})}}></input>
+                        </div>
+                        <div className="tb-b">
+                            <div className="tb-label">联系电话 : </div>
+                            <input className="tb-input" type="tel" value={this.state.phone} onChange={this.handlePhoneChange}></input>
+                        </div>
+                        <div className="tb-c">
+                            <div className="tb-label">起点 : </div>
+                            <div className="tb-body">{this.state.start.address}</div>
+                        </div>
+                        <div className="tb-d">
+                            <div className="tb-label">终点 : </div>
+                            <div className="tb-body">{this.state.end.address}</div>
+                        </div>
+                        <div className="tb-e">
+                            <div className="tb-label">行李总数 : </div>
+                            <div className="tb-body">{this.state.number}</div>
+                        </div>
+                        <div className="tb-f">
+                            <div className="tb-label">费用 : </div>
+                            <div className="tb-body">{39*parseInt(this.state.number)}</div>
+                        </div>
+                        <div className="tb-g">
+                            <button className="tb-cancel" onClick={()=>{this.setState({modal_show: 'none'})}}>
+                                取消
+                            </button>
+                            <button className="tb-ok" onClick={() => {
+                                this.handleToPay()
+                            }}>
+                                确认并支付
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         )
     }
 }
 
-export default connect()(Luggage)
+function mapStateToProps(state) {
+    return {
+        selectOrder: state.luggage.useorders[state.luggage.chooseorder],
+        wuyouOrder: state.luggage.useorders, // ：(
+        isChoosing: state.luggage.chooseorder
+    }
+}
+
+export default connect(mapStateToProps)(Luggage)
