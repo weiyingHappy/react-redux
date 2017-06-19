@@ -10,7 +10,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html/* \
     && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 ADD . /var/www/html/
-
+RUN cp -r /var/www/html/dist/* /var/www/html/
 
 EXPOSE 80
 CMD ["apache2ctl", "-D", "FOREGROUND"]
