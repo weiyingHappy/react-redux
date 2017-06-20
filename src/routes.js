@@ -113,6 +113,11 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
+                <Route path="/cmsfont/paySuccess" getComponent = {(location, cb)=>{
+                        System.import('./containers/paySuccess')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
                 <Route path="/cmsfont/uniPay/:order_no" getComponent = {(location, cb)=>{
                         System.import('./containers/UniPay')
                             .then(loadRoute(cb))
@@ -168,6 +173,11 @@ const Root = () => {
                         .then(loadRoute(cb))
                         .catch(errorLoading)
                 }} />
+                <Route path="/cmsfont/choose_wuyou_order" getComponent = {(location, cb) => {
+                    System.import('./containers/ChooseOrderForLuggage')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
                 <Route path="/cmsfont/template/:type/:id" getComponent = {(location, cb) => {
                     System.import('./containers/Template')
                         .then(loadRoute(cb))
@@ -178,8 +188,23 @@ const Root = () => {
                         .then(loadRoute(cb))
                         .catch(errorLoading)
                 }} />
-                <Route path="/cmsfont/luggageOrderInfo" getComponent = {(location, cb) => {
+                <Route path="/cmsfont/luggageOrderInfo/:id" getComponent = {(location, cb) => {
                     System.import('./containers/LuggageOrderInfo')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
+                <Route path="/cmsfont/wallet" getComponent = {(location, cb) => {
+                    System.import('./containers/wallet')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
+                <Route path="/cmsfont/wallet_log" getComponent = {(location, cb) => {
+                    System.import('./containers/wallet_log')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
+                <Route path="/cmsfont/coupon_rule" getComponent = {(location, cb) => {
+                    System.import('./containers/Coupon_rule')
                         .then(loadRoute(cb))
                         .catch(errorLoading)
                 }} />

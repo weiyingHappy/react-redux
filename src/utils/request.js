@@ -28,6 +28,9 @@ export default function request(url, options, needToken=false) {
     //
     // console.log('options: ', options);
 
+    if (options.method === 'GET') {
+        return timeoutfetch(url, options)
+    }
 
     return fetch(url, options)
         .then(response => response.json())
@@ -38,4 +41,44 @@ export default function request(url, options, needToken=false) {
         .catch((e) => {
             console.log("catch error: ", e);
         });
+}
+
+function timeoutfetch(url, options) {
+    return new Promise((resolve, reject) => {
+        _fetch(fetch(url, options), 30000)
+            .then((response) => {
+                resolve(response.json())
+            })
+            .catch((error) => {
+                if (error === 'abort promise') {
+                    _fetch(fetch(url, options), 30000)
+                        .then((response) => {
+                            resolve(response.json())
+                        })
+                }
+            })
+    })
+}
+
+function _fetch(fetch_promise, timeout) {
+    var abort_fn = null;
+
+    //这是一个可以被reject的promise
+    var abort_promise = new Promise(function(resolve, reject) {
+        abort_fn = function() {
+            reject('abort promise');
+        };
+    });
+
+    //这里使用Promise.race，以最快 resolve 或 reject 的结果来传入后续绑定的回调
+    var abortable_promise = Promise.race([
+        fetch_promise,
+        abort_promise
+    ]);
+
+    setTimeout(function() {
+        abort_fn();
+    }, timeout);
+
+    return abortable_promise;
 }

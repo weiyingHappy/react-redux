@@ -9,6 +9,7 @@ import Loading from '../components/loading'
 import {getCookie, changeTitle} from '../components/Common'
 
 import {fetchOrderInfo, fetchToPay, fetchUniPayOpenid, fetchFinishOrder} from '../actions/order'
+import { fetchLuggageOrderInfo } from '../actions/luggage'
 
 import './uniPay.scss'
 
@@ -34,10 +35,12 @@ class UniPay extends Component {
             };
             dispatch(fetchFinishOrder(info)).then((json)=>{
                 if (json.code == 200 || json.code == 407) {
-                    alert("支付成功, 请关闭网页!");
+                    alert("支付成功!");
+                    browserHistory.replace('/cmsfont/paySuccess')
                 }
                 else {
-                    alert("支付成功--请关闭网页!");
+                    alert("支付成功!");
+                    browserHistory.replace('/cmsfont/paySuccess')                    
                 }
             });
         }
@@ -54,6 +57,41 @@ class UniPay extends Component {
             body: data.room.name,
             amount: parseInt(order.pay.pay_price*100),
             order_no: data.order_no,
+            channel: "wx_pub",
+            currency: "cny",
+            app: {id: config.ping_appid},
+            extra: {open_id: openid}
+        };
+
+        dispatch(fetchToPay(info)).then((charge)=>{
+            console.log("fetch to pay ret: ", charge);
+
+            pingpp.createPayment(charge, function(result, err){
+                console.log(result);
+                console.log(err.msg);
+                console.log(err.extra);
+                if (result == "success") {
+                    // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL
+                    // alert。
+                    alert('无忧行李支付成功')
+                    browserHistory.push('/cmsfont/luggage')
+                } else if (result == "fail") {
+                    // charge 不正确或者微信公众账号支付失败时会在此处返回
+                    alert("支付失败");
+                } else if (result == "cancel") {
+                    // 微信公众账号支付取消支付
+                }
+            });
+        })
+    }
+
+    handleToPayLuggage(openid, data) { // 无忧行李支付
+        let { dispatch } = this.props, self = this;
+        let info = {
+            subject: data.team.name,
+            body: '无忧行李订单' + data.inner_order,
+            amount: parseInt(data.pay_price*100),
+            order_no: data.inner_order,
             channel: "wx_pub",
             currency: "cny",
             app: {id: config.ping_appid},
@@ -90,10 +128,17 @@ class UniPay extends Component {
             code: code
         };
         dispatch(fetchUniPayOpenid(info_uni)).then((res)=>{
-            dispatch(fetchOrderInfo(order_no)).then((res_2)=>{
-                self.handleToPay(res.openid, res_2.results);
-                changeTitle(res_2.results.team_name);
-            })
+            if (/wuyou/.test(order_no)) {
+                dispatch(fetchLuggageOrderInfo(order_no)).then((res_2) => {
+                    self.handleToPayLuggage(res.openid, res_2.results);
+                    changeTitle('无忧行李');
+                })
+            } else {
+                dispatch(fetchOrderInfo(order_no)).then((res_2)=>{
+                    self.handleToPay(res.openid, res_2.results);
+                    changeTitle(res_2.results.team_name);
+                })
+            }
         });
         // self.handleOrderFinish('20170225132148799407913', '20170225132148799407913', 1);
     }

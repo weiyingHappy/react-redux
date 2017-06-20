@@ -8,6 +8,7 @@ import config from '../../config/config'
 import EquArea from '../components/equ-area'
 import Loading from '../components/loading'
 import {getCookie} from '../components/Common'
+import request from '../utils/request'
 
 import {fetchOrderInfo, fetchToPay, fetchArrivePay, fetchDaoFu} from '../actions/order'
 
@@ -18,6 +19,7 @@ import img_a from '../static/images/four/icon-1.png'
 import img_b from '../static/images/four/icon-2.png'
 import img_c from '../static/images/four/icon-3.png'
 import img_d from '../static/images/four/icon-4.png'
+import img_e from '../static/images/one/icon-4.png'
 
 
 class PayPage extends Component {
@@ -32,7 +34,10 @@ class PayPage extends Component {
         this.state = {
             pay_type: 1,
             daofu: false,
-            onlydaofu: false
+            onlydaofu: false,
+            fetch: false,
+            account: 0,
+            finish_loading: false
         }
     }
 
@@ -60,6 +65,24 @@ class PayPage extends Component {
                 })
             }
         })
+
+        /**
+         * 获取住金
+         */
+        this.setState({
+            fetch: true
+        })
+        request(config.remote_host + config.remote_path.myAccount, undefined, true)
+            .then((data) => {
+                this.setState({
+                    fetch: false
+                })
+                if (data.code === 200) {
+                    this.setState({
+                        account: data.results.account
+                    })
+                }
+            })
     }
 
     handlePay() {
@@ -88,10 +111,48 @@ class PayPage extends Component {
         });
     }
 
+    balancePay() {
+        let order = this.props.order.pay
+        if (!order) {
+            alert('订单错误')
+            return
+        }
+        this.setState({
+            finish_loading: true
+        })
+        request(config.remote_host + config.remote_path.finishOrder, {
+            method: 'POST',
+            body: {
+                order_no: order.order_no,
+                wx_order: 'youmi',
+                price: order.pay_price
+            }
+        }, true)
+            .then((data) => {
+                this.setState({
+                    finish_loading: false
+                })
+                if (data.code == 200) {
+                    alert("支付成功");
+                    // window.location = 'my_order?cat=1';
+                    browserHistory.replace('/cmsfont/paySuccess')
+                }
+                else if (data.code == 408) {
+                    alert("支付失败,可能住金点数不够");
+                }
+                else {
+                    alert("支付失败");
+                }
+            })
+    }
+
     handlePayClick() {
         console.log("click: "+this.state.pay_type);
         if (this.state.pay_type==1) {
             this.handlePay();
+        }
+        if (this.state.pay_type == 2) {
+            this.balancePay()
         }
         else {
             this.handleArrive();
@@ -161,10 +222,26 @@ class PayPage extends Component {
                 </div>
                 <Loading text="加载中..." isFetching={order.pay.pay_loading} />
                 <Loading text="提交中..." isFetching={order.pay.finish_loading} />
+                <Loading text="住金支付中..." isFetching={this.state.finish_loading} />
 
                 <div className="bottom-a">
                     <div className="ba-a">
                         请选择支付方式
+                    </div>
+                    <div className="pay-item" style={{display: this.state.onlydaofu?'none':'flex'}}>
+                        <div className="pi-left">
+                            <img src={img_e} className="pay-icon"/>
+                            <div>
+                                住金支付
+                                (<span style={{color: '#FF5001'}}>{
+                                    this.state.fetch ?
+                                        <div className="weui-loading"></div> :
+                                        this.state.account
+                                }</span> 住金)
+                            </div>
+                        </div>
+                        <img className="pi-right" src={this.state.pay_type==2?img_c:img_d}
+                             onClick={()=>{this.setState({pay_type:2})}}/>
                     </div>
                     <div className="pay-item" style={{display: this.state.onlydaofu?'none':'flex'}}>
                         <div className="pi-left">

@@ -111,7 +111,7 @@ class Rooms extends Component {
             arr_id += 1;
             return (
                 <div className="room-piece-container" key={item.id} onClick={this.handleEnterRoom(arr_id-1)}>
-                    <RoomPiece img_src={item.imgs?item.imgs[0]:''} name={item.name}  score={item.score} info={(item.bed_num=='1'?'单床 ':'双床 ')+item.bed.toString()}
+                    <RoomPiece daofu={hotel.intro.daofu} img_src={item.imgs?item.imgs[0]:''} name={item.name}  score={item.score} info={(item.bed_num=='1'?'单床 ':'双床 ')+item.bed.toString()}
                     tag={item.tags}/>
                     <div className="price-container">
                         <div className="pc-top">

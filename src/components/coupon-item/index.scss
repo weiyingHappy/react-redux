@@ -99,3 +99,49 @@
     }
   }
 }
+
+.coupon-item-red {
+  .ci-top {
+    background-color: #F34B4B;
+    color: #fff;
+  }
+  .ci-bottom {
+    background-color: #FFE4E3;
+  }
+  .cib-a {
+    color: #F34B4B;
+  }
+  .citl-a,.citl-b,.citr-a,.citr-b {
+    color: #fff;
+  }
+} 
+
+.coupon-item-orange {
+  .ci-top {
+    background-color: #FFAE00;
+    color: #fff;
+  }
+  .ci-bottom {
+    background-color: #FFF6E0;
+  }
+  .cib-a {
+    color: #FFAE00;
+  }
+  .citl-a,.citl-b,.citr-a,.citr-b {
+    color: #fff;
+  }
+}
+
+
+.coupon-item-grey {
+  .ci-top {
+    background-color: #FFFFFF;
+    color: #fff;
+  }
+  .ci-bottom {
+    background-color: #F5F5F5;
+  }
+  .cib-a,.citl-a,.citl-b,.citr-a,.citr-b {
+    color: #CCCCCC;
+  }
+}
