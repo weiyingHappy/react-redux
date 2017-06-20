@@ -13,6 +13,7 @@ import img_order from '../static/images/three/icon-7.png'
 import img_setting from '../static/images/three/icon-8.png'
 import img_accumulate from '../static/images/three/icon-11.png'
 import img_coupon from '../static/images/three/icon-15.png'
+import img_wallet from '../static/images/three/icon-122.png'
 import {getCookie, changeTitle} from '../components/Common'
 
 class My extends Component {
@@ -82,6 +83,12 @@ class My extends Component {
                         <ItemCell {...item_data[0]}/>
                         <div className="mb-sp"></div>
                         <ItemCell {...item_data[3]} />
+                        <div className="mb-sp"></div>
+                        <ItemCell
+                            icon = {img_wallet}
+                            title = '我的钱包'
+                            url = '/cmsfont/wallet'
+                        />
                     </div>
 
                     <div className="middle-c">
