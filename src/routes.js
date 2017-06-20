@@ -193,6 +193,16 @@ const Root = () => {
                         .then(loadRoute(cb))
                         .catch(errorLoading)
                 }} />
+                <Route path="/cmsfont/wallet" getComponent = {(location, cb) => {
+                    System.import('./containers/wallet')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
+                <Route path="/cmsfont/wallet_log" getComponent = {(location, cb) => {
+                    System.import('./containers/wallet_log')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
                 <Route path="/cmsfont/error" getComponent = {(location, cb)=>{
                         System.import('./components/ErrorPage')
                             .then(loadRoute(cb))
