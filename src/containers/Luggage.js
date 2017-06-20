@@ -325,9 +325,11 @@ class Luggage extends Component {
             }
         }, true).then((data) => {
             if (data.code === 200) {
-                let {inner_order} = data.results.inner_order
+                let {inner_order} = data.results
                 let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+config.pay_appid+'&redirect_uri='+config.ru+inner_order+'&response_type=code&scope=snsapi_base&state=123#wechat_redirect'
                 window.location.href = url;
+            } else {
+                alert(data.msg)
             }
         })
 
@@ -340,7 +342,7 @@ class Luggage extends Component {
         const {selectOrder} = this.props
 
         return (
-            <div className="container">
+            <div className="container luggage_page">
                 <div className="panel">
                     <div className="title">请您确认行李的酒店订单</div>
                     

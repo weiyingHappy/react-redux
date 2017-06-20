@@ -37,6 +37,7 @@ module.exports = {
         usageCoupon: '/FE/Coupon/usageCoupon',
         exchangeCoupon: '/FE/Coupon/exchange',
         daofu: '/CMS/CmsActivity/getCmsDaofuState',
-        ordersforluggage: '/FE/OrderExtra/canUseWuyouOrders'
+        ordersforluggage: '/FE/OrderExtra/canUseWuyouOrders',
+        luggageOrderInfo: '/FE/OrderExtra/wuyouOrderInfo2'
     }
 };

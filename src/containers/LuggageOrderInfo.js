@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import request from '../utils/request'
 import config from '../../config/config.js'
+import { browserHistory } from 'react-router'
 import './LuggageOrderInfo.scss'
 
 class LuggageOrdersInfo extends React.Component {
@@ -131,7 +132,7 @@ class LuggageOrdersInfo extends React.Component {
     }
     
     cancelOrder () {
-        request(`${config.api_host}/FE/OrderExtra/cancelWuyouOrder/${this.state.showorder.id}`, 
+        request(`${config.remote_host}/FE/OrderExtra/cancelWuyouOrder/${this.state.showorder.id}`, 
             {
                 method: 'GET'
             },
@@ -143,7 +144,7 @@ class LuggageOrdersInfo extends React.Component {
                         ...this.state,
                         showcancel: false
                     })
-                    history.back()
+                    browserHistory.goBack()
                     setTimeout(()=>{location.reload()}, 10)
                 }
             })
@@ -185,7 +186,7 @@ class LuggageOrdersInfo extends React.Component {
                             <div className="line">联系电话：{showorder.phone}</div>
                             <div className="line">行李数量：{showorder.desc.num}</div>
                             <div className="line">费用：<span className="money">{showorder.price}元</span>{this.filterPaytype(showorder.pay_type)}</div>
-                            <div className="line">订单编号：{showorder.order_no}</div>
+                            <div className="line">订单编号：{showorder.inner_order}</div>
                             <div className="line">下单时间：{showorder.create_time}</div>
                             <div className="line">到达时间：{showorder.desc.end_time}</div>
                         </div>  

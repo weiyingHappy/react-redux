@@ -4,6 +4,7 @@ import config from '../../config/config'
 // 获取支持无忧行李的订单
 export const REQUEST_ORDERS_FOR_LUGGAGE = 'REQUEST_ORDERS_FOR_LUGGAGE'
 export const CHOOSE_ORDER_FOR_LUGGAGE = 'CHOOSE_ORDER_FOR_LUGGAGE'
+import { SET_PAY } from './order'
 
 export const fetchOrdersForLuggage = (teamid) => {
     return (dispatch) => {
@@ -42,8 +43,10 @@ export const fetchLuggageOrders = () => {
     }
 }
 
-export const fetchLuggageOrderInfo = () => {
+export const fetchLuggageOrderInfo = (order_num) => {
     return (dispatch) => {
-
+        return request(`${ config.remote_host }${ config.remote_path.luggageOrderInfo }/${ order_num }`, {
+            method: 'GET'
+        }, true)
     }
 }

@@ -17,7 +17,8 @@ class LuggageOrders extends React.Component {
             page: 1,
             showinfo: false,
             showorder: undefined,
-            hasmore: false
+            hasmore: false,
+            fetch: false
         }
     }
 
@@ -66,9 +67,15 @@ class LuggageOrders extends React.Component {
                 }
             }
         })*/
+        this.setState({
+            fetch: true
+        })
         request(`${config.remote_host}/FE/OrderExtra/wuoyouOrders/${this.state.page++}`, {
             method: 'GET'
         }, true).then((res) => {
+            this.setState({
+                fetch: false
+            })
             if (res.code === 200) {
                 this.setState(Object.assign(this.state, {
                     orders: res.results.lists
@@ -135,7 +142,7 @@ class LuggageOrders extends React.Component {
 
     handleOrderItemClick (value) {
         // location.href = 'luggage_orderinfo?id='+value.id;
-        browserHistory.push('luggageOrderInfo/'+value.id)
+        browserHistory.push('/cmsfont/luggageOrderInfo/'+value.id)
     }
 
 
@@ -186,7 +193,11 @@ class LuggageOrders extends React.Component {
             return (
                 <div className="page">
                     <div className="none">
-                        暂无无忧行李订单
+                        {
+                            this.state.fetch ?
+                                '订单获取中' :
+                                '暂无无忧行李订单'
+                        }
                     </div>
                     <div className="footer">
                         {/*联系客服：400-123-1234*/}
@@ -196,7 +207,7 @@ class LuggageOrders extends React.Component {
         }
 
         return (
-            <div className="page">
+            <div className="page luggage_orders">
                 <InfiniteScroll pageStart={1} loadMore={this.loadMore.bind(this)} hasMore={this.state.hasmore} useWindow={false}>
                     <ul className="orders">
                         {
