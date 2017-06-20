@@ -203,6 +203,11 @@ const Root = () => {
                         .then(loadRoute(cb))
                         .catch(errorLoading)
                 }} />
+                <Route path="/cmsfont/coupon_rule" getComponent = {(location, cb) => {
+                    System.import('./containers/Coupon_rule')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }} />
                 <Route path="/cmsfont/error" getComponent = {(location, cb)=>{
                         System.import('./components/ErrorPage')
                             .then(loadRoute(cb))
