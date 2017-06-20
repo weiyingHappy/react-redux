@@ -35,10 +35,12 @@ class UniPay extends Component {
             };
             dispatch(fetchFinishOrder(info)).then((json)=>{
                 if (json.code == 200 || json.code == 407) {
-                    alert("支付成功, 请关闭网页!");
+                    alert("支付成功!");
+                    browserHistory.replace('/cmsfont/paySuccess')
                 }
                 else {
-                    alert("支付成功--请关闭网页!");
+                    alert("支付成功!");
+                    browserHistory.replace('/cmsfont/paySuccess')                    
                 }
             });
         }

@@ -113,6 +113,11 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
+                <Route path="/cmsfont/paySuccess" getComponent = {(location, cb)=>{
+                        System.import('./containers/paySuccess')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
                 <Route path="/cmsfont/uniPay/:order_no" getComponent = {(location, cb)=>{
                         System.import('./containers/UniPay')
                             .then(loadRoute(cb))
