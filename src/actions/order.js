@@ -181,14 +181,7 @@ export function fetchToPay(info) {
         let dt = request(config.api_host+config.api_path.toPay, options, false);
 
         dt.then((json) => {
-            if (json.code === 200) {
-                dispatch(receiveToPay(json.data));
-                console.log('return')
-                return json.data
-            } else {
-                console.log(json)
-                return undefined
-            }
+            dispatch(receiveToPay(json.data)); //TODO: 优化
         });
         
         return dt;
