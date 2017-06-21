@@ -151,7 +151,7 @@ class PayPage extends Component {
         if (this.state.pay_type==1) {
             this.handlePay();
         }
-        if (this.state.pay_type == 2) {
+        else if (this.state.pay_type == 2) {
             this.balancePay()
         }
         else {
