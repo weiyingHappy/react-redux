@@ -147,6 +147,7 @@ class UniPay extends Component {
         dispatch(fetchUniPayOpenid(info_uni)).then((res)=>{
             if (/wuyou/.test(order_no)) {
                 dispatch(fetchLuggageOrderInfo(order_no)).then((res_2) => {
+                    console.log('wuyou', res_2)
                     self.handleToPayLuggage(res.openid, res_2.results);
                     changeTitle('无忧行李');
                 })
