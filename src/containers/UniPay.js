@@ -71,6 +71,10 @@ class UniPay extends Component {
                 return
             }
 
+            if (charge.code) {
+                charge = charge.data
+            }
+
             pingpp.createPayment(charge, function(result, err){
                 console.log(result);
                 console.log(err.msg);
@@ -109,6 +113,11 @@ class UniPay extends Component {
                 alert('支付出错，请稍后再试一试')
                 return
             }
+
+            if (charge.code) {
+                charge = charge.data
+            }
+
             pingpp.createPayment(charge, function(result, err){
                 console.log(result);
                 console.log(err.msg);
