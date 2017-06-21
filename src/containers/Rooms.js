@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 import moment from 'moment'
 
 import {fetchHotelLists, changeRoom} from '../actions/hotel'
@@ -158,7 +158,6 @@ class Rooms extends Component {
 
                 {lists}
                 <LoaderMore nowPage={hotel.nowPage} totalPage={hotel.totalPage} />
-
                 <div style={{height:'80px'}}></div>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>

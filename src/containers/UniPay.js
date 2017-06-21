@@ -11,6 +11,8 @@ import {getCookie, changeTitle} from '../components/Common'
 import {fetchOrderInfo, fetchToPay, fetchUniPayOpenid, fetchFinishOrder} from '../actions/order'
 import { fetchLuggageOrderInfo } from '../actions/luggage'
 
+import empty from '../static/images/three/empty-1.png'
+
 import './uniPay.scss'
 
 
@@ -178,7 +180,10 @@ class UniPay extends Component {
             <Loading text="处理订单中..." isFetching={order.pay.finish_loading} />
         ):(
             <div className="uni-pay-container">
-                当前页面为支付页面，点击左上角关闭
+                <div className="empty">
+                    <img src={empty} alt=""/>
+                </div>
+                <div className="text">当前页面为支付页面，点击左上角关闭</div>
             </div>
         )
     }
