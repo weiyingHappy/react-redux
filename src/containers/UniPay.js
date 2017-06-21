@@ -97,7 +97,7 @@ class UniPay extends Component {
     handleToPayLuggage(openid, data) { // 无忧行李支付
         let { dispatch } = this.props, self = this;
         let info = {
-            subject: data.team.name,
+            subject: '无忧行李',
             body: '无忧行李订单' + data.inner_order,
             amount: parseInt(data.pay_price*100),
             order_no: data.inner_order,
