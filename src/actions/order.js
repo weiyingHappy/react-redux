@@ -183,8 +183,10 @@ export function fetchToPay(info) {
         dt.then((json) => {
             if (json.code === 200) {
                 dispatch(receiveToPay(json.data));
+                return json.data
             } else {
                 console.log(json)
+                return undefined
             }
         });
         

@@ -65,6 +65,11 @@ class UniPay extends Component {
 
         dispatch(fetchToPay(info)).then((charge)=>{
             console.log("fetch to pay ret: ", charge);
+            
+            if(!charge) {
+                alert('支付出错，请稍后再试一试')
+                return
+            }
 
             pingpp.createPayment(charge, function(result, err){
                 console.log(result);
@@ -100,7 +105,10 @@ class UniPay extends Component {
 
         dispatch(fetchToPay(info)).then((charge)=>{
             console.log("fetch to pay ret: ", charge);
-
+            if(!charge) {
+                alert('支付出错，请稍后再试一试')
+                return
+            }
             pingpp.createPayment(charge, function(result, err){
                 console.log(result);
                 console.log(err.msg);
