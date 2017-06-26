@@ -28,7 +28,7 @@ class OrderPiece extends React.Component {
                 </div>
             ): helper.hasPay(item.state)?(
                 <div className="item-btn-group">
-                    <button className="item-btn-black item-btn" onClick={this.props.toRefund(id)} style={{display:item.apply_refund>0?'none':'block'}}>退订房间</button>
+                    <button className="item-btn-black item-btn" onClick={this.props.toRefund(id)} style={{display:(item.apply_refund > 0 || item.type == 1)?'none':'block'}}>退订房间</button>
                     <button className="item-btn-blue item-btn" onClick={this.props.toShowOrder(id)}>查看</button>
                 </div>
             ): helper.isCancel(item.state)?(
