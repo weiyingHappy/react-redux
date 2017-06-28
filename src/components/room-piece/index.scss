@@ -34,6 +34,9 @@
   .info-name {
     font-size: 16px;
     color: #4F4F4F;
+    /* padding-right: 70px; */
+    overflow: auto;
+    width: 67%;
   }
   .info-info {
     font-size: 13px;
@@ -54,5 +57,14 @@
     z-index: 50;
     height: 29px;
   }
-
+  .item-luggage {
+    img {
+      width: 20px;
+      vertical-align: middle;      
+    }
+    span {
+      vertical-align: sub;
+      color: #4969F1;
+    }
+  }
 }

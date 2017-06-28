@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import { browserHistory, Link } from 'react-router'
 import {fetchMyCoupon} from '../actions/coupon'
 import CouponItem from '../components/coupon-item'
 import Loading from '../components/loading'
@@ -73,7 +73,7 @@ class Coupon extends Component {
                         去兑换 >
                     </div>
                     <div className="t-right">
-                        兑换规则
+                        <Link to="/cmsfont/coupon_rule">兑换规则</Link>
                     </div>
                 </div>
                 <div className="list-area">

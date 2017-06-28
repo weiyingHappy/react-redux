@@ -23,6 +23,11 @@ export default class CouponItem extends React.Component {
 
     render () {
         let {item, type} = this.props;
+        if (!item.desc) {
+            return (
+                <div></div>
+            )
+        }
         return (
             <div className={(item.type==0?"coupon-item-orange ":"coupon-item-red ")+(this.expired(item.end,type)?'coupon-item-grey':'')}>
                 <div className="ci-top">

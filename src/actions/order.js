@@ -181,7 +181,7 @@ export function fetchToPay(info) {
         let dt = request(config.api_host+config.api_path.toPay, options, false);
 
         dt.then((json) => {
-           dispatch(receiveToPay(json));
+            dispatch(receiveToPay(json.data)); //TODO: 优化
         });
         
         return dt;
