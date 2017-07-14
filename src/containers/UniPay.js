@@ -11,6 +11,8 @@ import {getCookie, changeTitle} from '../components/Common'
 import {fetchOrderInfo, fetchToPay, fetchUniPayOpenid, fetchFinishOrder} from '../actions/order'
 import { fetchLuggageOrderInfo } from '../actions/luggage'
 
+import empty from '../static/images/three/empty-1.png'
+
 import './uniPay.scss'
 
 
@@ -65,6 +67,17 @@ class UniPay extends Component {
 
         dispatch(fetchToPay(info)).then((charge)=>{
             console.log("fetch to pay ret: ", charge);
+            
+            if(!charge) {
+                alert('支付出错，请稍后再试一试')
+                return
+            }
+
+            if (charge.code === 200) {
+                charge = charge.data
+            } else {
+                alert('支付失败，请关闭当前页面')
+            }
 
             pingpp.createPayment(charge, function(result, err){
                 console.log(result);
@@ -73,8 +86,8 @@ class UniPay extends Component {
                 if (result == "success") {
                     // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL
                     // alert。
-                    alert('无忧行李支付成功')
-                    browserHistory.push('/cmsfont/luggage')
+                    alert('支付成功')
+                    browserHistory.push('/cmsfont/paySuccess')
                 } else if (result == "fail") {
                     // charge 不正确或者微信公众账号支付失败时会在此处返回
                     alert("支付失败");
@@ -88,7 +101,7 @@ class UniPay extends Component {
     handleToPayLuggage(openid, data) { // 无忧行李支付
         let { dispatch } = this.props, self = this;
         let info = {
-            subject: data.team.name,
+            subject: '无忧行李',
             body: '无忧行李订单' + data.inner_order,
             amount: parseInt(data.pay_price*100),
             order_no: data.inner_order,
@@ -100,6 +113,16 @@ class UniPay extends Component {
 
         dispatch(fetchToPay(info)).then((charge)=>{
             console.log("fetch to pay ret: ", charge);
+            if(!charge) {
+                alert('支付出错，请稍后再试一试')
+                return
+            }
+
+            if (charge.code === 200) {
+                charge = charge.data
+            } else {
+                alert('支付失败，请关闭当前页面')
+            }
 
             pingpp.createPayment(charge, function(result, err){
                 console.log(result);
@@ -130,6 +153,7 @@ class UniPay extends Component {
         dispatch(fetchUniPayOpenid(info_uni)).then((res)=>{
             if (/wuyou/.test(order_no)) {
                 dispatch(fetchLuggageOrderInfo(order_no)).then((res_2) => {
+                    console.log('wuyou', res_2)
                     self.handleToPayLuggage(res.openid, res_2.results);
                     changeTitle('无忧行李');
                 })
@@ -156,6 +180,10 @@ class UniPay extends Component {
             <Loading text="处理订单中..." isFetching={order.pay.finish_loading} />
         ):(
             <div className="uni-pay-container">
+                <div className="empty">
+                    <img src={empty} alt=""/>
+                </div>
+                <div className="text">当前页面为支付页面，点击左上角关闭</div>
             </div>
         )
     }

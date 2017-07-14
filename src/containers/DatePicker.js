@@ -144,7 +144,9 @@ class DatePicker extends Component {
                         width={'100%'}
                         height={(document.body.clientHeight - 147) * 0.8}
                         minDate={this.state.yd?moment().subtract(1,'d').toDate():moment().toDate()}
-                        maxDate={storage.datePicker==1?moment().add(3,'months').subtract(1,'d').toDate():moment().add(3,'months').toDate()}
+                        maxDate={storage.datePicker==1?moment().add(2,'months').subtract(1,'d').toDate():moment().add(2,'months').toDate()}
+                        min={moment().startOf('month').toDate()}
+                        max={moment().add(2,'months').endOf('month').toDate()}
                         locale={{
                             headerFormat: ('MM月DD日'),
                             locale: require('date-fns/locale/zh_cn'),
