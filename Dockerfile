@@ -15,8 +15,7 @@ RUN apt-get update \
 
 
 ADD . /tmp/
-RUN mkdir /var/www/html/cmsfont/ \
-    && cp -r /tmp/dist/* /var/www/html/cmsfont/ \
+RUN cp -r /tmp/dist/* /var/www/html/ \
     && cp /tmp/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 
