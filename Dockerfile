@@ -14,11 +14,10 @@ RUN apt-get update \
     && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 
-ADD . /var/www/html/
-RUN cp -r  /var/www/html/dist/* /var/www/html/
+ADD . /tmp/
 RUN mkdir /var/www/html/cmsfont/ \
-    && cp -r /var/www/html/dist/* /var/www/html/cmsfont/ \
-    && cp 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+    && cp -r /tmp/dist/* /var/www/html/cmsfont/ \
+    && cp /tmp/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 
 
