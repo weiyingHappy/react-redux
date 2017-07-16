@@ -1,6 +1,9 @@
 FROM debian:jessie
 MAINTAINER kerker <yes-reply@linux.com>
 
+
+EXPOSE 80
+ENV NODE_ENV test
 RUN apt-get update \
     && apt-get -y install apache2 \
 
@@ -9,14 +12,17 @@ RUN apt-get update \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html/* \
     && echo "ServerName localhost" >> /etc/apache2/apache2.conf
-ADD . /var/www/html/
-RUN cp -r  /var/www/html/dist/* /var/www/html/ 
+
+
+ADD . /tmp/
 RUN mkdir /var/www/html/cmsfont/ \
-    && cp -r /var/www/html/dist/* /var/www/html/cmsfont/
-    
+    && cp -r /tmp/dist/* /var/www/html/cmsfont/ \
+    && cp /tmp/000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 
-EXPOSE 80
+
+
+
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 
 #usage:
