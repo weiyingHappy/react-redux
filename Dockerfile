@@ -17,7 +17,9 @@ RUN apt-get update \
 ADD . /var/www/html/
 RUN cp -r  /var/www/html/dist/* /var/www/html/
 RUN mkdir /var/www/html/cmsfont/ \
-    && cp -r /var/www/html/dist/* /var/www/html/cmsfont/
+    && cp -r /var/www/html/dist/* /var/www/html/cmsfont/ \
+    && cp 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
 
 
 
