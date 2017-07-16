@@ -139,7 +139,6 @@ class Rooms extends Component {
             </div>
         ):(
             <div className="rooms-container">
-
                 <div className="date-container">
                     <div className="start-date" onClick={this.chooseStart}>
                         <div className="explain-text">入住</div>

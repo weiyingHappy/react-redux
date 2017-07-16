@@ -1,5 +1,6 @@
 /**
  * 开发脚本
+ * [注] 无法进行刷新
  */
 
 process.env.NODE_ENV = 'development'
@@ -8,12 +9,23 @@ const WebpackDevServer = require('webpack-dev-server')
 
 const compiler = webpack(require('../webpack.config.js'))
 
-const devServer = new WebpackDevServer(compiler, {
-    hot: true,
-    historyApiFallback: true,
+compiler.plugin('compilation', function (compilation) {
+    console.log('编译完成')
 })
 
-devServer.listen(8080, '0.0.0.0', err => {
+const devServer = new WebpackDevServer(compiler, {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    stats: {
+        colors: true,
+        modules: false,
+        children: false,
+        chunks: false,
+        chunkModules: false
+    }
+})
+devServer.listen(8080, 'localhost', err => {
     if (err) {
         return console.error(err)
     }

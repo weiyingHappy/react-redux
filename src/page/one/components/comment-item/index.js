@@ -1,5 +1,5 @@
 import React from 'react'
-
+import cn from 'classnames'
 import './index.scss'
 
 import star_fill from '../../images/three/icon-1.png'
@@ -19,9 +19,6 @@ export default class CommentItem extends React.Component {
                     <div className="cia-b">
                         <img src={(parseInt(info.star)>=1?star_fill:star_blank)} className="comment-star-icon" />
                         <img src={(parseInt(info.star)>=2?star_fill:star_blank)} className="comment-star-icon" />
-                        <img src={(parseInt(info.star)>=3?star_fill:star_blank)} className="comment-star-icon" />
-                        <img src={(parseInt(info.star)>=4?star_fill:star_blank)} className="comment-star-icon" />
-                        <img src={(parseInt(info.star)>=5?star_fill:star_blank)} className="comment-star-icon" />
                         <span className="comment-star-score">{info.star}</span>
                     </div>
                 </div>
