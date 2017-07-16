@@ -11,13 +11,16 @@ RUN apt-get update \
     && apt-get clean \
     && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/www/html/* \
-    && echo "ServerName localhost" >> /etc/apache2/apache2.conf
+    && echo "ServerName localhost" >> /etc/apache2/apache2.conf \
+    && sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf \
+    # enable rewrite mod:https://stackoverflow.com/questions/18740419/how-to-set-allowoverride-all
+    && a2enmod rewrite
+
 
 
 ADD . /tmp/
 RUN cp -r /tmp/dist/* /var/www/html/ \
-    && cp /tmp/000-default.conf /etc/apache2/sites-enabled/000-default.conf
-
+  && rm -rf /tmp/*
 
 
 
