@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 import fetch from 'isomorphic-fetch'
-import {getCookie} from '../components/Common'
+import {getCookie} from '@/src/common'
 import config from '../../config/config'
 
 export default function request(url, options, needToken=false) {

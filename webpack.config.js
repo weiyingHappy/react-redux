@@ -16,7 +16,7 @@ module.exports =
     output: {
         path : __dirname + '/dist',
         filename: '[name].[hash].js',
-        publicPath: '/cmsfont/',
+        publicPath: process.env.NODE_ENV === 'development' ? '/' : '/cmsfont/',
         chunkFilename:'[name].[hash].js'
     },
     module: {
@@ -63,5 +63,8 @@ module.exports =
         mainFiles: ["index.web","index"],// 这里哦
         modules: [path.resolve(__dirname, "src"), "node_modules"],
         extensions: ['.web.tsx', '.web.ts', '.web.jsx', '.web.js', '.ts', '.tsx', '.js', '.jsx', '.json'],
+        alias: {
+            '@': __dirname,
+        },
     }
 };
