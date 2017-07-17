@@ -55,7 +55,6 @@ class Rooms extends Component {
                 }
                 else {
                     dispatch(fetchHotelLists({teamId: res.results.teamid, page: 1})).then((res_b)=>{
-                        console.log('receive lists: ',hotel);
                     })
                 }
             });

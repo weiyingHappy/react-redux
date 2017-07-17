@@ -5,7 +5,6 @@ import icon from '../../images/four/icon-2.png'
 class RoomPiece extends React.Component {
     constructor (props) {
         super(props);
-        console.log(props)
         this.state = {
 
         }

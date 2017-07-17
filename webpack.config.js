@@ -93,6 +93,7 @@ if(process.env.NODE_ENV !== 'development') {
             chunkModules: false
         }
     }
+    config.devtool = '#cheap-module-eval-source-map'
 }
 
 

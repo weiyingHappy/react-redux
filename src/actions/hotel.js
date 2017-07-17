@@ -33,7 +33,6 @@ export function fetchHotelLists(info) {
 
         dt.then((json) => {
             dispatch(receiveHotelLists(json));
-            console.log(json);
         });
 
         return dt;
