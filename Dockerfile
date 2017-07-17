@@ -7,7 +7,7 @@ ENV NODE_ENV test
 
 ADD . /tmp/
 RUN cp -r /tmp/dist/* /home/ \
-  && cp /tmp/nginx.conf /etc/nginx/nginx.conf
+  && cp /tmp/nginx.conf /etc/nginx/nginx.conf \
   && rm -rf /tmp/*
 
 
