@@ -11,6 +11,16 @@
     background-color: #F85810;
     color: #fff;
     @include flex(row, nowrap, center, center);
+    .icon {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      &.money {
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/money.png);
+      }
+    }
   }
   .top-img {
     height: 19px;

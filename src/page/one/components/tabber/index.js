@@ -3,6 +3,7 @@ import './index.scss'
 import {Link} from 'react-router'
 
 import {getCookie} from '../Common'
+import cn from 'classnames'
 import img_index from '../../images/two/icon-1.png'
 import img_order from '../../images/two/icon-2.png'
 import img_snap from '../../images/two/icon-3.png'
@@ -28,19 +29,31 @@ class Tabber extends React.Component {
                     </div>
                     <div className="weui-tabbar" style={{backgroundColor:'#fff'}}>
                         <Link to="/cmsfont/intro" className="weui-tabbar__item weui-bar__item_on">
-                            <img src={img_index} alt="" className="weui-tabbar__icon" />
+                            <span className={cn({
+                                'tab_icon': true,
+                                'hotel': true
+                            })}></span>
                             <p className="weui-tabbar__label" style={{color: brr[0]}}>酒店介绍</p>
                         </Link>
-                        <Link to={"/cmsfont/rooms/"+(getCookie('wechatToken', '')==null?localStorage.token:getCookie('wechatToken', ''))+"?code="+(getCookie('wechatCode',''))}className="weui-tabbar__item">
-                            <img src={img_order} alt="" className="weui-tabbar__icon" />
+                        <Link to={"/cmsfont/rooms"}className="weui-tabbar__item">
+                            <span className={cn({
+                                'tab_icon': true,
+                                'order': true
+                            })}></span>
                             <p className="weui-tabbar__label" style={{color: brr[1]}}>客房预订</p>
                         </Link>
                         <Link to="/cmsfont/snap" className="weui-tabbar__item">
-                            <img src={img_snap} alt="" className="weui-tabbar__icon" />
+                            <span className={cn({
+                                'tab_icon': true,
+                                'gifts': true
+                            })}></span>
                             <p className="weui-tabbar__label" style={{color: brr[2]}}>最新活动</p>
                         </Link>
                         <Link to="/cmsfont/my" className="weui-tabbar__item">
-                            <img src={img_my} alt="" className="weui-tabbar__icon" />
+                            <span className={cn({
+                                'tab_icon': true,
+                                'user': true
+                            })}></span>
                             <p className="weui-tabbar__label" style={{color: brr[3]}}>账户中心</p>
                         </Link>
                     </div>

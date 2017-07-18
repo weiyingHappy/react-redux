@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router'
 import moment from 'moment'
 
 import {fetchInventory, fetchComments, setDatePicker, fetchJsSdk} from '@/src/actions/storage'
+import { fetchRoomInfo } from '@/src/actions/room'
 import config from '@/config/config.js'
 import Loading from '../components/loading'
 import Scroll from '../components/scroll'
@@ -24,19 +25,20 @@ class RoomInfo extends Component {
     }
 
     componentWillMount() {
-        let {user, storage, dispatch, hotel} = this.props;
+        let {user, storage, dispatch, hotel, params} = this.props;
         let self = this;
-        console.log(hotel.lists[hotel.room_id]);
         let from = moment(storage.from);
 
+        dispatch(fetchRoomInfo(params.id))
+
         let info = {
-            roomId: hotel.lists[hotel.room_id].id,
+            roomId: params.id,
             start: from.format('YYYY-MM-DD')
         };
         dispatch(fetchInventory(info));
 
         let info2 = {
-            roomId: hotel.lists[hotel.room_id].id,
+            roomId: params.id,
             page: 1
         };
         dispatch(fetchComments(info2));
@@ -46,7 +48,7 @@ class RoomInfo extends Component {
             appid: user.appid,
             appsecret: user.appsecret
         };
-        console.log("000000000");
+        
         if (storage.js_sdk.hasData) {
             jsSdkInit(storage.js_sdk, user.appid, config.my_host+'/roomInfo');
         }
@@ -124,8 +126,23 @@ class RoomInfo extends Component {
     }
 
     render() {
-        const {hotel, user, storage } = this.props;
-        const room = hotel.lists[hotel.room_id];
+        const {hotel, user, storage, room } = this.props;
+
+        // const room = hotel.lists[hotel.room_id];
+        if (room.state === 0) {
+            return <div></div>
+        }
+        if (room.state === 1) {
+            return <div>
+                <Loading text="房间信息加载中..." isFetching/>
+            </div>
+        }
+        if (room.state === 3) {
+            return <div>房间信息获取失败</div>
+        }
+
+        const { room_info } = room
+
         let from = moment(storage.from);
         let to = moment(storage.to);
 
@@ -135,18 +152,18 @@ class RoomInfo extends Component {
             <div className="roomInfo-container">
 
                 <div className="top-a">
-                    <Scroll img_lists={room.imgs||[]} height="180px" handleClick={this.showImg} />
+                    <Scroll img_lists={room_info.imgs||[]} height="180px" handleClick={this.showImg} />
 
                     <div className="top-a-des">
                         <div className="top-a-left">
-                            {room.name}
+                            {room_info.name}
                         </div>
                         {storage.inventory_loading?(
                             <div className="weui-loading"></div>
                         ):storage.inventory == 0 ? (<div className="no-room-text">当前日期无房</div>):(
                             <div className="top-a-right">
-                                <div className="top-a-right-a">￥{room.nowPrice.oprice}</div>
-                                <div className={"top-a-right-b "+(room.inventory==0?"no-room-price":"")}>
+                                <div className="top-a-right-a">￥{room_info.nowPrice.oprice}</div>
+                                <div className={"top-a-right-b "+(room_info.inventory==0?"no-room-price":"")}>
                                     ￥{storage.c_price}</div>
                             </div>
                         )}
@@ -174,31 +191,29 @@ class RoomInfo extends Component {
                 <div className="middle-a">
                     <div>
                         <div className="item-label">房间面积</div>
-                        <div className="item-value">{room.area} m²</div>
+                        <div className="item-value">{room_info.area} m²</div>
                     </div>
                     <div>
                         <div className="item-label">床　　数</div>
-                        <div className="item-value">{(room.bed_num==1?'单床':'双床')}</div>
+                        <div className="item-value">{(room_info.bed_num==1?'单床':'双床')}</div>
                     </div>
                     <div>
                         <div className="item-label">床 &nbsp;规 &nbsp;格</div>
-                        <div className="item-value">{room.bed}</div>
+                        <div className="item-value">{room_info.bed}</div>
                     </div>
                 </div>
 
                 <div className="middle-b">
                     <div className="item-label2">房间设施</div>
-                    <EquArea lists={room.equipments}/>
+                    <EquArea lists={room_info.equipments}/>
                 </div>
 
                 <div className="middle-c">
                     <div className="item-label2">房间介绍</div>
-                    <div className="room-intro">{room.intro}</div>
+                    <div className="room-intro">{room_info.intro}</div>
                 </div>
 
                 {comments_area}
-
-
 
                 <div style={{height:'105px'}}></div>
 
@@ -222,7 +237,8 @@ function select(state) {
     return {
         user: state.user,
         hotel: state.hotel,
-        storage: state.storage
+        storage: state.storage,
+        room: state.room
     }
 }
 

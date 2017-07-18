@@ -91,7 +91,8 @@ if(process.env.NODE_ENV !== 'development') {
             children: false,
             chunks: false,
             chunkModules: false
-        }
+        },
+        contentBase: path.join(__dirname, 'static')
     }
     config.devtool = '#cheap-module-eval-source-map'
 }

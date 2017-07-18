@@ -1,6 +1,5 @@
 import React from 'react'
 import './index.scss'
-import icon from '../../images/four/icon-2.png'
 
 class RoomPiece extends React.Component {
     constructor (props) {
@@ -24,7 +23,7 @@ class RoomPiece extends React.Component {
                         {
                             this.props.daofu == 1?
                             <div className="item-luggage">
-                                <img src={icon} alt=""/>
+                                <span className="icon"></span>
                                 <span>到店支付</span>
                             </div>
                             :

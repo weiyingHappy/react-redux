@@ -3,14 +3,9 @@ import createLogger from 'redux-logger'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import React from 'react'
-
 import config from '../config/config'
-
-
 import { Router, Route, IndexRoute, Redirect, hashHistory, browserHistory } from 'react-router'
 import reducer from './reducers'
-
-
 
 const loggerMiddleware = createLogger();
 
@@ -57,12 +52,20 @@ const Root = () => {
     return (
         <Provider store={store}>
             <Router history={browserHistory}>
+                {/* 主入口页面路由 */}
+                <Route path="/cmsfont/entrance/:hotel_token/:alias" getComponent = {(location, cb) => {
+                    System.import('@/src/page/entrance')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }}></Route>
+
+                {/* 老代码-开始 */}
                 <Route path="/cmsfont/index/:token" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/Index')
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
-                <Route path="/cmsfont/rooms/:token" getComponent = {(location, cb)=>{
+                <Route path="/cmsfont/rooms" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/Rooms')
                             .then(loadRoute(cb))
                             .catch(errorLoading);
@@ -87,7 +90,7 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
-                <Route path="/cmsfont/roomInfo" getComponent = {(location, cb)=>{
+                <Route path="/cmsfont/roomInfo/:id" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/RoomInfo')
                             .then(loadRoute(cb))
                             .catch(errorLoading);
@@ -222,6 +225,26 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
+                
+                {/* 老代码-结束 */}
+                {
+                    /**
+                     * 路由v2版本
+                     */
+                }
+                <Route path='/cmsfont/v2'>
+                    <Route path='home' getComponent = {(location, cb) => {
+                        System.import('@/src/page/two/home')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading)
+                    }}></Route>
+                    <Route path='home2' getComponent = {(location, cb) => {
+                        System.import('@/src/page/two/home')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading)
+                    }}></Route>
+                </Route>
+
                 <Route path="*" getComponent = {(location, cb)=>{
                         System.import('./page/custom/NotFoundPage')
                             .then(loadRoute(cb))

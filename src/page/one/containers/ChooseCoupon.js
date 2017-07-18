@@ -4,6 +4,9 @@ import { browserHistory } from 'react-router'
 import CouponItem from '../components/coupon-item'
 import Loading from '../components/loading'
 import LoadMore from '../components/load-more'
+
+import cn from 'classnames'
+
 import i16 from '../images/three/icon-16.png'
 import i17 from '../images/three/icon-17.png'
 import i18 from '../images/three/icon-18.png'
@@ -15,7 +18,6 @@ import './chooseCoupon.scss'
 const Zanwu = ({desc}) => {
     return (
         <div className="zanwu">
-            <img src={noneimg} className="zanwu-a"/>
             <div className="zanwu-b">{desc}</div>
         </div>
     )
@@ -80,7 +82,14 @@ class ChooseCoupon extends Component {
             return (
                 <div className="ci-container" key={item.id} onClick={this.aClick(a_id)}>
                     <CouponItem item={item} type="choose-a"/>
-                    <img style={{display: (a_id==this.state.isChoosing?'block':'none')}} className="ci-choosing" src={(item.type==0?i16:i17)}></img>
+                    <span
+                        style={{display: (a_id==this.state.isChoosing?'block':'none')}}
+                        className={cn({
+                            'ci-choosing': true,
+                            'organge-select': item.type == 0,
+                            'blue-select': item.type != 0,
+                        })}
+                        src={(item.type==0?i16:i17)}></span>
                 </div>
             )
         });

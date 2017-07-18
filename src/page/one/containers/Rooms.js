@@ -27,13 +27,9 @@ class Rooms extends Component {
     }
 
     componentWillMount() {
-        let token = this.props.params.token;
+        let token = localStorage.token
+        let code = localStorage.code;
 
-        if (token) {
-            localStorage.token = token // 存入本地
-        }
-        
-        let code = this.props.location.query.code;
         let self = this;
         const {user, hotel, dispatch} = this.props;
 
@@ -90,12 +86,11 @@ class Rooms extends Component {
         browserHistory.push('/cmsfont/chooseDate')
     }
 
-    handleEnterRoom(id) {
+    handleEnterRoom(id, room_id) {
         let {dispatch, hotel} = this.props;
         return (e) => {
-            console.log('choose id  ', id);
             dispatch(changeRoom(id));
-            browserHistory.push('/cmsfont/roomInfo')
+            browserHistory.push('/cmsfont/roomInfo/' + room_id)
         }
     }
 
@@ -109,7 +104,7 @@ class Rooms extends Component {
         let lists = (hotel.lists||[]).map((item) => {
             arr_id += 1;
             return (
-                <div className="room-piece-container" key={item.id} onClick={this.handleEnterRoom(arr_id-1)}>
+                <div className="room-piece-container" key={item.id} onClick={this.handleEnterRoom(arr_id-1, item.id)}>
                     <RoomPiece daofu={hotel.intro.daofu} img_src={item.imgs?item.imgs[0]:''} name={item.name}  score={item.score} info={(item.bed_num=='1'?'单床 ':'双床 ')+item.bed.toString()}
                     tag={item.tags}/>
                     <div className="price-container">

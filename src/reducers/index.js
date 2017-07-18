@@ -5,6 +5,7 @@ import storage from './storage'
 import order from './order'
 import snap from './snap'
 import coupon from './coupon'
+import room from './room'
 import luggage from './luggage' // 无忧行李state
 import { combineReducers } from 'redux'
 
@@ -16,5 +17,6 @@ export default combineReducers({
     order,
     snap,
     coupon,
-    luggage
+    luggage,
+    room
 })

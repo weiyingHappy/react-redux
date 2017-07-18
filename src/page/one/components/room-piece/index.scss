@@ -58,6 +58,16 @@
     height: 29px;
   }
   .item-luggage {
+    .icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+      display: inline-block;
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/daofu_home.png);
+      vertical-align: middle;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
     img {
       width: 20px;
       vertical-align: middle;      

@@ -2,9 +2,6 @@ import React from 'react'
 import cn from 'classnames'
 import './index.scss'
 
-import star_fill from '../../images/three/icon-1.png'
-import star_blank from '../../images/three/icon-2.png'
-
 export default class CommentItem extends React.Component {
     constructor (props) {
         super (props);
@@ -17,8 +14,17 @@ export default class CommentItem extends React.Component {
                 <div className="ci-a">
                     <div className="cia-a">{info.user_name} 说</div>
                     <div className="cia-b">
-                        <img src={(parseInt(info.star)>=1?star_fill:star_blank)} className="comment-star-icon" />
-                        <img src={(parseInt(info.star)>=2?star_fill:star_blank)} className="comment-star-icon" />
+                        {
+                            Array(5).fill(0).map((_, index) => {
+                                return (
+                                    <span key={'start' + index} className={cn({
+                                        'comment-star-icon': true,
+                                        'fill': index + 1 <= parseInt(info.star),
+                                        'blank': index + 1 > parseInt(info.star)
+                                    })} />
+                                )
+                            })
+                        }
                         <span className="comment-star-score">{info.star}</span>
                     </div>
                 </div>

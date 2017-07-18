@@ -1,11 +1,27 @@
 @import '../../scss/common';
 
-.notfound-container {
-  @extend .container-common;
-}
 .tabber {
   position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 100;
+  .tab_icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-bottom: 5px;
+    background-size: cover;
+    &.hotel {
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/tab-hotel.png);
+    }
+    &.order {
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/tab-order.png);
+    }
+    &.gifts {
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/tab-gifts.png);
+    }
+    &.user {
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/tab-user.png);
+    }
+  }
 }

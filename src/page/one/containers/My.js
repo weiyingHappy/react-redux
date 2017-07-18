@@ -73,7 +73,7 @@ class My extends Component {
                             <img className="tba-img" src={user.avatar}></img>
                         </div>
                         <div className="tb-b">
-                            {user.nickname||'calmeii'}
+                            {user.nickname||'用户名'}
                         </div>
                     </div>
                 </div>

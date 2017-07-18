@@ -60,9 +60,6 @@ export function changeTitle(name) {
     }
 }
 
-
-
-
 export function isCancel(state) {
     return state == 11 || state == 12 || state == 13;
 }
@@ -88,4 +85,17 @@ export function refundOk(apply_refund) {
 }
 export function refundFail(apply_refund) {
     return apply_refund == 6;
+}
+
+// 获取浏览器环境
+export const getBrowserEnv = () => {
+    let env = 'production'
+    if(window.location.hostname == 'www.lianwuyun.cn') {
+        env = 'test'
+    }
+    if(window.location.hostname == 'localhost') {
+        env = 'development'
+    }
+
+    return env
 }

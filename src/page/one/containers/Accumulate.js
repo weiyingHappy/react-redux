@@ -5,7 +5,6 @@ import { browserHistory } from 'react-router'
 import {fetchAccumulateMy} from '@/src/actions/user'
 
 import './accumulate.scss'
-import accumulate_img from '../images/three/icon-12.png';
 
 class Accumulate extends Component {
 
@@ -41,7 +40,7 @@ class Accumulate extends Component {
         return (
             <div className="accumulate-container">
                 <div className="top">
-                    <img src={accumulate_img} className="top-img" />
+                    <span className="icon money"></span>
                     <div className="top-text">{user.accumulate_total}</div>
                 </div>
 

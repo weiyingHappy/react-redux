@@ -1,13 +1,18 @@
 import React, { Component, PropTypes } from 'react'
+import image from './404.png'
 import './index.scss'
-
 
 class Loading extends Component {
 
     render() {
         return (
             <div className="notfound-container">
-                网页去外太空啦!
+                <div className="img">
+                    <img src={image} alt=""/>
+                </div>
+                <div className="text">
+                    Sorry，您访问的页面已离开地球~
+                </div>
             </div>
         )
     }
