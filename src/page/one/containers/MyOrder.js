@@ -171,8 +171,8 @@ class MyOrder extends Component {
         return () => {
             let {order, dispatch} = this.props, self = this;
             let item = order.con[order.cat].lists[id];
-            dispatch(setPay({order_no: item.order_no}));
-            browserHistory.push('/cmsfont/showOrder');
+            // dispatch(setPay({order_no: item.order_no}));
+            browserHistory.push('/cmsfont/showOrder/'+item.order_no);
         }
     }
     toComment(id) {

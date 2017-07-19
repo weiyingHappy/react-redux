@@ -47,6 +47,15 @@ const test = () => {
         <div>hello</div>
     )
 };
+
+/** hack 写法
+ * Time: 2017-07-19 10:27
+ * 在第一次进入时就进行用户信息请求
+ * fix: * 在很多页面中都有进行user.isLogin的判断
+ *        在不更改原有代码逻辑的前提下需要进行统一跳转
+ * TODO: 实现方式暂定
+ */
+
 import {NotFoundPage} from './page/custom/NotFoundPage'
 const Root = () => {
     return (
@@ -130,7 +139,7 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
-                <Route path="/cmsfont/ShowOrder" getComponent = {(location, cb)=>{
+                <Route path="/cmsfont/ShowOrder/:id" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/ShowOrder')
                             .then(loadRoute(cb))
                             .catch(errorLoading);

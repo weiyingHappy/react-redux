@@ -71,8 +71,8 @@
   .submitButton {
     margin-top: 50px;
     border: none;
-    height: 50px;
-    font-size: 21px;
+    height: 40px;
+    font-size: 14px;
     font-weight: 100;
     background-color: #DEB269;
     color: #fff;
@@ -86,10 +86,12 @@
     color: #666666;
     height: 180px;
 
-
-    .tanchu-img {
-      height: 120px;
+    .img-dialog {
       width: 120px;
+      height: 120px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/register-modal.png);
     }
   }
 

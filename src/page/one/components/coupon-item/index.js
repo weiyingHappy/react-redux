@@ -66,7 +66,9 @@ export default class CouponItem extends React.Component {
                 </div>
                 <div className="ci-bottom">
                     <div className="cib-a">{item.end} 前有效</div>
-                    <div className="cib-b" onClick={()=>{browserHistory.push('/cmsfont/rooms/'+(getCookie('wechatToken', ''))+"?code="+(getCookie('wechatCode','')))}}>去使用 &gt;</div>
+                    <div className="cib-b" onClick={()=>{
+                        browserHistory.push('/cmsfont/rooms')
+                    }}>去使用 &gt;</div>
                 </div>
             </div>
         )

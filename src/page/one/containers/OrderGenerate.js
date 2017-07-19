@@ -37,9 +37,10 @@ class OrderGenerate extends Component {
         let to = moment(storage.to);
 
         if (!user.isLogin) {
-            dispatch(setUser({register_back_url: '/cmsfont/orderGenerate'}));
-            browserHistory.push('/cmsfont/register');
-            return ;
+            // dispatch(setUser({register_back_url: '/cmsfont/orderGenerate'}));
+            // browserHistory.push('/cmsfont/register');
+            // return ;
+            browserHistory.replace('/cmsfont/rooms')
         }
         else {
             self.setState({
@@ -83,9 +84,7 @@ class OrderGenerate extends Component {
                             }
                         }
                     })
-                    
                 }
-
             });
         }
 
@@ -256,9 +255,6 @@ class OrderGenerate extends Component {
                                 onChange={(e)=>{this.setState({phone:e.target.value})}}/>
                             </div>
                         </div>
-                        {/*<div className="mbc-right">
-                            <img className="mbcr-img" src={img_user} />
-                        </div>*/}
                     </div>
                 </div>
                 {coupon.use.loading?(

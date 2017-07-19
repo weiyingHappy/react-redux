@@ -45,6 +45,20 @@
     height: 100%;
     @include flex(row, nowrap, center, center);
   }
+  .location-icon, .phone-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .location-icon {
+    background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/location.png);
+  }
+  .phone-icon {
+    background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/phone.png);
+  }
   .sotd-img {
     margin-right: 8px;
     height: 22px;

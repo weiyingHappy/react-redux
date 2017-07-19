@@ -49,7 +49,7 @@ class Coupon extends Component {
 
     handleClick = (coupon) => {
         localStorage.useCoupon = coupon.id
-        browserHistory.push('/cmsfont/rooms/'+localStorage.token)
+        browserHistory.push('/cmsfont/rooms')
     }
 
     render() {

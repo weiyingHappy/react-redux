@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import img_logo from '../images/one/icon-4.png'
-import img_phone from '../images/one/icon-1.png'
-import img_code from '../images/one/icon-2.png'
-import img_dialog from '../images/one/icon-3.png'
 import './register.scss'
 
 import Loading from '../components/loading'
@@ -189,7 +185,7 @@ class Register extends Component {
                 
                 <Dialog isDisplay={this.state.isDisplayDialog} handleClick={this.handleDialogClick}>
                     <div className="register-dialog">
-                        <img src={img_dialog} className="tanchu-img"/>
+                        <span className="img-dialog"></span>
                         <div>
                             {this.state.sb_msg}
                         </div>

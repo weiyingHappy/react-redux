@@ -3,7 +3,7 @@
 .pay-page-container {
   @extend .container-common;
   background-color: #F2F2F2;
-
+  padding-bottom: 40px;
   .top {
     height: 160px;
     box-sizing: border-box;
@@ -78,7 +78,9 @@
     margin-left: 5px;
   }
   .bottom {
-    margin-top: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }
   .bottom-button {
     background-color: #1AAD19;

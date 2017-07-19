@@ -35,12 +35,29 @@
   .hotel-star-icon {
     margin-right: 3px;
     width: 14px;
-    height: 13px;
+    height: 14px;
+    &.fill,
+    &.blank {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &.fill {
+      background-image: url('http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-1.png');
+      background-size: cover;
+    }
+    &.blank {
+      background-image: url('http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-2.png');
+      background-size: cover;
+    }
   }
   .hotel-star-score {
     color: #FF5000;
     margin-left: 10px;
     font-size: 15px;
+    display: inline-block;
+    vertical-align: middle;
   }
   .hotel-name {
     font-size: 18px;
@@ -67,6 +84,14 @@
 
     color: #B3B3B3;
     font-size: 13px;
+    .location-icon {
+      width: 20px;
+      height: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/location.png);
+    }
   }
   .hotel-phone {
     height: 54px;
@@ -75,6 +100,14 @@
     box-sizing: border-box;
 
     @include flex(row, nowrap, center, center);
+    .phone-icon {
+      width: 30px;
+      height: 30px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/phone.png);
+    }
   }
   .ha-img {
     margin-right: 3px;

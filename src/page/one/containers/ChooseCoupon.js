@@ -7,10 +7,6 @@ import LoadMore from '../components/load-more'
 
 import cn from 'classnames'
 
-import i16 from '../images/three/icon-16.png'
-import i17 from '../images/three/icon-17.png'
-import i18 from '../images/three/icon-18.png'
-
 import {changeCoupon} from '@/src/actions/coupon'
 
 import './chooseCoupon.scss'
@@ -60,7 +56,7 @@ class ChooseCoupon extends Component {
             dispatch(changeCoupon({
                 id: id
             }));
-            browserHistory.push("/cmsfont/orderGenerate");
+            // browserHistory.replace("/cmsfont/orderGenerate");
         }
     }
     changeCoupon() {
@@ -68,7 +64,7 @@ class ChooseCoupon extends Component {
         dispatch(changeCoupon({
             id: self.state.isChoosing
         }));
-        browserHistory.push("/cmsfont/orderGenerate");
+        browserHistory.replace("/cmsfont/orderGenerate");
     }
 
     render() {
@@ -88,8 +84,7 @@ class ChooseCoupon extends Component {
                             'ci-choosing': true,
                             'organge-select': item.type == 0,
                             'blue-select': item.type != 0,
-                        })}
-                        src={(item.type==0?i16:i17)}></span>
+                        })}></span>
                 </div>
             )
         });
@@ -132,16 +127,19 @@ class ChooseCoupon extends Component {
                     </div>
                     {tab==0?(
                         <div className="cc-bottom">
-                            {available.length!=0?(
-                                <button className="ccb-a" onClick={this.changeCoupon}>
-                                    确定
-                                </button>):''}
                             <div className="ccb-b">
                                 没有更多优惠券{/*，参与活动<span className="ccbb-a">获得优惠券 ></span>*/}
                             </div>
                         </div>
                     ):''}
                 </div>
+                
+                { available.length != 0 ?
+                    <div className="operation_btn">
+                        <button onClick={this.changeCoupon}>确定</button>
+                    </div> :
+                    ''
+                }
             </div>
         )
     }

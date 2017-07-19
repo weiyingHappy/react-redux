@@ -12,9 +12,6 @@ import {fetchOrderInfo} from '@/src/actions/order'
 import * as helper from '../components/Common'
 
 import './showOrder.scss'
-import img_addr from '../images/three/icon-3.png'
-import img_phone from '../images/three/icon-4.png'
-
 
 class ShowOrder extends Component {
 
@@ -65,19 +62,21 @@ class ShowOrder extends Component {
     }
 
     componentWillMount() {
+        /**
+         * 修改记录，查看订单详情
+         * 原设计逻辑为在MyOrder.js页面进行查看订单操作后将订单
+         * id存入redux，在此页面通过取redux的值获取订单内容，改
+         * 为在路由里面定义订单id
+         */
         let {dispatch, order, user, storage} = this.props;
 
-        dispatch(fetchOrderInfo(order.pay.order_no)).then((res)=>{
-            console.log("order info res: ", res);
-        });
-
+        dispatch(fetchOrderInfo(this.props.params.id));
 
         let info = {
             teamId: user.teamId,
             appid: user.appid,
             appsecret: user.appsecret
         };
-        console.log("000000000");
         if (storage.js_sdk.hasData) {
             jsSdkInit(storage.js_sdk, user.appid, config.my_host+'/showOrder');
         }
@@ -126,11 +125,11 @@ class ShowOrder extends Component {
                         </div>
                         <div className="sot-d">
                             <a className="sotd-a" onClick={this.handleShowMap}>
-                                <img src={img_addr} className="sotd-img"/>
+                                <span className="location-icon"></span>
                                 酒店地图
                             </a>
                             <a className="sotd-b" href={"tel:"+item.team.telphone}>
-                                <img src={img_phone} className="sotd-img"/>
+                                <span className="phone-icon"></span>
                                 酒店电话
                             </a>
                         </div>

@@ -5,8 +5,6 @@
   height: auto!important;
   min-height: 100%;
   background-color: #EBEBEB;
-  //padding: 10px 12px;
-
   .cc-top {
     height: 44px;
     background-color: #fff;
@@ -29,7 +27,7 @@
 
   }
   .cc-middle {
-    padding: 10px 12px;
+    padding: 10px 12px 60px 12px;
   }
   .cc-b {
     display: flex;
@@ -90,8 +88,34 @@
     position: absolute;
     right: 0;
     top: 0;
-    height: 30px;
-    width: 29px;
+    height: 40px;
+    width: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    &.organge-select {
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/coupon_select_orange.png);
+    }
+    &.blue-select {
+      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/coupon_select_blue.png)
+    }
   }
 
+  .operation_btn {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 2px 30px 0px #e2e2e2;
+    button {
+      padding: 10px 20px;
+      width: 60%;
+      color: #fff;
+      border-radius: 4px;
+      background-color: #FF5000;
+      border: none;
+      box-shadow: 0 1px 10px 1px #bfbfbf;
+    }
+  }
 }
