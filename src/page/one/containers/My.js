@@ -9,11 +9,6 @@ import Tabber from '../components/tabber'
 import './my.scss'
 import ItemCell from '../components/item-cell'
 
-import img_order from '../images/three/icon-7.png'
-import img_setting from '../images/three/icon-8.png'
-import img_accumulate from '../images/three/icon-11.png'
-import img_coupon from '../images/three/icon-15.png'
-import img_wallet from '../images/three/icon-122.png'
 import {getCookie, changeTitle} from '../components/Common'
 
 class My extends Component {
@@ -45,21 +40,21 @@ class My extends Component {
         const { dispatch, user } = this.props;
 
         let item_data = [{
-            icon: img_order,
+            icon: 'img_order',
             title: '我的订单',
             url: "/cmsfont/myOrder/"+(getCookie('wechatToken', ''))+"?code="+(getCookie('wechatCode',''))
         }, {
-            icon: img_setting,
+            icon: 'img_setting',
             title: '个人设置',
             url: '/cmsfont/setting'
         }, {
-            icon: img_accumulate,
+            icon: 'img_accumulate',
             title: (<div>住那儿旅行积分: &nbsp;&nbsp;<span style={{color: '#FF0000'}}>{user.accumulate_loading?(
                 <div className="weui-loading"></div>
             ):user.accumulate_total}</span></div>),
             url: '/cmsfont/accumulate'
         }, {
-            icon: img_coupon,
+            icon: 'img_coupon',
             title: '我的优惠券',
             num: user.coupon_total+'张',
             url: '/cmsfont/coupon'
@@ -85,7 +80,7 @@ class My extends Component {
                         <ItemCell {...item_data[3]} />
                         <div className="mb-sp"></div>
                         <ItemCell
-                            icon = {img_wallet}
+                            icon = {'img_wallet'}
                             title = '我的钱包'
                             url = '/cmsfont/wallet'
                         />

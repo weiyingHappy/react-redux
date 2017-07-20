@@ -21,11 +21,30 @@
   }
   .ic-a {
     @include flex(row, nowrap, flex-start, center);
-  }
-  .ica-a {
-    width: 22px;
-    height: 21px;
-    margin-right: 10px;
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      display: inline-block;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      &.img_order {
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-order.png);
+      }
+      &.img_accumulate {
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-accumulate.png)
+      }
+      &.img_wallet {
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-wallet.png);
+      }
+      &.img_setting {
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-setting.png);
+      }
+      &.img_coupon {
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-coupon.png);
+      }
+    }
   }
   .ica-b {
     @include flex(row, nowrap, flex-start, center);

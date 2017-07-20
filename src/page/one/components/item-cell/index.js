@@ -1,5 +1,6 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
+import cn from 'classnames'
 import './index.scss'
 
 class ItemCell extends React.Component {
@@ -21,7 +22,9 @@ class ItemCell extends React.Component {
         return (
             <div className="item-cell" onClick={this.handleClick}>
                 <div className="ic-a">
-                    <img className="ica-a" src={this.props.icon} />
+                    <span className={
+                        cn('nav-icon', this.props.icon)
+                    } />
                     <div className="ica-b">
                         {this.props.title}
                         {
