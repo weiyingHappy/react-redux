@@ -12,6 +12,7 @@ import { browserHistory } from 'react-router'
 class Entrance extends Component {
   state = {
     auth: 0, // 验证状态 0:验证中 1:成功 2:失败
+    msg: '验证中...'
   }
   componentWillMount() {
     const { dispatch } = this.props
@@ -43,8 +44,18 @@ class Entrance extends Component {
             document.querySelector('head').appendChild(link_tag)
 
             //TODO: 进行模板判断跳转路由
+            switch(Number(alias)) {
+                case 1:
+                    browserHistory.push('/cmsfont/rooms')
+                case 2:
+                    browserHistory.push('/cmsfont/myorder')
+                default:
+                    this.setState({
+                        msg: '为匹配到alias跳转'
+                    })
+            }
             if(Number(alias)===1) {
-                browserHistory.push('/cmsfont/rooms')
+                browserHistory.push('')
             }
         } else {
             this.setState({
@@ -65,8 +76,7 @@ class Entrance extends Component {
       <div>
         验证页面
         <ul>
-            <li>hotel_token: {this.props.params.hotel_token}</li>
-            <li>alias: {this.props.params.alias}</li>
+            <li>状态：{this.state.msg}</li>
         </ul>
       </div>
     )

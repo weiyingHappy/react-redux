@@ -27,8 +27,14 @@ class Rooms extends Component {
     }
 
     componentWillMount() {
-        let token = localStorage.token
-        let code = localStorage.code;
+        let token = this.props.params.token;
+        let code = this.props.location.query.code;
+
+        // 升级兼容代码处理，如果路由里面没有token信息（配备/myorder/:toekn），就取本地存取信息
+        if(!token||!code) {
+            token = localStorage.token;
+            code = localStorage.code;
+        }
 
         let self = this;
         const {user, hotel, dispatch} = this.props;

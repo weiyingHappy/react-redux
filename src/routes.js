@@ -48,14 +48,6 @@ const test = () => {
     )
 };
 
-/** hack 写法
- * Time: 2017-07-19 10:27
- * 在第一次进入时就进行用户信息请求
- * fix: * 在很多页面中都有进行user.isLogin的判断
- *        在不更改原有代码逻辑的前提下需要进行统一跳转
- * TODO: 实现方式暂定
- */
-
 import {NotFoundPage} from './page/custom/NotFoundPage'
 const Root = () => {
     return (
@@ -75,6 +67,11 @@ const Root = () => {
                             .catch(errorLoading);
                     } }/>
                 <Route path="/cmsfont/rooms" getComponent = {(location, cb)=>{
+                        System.import('./page/one/containers/Rooms')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
+                <Route path="/cmsfont/rooms/:token" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/Rooms')
                             .then(loadRoute(cb))
                             .catch(errorLoading);
@@ -131,6 +128,11 @@ const Root = () => {
                     } }/>
                 <Route path="/cmsfont/setting" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/Setting')
+                            .then(loadRoute(cb))
+                            .catch(errorLoading);
+                    } }/>
+                <Route path="/cmsfont/MyOrder" getComponent = {(location, cb)=>{
+                        System.import('./page/one/containers/MyOrder')
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
@@ -236,6 +238,14 @@ const Root = () => {
                     } }/>
                 
                 {/* 老代码-结束 */}
+                
+                {/* 用户信息错误时统一跳转 */}
+                <Route path="/cmsfont/not_user" getComponent = {(location, cb) => {
+                    System.import('@/src/page/custom/NotUserInfo')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }}></Route>
+
                 {
                     /**
                      * 路由v2版本
