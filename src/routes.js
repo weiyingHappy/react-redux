@@ -34,11 +34,13 @@ let store = createStore(
 );
 
 function errorLoading(error) {
+    NProgress.done()
     throw new Error(`Dynamic page loading failed: ${error}`);
 }
 
 
 function loadRoute(cb) {
+    NProgress.done()
     return module => cb(null, module.default);
 }
 
@@ -47,6 +49,12 @@ const test = () => {
         <div>hello</div>
     )
 };
+
+NProgress.configure({ showSpinner: false })
+
+browserHistory.listen(() => {
+    NProgress.start()
+})
 
 import {NotFoundPage} from './page/custom/NotFoundPage'
 const Root = () => {
