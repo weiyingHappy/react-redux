@@ -179,7 +179,6 @@ export function fetchLogin(user) {
 
         dt.then((json) => {
             dispatch(receiveLogin(json));
-            console.log(json);
         });
 
         return dt;
