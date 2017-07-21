@@ -92,6 +92,7 @@ if(process.env.NODE_ENV !== 'development') {
             chunks: false,
             chunkModules: false
         },
+        disableHostCheck: true,
         contentBase: path.join(__dirname, 'static')
     }
     config.devtool = '#cheap-module-eval-source-map'

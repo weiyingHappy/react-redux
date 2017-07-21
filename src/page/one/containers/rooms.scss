@@ -45,25 +45,45 @@
   }
 
   .date-container {
-    box-sizing: border-box;
-
     @include flex(row, nowrap, space-between, center);
-    padding: 0 15px 0 10px;
+    box-sizing: border-box;
+    padding: 0 20px;
     background-color: #fff;
     height: 50px;
+    margin: 10px;
+    position: relative;
+    border: solid 1px #e4e4e4;
+    &:after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 80%;
+      background: #999;
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      z-index: 1;
+    }
+    .start-date, .end-date, .num-date {
+      text-align: center;
+      .explain-text {
+        font-size: 12px;
+        color: #999;
+      }
+      .date-ins {
+        margin: 0 3px;
+        font-size: 13px;
+        color: #ff9e05;
+      }
+      .count-text {
+        color: #555;
+        position: relative;
+        z-index: 2;
+        background-color: #fff;
+      }
+    }
   }
-  .start-date, .end-date, .num-date {
-    @include flex(row, nowrap, flex-start, inherit);
-  }
-  .explain-text {
-    font-size: 13px;
-    color: #B2B2B2;
-  }
-  .date-ins {
-    margin: 0 3px;
-    font-size: 18px;
-    color: #4969F1;
-  }
+  
   .sign {
     display: inline-block;
     height: 10px;
@@ -75,5 +95,36 @@
     transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
   }
 
+  .navs {
+    .hotel_facilities {
+      .more {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .facilities_icon {
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+        display: inline-block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        vertical-align: middle;
+        &.maojin {
+          background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/facilities-mao%20jin.png);
+        }
+        &.yashua {
+          background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/facilities-ya-shua.png);
+        }
+      }
+    }
+  }
+
+  .starts {
+    .iconfont {
+      color: #23beae;
+      margin-right: 2px;
+    }
+  }
 }
 

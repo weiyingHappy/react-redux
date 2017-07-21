@@ -10,10 +10,10 @@ let test = 'test';
 let mid;
 if (window.location.hostname == 'www.lianwuyun.cn') {
     mid = test;
-} else if (window.location.hostname == 'localhost') {
-    mid = development;
-} else {
+} else if (window.location.hostname == 'www.hotelets.com') {
     mid = production;
+} else {
+    mid = development;
 }
 
 let now = (mid == development?dev_conf:(mid==test?test_conf:pro_conf));
@@ -23,7 +23,7 @@ let config = {
     remote_host: now.remote_host,
     my_host: now.my_host,
 
-    admin_token: 'f7a98b949e8a957e65dec8985c2933a0',
+    admin_token: '607a3614b435b08a27922c9127adc6d9',
 
     ping_appid: now.ping_appid,
     pay_appid: now.pay_appid,
