@@ -10,7 +10,7 @@ import {fetchLogin} from '@/src/actions/user'
 import {setDatePicker} from '@/src/actions/storage'
 
 import config from '@/config/config.js'
-import NavBar from '../components/NavBar'
+import NavBar from '../components/navbar'
 import Tabber from '../components/tabber'
 import Loading from '../components/loading'
 import RoomPiece from '../components/room-piece'
