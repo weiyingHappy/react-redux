@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import './index.scss'
 
 class RoomPiece extends React.Component {
@@ -10,34 +11,60 @@ class RoomPiece extends React.Component {
     }
 
     render() {
+        const { data } = this.props
 
         return (
             <div className="room-piece">
                 <div className="img-area">
-                    <img src={this.props.img_src+'?imageView2/1/w/90/h/90'} className="img-area-ins" />
+                    <img src={data.imgs[0] + '?imageView2/1/w/90/h/90'} className="img-area-ins" />
                 </div>
-                {(this.props.tag && this.props.tag.length > 0) ? (<img src={this.props.tag} className="img-type" />) :''}
+                {(data.tags && data.tags.length > 0) ? (<img src={data.tags} className="img-type" />) :''}
                 <div className="info-area">
                     <div className="info-name-info">
-                        <div className="info-name">{this.props.name}</div>
-                        {
+                        <div className="info-name">{data.name}</div>
+                        {/*
                             this.props.daofu == 1?
                             <div className="item-luggage">
                                 <span className="icon"></span>
                                 <span>到店支付</span>
                             </div>
                             :
-                            ''
+                            ''*/
                         }
-                        <div className="info-info">{this.props.info}</div>
                     </div>
-                    <div className="info-score">
-                        评分: {this.props.score||5}
+                    <div className="room_bewrite">
+                        <span className="area">{data.area}m²</span> |  
+                        <span className="bed">
+                        {
+                            data.bed_num == 2 ?
+                                '双床':
+                                '单床'
+                        }
+                        </span>
+                        <div>{data.intro}</div>
                     </div>
+                    <div className="tags">
+                        <span className="tag">满减</span>
+                    </div>
+                </div>
+
+                <div className="order-opera">
+                    <div className="price">
+                        ￥
+                        <span className="large">88</span>
+                        .00
+                    </div>
+                    <button className="order_btn">预定</button>
+                    
+                    <div className="rest_waring">·仅剩2间</div>
                 </div>
             </div>
         )
     }
+}
+
+RoomPiece.propTypes = {
+    data: PropTypes.object.isRequired
 }
 
 module.exports = RoomPiece;

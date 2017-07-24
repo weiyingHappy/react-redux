@@ -5,7 +5,9 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import React from 'react'
 import config from '../config/config'
 import { Router, Route, IndexRoute, Redirect, hashHistory, browserHistory } from 'react-router'
-import reducer from './reducers'
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
+import { combineReducers } from 'redux'
+import reducers from './reducers'
 
 const loggerMiddleware = createLogger();
 
@@ -29,7 +31,10 @@ let comp = config.debug?(
 );
 
 let store = createStore(
-    reducer,
+    combineReducers({
+        ...reducers,
+        routing: routerReducer
+    }),
     comp
 );
 
@@ -52,7 +57,9 @@ const test = () => {
 
 NProgress.configure({ showSpinner: false })
 
-browserHistory.listen(() => {
+const history = syncHistoryWithStore(browserHistory, store)
+
+history.listen(() => {
     NProgress.start()
 })
 
@@ -60,7 +67,7 @@ import {NotFoundPage} from './page/custom/NotFoundPage'
 const Root = () => {
     return (
         <Provider store={store}>
-            <Router history={browserHistory}>
+            <Router history={history}>
                 {/* 主入口页面路由 */}
                 <Route path="/cmsfont/entrance/:hotel_token/:alias" getComponent = {(location, cb) => {
                     System.import('@/src/page/entrance')

@@ -2,53 +2,85 @@
 
 .room-piece {
   box-sizing: border-box;
-
   @include flex(row, nowrap, flex-start, inherit);
-
   background-color: #fff;
   box-sizing: border-box;
+  border-top: solid 1px #e4e4e4;
+  border-bottom: solid 1px #e4e4e4;
 
   .img-area {
     width: 32%;
     padding: 10px;
     box-sizing: border-box;
-
     @include flex(column, wrap, center, inherit)
   }
+
   .img-area-ins {
-    border-radius: 3px;
-    height: 83px;
+    height: 88px;
     width: 88px;
   }
 
   .info-area {
-    width: 68%;
     @include flex(column, nowrap, center, inherit);
-
+    width: 43%;
     padding: 10px 10px 10px 0;
+    .room_bewrite {
+      color: #999;
+      font-size: 14px;
+      .bed {
+        margin-left: 5px;
+      }
+    }
+    .tags {
+      .tag {
+        color: #fa9900;
+        border: solid 1px #fa9900;
+        border-radius: 4px;
+        padding: 1px 8px;
+        display: inline-block;
+        margin-right: 5px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
   }
-  .info-area-info {
 
+  .info-area-info {
     @include flex(column, nowrap, flex-start, inherit);
   }
+
+  .order-opera {
+    width: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    .price {
+      color: #23beae;
+      .large {
+        font-size: 20px;
+      }
+    }
+    .order_btn {
+      background-color: #23beae;
+      border: none;
+      border-radius: 2px;
+      color: #fff;
+      padding: 5px 20px;
+    }
+    .rest_waring {
+      color: #ff9e05;
+    }
+  }
+
   .info-name {
     font-size: 16px;
-    color: #4F4F4F;
+    color: #555;
     /* padding-right: 70px; */
     overflow: auto;
-    width: 67%;
   }
-  .info-info {
-    font-size: 13px;
-    color: #B2B2B2;
-    line-height: 18px;
-    margin-top: 5px;
-  }
-  .info-score {
-    font-size: 13px;
-    line-height: 18px;
-    color: #B2B2B2;
-  }
+
   .img-type {
     position: absolute;
     left: 10px;
@@ -56,25 +88,5 @@
     width: 25px;
     z-index: 50;
     height: 29px;
-  }
-  .item-luggage {
-    .icon {
-      width: 18px;
-      height: 18px;
-      margin-right: 10px;
-      display: inline-block;
-      background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/daofu_home.png);
-      vertical-align: middle;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    img {
-      width: 20px;
-      vertical-align: middle;      
-    }
-    span {
-      vertical-align: sub;
-      color: #4969F1;
-    }
   }
 }

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 
@@ -21,8 +22,8 @@ class My extends Component {
         let {dispatch, user} = this.props;
 
         if (!user.isLogin) {
-            dispatch(setUser({register_back_url: '/cmsfont/my'}));
-            browserHistory.push('/cmsfont/register');
+            // dispatch(setUser({register_back_url: '/cmsfont/my'}));
+            // browserHistory.push('/cmsfont/register');
             return ;
         }
         else {

@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from 'prop-types'
 import { connect } from "react-redux";
-import { browserHistory } from "react-router";
+import { browserHistory, Link } from "react-router";
 import config from "@/config/config";
 import cn from 'classnames'
 import "./intro.scss";
@@ -9,8 +10,11 @@ import Loading from "../components/loading";
 import Scroll from "../components/scroll";
 
 import { getCookie, jsSdkInit } from "../components/Common";
-import { fetchHotelLists } from "@/src/actions/hotel";
+import { fetchHotelInfo } from "@/src/actions/hotel";
 import { fetchJsSdk } from "@/src/actions/storage";
+import { covertEquipmentsToClassName } from '@/src/common'
+// 加载房间配置的图标样式
+import '../scss/facilities.scss'
 
 class Intro extends Component {
   constructor(props) {
@@ -28,7 +32,7 @@ class Intro extends Component {
     const { user, hotel, storage, dispatch } = this.props;
 
     if (!hotel.hasData) {
-      dispatch(fetchHotelLists({ teamId: user.teamId, page: 1 }));
+      dispatch(fetchHotelInfo(user.teamId))
     }
 
     let info = {
@@ -119,16 +123,19 @@ class Intro extends Component {
                     return (
                       <span
                         key={"start" + index}
-                        className={cn({
-                          "hotel-star-icon": true,
-                          fill: index + 1 <= parseInt(hotel.intro.star),
-                          blank: index + 1 > parseInt(hotel.intro.star)
-                        })}
-                      />
+                        className="hotel-star-icon"
+                      >
+                        <i
+                          className={cn('iconfont', {
+                            'icon-star': index + 1 <= parseInt(hotel.intro.star),
+                            'icon-start-blank': index + 1 > parseInt(hotel.intro.star),
+                          })}
+                        ></i>
+                      </span>
                     );
                   })}
                   <span className="hotel-star-score">
-                    {hotel.intro.star}
+                    {hotel.intro.star}分
                   </span>
                 </div>
               </div>
@@ -150,15 +157,39 @@ class Intro extends Component {
               </a>
             </div>
           </div>
+          
+          <div className="hotel_service">
+            <div className="title">可提供服务</div>
+            <div className="services">
+              {
+                hotel.intro.equipments.map((equipment, index) => {
+                  return (
+                    <div className="item" key={'equipment_' + index}>
+                      <div className="icon">
+                        <i className={cn('facilities_icon', covertEquipmentsToClassName(equipment))}></i>
+                      </div>
+                      <div className="name">{equipment}</div>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          </div>
+
           <div className="hotel-intro">
             <div className="hotel-intro-title">酒店介绍</div>
             <div className="hotel-intro-body">
               {hotel.intro.intro}
             </div>
           </div>
+          
           <Loading text="获取位置中" isFetching={this.state.map_loading} />
-
-          <div style={{ height: "100px" }} />
+          <div className="order_btn">
+            <Link to="/cmsfont/rooms">
+              <button className="order_btn">立即预定</button>
+            </Link>
+          </div>
+          <div style={{ height: "60px" }} />
           <Tabber
             highlight={4}
             token={user.wechatToken}
