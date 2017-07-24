@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import moment from 'moment'
@@ -217,7 +218,7 @@ class MyOrder extends Component {
                 <Loading text="退款中..." isFetching={order.pay.refund_loading} />
                 <Loading text="取消订单中..." isFetching={order.pay.unpay_loading} />
 
-                <LoaderMore nowPage={nowOrder.nowPage} totalPage={nowOrder.totalPage} />
+                <LoaderMore nowPage={nowOrder.nowPage} totalPage={nowOrder.totalPage}>没有更多了</LoaderMore>
             </div>
         )
     }

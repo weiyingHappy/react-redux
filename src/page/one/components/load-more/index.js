@@ -12,7 +12,7 @@ export default class LoadMore extends React.Component {
     render () {
         let dt = this.props.nowPage>=this.props.totalPage?(
             <div className="my-load-bottom weui-loadmore_line">
-                <span className="weui-loadmore__tips" style={{backgroundColor:'#F2F2F2'}}></span>
+                <span className="weui-loadmore__tips" style={{backgroundColor:'#F2F2F2'}}>{this.props.children}</span>
             </div>
         ):(
             <div className="my-load-more">

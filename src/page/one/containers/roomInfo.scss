@@ -41,30 +41,46 @@
   .no-room-text {
     font-size: 1.7rem;
   }
-
-
-
   .date-container {
     @include flex(row, nowrap, space-between, center);
-
     box-sizing: border-box;
-    padding: 0 15px 0 10px;
+    padding: 0 20px;
     background-color: #fff;
-    margin-top: 10px;
     height: 50px;
+    margin: 10px;
+    position: relative;
+    border: solid 1px #e4e4e4;
+    &:after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 80%;
+      background: #999;
+      position: absolute;
+      left: 50%;
+      top: 10%;
+      z-index: 1;
+    }
+    .start-date, .end-date, .num-date {
+      text-align: center;
+      .explain-text {
+        font-size: 12px;
+        color: #999;
+      }
+      .date-ins {
+        margin: 0 3px;
+        font-size: 13px;
+        color: #ff9e05;
+      }
+      .count-text {
+        color: #555;
+        position: relative;
+        z-index: 2;
+        background-color: #fff;
+      }
+    }
   }
-  .start-date, .end-date, .num-date {
-    @include flex(row, nowrap, flex-start, inherit);
-  }
-  .explain-text {
-    font-size: 13px;
-    color: #B2B2B2;
-  }
-  .date-ins {
-    margin: 0 3px;
-    font-size: 18px;
-    color: #4969F1;
-  }
+
   .sign {
     display: inline-block;
     height: 10px;
@@ -81,7 +97,6 @@
 
     @include flex(column, nowrap, space-around, inherit);
     background-color: #fff;
-    margin-top: 20px;
   }
   .middle-a > div {
 
@@ -123,13 +138,13 @@
     background-color: #fff;
   }
   .md-a {
-    padding: 19px 19px 17px 10px;
+    padding: 8px 10px;
     font-size: 14px;
     color: #4F4F4F;
     @include flex(row, nowrap, space-between, inherit);
   }
   .mda-b {
-    color: #4969F1;
+    color: #23beae;
   }
   .mda-b-n {
     color: #666666;
@@ -142,18 +157,22 @@
   .m-bottom {
     position: fixed;
     bottom: 0;
-    height: 50px;
+    height: 60px;
     width: 100%;
     z-index: 100;
-
-
+    background-color: #fff;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border-top: solid 1px #e4e4e4;
     .order-button {
       height: 100%;
       width: 100%;
       border: none;
-      background-color: #FF5000;
+      background-color: #23beae;
       color: #fff;
       font-size: 18px;
+      border-radius: 4px;
+      outline: none;
     }
     .order-button-disabled {
       background-color: #B2B2B2!important;

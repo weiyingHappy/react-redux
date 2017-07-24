@@ -44,8 +44,19 @@ class RoomPiece extends React.Component {
                         <div>{data.intro}</div>
                     </div>
                     <div className="tags">
-                        
+                        <span className="tag">满减</span>
                     </div>
+                </div>
+
+                <div className="order-opera">
+                    <div className="price">
+                        ￥
+                        <span className="large">88</span>
+                        .00
+                    </div>
+                    <button className="order_btn">预定</button>
+                    
+                    <div className="rest_waring">·仅剩2间</div>
                 </div>
             </div>
         )

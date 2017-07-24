@@ -2,9 +2,7 @@
 
 .room-piece {
   box-sizing: border-box;
-
   @include flex(row, nowrap, flex-start, inherit);
-
   background-color: #fff;
   box-sizing: border-box;
   border-top: solid 1px #e4e4e4;
@@ -14,9 +12,9 @@
     width: 32%;
     padding: 10px;
     box-sizing: border-box;
-
     @include flex(column, wrap, center, inherit)
   }
+
   .img-area-ins {
     height: 88px;
     width: 88px;
@@ -24,7 +22,7 @@
 
   .info-area {
     @include flex(column, nowrap, center, inherit);
-    width: 68%;
+    width: 43%;
     padding: 10px 10px 10px 0;
     .room_bewrite {
       color: #999;
@@ -33,16 +31,56 @@
         margin-left: 5px;
       }
     }
+    .tags {
+      .tag {
+        color: #fa9900;
+        border: solid 1px #fa9900;
+        border-radius: 4px;
+        padding: 1px 8px;
+        display: inline-block;
+        margin-right: 5px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
   }
+
   .info-area-info {
     @include flex(column, nowrap, flex-start, inherit);
   }
+
+  .order-opera {
+    width: 25%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    .price {
+      color: #23beae;
+      .large {
+        font-size: 20px;
+      }
+    }
+    .order_btn {
+      background-color: #23beae;
+      border: none;
+      border-radius: 2px;
+      color: #fff;
+      padding: 5px 20px;
+    }
+    .rest_waring {
+      color: #ff9e05;
+    }
+  }
+
   .info-name {
     font-size: 16px;
     color: #555;
     /* padding-right: 70px; */
     overflow: auto;
   }
+
   .img-type {
     position: absolute;
     left: 10px;

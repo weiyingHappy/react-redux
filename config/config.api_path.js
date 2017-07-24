@@ -14,6 +14,7 @@ module.exports = {
         checkSMS: '/SMS/checkSMS',
         wechatInfo: '/CMS/CmsBasic/wechatInfo',
         hotelInfo: '/FE/Room/rooms',
+        hotelInfomation: '/FE/Hotel/hotelInfo', // 真.获取酒店信息
         inventory: '/FE/Room/inventory',
         getComments: '/FE/Evaluation/evaluations',
         orderPrice: '/FE/Order/calcuPrice',

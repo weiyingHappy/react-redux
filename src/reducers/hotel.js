@@ -1,4 +1,4 @@
-import { REQUEST_HOTEL_LISTS, RECEIVE_HOTEL_LISTS, CHANGE_ROOM } from '../actions/hotel'
+import { REQUEST_HOTEL_LISTS, RECEIVE_HOTEL_LISTS, CHANGE_ROOM, RECEIVE_HOTEL_INFO } from '../actions/hotel'
 
 let hotel_state = {
     isFetching: true,
@@ -29,6 +29,12 @@ export default function hotel(state=hotel_state, action) {
             return receive_lists(state, action.data.results);
         case CHANGE_ROOM:
             return Object.assign({}, state, {room_id: action.id});
+        case RECEIVE_HOTEL_INFO:
+            return {
+                ...state,
+                intro: action.payload.data,
+                isFetching: false
+            }
         default:
             return state;
     }

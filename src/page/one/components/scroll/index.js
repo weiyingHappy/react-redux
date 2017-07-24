@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './index.scss'
 import ImageGallery from 'react-image-gallery'
 import 'react-image-gallery/styles/scss/image-gallery.scss'

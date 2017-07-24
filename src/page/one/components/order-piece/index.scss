@@ -2,9 +2,49 @@
 
 .order-piece {
   .order-item {
-    margin-top: 10px;
+    margin: 10px 6px;
+    margin-bottom: 0;
     @include flex(column, wrap, flex-start, inherit);
     background-color: #fff;
+    border: solid 1px #dcdcdc;
+    border-radius: 5px;
+    padding: 10px;
+    .header {
+      font-size: 0;
+      width: 100%;
+      border-bottom: solid 1px #dcdcdc;
+      padding-bottom: 10px;
+      .hotel_name, .state {
+        font-size: 14px;
+        display: inline-block;
+      }
+      .hotel_name {
+        width: 60%;
+        font-size: 14px;
+        color: #666;
+      }
+      .state {
+        width: 40%;
+        text-align: right;
+        color: #fe9f07;
+      }
+    }
+
+    .body {
+      .room_name {
+        font-size: 15px;
+        color: #666;
+        margin: 5px 0;
+        .order_type {
+          color: #23beae;
+        }
+      }
+      .date_range {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+    }
   }
 
   .item-header {
@@ -40,26 +80,20 @@
     padding: 10px 0 10px 10px;
   }
   .item-btn {
-    height: 40px;
     box-sizing: border-box;
-    min-width: 75px;
-    padding: 0 15px;
-    border: none;
-    border-radius: 3px;
+    min-width: 65px;
+    padding: 8px 15px;
+    border: solid 1px #d4d4d4;
+    border-radius: 4px;
     font-size: 0.9rem;
-    color: #fff;
+    color: #23beae;
     margin: 0 5px 0 0;
-  }
-  .item-btn-blue {
-    background-color: #4969F1;
-  }
-  .item-btn-red {
-    background-color: #FF5000;
-  }
-  .item-btn-black {
     background-color: #fff;
-    color: #666666;
-    border: 1px solid #666666;
+    &.fill {
+      border-color: #23beae;
+      background-color: #23beae;
+      color: #fff;
+    }
   }
 
   .no-order {

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import moment from 'moment'
@@ -67,6 +68,10 @@ class RoomInfo extends Component {
 
     chooseEnd() {
         this.props.dispatch(setDatePicker(2));
+        browserHistory.push('/cmsfont/chooseDate')
+    }
+
+    chooseDateRange() {
         browserHistory.push('/cmsfont/chooseDate')
     }
 
@@ -170,21 +175,17 @@ class RoomInfo extends Component {
                     </div>
                 </div>
 
-                <div className="date-container">
-                    <div className="start-date" onClick={this.chooseStart}>
+                <div className="date-container" onClick={() => { this.chooseDateRange() }}>
+                    <div className="start-date">
                         <div className="explain-text">入住</div>
-                        <div className="date-ins">{from.get('month')+1}月{from.get('date')}日</div>
-                    </div>
-                    <div className="end-date" onClick={this.chooseEnd}>
-                        <div className="explain-text">离店</div>
-                        <div className="date-ins">{to.get('month')+1}月{to.get('date')}日</div>
+                        <div className="date-ins">{from.get('month')+1}月{from.get('date')}日 今天</div>
                     </div>
                     <div className="num-date">
-                        <div className="explain-text">共</div>
-                        <div className="date-ins">{moment(to).diff(moment(from), 'days')}</div>
-                        <div className="explain-text">晚</div>
+                        <div className="count-text">{moment(to).diff(moment(from), 'days')}晚</div>
                     </div>
-                    <div className="sign">
+                    <div className="end-date">
+                        <div className="explain-text">离店</div>
+                        <div className="date-ins">{to.get('month')+1}月{to.get('date')}日 明天</div>
                     </div>
                 </div>
 
@@ -215,7 +216,7 @@ class RoomInfo extends Component {
 
                 {comments_area}
 
-                <div style={{height:'105px'}}></div>
+                <div style={{height:'80px'}}></div>
 
                 <div className="m-bottom">
                     <button onClick={this.handleOrder} className={"order-button "+((!storage.inventory_loading&&storage.inventory==0)?'order-button-disabled':'')} disabled={(storage.inventory_loading||storage.inventory==0)?true:false}>

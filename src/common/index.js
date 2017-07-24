@@ -99,3 +99,71 @@ export const getBrowserEnv = () => {
 
     return env
 }
+
+/**
+ * 通过价格计算可能获得积分
+ * 注：计算结果可能与实际结果不同
+ * @param {number} price 
+ */
+export const getIntegral = (price) => {
+    return parseInt(Number(price))
+}
+
+/**
+ * 转换配置文字成样式名
+ * @param {string} name 
+ */
+export const covertEquipmentsToClassName = (name) => {
+    switch(name) {
+        case '毛巾':
+            return 'maojin'
+        case '牙刷':
+            return 'yashua'
+        case '医药':
+            return 'yiyao'
+        case '浴缸':
+            return 'yugang'
+        case '洗衣机':
+            return 'xiyiji'
+        case '吹风':
+            return 'cuifeng'
+        case '洗手液':
+            return 'xishouye'
+        case '行李':
+            return 'xingli'
+        case '早餐':
+            return 'zaocan'
+        case '淋浴':
+            return 'linyu'
+        case 'wifi':
+            return 'wifi'
+        case '沐浴露':
+            return 'muyulu'
+        case '停车场':
+            return 'tingche'
+        case '空调':
+            return 'kongtiao'
+        case '打印机':
+            return 'dayinji'
+        case '叫醒':
+            return 'jiaoxin'
+        case '接送':
+            return 'jiesong'
+        case '餐厅':
+            return 'canting'
+        case '电视':
+            return 'dianshi'
+        case '咖啡':
+            return 'coffee'
+        case '电脑':
+            return 'diannao'
+        case '吧台':
+            return 'batai'
+        case '拖鞋':
+            return 'tuoxie'
+        case '窗户':
+            return 'chuanghu'
+        default:
+            return ''
+    }
+}

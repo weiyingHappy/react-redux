@@ -3,7 +3,72 @@
 .order-generate-container {
   @extend .container-common;
   background-color: #F2F2F2;
-  padding-top: 10px;
+
+  .order_info {
+    background-color: #23beae;
+    box-sizing: border-box;
+    padding: 12px 10px;
+    .order_card {
+      border-radius: 4px;
+      background-color: #fff;
+      padding: 14.5px 0;
+      .hotel_name, .room_name, .daterange, .equipments, .bewrite {
+        padding: 0 20px;
+      }
+      .hotel_name {
+        font-size: 16px;
+        color: #444;
+        margin-bottom: 5px;
+      }
+      .room_name {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+      }
+      .daterange {
+        font-size: 0;
+        margin-bottom: 5px;
+        .live_in, .live_out, .count {
+          display: inline-block;
+          font-size: 13px;
+          color: #444;
+        }
+      }
+      .equipments {
+        .item {
+          font-size: 13px;
+          color: #444;
+          margin-right: 5px;
+        }
+      }
+      .divide {
+        border-top: dashed 1px #ddd;
+        margin: 15px 0;
+        position: relative;
+        &:after, &:before {
+          content: '';
+          width: 20px;
+          height: 20px;
+          display: block;
+          position: absolute;
+          background-color: #23beae;
+          border-radius: 50%;
+          top: -10px;
+        }
+        &:after {
+          left: -10px;
+        }
+        &:before {
+          right: -10px;
+        }
+      }
+
+      .bewrite {
+        color: #999;
+        font-size: 12px;
+      }
+    }
+  }
 
   .top {
     background-color: #fff;
@@ -49,7 +114,6 @@
   }
 
   .middle {
-    margin-top: 10px;
     background-color: #fff;
     box-sizing: border-box;
   }
@@ -104,11 +168,13 @@
     padding: 10px;
     background-color: #fff;
     margin-top: 10px;
+    border-top: solid 1px #dcdcdc;
+    border-bottom: solid 1px #dcdcdc;
   }
   .bottom-a {
     margin: 6px auto 14px auto;
     font-size: 14px;
-    color: #FF5000;
+    color: #23beae;
   }
   .bottom-res {
     font-size: 14px;
@@ -123,6 +189,7 @@
     position: fixed;
     bottom: 0;
     z-index: 100;
+    border-top: solid 1px #dcdcdc;
   }
   .tail-a {
     background-color: #fff;
@@ -130,17 +197,17 @@
     line-height: 50px;
     width: 67%;
     font-size: 18px;
+    color: #fa9900;
   }
   .tail-b {
     width: 33%;
     height: 100%;
     border: none;
-    background-color: #FF5000;
+    background-color: #23beae;
     color: #fff;
     font-size: 18px;
   }
   .tail-highlight {
-    color: #FF4E00;
   }
 
   .sign {
@@ -199,7 +266,45 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
+    border-top: solid 1px #dcdcdc;
+    border-bottom: solid 1px #dcdcdc;
+    .reduce_logo, .coupon_info {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .reduce_logo {
+      width: 20px;
+      height: 20px;
+      background-color: #fa9900;
+      margin-right: 5px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      border-radius: 1px;
+    }
   }
+
+  .integral {
+    border-top: solid 1px #dcdcdc;
+    border-bottom: solid 1px #dcdcdc;
+    background-color: #fff;
+    padding: 10px 15px;
+    color: #666;
+    .icon {
+      display: inline-block;
+      .iconfont {
+        color: #23beae;
+        font-size: 20px;
+        vertical-align: middle;
+        margin-right: 5px;
+      }
+    }
+    .integral_num {
+      color: #23beae;
+    }
+  }
+
   .cp-left {
 
   }
@@ -215,8 +320,9 @@
   }
   .cpla-b {
     margin-left: 11px;
-    color: #FF3333;
-    border: 1px solid #FF3333;
+    color: #fa9900;
+    border: 1px solid #fa9900;
+    padding: 0 5px;
     font-size: 9px;
   }
   .cpl-b {
@@ -231,7 +337,7 @@
   }
   .cpr-a {
     font-size: 16px;
-    color: #FF5001;
+    color: #fa9900;
     margin-right: 8px;
   }
   .cpr-b {
