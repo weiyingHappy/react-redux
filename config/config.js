@@ -23,7 +23,7 @@ let config = {
     remote_host: now.remote_host,
     my_host: now.my_host,
 
-    admin_token: '7dddb258e079ad8e622155ce3001160e',
+    admin_token: '1f4bdbc07cea7724592e3c72b6fab180',
 
     ping_appid: now.ping_appid,
     pay_appid: now.pay_appid,

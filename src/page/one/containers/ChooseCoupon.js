@@ -110,7 +110,9 @@ class ChooseCoupon extends Component {
                         <div className="ccb-left" onClick={()=>{browserHistory.push("/cmsfont/exchangeCoupon")}}>
                             去兑换 >
                         </div>
-                        <div className="ccb-right">
+                        <div className="ccb-right" onClick={() => {
+                            browserHistory.push('/cmsfont/coupon_rule')    
+                        }}>
                             兑换规则
                         </div>
                     </div>
@@ -129,7 +131,9 @@ class ChooseCoupon extends Component {
                     {tab==0?(
                         <div className="cc-bottom">
                             <div className="ccb-b">
-                                没有更多优惠券{/*，参与活动<span className="ccbb-a">获得优惠券 ></span>*/}
+                                没有更多优惠券，参与活动<span className="ccbb-a" onClick={() => {
+                                    browserHistory.push('/cmsfont/snap')    
+                                }}>获得优惠券 ></span>
                             </div>
                         </div>
                     ):''}

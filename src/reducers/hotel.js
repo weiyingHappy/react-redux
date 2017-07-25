@@ -1,4 +1,10 @@
-import { REQUEST_HOTEL_LISTS, RECEIVE_HOTEL_LISTS, CHANGE_ROOM, RECEIVE_HOTEL_INFO } from '../actions/hotel'
+import {
+    REQUEST_HOTEL_LISTS,
+    RECEIVE_HOTEL_LISTS,
+    CHANGE_ROOM,
+    RECEIVE_HOTEL_INFO,
+    REQUEST_HOTEL_INFO
+} from '../actions/hotel'
 
 let hotel_state = {
     isFetching: true,
@@ -27,6 +33,11 @@ function receive_lists(state, data) {
 
 export default function hotel(state=hotel_state, action) {
     switch(action.type) {
+        case REQUEST_HOTEL_INFO:
+            return {
+                ...state,
+                isFetching: true
+            }
         case REQUEST_HOTEL_LISTS:
             return Object.assign({}, state, {isFetching: true});
         case RECEIVE_HOTEL_LISTS:

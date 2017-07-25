@@ -83,7 +83,9 @@ class Coupon extends Component {
 
                 <LoadMore nowPage={coupon.my.nowPage} totalPage={coupon.my.totalPage}></LoadMore>
                 <div className="bottom">
-                    没有更多优惠券{/*，参与活动<span className="b-a">获得优惠券 ></span>*/}
+                    没有更多优惠券，参与活动<span className="b-a" onClick={() => {
+                        browserHistory.push('/cmsfont/snap')    
+                    }}>获得优惠券 ></span>
                 </div>
             </div>
         )

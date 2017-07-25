@@ -104,7 +104,7 @@ class PayPage extends Component {
         };
         dispatch(fetchArrivePay(info)).then((json)=>{
             if (json.code == 200 || json.code == 407) {
-                browserHistory.push('/cmsfont/MyOrder/'+getCookie('wechatToken', ''));
+                browserHistory.replace('/cmsfont/myorder');
             }
             else {
                 alert("下单失败,请稍后再试!");

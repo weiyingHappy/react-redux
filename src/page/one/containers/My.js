@@ -43,7 +43,7 @@ class My extends Component {
         let item_data = [{
             icon: 'img_order',
             title: '我的订单',
-            url: "/cmsfont/myOrder/"+(getCookie('wechatToken', ''))+"?code="+(getCookie('wechatCode',''))
+            url: "/cmsfont/myorder"
         }, {
             icon: 'img_setting',
             title: '个人设置',

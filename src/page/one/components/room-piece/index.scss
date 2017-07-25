@@ -23,10 +23,10 @@
   .info-area {
     @include flex(column, nowrap, center, inherit);
     width: 43%;
-    padding: 10px 10px 10px 0;
+    padding: 10px 0 10px 0;
     .room_bewrite {
       color: #999;
-      font-size: 14px;
+      font-size: 12px;
       .bed {
         margin-left: 5px;
       }
@@ -36,9 +36,13 @@
         color: #fa9900;
         border: solid 1px #fa9900;
         border-radius: 4px;
-        padding: 1px 8px;
+        padding: 1px 5px;
         display: inline-block;
-        margin-right: 5px;
+        margin-right: -10px;
+        margin-top: 8px;
+        font-size: 14px;
+        transform-origin: 0 0 0;
+        transform: scale(0.7);
         &:last-child {
           margin-right: 0;
         }
@@ -68,9 +72,19 @@
       border-radius: 2px;
       color: #fff;
       padding: 5px 20px;
+      &.full {
+        background-color: #dedede;
+      }
+    }
+    .rest_waring, .rest_error {
+      font-size: 12px;
+      margin-top: 8px;
     }
     .rest_waring {
       color: #ff9e05;
+    }
+    .rest_error {
+      color: #ff0505;
     }
   }
 

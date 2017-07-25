@@ -89,7 +89,9 @@ class ExchangeCoupon extends Component {
 
         return (
             <div className="exchange-coupon-container">
-                <div className="top">
+                <div className="top" onClick={() => {
+                    browserHistory.push('/cmsfont/coupon_rule')    
+                }}>
                     兑换规则
                 </div>
                 <div className="middle">

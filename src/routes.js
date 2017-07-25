@@ -88,6 +88,7 @@ const Root = () => {
                     } }/>
                 {/* 兼容代码，将老地址重定向到新入口 */}
                 <Redirect from="/cmsfont/rooms/:token" to="/cmsfont/entrance/:token/1" />
+                <Redirect from="/cmsfont/myorder/:token" to="/cmsfont/entrance/:token/2" />
                 {/* <Route path="/cmsfont/rooms/:token" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/Rooms')
                             .then(loadRoute(cb))
@@ -148,12 +149,7 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
-                <Route path="/cmsfont/MyOrder" getComponent = {(location, cb)=>{
-                        System.import('./page/one/containers/MyOrder')
-                            .then(loadRoute(cb))
-                            .catch(errorLoading);
-                    } }/>
-                <Route path="/cmsfont/MyOrder/:token" getComponent = {(location, cb)=>{
+                <Route path="/cmsfont/myorder" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/MyOrder')
                             .then(loadRoute(cb))
                             .catch(errorLoading);
