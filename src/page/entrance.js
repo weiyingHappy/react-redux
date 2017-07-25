@@ -47,8 +47,10 @@ class Entrance extends Component {
             switch(Number(alias)) {
                 case 1:
                     browserHistory.push('/cmsfont/rooms')
+                    break
                 case 2:
                     browserHistory.push('/cmsfont/myorder')
+                    break
                 default:
                     this.setState({
                         msg: '未匹配到alias跳转'
