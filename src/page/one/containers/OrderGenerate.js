@@ -15,7 +15,7 @@ import {
   setNotChoosed,
   changeCoupon
 } from "@/src/actions/coupon";
-import {getIntegral} from '@/src/common'
+import { getIntegral, covertDate } from '@/src/common'
 
 import "./orderGenerate.scss";
 
@@ -244,10 +244,10 @@ class OrderGenerate extends Component {
             </div>
             <div className="daterange">
               <div className="live_in">
-                入住：{from.format("MM-DD")}（今天x）
+                入住：{from.format("MM-DD")}（{covertDate(from)}）
               </div>
               <div className="live_out">
-                离店：{to.format("MM-DD")}（周五x）
+                离店：{to.format("MM-DD")}（{covertDate(to)}）
               </div>
               <div className="count">
                 共{moment(to).diff(from, "days")}晚

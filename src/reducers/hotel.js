@@ -16,6 +16,10 @@ function receive_lists(state, data) {
     }
     let new_state = Object.assign({}, state, {isFetching: false, intro: data.other,
                     nowPage: data.nowPage, totalPage: data.totalPage, hasData: true});
+
+    if(!new_state.intro.equipments) {
+        new_state.intro.equipments = []
+    }
     new_state.lists = (data.nowPage==1?data.lists:[...state.lists, ...data.lists]);
 
     return new_state;
@@ -32,7 +36,10 @@ export default function hotel(state=hotel_state, action) {
         case RECEIVE_HOTEL_INFO:
             return {
                 ...state,
-                intro: action.payload.data,
+                intro: {
+                    ...action.payload.data,
+                    equipments: action.payload.data.equipments || []
+                },
                 isFetching: false
             }
         default:

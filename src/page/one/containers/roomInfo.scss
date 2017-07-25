@@ -42,7 +42,7 @@
     font-size: 1.7rem;
   }
   .date-container {
-    @include flex(row, nowrap, space-between, center);
+    @include flex(row, nowrap, space-around, center);
     box-sizing: border-box;
     padding: 0 20px;
     background-color: #fff;

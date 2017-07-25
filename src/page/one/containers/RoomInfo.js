@@ -7,6 +7,7 @@ import moment from 'moment'
 import {fetchInventory, fetchComments, setDatePicker, fetchJsSdk} from '@/src/actions/storage'
 import { fetchRoomInfo } from '@/src/actions/room'
 import config from '@/config/config.js'
+import { covertDate } from '@/src/common'
 import Loading from '../components/loading'
 import Scroll from '../components/scroll'
 import './roomInfo.scss'
@@ -178,14 +179,14 @@ class RoomInfo extends Component {
                 <div className="date-container" onClick={() => { this.chooseDateRange() }}>
                     <div className="start-date">
                         <div className="explain-text">入住</div>
-                        <div className="date-ins">{from.get('month')+1}月{from.get('date')}日 今天</div>
+                        <div className="date-ins">{from.get('month')+1}月{from.get('date')}日 {covertDate(from)}</div>
                     </div>
                     <div className="num-date">
                         <div className="count-text">{moment(to).diff(moment(from), 'days')}晚</div>
                     </div>
                     <div className="end-date">
                         <div className="explain-text">离店</div>
-                        <div className="date-ins">{to.get('month')+1}月{to.get('date')}日 明天</div>
+                        <div className="date-ins">{to.get('month')+1}月{to.get('date')}日 {covertDate(to)}</div>
                     </div>
                 </div>
 
