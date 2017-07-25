@@ -1,6 +1,5 @@
-
 import sha1 from 'sha1'
-
+import moment from 'moment'
 
 export function getCookie(c_name, pre = '')
 {
@@ -139,7 +138,7 @@ export const covertEquipmentsToClassName = (name) => {
             return 'wifi'
         case '沐浴露':
             return 'muyulu'
-        case '停车场':
+        case '免费停车':
             return 'tingche'
         case '空调':
             return 'kongtiao'
@@ -163,7 +162,23 @@ export const covertEquipmentsToClassName = (name) => {
             return 'tuoxie'
         case '窗户':
             return 'chuanghu'
+        case '无早':
+            return 'wuzao'
         default:
             return ''
     }
+}
+
+/**
+ * 转换日期成·今天、明天、周几·
+ * @param {moment} date 
+ */
+export const covertDate = (date) => {
+    if(moment().isSame(date, 'day')) {
+        return '今天'
+    }
+    if(moment().add(1, 'day').isSame(date, 'day')) {
+        return '明天'
+    }
+    return '周' + ['', '一', '二', '三', '四', '五', '六', '日'][date.day()]
 }

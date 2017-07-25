@@ -79,6 +79,7 @@ class Intro extends Component {
       fail: err => {
         // alert(JSON.stringify(err));
         alert("获取地图失败");
+        console.log(err)
         self.setState({
           map_loading: false
         });

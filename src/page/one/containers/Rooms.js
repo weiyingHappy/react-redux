@@ -19,7 +19,7 @@ import LoaderMore from '../components/load-more'
 import Scroll from "../components/scroll"
 import { fetchJsSdk } from "@/src/actions/storage";
 import { jsSdkInit } from "../components/Common";
-import { covertEquipmentsToClassName } from '@/src/common'
+import { covertEquipmentsToClassName, covertDate } from '@/src/common'
 import './rooms.scss'
 
 // 加载房间配置的图标样式
@@ -50,6 +50,14 @@ class Rooms extends Component {
 
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
+            
+            dispatch(fetchJsSdk({
+                teamId: res.results.teamid,
+                appid: res.results.appid,
+                appsecret: res.results.appsecret
+            })).then(() => {
+                jsSdkInit(res.results, res.results.appid, config.basehost + this.props.pathname);
+            })
         }
         else {
             dispatch(fetchLogin({token: token, code: code})).then((res)=>{
@@ -65,7 +73,7 @@ class Rooms extends Component {
                         appid: res.results.appid,
                         appsecret: res.results.appsecret
                     })).then(() => {
-                        jsSdkInit(res.results, user.appid, config.basehost + this.props.pathname);
+                        jsSdkInit(res.results, res.results.appid, config.basehost + this.props.pathname);
                     })
                 }
                 else if (res.code!=200 && !config.debug) {
@@ -140,6 +148,7 @@ class Rooms extends Component {
             },
             fail: err => {
                 // alert(JSON.stringify(err));
+                console.log(err)
                 alert("获取地图失败");
             }
         });
@@ -233,14 +242,14 @@ class Rooms extends Component {
                 <div className="date-container" onClick={() => { this.chooseDateRange() }}>
                     <div className="start-date">
                         <div className="explain-text">入住</div>
-                        <div className="date-ins">{from.get('month')+1}月{from.get('date')}日 今天</div>
+                        <div className="date-ins">{from.get('month')+1}月{from.get('date')}日 {covertDate(from)}</div>
                     </div>
                     <div className="num-date">
                         <div className="count-text">{moment(to).diff(moment(from), 'days')}晚</div>
                     </div>
                     <div className="end-date">
                         <div className="explain-text">离店</div>
-                        <div className="date-ins">{to.get('month')+1}月{to.get('date')}日 明天</div>
+                        <div className="date-ins">{to.get('month')+1}月{to.get('date')}日 {covertDate(to)}</div>
                     </div>
                 </div>
                 {lists}

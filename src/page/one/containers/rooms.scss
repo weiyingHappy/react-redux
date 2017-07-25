@@ -45,7 +45,7 @@
   }
 
   .date-container {
-    @include flex(row, nowrap, space-between, center);
+    @include flex(row, nowrap, space-around, center);
     box-sizing: border-box;
     padding: 0 20px;
     background-color: #fff;
@@ -96,6 +96,9 @@
   }
 
   .navs {
+    a {
+      text-decoration: none;
+    }
     .hotel_facilities {
       .more {
           display: inline-block;

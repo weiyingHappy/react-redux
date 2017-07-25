@@ -56,7 +56,7 @@ class RoomPiece extends React.Component {
                     </div>
                     <button className="order_btn">预定</button>
                     
-                    <div className="rest_waring">·仅剩2间</div>
+                    {/* <div className="rest_waring">·仅剩2间</div> */}
                 </div>
             </div>
         )
