@@ -52,10 +52,10 @@ class Rooms extends Component {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
             
             dispatch(fetchJsSdk({
-                teamId: res.results.teamid,
-                appid: res.results.appid,
-                appsecret: res.results.appsecret
-            })).then(() => {
+                teamId: user.teamid,
+                appid: user.appid,
+                appsecret: user.appsecret
+            })).then((res) => {
                 jsSdkInit(res.results, res.results.appid, config.basehost + this.props.pathname);
             })
         }
@@ -72,8 +72,8 @@ class Rooms extends Component {
                         teamId: res.results.teamid,
                         appid: res.results.appid,
                         appsecret: res.results.appsecret
-                    })).then(() => {
-                        jsSdkInit(res.results, res.results.appid, config.basehost + this.props.pathname);
+                    })).then((json) => {
+                        jsSdkInit(json.results, json.results.appid, config.basehost + this.props.pathname);
                     })
                 }
                 else if (res.code!=200 && !config.debug) {
@@ -199,7 +199,9 @@ class Rooms extends Component {
                         >{hotel.intro.name}</NavBar>
                     </div>
 
-                    <Link to='/cmsfont/intro'>
+                    <div onClick={() => {
+                        browserHistory.push('/cmsfont/intro')    
+                    }}>
                         <NavBar
                             moretext = '酒店详情'
                         >
@@ -218,7 +220,7 @@ class Rooms extends Component {
                                 }
                             </div>
                         </NavBar>
-                    </Link>
+                    </div>
 
                     <NavBar
                         moretext = '24评论'
