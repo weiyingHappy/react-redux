@@ -36,12 +36,12 @@ class Rooms extends Component {
     }
 
     componentWillMount() {
-        let token = this.props.params.token;
-        let code = this.props.location.query.code;
+        let token = localStorage.token;
+        let code = localStorage.code;
 
         let self = this;
         const {user, hotel, dispatch} = this.props;
-        
+        console.log(config)
         if (user.isLogin) {
             dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
             
