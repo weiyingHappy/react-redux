@@ -42,6 +42,12 @@ class Register extends Component {
         let self = this;
         let phone = this.state.phone;
         let code = this.state.code;
+
+        if(!code) {
+            alert('请填写验证码')
+            return false
+        }
+
         let info = {
             phone: phone,
             code: code
@@ -70,7 +76,7 @@ class Register extends Component {
                     else {
                         self.setState({
                             sb_code: res_b.code,
-                            sb_msg: res_b.sb_msg+'-submit failed',
+                            sb_msg: res_b.msg,
                             isDisplayDialog: true
                         })
                     }
@@ -79,7 +85,7 @@ class Register extends Component {
             else {
                 self.setState({
                     sb_code: res_a.code,
-                    sb_msg: res_a.msg+'-checkcode failed',
+                    sb_msg: res_a.msg,
                     isDisplayDialog: true
                 })
             }

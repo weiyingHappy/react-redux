@@ -25,17 +25,20 @@ class OrderGenerate extends Component {
     this.handlePay = this.handlePay.bind(this);
     this.handleChooseNum = this.handleChooseNum.bind(this);
     this.chooseCoupon = this.chooseCoupon.bind(this);
+    
     this.state = {
       is_choosing_num: false,
-      name: "",
-      phone: ""
+      name: localStorage.input_name || "",
+      phone: localStorage.input_phone || ""
     };
   }
 
   componentWillMount() {
     let { dispatch, hotel, user, storage, coupon } = this.props,
       self = this;
-    const room = hotel.lists[hotel.room_id];
+    const store_room = this.props.room
+    const room = store_room.rooms.find((room) =>  room.id=== hotel.room_id)
+    
     let from = moment(storage.from);
     let to = moment(storage.to);
     if (!user.isLogin) {
@@ -45,9 +48,11 @@ class OrderGenerate extends Component {
       // browserHistory.replace('/cmsfont/rooms')
       // return
     } else {
-      self.setState({
-        phone: user.phone
-      });
+      if(user.phone) {
+        self.setState({
+          phone: user.phone
+        });
+      }
 
       let info = {
         roomId: room.id,
@@ -91,6 +96,11 @@ class OrderGenerate extends Component {
       });
     }
   }
+  componentWillUnmount() {
+    // 存放到localStorage，以解决选择优惠券时返回输入为空
+    localStorage.input_name = this.state.name
+    localStorage.input_phone = this.state.phone
+  }
   twoFloat(val) {
     return parseInt(val * 100) / 100.0;
   }
@@ -99,7 +109,8 @@ class OrderGenerate extends Component {
     let self = this;
     return () => {
       let { dispatch, hotel, user, storage } = self.props;
-      const room = hotel.lists[hotel.room_id];
+      const store_room = this.props.room
+      const room = store_room.rooms.find((room) =>  room.id=== hotel.room_id)
       let from = moment(storage.from);
       let to = moment(storage.to);
 
@@ -118,7 +129,7 @@ class OrderGenerate extends Component {
         num: val
       };
       dispatch(fetchOrderNum(info)).then(data => {
-        fetchCouponLists({
+        fetchUsageCoupon({
           price: data.results,
           team_id: hotel.intro.id
         });
@@ -146,7 +157,8 @@ class OrderGenerate extends Component {
   handlePay() {
     let { dispatch, hotel, user, storage, coupon } = this.props,
       self = this;
-    const room = hotel.lists[hotel.room_id];
+    const store_room = this.props.room
+    const room = store_room.rooms.find((room) =>  room.id=== hotel.room_id)
 
     if (self.state.name == "" || self.state.phone == "") {
       alert("姓名或手机号不能为空");
@@ -195,13 +207,16 @@ class OrderGenerate extends Component {
       }
     });
   }
+  
   chooseCoupon() {
-    browserHistory.replace("/cmsfont/chooseCoupon");
+
+    browserHistory.push("/cmsfont/chooseCoupon");
   }
 
   render() {
     let { storage, hotel, user, coupon } = this.props;
-    let room = hotel.lists[hotel.room_id];
+    const store_room = this.props.room
+    const room = store_room.rooms.find((room) =>  room.id === hotel.room_id)
 
     if(!room) {
         return (
@@ -483,7 +498,8 @@ function select(state) {
     storage: state.storage,
     hotel: state.hotel,
     user: state.user,
-    coupon: state.coupon
+    coupon: state.coupon,
+    room: state.room
   };
 }
 

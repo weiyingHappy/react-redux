@@ -112,6 +112,7 @@ class Intro extends Component {
             <Scroll
               img_lists={hotel.intro.imgs || []}
               height="200px"
+              autoPlay
               handleClick={this.showImg}
             />
             <div className="hotel-info">
