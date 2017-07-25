@@ -46,10 +46,10 @@ class Entrance extends Component {
             //TODO: 进行模板判断跳转路由
             switch(Number(alias)) {
                 case 1:
-                    browserHistory.push('/cmsfont/rooms')
+                    location.href = '/cmsfont/rooms'
                     break
                 case 2:
-                    browserHistory.push('/cmsfont/myorder')
+                    location.href = '/cmsfont/myorder'
                     break
                 default:
                     this.setState({
