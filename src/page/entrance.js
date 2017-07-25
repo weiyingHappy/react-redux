@@ -51,11 +51,8 @@ class Entrance extends Component {
                     browserHistory.push('/cmsfont/myorder')
                 default:
                     this.setState({
-                        msg: '为匹配到alias跳转'
+                        msg: '未匹配到alias跳转'
                     })
-            }
-            if(Number(alias)===1) {
-                browserHistory.push('')
             }
         } else {
             this.setState({
