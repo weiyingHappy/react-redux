@@ -87,7 +87,7 @@ const Root = () => {
                             .catch(errorLoading);
                     } }/>
                 {/* 兼容代码，将老地址重定向到新入口 */}
-                <Redirect from="/cmsfont/rooms/:token" to="/cmsfont/entrance/:hotel_token/1" />
+                <Redirect from="/cmsfont/rooms/:token" to="/cmsfont/entrance/:token/1" />
                 {/* <Route path="/cmsfont/rooms/:token" getComponent = {(location, cb)=>{
                         System.import('./page/one/containers/Rooms')
                             .then(loadRoute(cb))
