@@ -138,7 +138,7 @@ class Rooms extends Component {
             scale: 25, // 地图缩放级别,整形值,范围从1~28。默认为最大
             infoUrl: "", // 在查看位置界面底部显示的超链接,可点击跳转
             success: function(res) {
-                alert('成功')
+                // alert('成功')
             },
             fail: err => {
                 // alert(JSON.stringify(err));
