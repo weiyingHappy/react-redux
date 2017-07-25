@@ -35,6 +35,6 @@ let config = {
     production: production,
     development: development
 };
-config = Object.assign({}, config, api_path);
+config = Object.assign({}, config, api_path, now);
 
 module.exports = config;
