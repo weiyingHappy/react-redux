@@ -3,6 +3,7 @@ import config from '@/config/config'
 import request from '../utils/request'
 
 export const ROOM_INFO = defineAction('ROOM_INFO',['FETCH', 'SUCCESS', 'ERROR'])
+export const ROOM_LIST = defineAction('ROOM_LIST',['FETCH', 'SUCCESS', 'ERROR'])
 
 export const fetchRoomInfo = (room_id) => {
     return dispatch => {
@@ -19,6 +20,35 @@ export const fetchRoomInfo = (room_id) => {
                 }else {
                     dispatch({
                         type: ROOM_INFO.ERROR
+                    })
+                }
+            })
+    }
+}
+
+/**
+ * 获取房间列表
+ * @param {number} hotel_id 
+ */
+export const fetchRoomList = (hotel_id) => {
+    return dispatch => {
+        dispatch({
+            type: ROOM_LIST.FETCH
+        })
+
+        request(`${config.remote_host}${config.remote_path.rooms}/${hotel_id}`)
+            .then((data) => {
+                console.log(data)
+                if(data.code === 200) {
+                    dispatch({
+                        type: ROOM_LIST.SUCCESS,
+                        payload: {
+                            list: data.results
+                        }
+                    })
+                }else {
+                    dispatch({
+                        type: ROOM_LIST.ERROR
                     })
                 }
             })

@@ -155,7 +155,7 @@ class Register extends Component {
                 });
             }
             else {
-                browserHistory.push('/cmsfont/index/'+this.props.user.wechatToken+'?code='+this.props.user.wechatCode);
+                browserHistory.push('/cmsfont/rooms');
             }
         }
     }

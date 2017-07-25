@@ -31,17 +31,21 @@ class Entrance extends Component {
         // 因为这里的code不一定是200， 所以判断是否有results进行下一步
         if(data.results) {
             // 动态加载css
-            let link_tag = document.createElement('link')
-            link_tag.rel = 'stylesheet'
 
-            const env = getBrowserEnv()
-            let style_href = '/cmsfont/'
-            if(env === 'development') {
-                style_href = '/'
+            if(Number(data.results.theme) !== 0) {
+                let link_tag = document.createElement('link')
+                link_tag.rel = 'stylesheet'
+
+                const env = getBrowserEnv()
+                let style_href = '/cmsfont/'
+                if(env === 'development') {
+                    style_href = '/'
+                }
+
+                link_tag.href = style_href + `theme/one/style${data.results.theme}.css`
+
+                document.querySelector('head').appendChild(link_tag)
             }
-            link_tag.href = style_href + 'theme/one/style1.css'
-
-            document.querySelector('head').appendChild(link_tag)
 
             //TODO: 进行模板判断跳转路由
             switch(Number(alias)) {

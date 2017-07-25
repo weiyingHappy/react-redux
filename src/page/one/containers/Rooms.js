@@ -5,7 +5,8 @@ import { browserHistory, Link } from 'react-router'
 import moment from 'moment'
 import cn from 'classnames'
 
-import {fetchHotelLists, changeRoom} from '@/src/actions/hotel'
+import {fetchHotelLists, changeRoom, fetchHotelInfo} from '@/src/actions/hotel'
+import { fetchRoomList } from '@/src/actions/room'
 import {fetchLogin} from '@/src/actions/user'
 import {setDatePicker} from '@/src/actions/storage'
 
@@ -13,6 +14,7 @@ import config from '@/config/config.js'
 import NavBar from '../components/navbar'
 import Tabber from '../components/tabber'
 import Loading from '../components/loading'
+import LoadingPanel from '../components/loading-panel'
 import RoomPiece from '../components/room-piece'
 import {getCookie, changeTitle} from '../components/Common'
 import LoaderMore from '../components/load-more'
@@ -32,7 +34,6 @@ class Rooms extends Component {
         this.chooseStart = this.chooseStart.bind(this);
         this.chooseEnd = this.chooseEnd.bind(this);
         this.handleEnterRoom = this.handleEnterRoom.bind(this);
-        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentWillMount() {
@@ -43,8 +44,8 @@ class Rooms extends Component {
         const {user, hotel, dispatch} = this.props;
         console.log(config)
         if (user.isLogin) {
-            dispatch(fetchHotelLists({teamId: user.teamId, page: 1}));
-            
+            this.loadData(user.teamId)
+
             dispatch(fetchJsSdk({
                 teamId: user.teamid,
                 appid: user.appid,
@@ -58,8 +59,7 @@ class Rooms extends Component {
                 changeTitle(getCookie('wechatName','')||'住那儿旅行');
 
                 if (res.results) {
-                    // browserHistory.push('/cmsfont/register');
-                    dispatch(fetchHotelLists({teamId: res.results.teamid, page: 1}))
+                    this.loadData(res.results.teamid)
 
                     // 获取jssdk
                     dispatch(fetchJsSdk({
@@ -75,25 +75,17 @@ class Rooms extends Component {
                 }
             });
         }
-        window.addEventListener('scroll',self.handleScroll,false);
     }
+    
     componentWillUnmount() {
-        window.removeEventListener('scroll',this.handleScroll, false);
     }
 
-    handleScroll() {
-        let h1 = document.body.scrollHeight;
-        let h2 = window.innerHeight;
-        let h3 = document.body.scrollTop;
-        const {user, hotel, dispatch} = this.props;
-        let self = this;
+    // 抽象加载数据方法
+    loadData(teamId) {
+        const { dispatch } = this.props
 
-        // console.log("document: "+h1+"; window: "+h2+" scroll:"+h3+" h2+h3:"+(h2+h3));
-
-        if (h1 <= h2 + h3 && hotel.nowPage < hotel.totalPage) {
-            console.log("加载下一页");
-            dispatch(fetchHotelLists({teamId: user.teamId, page: hotel.nowPage+1}));
-        }
+        dispatch(fetchHotelInfo(teamId))
+        dispatch(fetchRoomList(teamId))
     }
 
     chooseStart() {
@@ -149,17 +141,17 @@ class Rooms extends Component {
     }
 
     render() {
-        const {hotel, user, storage } = this.props;
+        const { hotel, user, storage, room } = this.props;
         let from = moment(storage.from);
         let to = moment(storage.to);
 
         let arr_id = 0;
 
-        let lists = (hotel.lists||[]).map((item) => {
+        let lists = (room.rooms||[]).map((item) => {
             arr_id += 1;
             return (
                 <div className="room-piece-container" key={item.id} onClick={this.handleEnterRoom(arr_id-1, item.id)}>
-                    <RoomPiece data={item} />
+                    <RoomPiece hotel={hotel} data={item} />
                 </div>
             )
         });
@@ -248,8 +240,8 @@ class Rooms extends Component {
                         <div className="date-ins">{to.get('month')+1}月{to.get('date')}日 {covertDate(to)}</div>
                     </div>
                 </div>
+                <LoadingPanel visible={room.fetchrooms}>房间列表加载中</LoadingPanel>
                 {lists}
-                <LoaderMore nowPage={hotel.nowPage} totalPage={hotel.totalPage} >没有更多了</LoaderMore>
                 <div style={{height:'60px'}}></div>
                 <Tabber highlight={4} token={user.wechatToken} code={user.wechatCode}/>
             </div>
@@ -263,7 +255,8 @@ function select(state) {
         user: state.user,
         hotel: state.hotel,
         storage: state.storage,
-        pathname: state.routing.locationBeforeTransitions.pathname
+        pathname: state.routing.locationBeforeTransitions.pathname,
+        room: state.room
     }
 }
 

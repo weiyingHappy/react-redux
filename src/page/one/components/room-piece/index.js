@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import cn from 'classnames'
+import moment from 'moment'
 import './index.scss'
 
 class RoomPiece extends React.Component {
@@ -12,6 +14,45 @@ class RoomPiece extends React.Component {
 
     render() {
         const { data } = this.props
+        const { booked, num } = data.dynamic
+
+        const getNotify = () => {
+            const hotel = this.props.hotel.intro
+            if(hotel.daofu == 1) {
+                return '最晚留房至入住当天' + moment(`2000-01-01 ${hotel.daofu_time}`).format('HH:mm')
+            }
+        }
+
+        const getTags = () => {
+            const tags = []
+            const hotel = this.props.hotel.intro
+
+            if(hotel.daofu == 1) {
+                tags.push('到店支付')
+            }
+            if(hotel.wuyou == 1) {
+                tags.push('无忧行李')
+            }
+            if(hotel.seckill == 1) {
+                tags.push('抢房')
+            }
+
+            return tags
+        }
+
+        // 房间剩余提醒
+        const getStockNotiy = () => {
+            if(booked/num >= 0.8) {
+                return (
+                    <div className="rest_waring">·今日仅剩{num - booked}间</div>
+                )
+            }
+            if(booked == num) {
+                return (
+                    <div className="rest_error">.今日满房</div> 
+                )
+            }
+        }
 
         return (
             <div className="room-piece">
@@ -41,22 +82,29 @@ class RoomPiece extends React.Component {
                                 '单床'
                         }
                         </span>
-                        <div>{data.intro}</div>
+                        <div>{getNotify()}</div>
                     </div>
                     <div className="tags">
-                        <span className="tag">满减</span>
+                        {
+                            getTags().map((tag, index) => (
+                                <span className="tag" key={'tag_' + index}>{tag}</span>
+                            ))
+                        }
                     </div>
                 </div>
 
                 <div className="order-opera">
                     <div className="price">
                         ￥
-                        <span className="large">88</span>
-                        .00
+                        <span className="large">{data.sprice.split('.')[0]}</span>
+                        .{data.sprice.split('.')[1]}
                     </div>
-                    <button className="order_btn">预定</button>
-                    
-                    {/* <div className="rest_waring">·仅剩2间</div> */}
+                    <button className={cn('order_btn', {
+                        'full': booked == num
+                    })}>预定</button>
+                    {
+                        getStockNotiy()
+                    }
                 </div>
             </div>
         )
@@ -64,7 +112,8 @@ class RoomPiece extends React.Component {
 }
 
 RoomPiece.propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    hotel: PropTypes.object.isRequired, // 房间所属酒店信息，因为需要判断到付
 }
 
 module.exports = RoomPiece;

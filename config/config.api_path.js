@@ -42,6 +42,7 @@ module.exports = {
         luggageOrderInfo: '/FE/OrderExtra/wuyouOrderInfo2',
         myAccount: '/FE/UserCenter/getMyAccount',
         goldCusLogs: '/FE/Charge/goldCusLogs',
-        roomInfo: '/FE/Room/roomInfo'
+        roomInfo: '/FE/Room/roomInfo',
+        rooms: '/FE/Room/roomDynamics'
     }
 };

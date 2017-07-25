@@ -4,7 +4,9 @@ import { browserHistory } from 'react-router'
 
 export const REQUEST_HOTEL_LISTS= 'REQUEST_HOTEL_LISTS';
 export const RECEIVE_HOTEL_LISTS = 'RECEIVE_HOTEL_LISTS';
-export const RECEIVE_HOTEL_INFO = 'RECEIVE_HOTEL_INFO';
+
+export const RECEIVE_HOTEL_INFO = 'RECEIVE_HOTEL_INFO'; // 接收酒店信息
+export const REQUEST_HOTEL_INFO = 'REQUEST_HOTEL_INFO'; // 请求酒店信息
 
 export const CHANGE_ROOM = 'CHANGE_ROOM';
 
@@ -53,7 +55,10 @@ export function changeRoom(id) {
  */
 export function fetchHotelInfo(id) {
     return (dispatch) => {
-        dispatch(requestHotelLists({}))// ??? :-)
+        dispatch({
+            type: REQUEST_HOTEL_INFO
+        })
+        
         const getinfo = request(config.remote_host + config.remote_path.hotelInfomation + `/${id}`)
         getinfo.then((data) => {
             if(data.code !== 200) {

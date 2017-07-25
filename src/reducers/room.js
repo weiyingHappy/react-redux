@@ -1,10 +1,12 @@
-import { ROOM_INFO } from '../actions/room'
+import { ROOM_INFO, ROOM_LIST } from '../actions/room'
 
 
 const default_state = {
     room_id: '',
     state: 0, // 0初始化，1请求中，2请求完成, 3请求失败
-    room_info: undefined
+    room_info: undefined,
+    rooms: [],
+    fetchrooms: false
 }
 
 export default function room(state = default_state, action) {
@@ -24,6 +26,22 @@ export default function room(state = default_state, action) {
             return {
                 ...state,
                 state: 3
+            }
+        case ROOM_LIST.FETCH:
+            return {
+                ...state,
+                fetchrooms: true
+            }
+        case ROOM_LIST.ERROR:
+            return {
+                ...state,
+                fetchrooms: false
+            }
+        case ROOM_LIST.SUCCESS:
+            return {
+                ...state,
+                fetchrooms: false,
+                rooms: action.payload.list
             }
         default:
             return state

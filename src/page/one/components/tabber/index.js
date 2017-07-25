@@ -5,10 +5,6 @@ import {connect} from 'react-redux'
 
 import {getCookie} from '../Common'
 import cn from 'classnames'
-import img_index from '../../images/two/icon-1.png'
-import img_order from '../../images/two/icon-2.png'
-import img_snap from '../../images/two/icon-3.png'
-import img_my from '../../images/two/icon-4.png'
 
 class Tabber extends React.Component {
     constructor(props) {
