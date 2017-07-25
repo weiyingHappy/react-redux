@@ -56,7 +56,7 @@ class Rooms extends Component {
                 appid: user.appid,
                 appsecret: user.appsecret
             })).then((res) => {
-                jsSdkInit(res.results, res.results.appid, config.basehost + this.props.pathname);
+                jsSdkInit(res.results, user.appid, config.basehost + this.props.pathname);
             })
         }
         else {
@@ -73,7 +73,7 @@ class Rooms extends Component {
                         appid: res.results.appid,
                         appsecret: res.results.appsecret
                     })).then((json) => {
-                        jsSdkInit(json.results, json.results.appid, config.basehost + this.props.pathname);
+                        jsSdkInit(json.results, res.results.appid, config.basehost + this.props.pathname);
                     })
                 }
                 else if (res.code!=200 && !config.debug) {
