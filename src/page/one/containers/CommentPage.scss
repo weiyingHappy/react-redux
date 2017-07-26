@@ -2,6 +2,7 @@
   height: 100%;
   background-color: #efefef;
   overflow: auto;
+  -webkit-overflow-scrolling: touch;
   .hack_block {
     height: 100px;
     background-color: #fff;
