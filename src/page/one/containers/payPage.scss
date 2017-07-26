@@ -4,6 +4,73 @@
   @extend .container-common;
   background-color: #F2F2F2;
   padding-bottom: 40px;
+
+  .order_info {
+    background-color: #23beae;
+    box-sizing: border-box;
+    padding: 12px 10px;
+    .order_card {
+      border-radius: 4px;
+      background-color: #fff;
+      padding: 14.5px 0;
+      .hotel_name, .room_name, .daterange, .equipments, .bewrite {
+        padding: 0 20px;
+      }
+      .hotel_name {
+        font-size: 16px;
+        color: #444;
+        margin-bottom: 5px;
+      }
+      .room_name {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+      }
+      .daterange {
+        font-size: 0;
+        margin-bottom: 5px;
+        .live_in, .live_out, .count {
+          display: inline-block;
+          font-size: 13px;
+          color: #444;
+        }
+      }
+      .equipments {
+        .item {
+          font-size: 13px;
+          color: #444;
+          margin-right: 5px;
+        }
+      }
+      .divide {
+        border-top: dashed 1px #ddd;
+        margin: 15px 0;
+        position: relative;
+        &:after, &:before {
+          content: '';
+          width: 20px;
+          height: 20px;
+          display: block;
+          position: absolute;
+          background-color: #23beae;
+          border-radius: 50%;
+          top: -10px;
+        }
+        &:after {
+          left: -10px;
+        }
+        &:before {
+          right: -10px;
+        }
+      }
+
+      .bewrite {
+        color: #999;
+        font-size: 12px;
+      }
+    }
+  }
+  
   .top {
     height: 160px;
     box-sizing: border-box;

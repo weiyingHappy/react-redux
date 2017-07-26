@@ -6,6 +6,7 @@ import order from './order'
 import snap from './snap'
 import coupon from './coupon'
 import room from './room'
+import comment from './comment'
 import luggage from './luggage' // 无忧行李state
 
 export default {
@@ -17,5 +18,6 @@ export default {
     snap,
     coupon,
     luggage,
+    comment,
     room
 }

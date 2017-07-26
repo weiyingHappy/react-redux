@@ -233,26 +233,32 @@ class Rooms extends Component {
                   </div>
                 </NavBar>
               </div>
-
-              <NavBar moretext="24评论">
-                <div>
-                  <span className="starts">
-                    {new Array(5).fill(0).map((_, index) =>
-                      <i
-                        key={"start_" + index}
-                        className={cn("iconfont", {
-                          "icon-star": index + 1 <= parseInt(hotel.intro.star),
-                          "icon-start-blank":
-                            index + 1 > parseInt(hotel.intro.star)
-                        })}
-                      />
-                    )}
-                  </span>
-                  <span className="score">
-                    {hotel.intro.star}分
-                  </span>
-                </div>
-              </NavBar>
+              
+              <div
+                onClick={() => {
+                  browserHistory.push("/cmsfont/comments");
+                }}
+              >
+                <NavBar moretext={(hotel.intro.totalComments||0) + "评论"}>
+                  <div>
+                    <span className="starts">
+                      {new Array(5).fill(0).map((_, index) =>
+                        <i
+                          key={"start_" + index}
+                          className={cn("iconfont", {
+                            "icon-star": index + 1 <= parseInt(hotel.intro.star),
+                            "icon-start-blank":
+                              index + 1 > parseInt(hotel.intro.star)
+                          })}
+                        />
+                      )}
+                    </span>
+                    <span className="score">
+                      {hotel.intro.star}分
+                    </span>
+                  </div>
+                </NavBar>
+              </div>
             </div>
 
             <div

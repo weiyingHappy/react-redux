@@ -249,6 +249,11 @@ const Root = () => {
                             .then(loadRoute(cb))
                             .catch(errorLoading);
                     } }/>
+                <Route path="/cmsfont/comments" getComponent = {(location, cb) => {
+                    System.import('./page/one/containers/CommentPage')
+                        .then(loadRoute(cb))
+                        .catch(errorLoading)
+                }}/>
                 
                 {/* 老代码-结束 */}
                 

@@ -48,11 +48,11 @@ class OrderGenerate extends Component {
       // browserHistory.replace('/cmsfont/rooms')
       // return
     } else {
-      if(user.phone) {
-        self.setState({
-          phone: user.phone
-        });
-      }
+      // if(user.phone) {
+      //   self.setState({
+      //     phone: user.phone
+      //   });
+      // }
 
       let info = {
         roomId: room.id,
@@ -209,7 +209,7 @@ class OrderGenerate extends Component {
   }
   
   chooseCoupon() {
-
+    
     browserHistory.push("/cmsfont/chooseCoupon");
   }
 

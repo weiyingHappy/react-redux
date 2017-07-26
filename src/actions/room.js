@@ -54,3 +54,25 @@ export const fetchRoomList = (hotel_id) => {
             })
     }
 }
+
+/**
+ * 获取锁定房间日期
+ * @param {string} start 
+ * @param {string} end 
+ * @param {string} room_id 
+ */
+export const fetchRoomLockedDate = (start, end, room_id) => {
+    return dispatch => {
+
+        const client = request(config.remote_host + config.remote_path.roomLocks, {
+            method: 'POST',
+            body: {
+                start,
+                end,
+                room_id
+            }
+        })
+        
+        return client
+    }
+}

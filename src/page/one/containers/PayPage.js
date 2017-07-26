@@ -10,6 +10,7 @@ import EquArea from '../components/equ-area'
 import Loading from '../components/loading'
 import {getCookie} from '../components/Common'
 import request from '@/src/utils/request'
+import { covertDate } from '@/src/common'
 
 import {fetchOrderInfo, fetchToPay, fetchArrivePay, fetchDaoFu} from '@/src/actions/order'
 
@@ -167,12 +168,49 @@ class PayPage extends Component {
     render() {
         let {order} = this.props;
         let pay = order.pay;
-        return (order.pay.loading)?(
+        return (order.pay.loading && false)?(
             <div className="pay-page-container">
                 <Loading text="加载中..." isFetching={order.pay.loading} />
             </div>
         ):(
             <div className="pay-page-container">
+
+                <div className="order_info">
+                    <div className="order_card">
+                        <div className="hotel_name">
+                            {pay.team.name}
+                        </div>
+                        <div className="room_name">
+                            {pay.room.name}
+                        </div>
+                        <div className="daterange">
+                        <div className="live_in">
+                            入住：{moment(pay.start).format("MM-DD")} （{covertDate(moment(pay.start))}）
+                        </div>
+                        <div className="live_out">
+                            离店：{moment(pay.end).format("MM-DD")} （{covertDate(moment(pay.end))}）
+                        </div>
+                        <div className="count">
+                            共{moment(pay.end).diff(pay.start, "days")}晚
+                        </div>
+                        </div>
+                        <div className="equipments">
+                            {(pay.room.equipments||[]).map((item, index) => {
+                                return (
+                                <span key={"equ_" + index} className="item">
+                                    {item}
+                                </span>
+                                );
+                            })}
+                        </div>
+                        <div className="divide" />
+                        <div className="bewrite">
+                        <p style={{ marginBottom: 5 }}>订单确认后即视为消费，不支持无理由退款；</p>
+                        <p>到店支付订单最晚留房至18：00，请及时办理入住。</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="top">
                     <div className="top-a">
                         <img src={img_top} className="ta-img"/>
@@ -181,33 +219,7 @@ class PayPage extends Component {
                         订单已提交, 等待付款!
                     </div>
                 </div>
-
-                <div className="middle">
-                    <div className="middle-top">
-                        <div className="middle-top-a">{pay.team.name}</div>
-                        <div className="middle-top-b">
-                            <div className="date-a">
-                                <span >入住: </span>
-                                <span>{moment(pay.start).get('month')+1}月{moment(pay.start).get('date')}日</span>
-                            </div>
-                            <div className="date-b">
-                                <span >共</span>
-                                <span >{moment(pay.end).diff(moment(pay.start),'days')}</span>
-                                <span >晚</span>
-                            </div>
-                            <div className="date-c">
-                                <span >离店: </span>
-                                <span >{moment(pay.end).get('month')+1}月{moment(pay.end).get('date')}日</span>
-                            </div>
-                        </div>
-                        <div className="middle-top-c">
-                            <div className="equ-head">
-                                {pay.room.name}
-                            </div>
-                            <EquArea lists={pay.room.equipments||[]}/>
-                        </div>
-                    </div>
-                </div>
+                
                 <div className="we-pay-middle-bottom">
                     <div className="wpmb-a">
                         订单金额: ￥{pay.price}-{(parseFloat(pay.price)-parseFloat(pay.pay_price)).toFixed(2)}=￥{pay.pay_price}

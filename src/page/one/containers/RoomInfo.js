@@ -25,8 +25,6 @@ class RoomInfo extends Component {
   constructor(props) {
     super(props);
     this.getCommentsArea = this.getCommentsArea.bind(this);
-    this.chooseStart = this.chooseStart.bind(this);
-    this.chooseEnd = this.chooseEnd.bind(this);
     this.showImg = this.showImg.bind(this);
   }
 
@@ -65,18 +63,8 @@ class RoomInfo extends Component {
     }
   }
 
-  chooseStart() {
-    this.props.dispatch(setDatePicker(1));
-    browserHistory.push("/cmsfont/chooseDate");
-  }
-
-  chooseEnd() {
-    this.props.dispatch(setDatePicker(2));
-    browserHistory.push("/cmsfont/chooseDate");
-  }
-
   chooseDateRange() {
-    browserHistory.push("/cmsfont/chooseDate");
+    browserHistory.push("/cmsfont/chooseDate?room_id=" + this.props.params.id);
   }
 
   getCommentsLists(storage) {
