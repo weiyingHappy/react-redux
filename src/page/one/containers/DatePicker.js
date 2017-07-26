@@ -11,6 +11,7 @@ import InfiniteCalendar, {
 import 'react-infinite-calendar/styles.css';
 import './datePicker.scss'
 import {setDate, getTime} from '@/src/actions/storage'
+import { fetchRoomLockedDate } from '../../../actions/room'
 
 class DatePicker extends Component {
 
@@ -19,16 +20,17 @@ class DatePicker extends Component {
         this.handleSelect = this.handleSelect.bind(this);
         this.odd = true;
         this.state = {
-            yd: false,
+            yd: false, // 夜审时间是否已过
             range: {
                 start: moment(),
                 end: moment().add(1, 'days'),
-            }
+            },
+            lockedDate: []
         }
     }
 
     componentWillMount() {
-        let {dispatch, storage} = this.props, self = this;
+        let {dispatch, storage, query} = this.props, self = this;
         
         this.setState({
             range: {
@@ -55,11 +57,27 @@ class DatePicker extends Component {
                 })
             }
         })
+
+        // 如果query带了房间id，那么将判断该房间的锁定状态
+        if(query.room_id) {
+            const minDate = this.state.yd ?
+                        moment().subtract(1,'d').toDate() :
+                        moment().toDate()
+            
+            const maxDate = moment().add(2,'months').toDate()
+            
+            dispatch(fetchRoomLockedDate(minDate, maxDate, query.room_id)).then((data) => {
+                if(data.code === 200) {
+                    this.setState({
+                        lockedDate: data.results.map((date_str) => moment(date_str.time))
+                    })
+                }
+            })
+        }
     }
 
     handleSelect(range) {
-        console.log("choosing....");
-        console.log(range);
+
         if (!this.odd) return ;
         this.odd = false;
 
@@ -100,6 +118,23 @@ class DatePicker extends Component {
     }
 
     dateSelect() {
+
+        let flag = false
+        this.state.lockedDate.map((lockdate_item) => {
+            console.log(lockdate_item.format('YYYY-MM-DD'))
+            if (
+                lockdate_item.isBetween(this.state.range.start, this.state.range.end) ||
+                lockdate_item.isSame(this.state.range.start, 'day') ||
+                lockdate_item.isSame(this.state.range.end, 'day')
+            ) {
+                flag = true
+            }
+        })
+        if (flag) {
+            alert('该房型含被锁定时段，请重新选择入离时间')
+            return
+        }
+
         if( this.state.range.start.isSame(this.state.range.end) ) {
             alert('你还未选择离开时间')
             return
@@ -145,7 +180,7 @@ class DatePicker extends Component {
                         width={'100%'}
                         height={(document.body.clientHeight - 147) * 0.8}
                         minDate={this.state.yd?moment().subtract(1,'d').toDate():moment().toDate()}
-                        maxDate={storage.datePicker==1?moment().add(2,'months').subtract(1,'d').toDate():moment().add(2,'months').toDate()}
+                        maxDate={moment().add(2,'months').toDate()}
                         min={moment().startOf('month').toDate()}
                         max={moment().add(2,'months').endOf('month').toDate()}
                         locale={{
@@ -161,6 +196,9 @@ class DatePicker extends Component {
                             this.dateChange(event);
                             return true;
                         }}
+                        disabledDates={
+                            this.state.lockedDate.map((date) => date.toDate())
+                        }
                         selected={{
                             start: this.state.range.start.toDate(),
                             end: this.state.range.end.toDate()
@@ -178,7 +216,8 @@ class DatePicker extends Component {
 
 function select(state) {
     return {
-        storage: state.storage
+        storage: state.storage,
+        query: state.routing.locationBeforeTransitions.query
     }
 }
 

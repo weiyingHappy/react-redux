@@ -43,6 +43,7 @@ module.exports = {
         myAccount: '/FE/UserCenter/getMyAccount',
         goldCusLogs: '/FE/Charge/goldCusLogs',
         roomInfo: '/FE/Room/roomInfo',
-        rooms: '/FE/Room/roomDynamics'
+        rooms: '/FE/Room/roomDynamics',
+        roomLocks: '/FE/Room/room_loced'
     }
 };
