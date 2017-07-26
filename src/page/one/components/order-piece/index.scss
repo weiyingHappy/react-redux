@@ -13,10 +13,20 @@
       font-size: 0;
       width: 100%;
       border-bottom: solid 1px #dcdcdc;
-      padding-bottom: 10px;
+      padding-bottom: 5px;
       .hotel_name, .state {
         font-size: 14px;
         display: inline-block;
+        .hotel_icon {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
+          background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-jiu-dian.png);
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-position: center;
+        }
       }
       .hotel_name {
         width: 60%;

@@ -51,13 +51,16 @@ class OrderPiece extends React.Component {
             return (
                 <div key={item.order_no} className="order-item">
                     <div className="header">
-                        <div className="hotel_name">成都T酒店</div>
+                        <div className="hotel_name">
+                            <span className="hotel_icon"></span>
+                            成都T酒店
+                        </div>
                         <div className="state">{helper.readyPay(item.state)?'未支付':helper.hasPay(item.state)?
                             '已支付':helper.isFinish(item.state)?'已完成':helper.needRefund(item.state)?'申请退款':'已取消'}</div>
                     </div>
                     <div className="body">
                         <div className="room_name">
-                            {item.room.name}<span className="order_type">-普通订单</span>
+                            {item.room.name}<span className="order_type">-{item.type=='1'?'抢房订单':item.type=='2'?'普通订单':'到付订单'}</span>
                         </div>
                         <div className="date_range">
                             入离时间: {item.start} 至 {item.end} (共{moment(item.end).diff(moment(item.start), 'days')}晚)
