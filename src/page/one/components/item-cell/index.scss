@@ -5,7 +5,7 @@
   @include flex(row, nowrap, space-between, center);
   height: 50px;
   padding: 0 31px 0 11px;
-  font-size: 16px;
+  font-size: 15px;
   color: #666666;
 
 
@@ -14,7 +14,7 @@
     height: 12px;
     width: 12px;
     border-width: 2px 2px 0 0;
-    border-color: #8B8B8B;
+    border-color: #bababa;
     border-style: solid;
     -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
     transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
@@ -22,8 +22,8 @@
   .ic-a {
     @include flex(row, nowrap, flex-start, center);
     .nav-icon {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       margin-right: 10px;
       display: inline-block;
       background-size: contain;
@@ -36,13 +36,13 @@
         background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-ji-fen.png)
       }
       &.img_wallet {
-        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-qian-bao.png);
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-nqian-bao.png);
       }
       &.img_setting {
-        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-nsetting.png);
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-n2setting.png);
       }
       &.img_coupon {
-        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-coupons.png);
+        background-image: url(http://oi9d1dmyt.bkt.clouddn.com//theme/one/style_one/icon-ncoupons.png);
       }
     }
   }
