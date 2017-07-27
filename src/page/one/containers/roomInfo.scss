@@ -39,7 +39,8 @@
     color: #FF4E00;
   }
   .no-room-text {
-    font-size: 1.7rem;
+    font-size: 16px;
+    color: #555;
   }
   .date-container {
     @include flex(row, nowrap, space-around, center);
