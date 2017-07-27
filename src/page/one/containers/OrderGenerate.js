@@ -43,7 +43,7 @@ class OrderGenerate extends Component {
     let to = moment(storage.to);
     if (!user.isLogin) {
       dispatch(setUser({register_back_url: '/cmsfont/orderGenerate'}));
-      browserHistory.push('/cmsfont/register');
+      browserHistory.replace('/cmsfont/register');
       return ;
       // browserHistory.replace('/cmsfont/rooms')
       // return
