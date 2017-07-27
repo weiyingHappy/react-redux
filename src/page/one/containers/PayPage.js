@@ -210,15 +210,6 @@ class PayPage extends Component {
                         </div>
                     </div>
                 </div>
-
-                <div className="top">
-                    <div className="top-a">
-                        <img src={img_top} className="ta-img"/>
-                    </div>
-                    <div className="top-b">
-                        订单已提交, 等待付款!
-                    </div>
-                </div>
                 
                 <div className="we-pay-middle-bottom">
                     <div className="wpmb-a">
