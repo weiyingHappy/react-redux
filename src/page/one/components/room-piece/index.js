@@ -42,14 +42,14 @@ class RoomPiece extends React.Component {
 
         // 房间剩余提醒
         const getStockNotiy = () => {
-            if(booked/num >= 0.8) {
-                return (
-                    <div className="rest_waring">·今日仅剩{num - booked}间</div>
-                )
-            }
             if(booked == num) {
                 return (
                     <div className="rest_error">.今日满房</div> 
+                )
+            }
+            if(booked/num >= 0.8) {
+                return (
+                    <div className="rest_waring">·今日仅剩{num - booked}间</div>
                 )
             }
         }
