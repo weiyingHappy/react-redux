@@ -29,7 +29,7 @@ class ItemCell extends React.Component {
                         {this.props.title}
                         {
                             this.props.num?
-                            <span style={{color: 'red'}}>({this.props.num})</span>:
+                            <span>: &nbsp;&nbsp;<span style={{color: 'red'}}>{this.props.num}</span></span>:
                             ''
                         }
                     </div>
