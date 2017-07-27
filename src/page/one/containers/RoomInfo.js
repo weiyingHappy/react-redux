@@ -20,8 +20,12 @@ import "./roomInfo.scss";
 import { getCookie, jsSdkInit } from "../components/Common";
 import EquArea from "../components/equ-area";
 import CommentItem from "../components/comment-item";
+import { fetchRoomLockedDate } from '@/src/actions/room'
 
 class RoomInfo extends Component {
+  state = {
+    lockedDate: []
+  }
   constructor(props) {
     super(props);
     this.getCommentsArea = this.getCommentsArea.bind(this);
@@ -30,8 +34,10 @@ class RoomInfo extends Component {
 
   componentWillMount() {
     let { user, storage, dispatch, hotel, params } = this.props;
+
     let self = this;
     let from = moment(storage.from);
+    let to = moment(storage.to);
 
     dispatch(fetchRoomInfo(params.id));
 
@@ -61,6 +67,14 @@ class RoomInfo extends Component {
         jsSdkInit(res.results, user.appid, config.my_host + "/roomInfo");
       });
     }
+    
+    dispatch(fetchRoomLockedDate(from, to, params.id)).then((data) => {
+        if(data.code === 200) {
+            this.setState({
+                lockedDate: data.results.map((date_str) => moment(date_str.time))
+            })
+        }
+    })
   }
 
   chooseDateRange() {
@@ -150,6 +164,21 @@ class RoomInfo extends Component {
     let to = moment(storage.to);
 
     let comments_area = this.getCommentsArea(storage);
+
+    const isIncludeLockDate = () => {
+      let flag = false
+      this.state.lockedDate.map((lockdate_item) => {
+          if (
+              lockdate_item.isBetween(from, to) ||
+              lockdate_item.isSame(from, 'day') ||
+              lockdate_item.isSame(to, 'day')
+          ) {
+              flag = true
+          }
+      })
+
+      return flag
+    }
 
     return (
       <div className="roomInfo-container">
@@ -248,22 +277,30 @@ class RoomInfo extends Component {
         <div style={{ height: "80px" }} />
 
         <div className="m-bottom">
-          <button
-            onClick={this.handleOrder}
-            className={
-              "order-button " +
-              (!storage.inventory_loading && storage.inventory == 0
-                ? "order-button-disabled"
-                : "")
-            }
-            disabled={
-              storage.inventory_loading || storage.inventory == 0 ? true : false
-            }
-          >
-            {storage.inventory_loading
-              ? <div className="weui-loading" />
-              : <div>立即预定</div>}
-          </button>
+          {
+            isIncludeLockDate() ?
+             <button
+              disabled
+              className = 'order-button order-button-disabled'
+
+             >当前选择时间中包含锁定房间</button> :
+            <button
+              onClick={this.handleOrder}
+              className={
+                "order-button " +
+                (!storage.inventory_loading && storage.inventory == 0
+                  ? "order-button-disabled"
+                  : "")
+              }
+              disabled={
+                storage.inventory_loading || storage.inventory == 0 ? true : false
+              }
+            >
+              {storage.inventory_loading
+                ? <div className="weui-loading" />
+                : <div>立即预定</div>}
+            </button>
+          }
         </div>
       </div>
     );
