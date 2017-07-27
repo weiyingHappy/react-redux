@@ -68,7 +68,7 @@ class RoomInfo extends Component {
       });
     }
     
-    dispatch(fetchRoomLockedDate(from, to, params.id)).then((data) => {
+    dispatch(fetchRoomLockedDate(from.format('YYYY-MM-DD'), to.format('YYYY-MM-DD'), params.id)).then((data) => {
         if(data.code === 200) {
             this.setState({
                 lockedDate: data.results.map((date_str) => moment(date_str.time))
