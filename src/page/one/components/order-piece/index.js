@@ -53,7 +53,7 @@ class OrderPiece extends React.Component {
                     <div className="header">
                         <div className="hotel_name">
                             <span className="hotel_icon"></span>
-                            成都T酒店
+                            {item.team_name}
                         </div>
                         <div className="state">{helper.readyPay(item.state)?'未支付':helper.hasPay(item.state)?
                             '已支付':helper.isFinish(item.state)?'已完成':helper.needRefund(item.state)?'申请退款':'已取消'}</div>
