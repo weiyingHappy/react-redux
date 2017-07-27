@@ -11,7 +11,7 @@ import InfiniteCalendar, {
 import 'react-infinite-calendar/styles.css';
 import './datePicker.scss'
 import {setDate, getTime} from '@/src/actions/storage'
-import { fetchRoomLockedDate } from '../../../actions/room'
+import { fetchRoomLockedDate } from '@/src/actions/room'
 
 class DatePicker extends Component {
 
