@@ -57,13 +57,13 @@ class DatePicker extends Component {
     // 如果query带了房间id，那么将判断该房间的锁定状态
     if (query.room_id) {
       const minDate = this.state.yd
-        ? moment().subtract(1, "d").toDate()
-        : moment().toDate();
+        ? moment().subtract(1, "d")
+        : moment();
 
-      const maxDate = moment().add(2, "months").toDate();
+      const maxDate = moment().add(2, "months");
 
       dispatch(
-        fetchRoomLockedDate(minDate, maxDate, query.room_id)
+        fetchRoomLockedDate(minDate.format('YYYY-MM-DD'), maxDate.format('YYYY-MM-DD'), query.room_id)
       ).then(data => {
         if (data.code === 200) {
           this.setState({
@@ -203,6 +203,10 @@ class DatePicker extends Component {
                 }
                 return true;
               })}
+            selected={{
+              start: this.state.range.start.toDate(),
+              end: this.state.range.end.toDate()
+            }}
           />
           <div
             className="operationbtns"
