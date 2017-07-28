@@ -273,8 +273,8 @@
       vertical-align: middle;
     }
     .reduce_logo {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background-color: #fa9900;
       margin-right: 5px;
       display: inline-flex;
@@ -282,6 +282,7 @@
       align-items: center;
       color: #fff;
       border-radius: 1px;
+      font-size: 12px;
     }
   }
 
@@ -323,7 +324,10 @@
     color: #fa9900;
     border: 1px solid #fa9900;
     padding: 0 5px;
-    font-size: 9px;
+    font-size: 16px;
+    transform: scale(0.7);
+    margin-top: 8px;
+    transform-origin: 0 0 0;
   }
   .cpl-b {
     font-size: 11px;
