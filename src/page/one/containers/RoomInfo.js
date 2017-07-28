@@ -170,8 +170,7 @@ class RoomInfo extends Component {
       this.state.lockedDate.map((lockdate_item) => {
           if (
               lockdate_item.isBetween(from, to) ||
-              lockdate_item.isSame(from, 'day') ||
-              lockdate_item.isSame(to, 'day')
+              lockdate_item.isSame(from, 'day')
           ) {
               flag = true
           }
