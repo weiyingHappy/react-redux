@@ -280,7 +280,7 @@ class OrderGenerate extends Component {
             <div className="divide" />
             <div className="bewrite">
               <p style={{ marginBottom: 5 }}>订单确认后即视为消费，不支持无理由退款；</p>
-              <p>到店支付订单最晚留房至18：00，请及时办理入住。</p>
+              <p>到店支付订单最晚留房至{hotel.intro.daofu_time}，请及时办理入住。</p>
             </div>
           </div>
         </div>

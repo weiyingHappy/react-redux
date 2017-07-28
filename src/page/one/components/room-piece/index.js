@@ -19,7 +19,7 @@ class RoomPiece extends React.Component {
         const getNotify = () => {
             const hotel = this.props.hotel.intro
             if(hotel.daofu == 1) {
-                return '最晚留房至入住当天' + moment(`2000-01-01 ${hotel.daofu_time}`).format('HH:mm')
+                return '最晚留房至入住当天' + hotel.daofu_time
             }
         }
 

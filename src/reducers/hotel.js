@@ -49,7 +49,8 @@ export default function hotel(state=hotel_state, action) {
                 ...state,
                 intro: {
                     ...action.payload.data,
-                    equipments: action.payload.data.equipments || []
+                    equipments: action.payload.data.equipments || [],
+                    daofu_time: action.payload.data.daofu_time.split(":").slice(0,2).join(":")
                 },
                 isFetching: false
             }
