@@ -57,7 +57,7 @@ class CommentPage extends Component {
             <span className="score_num">{hotel.intro.star}</span>
             分
             <span style={{ marginLeft: 10 }}>
-              <Stars value={hotel.intro.star} />
+              <Stars value={Number(hotel.intro.star)} />
             </span>
           </div>
           <div className="tabs">
