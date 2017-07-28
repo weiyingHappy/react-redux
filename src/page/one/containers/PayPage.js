@@ -247,7 +247,7 @@ class PayPage extends Component {
                         <img className="pi-right" src={this.state.pay_type==2?img_c:img_d}
                              onClick={()=>{this.setState({pay_type:2})}}/>
                     </div>
-                    <div className="pay-item" style={{display: this.state.onlydaofu?'none':'flex'}}>
+                    <div className="pay-item" style={{display: this.state.onlydaofu?'flex':'none'}}>
                         <div className="pi-left">
                             <img src={img_a} className="pay-icon"/>
                             <div>微信支付</div>
