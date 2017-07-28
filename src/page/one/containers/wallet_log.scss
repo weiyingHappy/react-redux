@@ -1,8 +1,9 @@
 .wallet_log_page {
     font-size: 16px;
     background-color: #efefef;
-    min-height: 100%;
-    overflow: hidden;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling : touch;
     .tips {
         text-align: center;
         padding: 10px 0;
