@@ -132,6 +132,8 @@ export const covertEquipmentsToClassName = (name) => {
             return 'xingli'
         case '早餐':
             return 'zaocan'
+        case '单早':
+            return 'zaocan'
         case '淋浴':
             return 'linyu'
         case 'wifi':
@@ -157,6 +159,8 @@ export const covertEquipmentsToClassName = (name) => {
         case '电脑':
             return 'diannao'
         case '吧台':
+            return 'batai'
+        case '迷你吧台':
             return 'batai'
         case '拖鞋':
             return 'tuoxie'
