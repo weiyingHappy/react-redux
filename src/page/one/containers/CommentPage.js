@@ -22,7 +22,7 @@ class CommentPage extends Component {
     }
   }
   loadData(page) {
-    const { dispatch, query } = this.props
+    const { dispatch, query, hotel } = this.props
 
     let category = 0
     if(query.category) {
@@ -32,7 +32,7 @@ class CommentPage extends Component {
     this.setState({
       page
     }, () => {
-      dispatch(fetchComment(page, category, 1))
+      dispatch(fetchComment(page, category, Number(hotel.intro.id)))
     })
   }
 
