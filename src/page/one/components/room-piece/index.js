@@ -96,8 +96,8 @@ class RoomPiece extends React.Component {
                 <div className="order-opera">
                     <div className="price">
                         ￥
-                        <span className="large">{data.sprice.split('.')[0]}</span>
-                        .{data.sprice.split('.')[1]}
+                        <span className="large">{data.dynamic.sprice.split('.')[0]}</span>
+                        .{data.dynamic.sprice.split('.')[1]}
                     </div>
                     <button className={cn('order_btn', {
                         'full': booked == num
