@@ -142,7 +142,7 @@ export const covertEquipmentsToClassName = (name) => {
             return 'linyu'
         case 'wifi':
             return 'wifi'
-        case '宽度':
+        case '宽带':
             return 'wifi'
         case '沐浴露':
             return 'muyulu'
