@@ -134,13 +134,21 @@ export const covertEquipmentsToClassName = (name) => {
             return 'zaocan'
         case '单早':
             return 'zaocan'
+        case '双早':
+            return 'zaocan'
         case '淋浴':
             return 'linyu'
+        case '卫浴':
+            return 'linyu'
         case 'wifi':
+            return 'wifi'
+        case '宽度':
             return 'wifi'
         case '沐浴露':
             return 'muyulu'
         case '免费停车':
+            return 'tingche'
+        case '付费停车':
             return 'tingche'
         case '空调':
             return 'kongtiao'
